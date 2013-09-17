@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Maven | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/maven/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-09-17T11:45:34-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Running maven offline mode]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/07/21/running-maven-offline-mode/"/>
+    <updated>2013-07-21T21:59:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/07/21/running-maven-offline-mode</id>
+    <content type="html"><![CDATA[<p>Terkadang, sangat menjengkelkan, ketika menjalankan command berikut</p>
+
+<p><code>
+mvn clean install
+</code></p>
+
+<p>maven melakukan update repository ke maven repo (apalagi kalau lagi internet lelet :( ). Setelah google sana sini, ternyata kita bisa menjalankan maven dengan offline mode, dengan menambahkan parameter `-o', sehingga command di atas menjadi</p>
+
+<p><code>
+mvn clean install -o
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Download sourcecode dan javadocs menggunakan Maven]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/03/27/download-sourcecode-dan-javadocs-menggunakan-maven/"/>
+    <updated>2013-03-27T11:32:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/03/27/download-sourcecode-dan-javadocs-menggunakan-maven</id>
+    <content type="html"><![CDATA[<p>Terkadang kita membutuhkan source code dan javadocs dari dependency yang kita gunakan di project kita. Untuk mendownload source code, lakukan perintah berikut:</p>
+
+<p><code>
+mvn dependency:sources
+</code></p>
+
+<p>Untuk mendownload javadocs, lakukan perintah berikut</p>
+
+<p><code>
+mvn dependency:resolve -Dclassifier=javadoc
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Install Maven di Linux]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/03/10/install-maven-di-linux/"/>
+    <updated>2013-03-10T06:15:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/03/10/install-maven-di-linux</id>
+    <content type="html"><![CDATA[<h3>Perlengkapan</h3>
+
+<p>Berikut daftar tools/files yang di perlukan:</p>
+
+<ul>
+<li>apache-maven-3.0.5</li>
+<li>Terminal</li>
+<li>wget</li>
+<li>vi/vim</li>
+</ul>
+
+
+<h3>Langkah 1</h3>
+
+<p>Buka terminal dan ketikkan perintah berikut untuk melakukan download maven versi 3.0.5</p>
+
+<p><code>
+wget -c http://apache.mesi.com.ar/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.zip
+</code></p>
+
+<h3>Langkah 2</h3>
+
+<p>Extract file maven hasil download dengan perintah berikut:</p>
+
+<p><code>
+unzip apache-maven-3.0.5-bin.zip
+</code></p>
+
+<h3>Langkah 3</h3>
+
+<p>Selanjutnya, tambahkan direktori maven di letakkan ke system path. Ini gunanya, agar kita bisa gunakan perintah maven di direktori mana pun. Buka .bashrc menggunakan perintah berikut:</p>
+
+<p><code>
+vi ~/.bashrc
+</code></p>
+
+<h3>Langkah 4</h3>
+
+<p>Tambahkan perintah di bawah ini, di akhir file tersebut:</p>
+
+<p>```
+export M2_HOME=/usr/local/maven</p>
+
+<p>export PATH=${M2_HOME}/bin:${PATH}
+```</p>
+
+<p>Lalu simpan dengan tekan tombol escape, lalu <code>:wq!</code></p>
+
+<h3>Langkah 5</h3>
+
+<p>Selesai, utk mengetesnya, ketikkan perintah berikut</p>
+
+<p><code>
+mvn -version
+</code></p>
+
+<p>di environment saya, muncul log berikut</p>
+
+<p><code>
+Apache Maven 3.0.5 (r01de14724cdef164cd33c7c8c2fe155faf9602da; 2013-02-19 08:51:28-0500)
+Maven home: /home/marjinal/TOOLS/apache-maven-3.0.5
+Java version: 1.7.0_10, vendor: Oracle Corporation
+Java home: /usr/local/java/jdk1.7.0_10/jre
+Default locale: en_US, platform encoding: UTF-8
+OS name: "linux", version: "2.6.32-5-amd64", arch: "amd64", family: "unix"
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Membuat project menggunakan Maven - Archetype local]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/01/26/membuat-project-menggunakan-maven-archetype-local/"/>
+    <updated>2013-01-26T03:39:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/01/26/membuat-project-menggunakan-maven-archetype-local</id>
+    <content type="html"><![CDATA[<p>Jika kita telah membuat archetype, kita dapat menggunakan archetype tersebut utk membuat project, dengan mengetikkan perintah berikut:</p>
+
+<p><code>
+mvn archetype:generate -DarchetypeCatalog=local
+</code></p>
+
+<p>Maka, maven akan memberikan daftar archetype yang ada di local repository kita, seperti di bawah ini:</p>
+
+<p><code>
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Maven Stub Project (No POM) 1
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] &gt;&gt;&gt; maven-archetype-plugin:2.0:generate (default-cli) @ standalone-pom &gt;&gt;&gt;
+[INFO]
+[INFO] &lt;&lt;&lt; maven-archetype-plugin:2.0:generate (default-cli) @ standalone-pom &lt;&lt;&lt;
+[INFO]
+[INFO] --- maven-archetype-plugin:2.0:generate (default-cli) @ standalone-pom ---
+[INFO] Generating project in Interactive mode
+[INFO] No archetype defined. Using maven-archetype-quickstart (org.apache.maven.archetypes:maven-archetype-quickstart:1.0)
+Choose archetype:
+1: local -&gt; project.zkoss.example-archetype (project.zkoss.example-archetype)
+Choose a number: :
+</code></p>
+
+<p>Kebetulan di local repo saya, masih memiliki 1 archetype. Selanjutnya, kita bisa memilih untuk menggunakan archetype yg kita inginkan.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Membuat project menggunakan Maven - Artifact secara langsung]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/01/26/membuat-project-menggunakan-maven-artifact-secara-langsung/"/>
+    <updated>2013-01-26T03:38:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/01/26/membuat-project-menggunakan-maven-artifact-secara-langsung</id>
+    <content type="html"><![CDATA[<p>Ketika pertama kali membuat project menggunakan Maven, aku biasanya mengetikkan perintah berikut:</p>
+
+<p><code>
+mvn archetype:generate
+</code></p>
+
+<p>Lalu maven, akan melakukan sync utk mengambil semua list archetype yang terdaftar di repo maven, dan biasanya ini akan membutuhkan waktu yg sangat lama, sementara archetype yang mau kita gunakan biasanya hanya standar (mis: maven-archetype-quickstart). Setelah google, akhirnya aku menemukan cara pintas utk membuat project dengan mendefinisikan secara langsung archetype yang aku gunakan seperti di bawah ini:</p>
+
+<p><code>
+mvn archetype:generate -DgroupId=com.hendrysuwanda.project.spring -DartifactId=project.spring.example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

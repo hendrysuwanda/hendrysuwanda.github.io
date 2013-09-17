@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: MongoDB | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/mongodb/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-09-17T11:45:34-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Install MongoDB di Linux]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/03/17/install-mongodb-di-linux/"/>
+    <updated>2013-03-17T05:33:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/03/17/install-mongodb-di-linux</id>
+    <content type="html"><![CDATA[<h3>Persiapan</h3>
+
+<p>Sebelum mengikuti tutorial ini, berikut struktur direktori yang saya gunakan di environment yang saya gunakan:</p>
+
+<ol>
+<li>Application Directory: /home/marjinal/TOOLS/mongodb</li>
+<li>Data directory: /home/marjinal/TOOLS/mongodb/data/db</li>
+</ol>
+
+
+<p>Linux yang saya gunakan CrunchBang 10 statler (64 bit), dan MongoDB yang akan saya install versi 2.4.1</p>
+
+<h3>Download</h3>
+
+<p>Untuk mendownload mongodb dengan mengetikkan command berikut:</p>
+
+<p><code>
+cd /home/marjinal/TOOLS/mongodb
+</code></p>
+
+<p><strong>64 bit</strong>
+<code>
+wget -c http://downloads.mongodb.org/linux/mongodb-linux-x86_64-2.4.1.tgz
+</code></p>
+
+<p><strong>32 bit</strong>
+<code>
+wget -c http://downloads.mongodb.org/linux/mongodb-linux-i686-2.4.1.tgz
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

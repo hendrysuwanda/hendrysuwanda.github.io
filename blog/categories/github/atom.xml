@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: GitHub | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/github/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-09-17T11:45:34-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Koneksi ke Github menggunakan SSH]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/01/24/koneksi-ke-github-menggunakan-ssh/"/>
+    <updated>2013-01-24T05:23:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/01/24/koneksi-ke-github-menggunakan-ssh</id>
+    <content type="html"><![CDATA[<p>Kita dapat menggunakan Kunci SSH untuk melakukan koneksi yang aman antara komputer kita dengan github. Tutorial ini akan menunjukkan cara generate Kunci SSH dan menambahkan Kunci Public ke akun Github kita.</p>
+
+<h2>Langkah 1 &ndash; Pengecekkan kunci SSH</h2>
+
+<p><em>Jika anda sudah memiliki <code>keypair</code> yang ingin anda gunakan, anda dapat melompat ke <strong>langkah 4</strong></em>.</p>
+
+<p>Untuk melakukan pengecekkan, apakah anda sudah memiliki Kunci SSH, lakukan langkah berikut (melalui terminal):</p>
+
+<p>```
+$ cd ~/.ssh</p>
+
+<h1>melakukan pengecekkan, apakah terdapat folder <code>.ssh</code> di direktory user yang anda pakai</h1>
+
+<p>```</p>
+
+<p>jika perintah di atas, mengembalikan &ldquo;No such file or directory&rdquo;, silahkan lompat ke <strong>langkah 3</strong>.</p>
+
+<h2>Langkah 2 &ndash; Backup dan hapus kunci SSH</h2>
+
+<p>Jika langkah 1, menunjukkan bahwa anda sudah memiliki kunci SSH sebelumnya, jika ke depanya anda tetap ingin menggunakan kunci tersebut utk hal yang lain, lakukan backup &amp; hapus, dgn langkah-langkah berikut ini:</p>
+
+<p>```
+$ ls
+config  id_rsa  id_rsa.pub  known_hosts</p>
+
+<p>$ mkdir key_backup</p>
+
+<p>$ cp id_rsa* key_backup</p>
+
+<p>$ rm id_rsa*</p>
+
+<p>```</p>
+
+<h2>Langkah 3 &ndash; Generate kunci SSH yang baru</h2>
+
+<p>Untuk melakukan generate kunci SSH yang baru, lakukan langkah-langkah berikut ini:</p>
+
+<p>```
+$ ssh-keygen -t rsa -C &ldquo;<a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#x73;&#x75;&#x77;&#x61;&#110;&#x64;&#97;&#46;&#104;&#101;&#110;&#x64;&#114;&#121;&#x40;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;">&#115;&#117;&#x77;&#97;&#110;&#x64;&#x61;&#x2e;&#104;&#x65;&#110;&#x64;&#114;&#121;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;</a>&rdquo;</p>
+
+<p>Generating public/private rsa key pair.
+Enter file in which to save the key (/home/marjinal/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /home/marjinal/.ssh/id_rsa.
+Your public key has been saved in /home/marjinal/.ssh/id_rsa.pub.
+The key fingerprint is:
+04:76:d4:10:e6:08:92:06:00:28:a8:d6:28:f8:32:23 <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x73;&#x75;&#119;&#x61;&#x6e;&#x64;&#x61;&#46;&#104;&#101;&#110;&#x64;&#114;&#121;&#64;&#103;&#109;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;">&#x73;&#x75;&#119;&#97;&#110;&#100;&#x61;&#x2e;&#x68;&#101;&#110;&#100;&#x72;&#x79;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;</a>
+The key&rsquo;s randomart image is:
++&mdash;[ RSA 2048]&mdash;&mdash;+
+|O&hellip;. o.*+       |
+|+ o. o *  .      |
+|+.o   . o        |
+|+o .   .         |
+|o.      S        |
+|E .              |
+|.+               |
+|                 |
+|                 |
++&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;+</p>
+
+<p>```</p>
+
+<h2>Langkah 4: Menambahkan kunci SSH ke GitHub</h2>
+
+<p>Jalankan perintah berikut untuk melakukan copy kuncu ke clipboard kita</p>
+
+<p><code>
+$ cat .ssh/id_rsa.pub | xclip -sel clip
+</code></p>
+
+<p>Lalu  lakukan langkah-langkah berikut ini, utk menambahkan key ssh ke account github kita:</p>
+
+<ol>
+<li><p>Masuk ke halaman <code>Account Settings</code></p>
+
+<p> <img src="/images/github/account_settings.png"></p></li>
+<li><p>Klik <code>SSH Keys</code> pada sisi kiri layar</p>
+
+<p> <img src="/images/github/account_settings_ssh_keys.png"></p></li>
+<li><p>Klik <code>Add SSH Key</code></p>
+
+<p> <img src="/images/github/account_settings_ssh_keys_add_ssh_keys.png"></p></li>
+<li><p>Lalu isikan <code>title</code> sesuai keinginan anda, dan paste kan key ssh di <code>key</code>, lalu klik <code>Add key</code></p>
+
+<p> <img src="/images/github/account_settings_ssh_keys_add_ssh_keys_submit.png"></p></li>
+<li><p>Lalu GitHub akan meminta anda memasukkan password account github anda.</p>
+
+<p> <img src="/images/github/account_settings_ssh_keys_add_ssh_keys_password_confirm.png"></p></li>
+</ol>
+
+
+<h2>Langkah 5 &ndash; Test Key SSH</h2>
+
+<p>Ketikkan perintah berikut untuk memastikan key ssh anda telah terpasang dengan benar:</p>
+
+<p><code>
+$ ssh -T git@github.com
+</code></p>
+
+<p>Jika anda mendapatkan output sebagai berikut</p>
+
+<p>```
+Hi hendrysuwanda! You&rsquo;ve successfully authenticated, but GitHub does not</p>
+
+<h1>provide shell access.</h1>
+
+<p>```</p>
+
+<p>maka key ssh anda sudah dapat digunakan.</p>
+]]></content>
+  </entry>
+  
+</feed>

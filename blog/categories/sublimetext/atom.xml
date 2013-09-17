@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: SublimeText | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/sublimetext/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-09-17T11:45:34-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[SublimeText - How to Select Same Word and Replace It]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/08/31/sublimetext-how-to-select-same-word-and-replace-it/"/>
+    <updated>2013-08-31T11:41:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/08/31/sublimetext-how-to-select-same-word-and-replace-it</id>
+    <content type="html"><![CDATA[<p><blockquote><p>I know, my english is very bad, but, I believe in the phrase, &ldquo;no practice, no learning&rdquo;. so, if you feel something is wrong with my post, please do not hesitate to comment.</p></blockquote></p>
+
+<p>Consider, i have the source code as shown below</p>
+
+<p><img src="/images/sublimetext/sample-source-code.png"></p>
+
+<p>I want to change the word <code>AND</code> that is in line 1155 and 1172 became the <code>OR</code>, then I do the following steps:</p>
+
+<p>1) Move the cursor to the line 1155, put in the word <code>AND</code> and press <code>CTRL+D</code>, as shown below.</p>
+
+<p><img src="/images/sublimetext/select-word-n-replace-1.png"></p>
+
+<p>2) If I press <code>CTRL+D</code> again, then that will be selected is the word <code>AND</code> next in line 1158, as shown below.</p>
+
+<p><img src="/images/sublimetext/select-word-n-replace-2.png"></p>
+
+<p>3) Because I want to select the word <code>AND</code> in line 1172, then I move the cursor to line 1172, put in the word <code>AND</code>, the press <code>CTRL+D</code> again, as shown below.</p>
+
+<p><img src="/images/sublimetext/select-word-n-replace-3.png"></p>
+
+<p>4) Then type the word <code>OR</code>, so the word <code>AND</code> that is on the line in 1155 and 1172 will be changed to the word <code>OR</code>, as shown below.</p>
+
+<p><img src="/images/sublimetext/select-word-n-replace-4.png"></p>
+]]></content>
+  </entry>
+  
+</feed>

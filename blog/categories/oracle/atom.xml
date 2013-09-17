@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Oracle | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/oracle/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-09-17T11:45:34-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Cara Menampilkan Hasil dari dbms_output.put_line(message)]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/03/30/cara-menampilkan-hasil-dari-dbms-output-dot-put-line-message/"/>
+    <updated>2013-03-30T04:45:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/03/30/cara-menampilkan-hasil-dari-dbms-output-dot-put-line-message</id>
+    <content type="html"><![CDATA[<p>Belakangan ini saya lagi belajar PL/SQL dari situs <a href="http://www.tutorialspoint.com/plsql/index.htm">ini</a>.</p>
+
+<p>Tapi sialnya, ketika masih menulis script helloworld tidak mendapatkan hasilnya, scriptnya sebagai berikut:</p>
+
+<p><code>sql
+DECLARE
+   message  varchar2(20):= 'Hello, World!';
+BEGIN
+   dbms_output.put_line(message);
+END;
+/
+</code></p>
+
+<p>Masih helloworld aja sudah gagal :D. tapi tenang dulu, dari hasil google yg nggak sengaja, ternyata secara default, oracle mematikan hasil dari perintah ini <code>dbms_output.put_line(message);</code>, untuk mengaktifkannya, tambahkan script berikut di awal script PL/SQL</p>
+
+<p><code>sql
+set serveroutput on;
+</code></p>
+
+<p>kurang lebih, script helloworld saya diatas menjadi seperti di bawah ini:</p>
+
+<p><code>sql
+set serveroutput on;
+DECLARE
+   message  varchar2(20):= 'Hello, World!';
+BEGIN
+   dbms_output.put_line(message);
+END;
+/
+</code></p>
+
+<p>Akhirnya saya lulus pelajaran helloworld PL/SQL :D</p>
+]]></content>
+  </entry>
+  
+</feed>

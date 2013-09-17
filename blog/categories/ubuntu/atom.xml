@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ubuntu | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/ubuntu/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-09-17T11:45:34-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Install jdk 1.6 di ubuntu 12.04 server]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/04/16/install-jdk-1-dot-6-di-ubuntu-12-dot-04-server/"/>
+    <updated>2013-04-16T12:37:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/04/16/install-jdk-1-dot-6-di-ubuntu-12-dot-04-server</id>
+    <content type="html"><![CDATA[<p>Berikut cara install jdk 1.6 di ubuntu 12.04 (sebenarnya bisa di lakukan di semua ubuntu :D).</p>
+
+<ol>
+<li><p>Download jdk sesuai dengan bit pada ubuntu (kebetulan ubuntu ku versi 64 bit, jadi aku download jdk-6u43-linux-x64.bin)</p></li>
+<li><p>Buat folder <code>jvm</code> di <code>/usr/lib</code> dengan command berikut</p>
+
+<p> <code>
+ sudo mkdir -p /usr/lib/jvm
+</code></p></li>
+<li><p>Lalu pindahkan jdk yang telah di download ke folder &lsquo;/usr/lib/jvm&rsquo; menggunakan perintah berikut</p>
+
+<p> <code>
+ sudo mv jdk-6u43-linux-x64.bin /usr/lib/jvm/
+</code></p></li>
+<li><p>Lalu ubah file menjadi executable dengan perintah berikut</p>
+
+<p> <code>
+ sudo chmod u+x jdk-6u43-linux-x64.bin
+</code></p></li>
+<li><p>Lalu jalankan file tersebut</p>
+
+<p> <code>
+ sudo ./jdk-6u43-linux-x64.bin
+</code></p></li>
+<li><p>Tunggu sampai selesai, proses akan melakukan extract file tersebut ke dalam folder jdk1.6.0_43</p></li>
+<li><p>Lalu jalankan perintah berikut, utk mengaktifkan java yg baru kita install.</p>
+
+<p> ```
+ sudo update-alternatives &mdash;install &ldquo;/usr/bin/java&rdquo; &ldquo;java&rdquo; &ldquo;/usr/lib/jvm/jdk1.6.0_43/bin/java&rdquo; 1</p>
+
+<p> sudo update-alternatives &mdash;install &ldquo;/usr/bin/javac&rdquo; &ldquo;javac&rdquo; &ldquo;/usr/lib/jvm/jdk1.6.0_43/bin/javac&rdquo; 1
+ ```</p></li>
+</ol>
+
+
+<p>Done.</p>
+]]></content>
+  </entry>
+  
+</feed>

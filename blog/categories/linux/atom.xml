@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Linux | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-09-17T11:45:34-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Cara Menampilkan Versi Package, Kernel, Debian dan Crunchbang]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/03/17/cara-menampilkan-versi-package-kernel-debian-dan-crunchbang/"/>
+    <updated>2013-03-17T06:04:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/03/17/cara-menampilkan-versi-package-kernel-debian-dan-crunchbang</id>
+    <content type="html"><![CDATA[<p>Berikut cara menampilkan versi dari package, kernel, debian, maupun crunchbang yang terinstall di environment kita.</p>
+
+<h3>Package</h3>
+
+<blockquote><blockquote><p>Cara ini hanya berjalan di linux turunan debian</p></blockquote></blockquote>
+
+<p>Ketikkan perintah berikut, untuk mengetahui versi dari package yang sudah terinstall di environment kita, ganti <code>&lt;package_name&gt;</code> dengan package yang di inginkan</p>
+
+<p><code>
+dpkg -l | grep &lt;package_name&gt;
+</code></p>
+
+<p>contoh</p>
+
+<p><code>
+dpkg -l | grep libc6
+</code></p>
+
+<p>di environment saya akan menampilkan hasil seperti di bawah ini</p>
+
+<p><code>
+ii  libc6                    2.11.3-4           Embedded GNU C Library: Shared libraries
+ii  libc6-dev                2.11.3-4           Embedded GNU C Library: Development Libraries and Header Files
+</code></p>
+
+<h3>Kernel</h3>
+
+<p>Ada 2 cara untuk mengetahui versi kernel yang kita gunakan. Pertama, dengan mengetikkan perintah berikut:</p>
+
+<p><code>
+uname -a
+</code></p>
+
+<p>Perintah di atas, akan mencetak semua informasi dari kernel yang kita gunakan, di environment saya, menampilkan</p>
+
+<p><code>
+Linux marjinal 2.6.32-5-amd64 #1 SMP Mon Jan 16 16:22:28 UTC 2012 x86_64 GNU/Linux
+</code></p>
+
+<p>Kedua, dengan mengetikkan perintah berikut:</p>
+
+<p><code>
+uname -r
+</code></p>
+
+<p>Perintah diatas, hanya akan mencetak versi dari kernel, di environment saya, menampilkan</p>
+
+<p><code>
+2.6.32-5-amd64
+</code></p>
+
+<p>Cara kedua, sangat bermanfaat, jika kita ingin mengintall package yang membutuhkan versi kernel, contoh, <code>kernel header</code>, sehingga kita dapat mengetikkan</p>
+
+<p><code>
+apt-get install linux-headers-$(uname -r)
+</code></p>
+
+<h3>Debian</h3>
+
+<p>Untuk mengetahui versi debian, ketikkan perintah berikut</p>
+
+<p><code>
+cat /etc/debian_version
+</code></p>
+
+<p>di environment saya menampilkan</p>
+
+<p><code>
+6.0.4
+</code></p>
+
+<h3>Crunchbang</h3>
+
+<p>Untuk mengetahui versi Crunchbang, ketikkan perintah berikut</p>
+
+<p><code>
+cat /etc/lsb-release-crunchbang
+</code>
+di environment saya menampilkan</p>
+
+<p><code>
+DISTRIB_ID=CrunchBang
+DISTRIB_RELEASE=10
+DISTRIB_CODENAME=statler
+DISTRIB_DESCRIPTION="CrunchBang 10 statler"
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

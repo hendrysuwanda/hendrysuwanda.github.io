@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Octopress | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-09-17T11:45:34-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Cara Deploy Octopress di github]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/07/21/cara-deploy-octopress-di-github/"/>
+    <updated>2013-07-21T21:19:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/07/21/cara-deploy-octopress-di-github</id>
+    <content type="html"><![CDATA[<p>Blog ini menggunakan engine <a href="http://octopress.org/">Octopress</a>, dimana merupakan static site generator, yang mana kita bisa deploy content blog kita ke github.</p>
+
+<p>Berikut cara deploy Octopress di github.</p>
+
+<h3>Buat repository baru di github</h3>
+
+<p>Jika kita ingin memiliki blog dengan url, blogsaya.github.io, maka kita harus <a href="https://github.com/new">membuat repository</a> dengan repository name <code>blogsaya.github.io</code>.</p>
+
+<h3>Setup Github Page</h3>
+
+<p>Anggap, direktori octopress saya, ada di <code>/home/hendrysuwanda/blogsaya.github.io</code>, maka</p>
+
+<p>```
+$cd /home/hendrysuwanda/blogsaya.github.io</p>
+
+<p>$ rake setup_github_pages
+```</p>
+
+<p>akan muncul log seperti di bawah ini</p>
+
+<p>```
+Enter the read/write url for your repository
+(For example, &lsquo;git@github.com:your_username/your_username.github.io)</p>
+
+<pre><code>       or 'https://github.com/your_username/your_username.github.io')
+</code></pre>
+
+<p>Repository url:
+<code>``
+kita mesti memasukkan url dari repository yang kita buat di langkah 1, contoh, saya memasukkan</code><a href="https://github.com/hendrysuwanda/blogsaya.github.io">https://github.com/hendrysuwanda/blogsaya.github.io</a>`</p>
+
+<p>```
+Enter the read/write url for your repository
+(For example, &lsquo;git@github.com:your_username/your_username.github.io)</p>
+
+<pre><code>       or 'https://github.com/your_username/your_username.github.io')
+</code></pre>
+
+<p>Repository url: <a href="https://github.com/hendrysuwanda/blogsaya.github.io">https://github.com/hendrysuwanda/blogsaya.github.io</a>
+rm -rf <em>deploy
+mkdir </em>deploy
+cd <em>deploy
+Initialized empty Git repository in /windows/blogsaya.github.io/</em>deploy/.git/
+[master (root-commit) 9f45a14] Octopress init
+ 1 files changed, 1 insertions(+), 0 deletions(&ndash;)
+ create mode 100644 index.html
+cd &ndash;</p>
+
+<hr />
+
+<h2>Now you can deploy to <a href="http://blogsaya.github.io">http://blogsaya.github.io</a> with <code>rake deploy</code></h2>
+
+<p>```</p>
+
+<h3>Deploy ke github</h3>
+
+<p>Sebelum melakukan deploy ke github, terlebih dahulu, jalankan command berikut</p>
+
+<p><code>
+rake generate
+</code></p>
+
+<p>command di atas, berguna untuk meng-generate content blog kita, dan meletakkan ke dalam folder <code>_deploy/</code>. Setelah itu, jalankan command berikut untuk deploy ke github.</p>
+
+<p><code>
+rake deploy
+</code></p>
+
+<p>Tunggu beberapa menit, sekarang kita sudah punya blog, yang bisa di akses di <code>blogsaya.github.io</code>.</p>
+
+<h3>Note</h3>
+
+<p>Jangan lupa untuk melakukan commit source dari blog kita, dengan menjalankan command berikut</p>
+
+<p><code>
+git add .
+git commit -m 'your message'
+git push origin source
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Membuat Anchor Link di Markdown dan Octopress]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/03/19/membuat-anchor-link-di-markdown-dan-octopress/"/>
+    <updated>2013-03-19T12:01:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/03/19/membuat-anchor-link-di-markdown-dan-octopress</id>
+    <content type="html"><![CDATA[<p>Untuk membuat Anchor Link, pertama, kita tentukan terlebih dahulu tujuan nya. Di sini, saya ingin membuat 1 link yang ketika di klik, akan menuju ke SubTitle tertentu di halaman yg sama.</p>
+
+<p>```</p>
+
+<h3>Resources<a id="#resources"></a></h3>
+
+<p>```</p>
+
+<p>Lalu, anggap, saya ingin membuat kata <code>Resources</code>, ketika di klik akan menuju ke SubTitle Resources.</p>
+
+<p><code>
+[Resources](#resources)
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

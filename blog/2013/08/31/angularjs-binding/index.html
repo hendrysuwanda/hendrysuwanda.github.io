@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS - Binding - Hendry Suwanda</title>
+  <meta name="author" content="Hendry Suwanda">
+
+  
+  <meta name="description" content="Binding merupakan fitur utama dari AngularJS. Ia menyediakan mekanisme sederhana untuk meng-integrasi HTML kita dengan Data kita melalui &#8220;. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://hendrysuwanda.github.io/blog/2013/08/31/angularjs-binding">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Hendry Suwanda" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hendry Suwanda</a></h1>
+  
+    <h2>Programming is like sex. One mistake and you have to support it for the rest of your life.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:hendrysuwanda.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">AngularJS - Binding</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-31T11:33:00-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Binding merupakan fitur utama dari AngularJS. Ia menyediakan mekanisme sederhana untuk meng-integrasi HTML kita dengan Data kita melalui &#8220;.</p>
+
+<p>Data-Binding di Web Aplikasi Angular adalah sinkronisasi otomatis antara komponen <code>model</code> dan <code>view</code>. Cara yang Angular implementasi pada <code>data-binding</code> memungkinkan kita memperlakukan <code>model</code> sebagai satu-satunya sumber kebenaran di aplikasi kita. <code>view</code> adalah gambaran dari <code>model</code> setiap saat. Ketika <code>model</code> berubah, <code>view</code> menggambarkan perubahan, begitu juga sebaliknya.</p>
+
+<p><strong><em> Data-Binding di Sistem template klasik</em></strong></p>
+
+<p><img src="/images/angularjs/One_Way_Data_Binding.png"></p>
+
+<p>Sebagian besar sistem template mengikat data hanya dalam 1 arah: mereka menggabungkan komponen template dan model bersama-sama kedalam sebuah view, seperti di ilustrasikan pada diagram di atas. Setelah penggabungan terjadi, perubahan pada model atau bagian terkati pada view tidak otomatis terceminkan pada view.  Lebih buruk, segala perubahan yang user buat di view tidak di cerminkan pada model. Ini artinya developer harus menulis kode yang selalu sinkron view dengan model anda model dengan view.</p>
+
+<p><strong><em> Data-Binding di template Angular</em></strong></p>
+
+<p><img src="/images/angularjs/Two_Way_Data_Binding.png"></p>
+
+<p>Cara template angular bekerja berbeda, seperti di ilustrasikan pada diagram di atas. Mereka berbeda karena template pertama (yang merupakan HTML uncompiled bersama dengan markup tambahan dan directive) di compile pada browser, dan kedua, langkah kompilasi menghasilkan live view. Kita katakan live karena segala perubahan pada view secara langsung dicerminkan pada model, dan segala perubahan pada model di sebarkan ke view. Ini membuat model selalu satu-satunya-sumber-kebenaran untuk keadaan aplikasi, sangat menyederhanakan model pemrograman untuk developer. Anda dapat menganggap view seperti hanya sebuah proyeksi instan model Anda.</p>
+
+<p><strong><em> Contoh Data-Binding di AngularJS</em></strong></p>
+
+<p>Kita akan memulai dengan menyiapkan <code>div</code> dengan sebuah atribute <a href="http://docs.angularjs.org/api/ng.directive:ngApp"><code>ng-app</code></a>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;title&gt;</span>Belajar AngularJS<span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">ng-app=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>      
+</span><span class='line'>      <span class="nt">&lt;h1&gt;</span><span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;js/angular.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>jika kita menjalankan script di atas, maka akan muncul angka 2. Jika kita ganti &#8220; dengan hello world, maka akan muncul Hello world di browser kita.</p>
+
+<p>Sekarang, kita ingin melakukan binding, dari sebuah text box, ketika user mengetikkan sesuatu, secara realtime apa yg di ketikkan user akan tampil di bawahnya, seperti gambar di bawah ini.</p>
+
+<p><img src="/images/angularjs/binding-model.png"></p>
+
+<p>maka, kita akan ubah, script kita diatas menjadi seperti di bawah ini.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;title&gt;</span>Belajar AngularJS<span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">ng-app=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">ng-model=</span><span class="s">&quot;data.message&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h1&gt;</span><span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;js/angular.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>data.message</code> merupakan model, seperti penjelasan sebelumnya, jadi segala perubahan yang di lakukan oleh user terhadap input text box, maka akan mengikat ke model, dan segala perubahan di model akan mengikat ke dalam tag <code>&lt;h1&gt;&lt;/h1&gt;</code>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Hendry Suwanda</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-31T11:33:00-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/angularjs/'>AngularJS</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://hendrysuwanda.github.io/blog/2013/08/31/angularjs-binding/" data-via="" data-counturl="http://hendrysuwanda.github.io/blog/2013/08/31/angularjs-binding/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/08/31/angularjs-pengenalan/" title="Previous Post: AngularJS - Pengenalan">&laquo; AngularJS - Pengenalan</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/08/31/sublimetext-how-to-select-same-word-and-replace-it/" title="Next Post: SublimeText - How to Select Same Word and Replace It">SublimeText - How to Select Same Word and Replace It &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/09/13/lupa-password-websphere-application-server-administrative-console/">Lupa Password WebSphere Application Server Administrative Console</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/31/sublimetext-how-to-select-same-word-and-replace-it/">SublimeText - How to Select Same Word and Replace It</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/31/angularjs-binding/">AngularJS - Binding</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/31/angularjs-pengenalan/">AngularJS - Pengenalan</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/21/running-maven-offline-mode/">Running Maven Offline Mode</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Hendry Suwanda -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

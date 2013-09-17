@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: CloudFoundry | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/cloudfoundry/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-09-17T11:45:34-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Perkenalan dengan CloudFoundry]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/05/11/perkenalan-dengan-cloudfoundry/"/>
+    <updated>2013-05-11T05:53:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/05/11/perkenalan-dengan-cloudfoundry</id>
+    <content type="html"><![CDATA[<p>Cloud Foundry merupakan Open Platform as a Service (PaaS). Dengan menggunakan cloud foundry kita bisa melakukan deploy aplikasi kita secara gratis. CloudFoundry mendukung beberapa bahasa pemrograman sebagai berikut:</p>
+
+<ul>
+<li>JVM Based (Java, Scala)</li>
+<li>Ruby</li>
+<li>Javascript (Node.js)</li>
+</ul>
+
+
+<p>Dan beberapa database:
+* PostgreSQL
+* redis
+* mongoDB
+* MySQL</p>
+
+<p>dan messaging service, RabbitMQ.</p>
+
+<p>CloudFoundry menyediakan console untuk memanage aplikasi kita di cloudfoundry, untuk versi 1, namanya <strong>VMC</strong> &amp; untuk versi 2 berubah menjadi <strong>CF</strong>.</p>
+
+<h2>Install CF</h2>
+
+<p>Berhubung CF di buat menggunakan Ruby, jadi sebelum melakukan install CF,  pastikan Ruby sudah terinstall di environment kita. Untuk melakukan install CF, ketikkan perintah berikut</p>
+
+<p><code>
+$ gem install cf
+</code></p>
+
+<h2>Login ke CloudFoundry</h2>
+
+<p>Untuk dapat menggunakan CF, terlebih dahulu kita mesti login ke cloudfoundry. Open terminal, dan lakukan langkah berikut</p>
+
+<h4>Menentukan target</h4>
+
+<p>```</p>
+
+<blockquote><p>cf target api.cloudfoundry.com
+```</p></blockquote>
+
+<h4>login</h4>
+
+<p>```</p>
+
+<blockquote><p>cf login</p></blockquote>
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Websphere | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/websphere/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-09-17T11:45:34-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Lupa Password WebSphere Application Server administrative console]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/09/13/lupa-password-websphere-application-server-administrative-console/"/>
+    <updated>2013-09-13T08:55:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/09/13/lupa-password-websphere-application-server-administrative-console</id>
+    <content type="html"><![CDATA[<p>Di laptop gw, sudah terinstall WebSphere Application Server 8.5, tapi sudah lama nggak pakai, dan sialnya hari ini (12/09/2013) gw berkeinginan mau memakainya.</p>
+
+<p>Ketika di jalanakan &amp; ingin masuk ke Administrative console (ibm/console), s**l, gw lupa passwordnya :(</p>
+
+<p>Setelah google, ternyata kita bisa non-aktifkan security mode dari websphere dengan cara.</p>
+
+<p>1) Matikan dulu websphere (jika masih jalan)
+2) Buka file <code>security.xml</code> yang ada fi folder <code>&lt;HOME_WEBSPHERE&gt;\AppServer\profiles\&lt;PROFILES NAME&gt;\config\cells\&lt;NODE CELL NAME&gt;</code>, contoh di tempat saya ada di, <code>C:\Program Files (x86)\IBM\WebSphere\AppServer\profiles\AppSrv01\config\cells\JPS-01122Node01Cell</code></p>
+
+<p>3) Lalu edit yang ada di sini</p>
+
+<p>```xml
+&lt;security:Security</p>
+
+<pre><code>xmi:version="2.0" 
+xmlns:xmi="http://www.omg.org/XMI" 
+xmlns:orb.securityprotocol="http://www.ibm.com/websphere/appserver/schemas/5.0/orb.securityprotocol.xmi" 
+xmlns:security="http://www.ibm.com/websphere/appserver/schemas/5.0/security.xmi" 
+xmi:id="Security_1" useLocalSecurityServer="true" 
+useDomainQualifiedUserNames="false" enabled="true" cacheTimeout="600" 
+issuePermissionWarning="true" activeProtocol="BOTH" enforceJava2Security="false" 
+enforceFineGrainedJCASecurity="false" appEnabled="false" 
+dynamicallyUpdateSSLConfig="true" allowBasicAuth="true" 
+activeAuthMechanism="LTPA_1" activeUserRegistry="WIMUserRegistry_1" 
+defaultSSLSettings="SSLConfig_JPS-01122Node01_1" adminPreferredAuthMech="RSAToken_1"&gt;
+</code></pre>
+
+<p>```</p>
+
+<p>nilai dari parameter enabled ubah dari true menjadi false,  kurang lebih jadi seperti di bawah ini.</p>
+
+<p>```xml
+&lt;security:Security</p>
+
+<pre><code>xmi:version="2.0" 
+xmlns:xmi="http://www.omg.org/XMI" 
+xmlns:orb.securityprotocol="http://www.ibm.com/websphere/appserver/schemas/5.0/orb.securityprotocol.xmi" 
+xmlns:security="http://www.ibm.com/websphere/appserver/schemas/5.0/security.xmi" 
+xmi:id="Security_1" useLocalSecurityServer="true" 
+useDomainQualifiedUserNames="false" enabled="false" cacheTimeout="600" 
+issuePermissionWarning="true" activeProtocol="BOTH" enforceJava2Security="false" 
+enforceFineGrainedJCASecurity="false" appEnabled="false" 
+dynamicallyUpdateSSLConfig="true" allowBasicAuth="true" 
+activeAuthMechanism="LTPA_1" activeUserRegistry="WIMUserRegistry_1" 
+defaultSSLSettings="SSLConfig_JPS-01122Node01_1" adminPreferredAuthMech="RSAToken_1"&gt;
+</code></pre>
+
+<p>```</p>
+
+<p>4) Hidupkan kembali websphere. Sekarang anda tidak perlu lagi memasukkan password untuk mengakses Administrative console (ibm/console).</p>
+]]></content>
+  </entry>
+  
+</feed>

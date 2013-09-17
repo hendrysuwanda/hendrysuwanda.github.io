@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Python | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-09-17T11:45:34-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Install pymongo menggunakan PIP]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/03/18/install-pymongo-menggunakan-pip/"/>
+    <updated>2013-03-18T14:03:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/03/18/install-pymongo-menggunakan-pip</id>
+    <content type="html"><![CDATA[<p>pymongo adalah driver yang digunakan python untuk melakukan koneksi ke mongodb.</p>
+
+<p>Berikut cara install pymongo menggunakan PIP</p>
+
+<p><code>
+pip install pymongo
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Install PIP di CrunchBang]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/03/18/install-pip-di-crunchbang/"/>
+    <updated>2013-03-18T13:58:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/03/18/install-pip-di-crunchbang</id>
+    <content type="html"><![CDATA[<p>PIP adalah sebuah tools yang berguna utk install dan manage semua package yang ada di python.</p>
+
+<p>Berikut cara untuk install PIP di CrunchBang</p>
+
+<p>```
+sudo apt-get install python-pip</p>
+
+<p>sudo apt-get install build-essential python-dev
+```</p>
+]]></content>
+  </entry>
+  
+</feed>

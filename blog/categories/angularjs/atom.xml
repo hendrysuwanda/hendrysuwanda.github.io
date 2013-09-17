@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: AngularJS | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/angularjs/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-09-17T11:45:34-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[AngularJS - Binding]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/08/31/angularjs-binding/"/>
+    <updated>2013-08-31T11:33:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/08/31/angularjs-binding</id>
+    <content type="html"><![CDATA[<p>Binding merupakan fitur utama dari AngularJS. Ia menyediakan mekanisme sederhana untuk meng-integrasi HTML kita dengan Data kita melalui <code></code>.</p>
+
+<p>Data-Binding di Web Aplikasi Angular adalah sinkronisasi otomatis antara komponen <code>model</code> dan <code>view</code>. Cara yang Angular implementasi pada <code>data-binding</code> memungkinkan kita memperlakukan <code>model</code> sebagai satu-satunya sumber kebenaran di aplikasi kita. <code>view</code> adalah gambaran dari <code>model</code> setiap saat. Ketika <code>model</code> berubah, <code>view</code> menggambarkan perubahan, begitu juga sebaliknya.</p>
+
+<p><strong><em> Data-Binding di Sistem template klasik</em></strong></p>
+
+<p><img src="/images/angularjs/One_Way_Data_Binding.png"></p>
+
+<p>Sebagian besar sistem template mengikat data hanya dalam 1 arah: mereka menggabungkan komponen template dan model bersama-sama kedalam sebuah view, seperti di ilustrasikan pada diagram di atas. Setelah penggabungan terjadi, perubahan pada model atau bagian terkati pada view tidak otomatis terceminkan pada view.  Lebih buruk, segala perubahan yang user buat di view tidak di cerminkan pada model. Ini artinya developer harus menulis kode yang selalu sinkron view dengan model anda model dengan view.</p>
+
+<p><strong><em> Data-Binding di template Angular</em></strong></p>
+
+<p><img src="/images/angularjs/Two_Way_Data_Binding.png"></p>
+
+<p>Cara template angular bekerja berbeda, seperti di ilustrasikan pada diagram di atas. Mereka berbeda karena template pertama (yang merupakan HTML uncompiled bersama dengan markup tambahan dan directive) di compile pada browser, dan kedua, langkah kompilasi menghasilkan live view. Kita katakan live karena segala perubahan pada view secara langsung dicerminkan pada model, dan segala perubahan pada model di sebarkan ke view. Ini membuat model selalu satu-satunya-sumber-kebenaran untuk keadaan aplikasi, sangat menyederhanakan model pemrograman untuk developer. Anda dapat menganggap view seperti hanya sebuah proyeksi instan model Anda.</p>
+
+<p><strong><em> Contoh Data-Binding di AngularJS</em></strong></p>
+
+<p>Kita akan memulai dengan menyiapkan <code>div</code> dengan sebuah atribute <a href="http://docs.angularjs.org/api/ng.directive:ngApp"><code>ng-app</code></a>.</p>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html>
+  <head></p>
+
+<pre><code>&lt;title&gt;Belajar AngularJS&lt;/title&gt;
+</code></pre>
+
+<p>  </head></p>
+
+<p>  <body></p>
+
+<pre><code>&lt;div ng-app=""&gt;      
+  &lt;h1&gt;&lt;/h1&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript" src="js/angular.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>  </body>
+</html>
+```</p>
+
+<p>jika kita menjalankan script di atas, maka akan muncul angka 2. Jika kita ganti <code></code> dengan , maka akan muncul Hello world di browser kita.</p>
+
+<p>Sekarang, kita ingin melakukan binding, dari sebuah text box, ketika user mengetikkan sesuatu, secara realtime apa yg di ketikkan user akan tampil di bawahnya, seperti gambar di bawah ini.</p>
+
+<p><img src="/images/angularjs/binding-model.png"></p>
+
+<p>maka, kita akan ubah, script kita diatas menjadi seperti di bawah ini.</p>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html>
+  <head></p>
+
+<pre><code>&lt;title&gt;Belajar AngularJS&lt;/title&gt;
+</code></pre>
+
+<p>  </head></p>
+
+<p>  <body></p>
+
+<pre><code>&lt;div ng-app=""&gt;   
+  &lt;input type="text" ng-model="data.message"&gt;
+  &lt;h1&gt;&lt;/h1&gt;
+&lt;/div&gt;
+&lt;script type="text/javascript" src="js/angular.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<p>  </body>
+</html>
+```</p>
+
+<p><code>data.message</code> merupakan model, seperti penjelasan sebelumnya, jadi segala perubahan yang di lakukan oleh user terhadap input text box, maka akan mengikat ke model, dan segala perubahan di model akan mengikat ke dalam tag <code>&lt;h1&gt;&lt;/h1&gt;</code>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[AngularJS - Pengenalan]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/08/31/angularjs-pengenalan/"/>
+    <updated>2013-08-31T11:25:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/08/31/angularjs-pengenalan</id>
+    <content type="html"><![CDATA[<p>AngularJS merupakan teknologi client-side murni, ditulis selurunya dalam JavaScript. Ia bekerja dengan teknologi web yang sudah lama terbentuk (HTML, CSS dan JavaScript) untuk membuat pengembangan Web Aplikasi lebih mudah dan cepat dari sebelumnya.</p>
+
+<p>Di kembangkan pada 2009 oleh Miško Hevery dan Adam Abrons &ndash; keduanya karyawan google pada waktu itu. AngularJS merupakan project open source dengan lisensi MIT. Kita bahkan bisa menggunakan logo nya, dimana tersedia dibawah lisensi <em>Creative Attribution-ShareAlike 3.0 Unported</em>.</p>
+
+<p>Untuk mengetahu lebih lanjut mengenai AngularJS, silahkan kunjungi <a href="http://docs.angularjs.org/guide/introduction">alamat ini</a></p>
+]]></content>
+  </entry>
+  
+</feed>
