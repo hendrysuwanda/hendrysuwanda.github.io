@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Websphere | Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/blog/categories/websphere/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-09-17T11:45:34-04:00</updated>
+  <updated>2013-09-17T12:14:10-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[A remote host refused an attempted connect operation. DSRA0010E: SQL State = 08001-Error Code = -99.999]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/09/17/a-remote-host-refused-an-attempted-connect-operation-dsra0010e-sql-state-equals-08001-error-code-equals-99-dot-999/"/>
+    <updated>2013-09-17T11:58:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/09/17/a-remote-host-refused-an-attempted-connect-operation-dsra0010e-sql-state-equals-08001-error-code-equals-99-dot-999</id>
+    <content type="html"><![CDATA[<p>Bulan kemaren (Agustus &ndash; 2013), gw dapat laporan dari client, bahwa server aplikasi tidak dapat connect ke core banking, ketika di lakukan test connection dari ibm console (websphere) muncul error seperti di bawah ini</p>
+
+<p><blockquote><p>The application requester cannot establish the connection. (A remote host refused an attempted connect operation.) DSRA0010E: SQL State = 08001, Error Code = -99.999</p></blockquote></p>
+
+<p>Setelah google, di dapatkan 2 link berikut</p>
+
+<ol>
+<li><a href="http://madhutomy.blogspot.com/2013/03/javasqlsqlexception-invalid-arguments.html">link 1</a>, dia mengalami hal serupa, karena dia lupa memilih &ldquo;Component-managed authentication alias&rdquo;</li>
+<li><a href="http://www-01.ibm.com/support/docview.wss?uid=swg21235300">link 2</a>, langsung dari support websphere, menyarankan untuk me-restart websphere.</li>
+</ol>
+
+
+<p>Solusi 1, jelas tidak mungkin, karena aplikasi sebelumnya dapat berjalan dengan lancar. Solusi 2, masih boleh di coba, dan ternyata setelah di lakukan restart websphere, tetap tidak dapat lakukan test connection, dengan message error masih sama seperti di atas.</p>
+
+<p>hmmm, akhirnya gw curiga sama firewall, gw minta ijin sama client, untuk dapat melakukan koneksi melalui laptop saya, dimana, jaringan yang saya gunakan tidak di block oleh firewall. Saya develop aplikasi java mini (mendadak :( )), untuk melakukan test connection ke core banking (AS/400). Source code untuk aplikasi java tersebut dapat di lihat <a href="https://github.com/hendrysuwanda/test-connection-as-400">di sini</a>. Dan alhamdullilah, ternyata saya dapat melakukan koneksi ke core banking.</p>
+
+<p>Setelah vendor firewall di panggil, akhirnya di ketahui, untuk dapat melakukan koneksi ke AS/400, kita mesti membuka 3 port berikut, yaitu (449, 8476, 8471)</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Lupa Password WebSphere Application Server administrative console]]></title>

@@ -9,7 +9,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Di laptop gw, sudah terinstall WebSphere Application Server 8.5, tapi sudah lama nggak pakai, dan sialnya hari ini (12/09/2013) gw berkeinginan mau &hellip;">
+  <meta name="description" content="Bulan kemaren (Agustus &ndash; 2013), gw dapat laporan dari client, bahwa server aplikasi tidak dapat connect ke core banking, ketika di lakukan test &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,59 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/17/a-remote-host-refused-an-attempted-connect-operation-dsra0010e-sql-state-equals-08001-error-code-equals-99-dot-999/">A Remote Host Refused an Attempted Connect Operation. DSRA0010E: SQL State = 08001-Error Code = -99.999</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-17T11:58:00-04:00" pubdate data-updated="true">Sep 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Bulan kemaren (Agustus &ndash; 2013), gw dapat laporan dari client, bahwa server aplikasi tidak dapat connect ke core banking, ketika di lakukan test connection dari ibm console (websphere) muncul error seperti di bawah ini</p>
+
+<blockquote><p>The application requester cannot establish the connection. (A remote host refused an attempted connect operation.) DSRA0010E: SQL State = 08001, Error Code = -99.999</p></blockquote>
+
+
+<p>Setelah google, di dapatkan 2 link berikut</p>
+
+<ol>
+<li><a href="http://madhutomy.blogspot.com/2013/03/javasqlsqlexception-invalid-arguments.html">link 1</a>, dia mengalami hal serupa, karena dia lupa memilih &ldquo;Component-managed authentication alias&rdquo;</li>
+<li><a href="http://www-01.ibm.com/support/docview.wss?uid=swg21235300">link 2</a>, langsung dari support websphere, menyarankan untuk me-restart websphere.</li>
+</ol>
+
+
+<p>Solusi 1, jelas tidak mungkin, karena aplikasi sebelumnya dapat berjalan dengan lancar. Solusi 2, masih boleh di coba, dan ternyata setelah di lakukan restart websphere, tetap tidak dapat lakukan test connection, dengan message error masih sama seperti di atas.</p>
+
+<p>hmmm, akhirnya gw curiga sama firewall, gw minta ijin sama client, untuk dapat melakukan koneksi melalui laptop saya, dimana, jaringan yang saya gunakan tidak di block oleh firewall. Saya develop aplikasi java mini (mendadak :( )), untuk melakukan test connection ke core banking (AS/400). Source code untuk aplikasi java tersebut dapat di lihat <a href="https://github.com/hendrysuwanda/test-connection-as-400">di sini</a>. Dan alhamdullilah, ternyata saya dapat melakukan koneksi ke core banking.</p>
+
+<p>Setelah vendor firewall di panggil, akhirnya di ketahui, untuk dapat melakukan koneksi ke AS/400, kita mesti membuka 3 port berikut, yaitu (449, 8476, 8471)</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -771,77 +824,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/16/install-jdk-1-dot-6-di-ubuntu-12-dot-04-server/">Install Jdk 1.6 Di Ubuntu 12.04 Server</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-16T12:37:00-04:00" pubdate data-updated="true">Apr 16<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Berikut cara install jdk 1.6 di ubuntu 12.04 (sebenarnya bisa di lakukan di semua ubuntu :D).</p>
-
-<ol>
-<li><p>Download jdk sesuai dengan bit pada ubuntu (kebetulan ubuntu ku versi 64 bit, jadi aku download jdk-6u43-linux-x64.bin)</p></li>
-<li><p>Buat folder <code>jvm</code> di <code>/usr/lib</code> dengan command berikut</p>
-
-<p> <code>
- sudo mkdir -p /usr/lib/jvm
-</code></p></li>
-<li><p>Lalu pindahkan jdk yang telah di download ke folder &lsquo;/usr/lib/jvm&rsquo; menggunakan perintah berikut</p>
-
-<p> <code>
- sudo mv jdk-6u43-linux-x64.bin /usr/lib/jvm/
-</code></p></li>
-<li><p>Lalu ubah file menjadi executable dengan perintah berikut</p>
-
-<p> <code>
- sudo chmod u+x jdk-6u43-linux-x64.bin
-</code></p></li>
-<li><p>Lalu jalankan file tersebut</p>
-
-<p> <code>
- sudo ./jdk-6u43-linux-x64.bin
-</code></p></li>
-<li><p>Tunggu sampai selesai, proses akan melakukan extract file tersebut ke dalam folder jdk1.6.0_43</p></li>
-<li><p>Lalu jalankan perintah berikut, utk mengaktifkan java yg baru kita install.</p>
-
-<p> &#8220;`
- sudo update-alternatives &mdash;install &ldquo;/usr/bin/java&rdquo; &ldquo;java&rdquo; &ldquo;/usr/lib/jvm/jdk1.6.0_43/bin/java&rdquo; 1</p>
-
-<p> sudo update-alternatives &mdash;install &ldquo;/usr/bin/javac&rdquo; &ldquo;javac&rdquo; &ldquo;/usr/lib/jvm/jdk1.6.0_43/bin/javac&rdquo; 1
- &#8220;`</p></li>
-</ol>
-
-
-<p>Done.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -857,6 +839,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/09/17/a-remote-host-refused-an-attempted-connect-operation-dsra0010e-sql-state-equals-08001-error-code-equals-99-dot-999/">A Remote Host Refused an Attempted Connect Operation. DSRA0010E: SQL State = 08001-Error Code = -99.999</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/09/13/lupa-password-websphere-application-server-administrative-console/">Lupa Password WebSphere Application Server Administrative Console</a>
       </li>
     
@@ -870,10 +856,6 @@
     
       <li class="post">
         <a href="/blog/2013/08/31/angularjs-pengenalan/">AngularJS - Pengenalan</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/21/running-maven-offline-mode/">Running Maven Offline Mode</a>
       </li>
     
   </ul>

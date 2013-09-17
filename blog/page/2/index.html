@@ -9,8 +9,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Kalau saya ambilkan cuplikan dari Steve Jobs (atau entrepreneur
-lain yang sukses): Dulu awal-awal mulainya gak mikirin duit, karena emang gak punya &hellip;">
+  <meta name="description" content="Berikut cara install jdk 1.6 di ubuntu 12.04 (sebenarnya bisa di lakukan di semua ubuntu :D). Download jdk sesuai dengan bit pada ubuntu (kebetulan &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,6 +65,77 @@ lain yang sukses): Dulu awal-awal mulainya gak mikirin duit, karena emang gak pu
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/04/16/install-jdk-1-dot-6-di-ubuntu-12-dot-04-server/">Install Jdk 1.6 Di Ubuntu 12.04 Server</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-16T12:37:00-04:00" pubdate data-updated="true">Apr 16<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Berikut cara install jdk 1.6 di ubuntu 12.04 (sebenarnya bisa di lakukan di semua ubuntu :D).</p>
+
+<ol>
+<li><p>Download jdk sesuai dengan bit pada ubuntu (kebetulan ubuntu ku versi 64 bit, jadi aku download jdk-6u43-linux-x64.bin)</p></li>
+<li><p>Buat folder <code>jvm</code> di <code>/usr/lib</code> dengan command berikut</p>
+
+<p> <code>
+ sudo mkdir -p /usr/lib/jvm
+</code></p></li>
+<li><p>Lalu pindahkan jdk yang telah di download ke folder &lsquo;/usr/lib/jvm&rsquo; menggunakan perintah berikut</p>
+
+<p> <code>
+ sudo mv jdk-6u43-linux-x64.bin /usr/lib/jvm/
+</code></p></li>
+<li><p>Lalu ubah file menjadi executable dengan perintah berikut</p>
+
+<p> <code>
+ sudo chmod u+x jdk-6u43-linux-x64.bin
+</code></p></li>
+<li><p>Lalu jalankan file tersebut</p>
+
+<p> <code>
+ sudo ./jdk-6u43-linux-x64.bin
+</code></p></li>
+<li><p>Tunggu sampai selesai, proses akan melakukan extract file tersebut ke dalam folder jdk1.6.0_43</p></li>
+<li><p>Lalu jalankan perintah berikut, utk mengaktifkan java yg baru kita install.</p>
+
+<p> &#8220;`
+ sudo update-alternatives &mdash;install &ldquo;/usr/bin/java&rdquo; &ldquo;java&rdquo; &ldquo;/usr/lib/jvm/jdk1.6.0_43/bin/java&rdquo; 1</p>
+
+<p> sudo update-alternatives &mdash;install &ldquo;/usr/bin/javac&rdquo; &ldquo;javac&rdquo; &ldquo;/usr/lib/jvm/jdk1.6.0_43/bin/javac&rdquo; 1
+ &#8220;`</p></li>
+</ol>
+
+
+<p>Done.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -599,132 +669,6 @@ bukan semakin kaco :)</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/17/cara-menampilkan-versi-package-kernel-debian-dan-crunchbang/">Cara Menampilkan Versi Package, Kernel, Debian Dan Crunchbang</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-17T06:04:00-04:00" pubdate data-updated="true">Mar 17<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Berikut cara menampilkan versi dari package, kernel, debian, maupun crunchbang yang terinstall di environment kita.</p>
-
-<h3>Package</h3>
-
-<blockquote><blockquote><p>Cara ini hanya berjalan di linux turunan debian</p></blockquote></blockquote>
-
-<p>Ketikkan perintah berikut, untuk mengetahui versi dari package yang sudah terinstall di environment kita, ganti <code>&lt;package_name&gt;</code> dengan package yang di inginkan</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>dpkg -l | grep &lt;package_name&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>contoh</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>dpkg -l | grep libc6</span></code></pre></td></tr></table></div></figure>
-
-
-<p>di environment saya akan menampilkan hasil seperti di bawah ini</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ii  libc6                    2.11.3-4           Embedded GNU C Library: Shared libraries
-</span><span class='line'>ii  libc6-dev                2.11.3-4           Embedded GNU C Library: Development Libraries and Header Files</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Kernel</h3>
-
-<p>Ada 2 cara untuk mengetahui versi kernel yang kita gunakan. Pertama, dengan mengetikkan perintah berikut:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>uname -a</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Perintah di atas, akan mencetak semua informasi dari kernel yang kita gunakan, di environment saya, menampilkan</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Linux marjinal 2.6.32-5-amd64 #1 SMP Mon Jan 16 16:22:28 UTC 2012 x86_64 GNU/Linux</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Kedua, dengan mengetikkan perintah berikut:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>uname -r</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Perintah diatas, hanya akan mencetak versi dari kernel, di environment saya, menampilkan</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>2.6.32-5-amd64</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Cara kedua, sangat bermanfaat, jika kita ingin mengintall package yang membutuhkan versi kernel, contoh, <code>kernel header</code>, sehingga kita dapat mengetikkan</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install linux-headers-$(uname -r)</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Debian</h3>
-
-<p>Untuk mengetahui versi debian, ketikkan perintah berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cat /etc/debian_version</span></code></pre></td></tr></table></div></figure>
-
-
-<p>di environment saya menampilkan</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>6.0.4</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Crunchbang</h3>
-
-<p>Untuk mengetahui versi Crunchbang, ketikkan perintah berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cat /etc/lsb-release-crunchbang</span></code></pre></td></tr></table></div></figure>
-
-
-<p>di environment saya menampilkan</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>DISTRIB_ID=CrunchBang
-</span><span class='line'>DISTRIB_RELEASE=10
-</span><span class='line'>DISTRIB_CODENAME=statler
-</span><span class='line'>DISTRIB_DESCRIPTION="CrunchBang 10 statler"</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -742,6 +686,10 @@ bukan semakin kaco :)</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/09/17/a-remote-host-refused-an-attempted-connect-operation-dsra0010e-sql-state-equals-08001-error-code-equals-99-dot-999/">A Remote Host Refused an Attempted Connect Operation. DSRA0010E: SQL State = 08001-Error Code = -99.999</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/09/13/lupa-password-websphere-application-server-administrative-console/">Lupa Password WebSphere Application Server Administrative Console</a>
       </li>
     
@@ -755,10 +703,6 @@ bukan semakin kaco :)</p>
     
       <li class="post">
         <a href="/blog/2013/08/31/angularjs-pengenalan/">AngularJS - Pengenalan</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/07/21/running-maven-offline-mode/">Running Maven Offline Mode</a>
       </li>
     
   </ul>

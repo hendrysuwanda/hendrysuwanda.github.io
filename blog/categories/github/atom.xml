@@ -4,7 +4,7 @@
   <title><![CDATA[Category: GitHub | Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-09-17T11:45:34-04:00</updated>
+  <updated>2013-09-17T12:14:10-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -56,7 +56,7 @@ config  id_rsa  id_rsa.pub  known_hosts</p>
 <p>Untuk melakukan generate kunci SSH yang baru, lakukan langkah-langkah berikut ini:</p>
 
 <p>```
-$ ssh-keygen -t rsa -C &ldquo;<a href="&#109;&#x61;&#105;&#108;&#x74;&#111;&#x3a;&#x73;&#x75;&#x77;&#x61;&#110;&#x64;&#97;&#46;&#104;&#101;&#110;&#x64;&#114;&#121;&#x40;&#103;&#x6d;&#x61;&#105;&#108;&#46;&#x63;&#x6f;&#109;">&#115;&#117;&#x77;&#97;&#110;&#x64;&#x61;&#x2e;&#104;&#x65;&#110;&#x64;&#114;&#121;&#x40;&#103;&#109;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;</a>&rdquo;</p>
+$ ssh-keygen -t rsa -C &ldquo;<a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#111;&#x3a;&#115;&#x75;&#119;&#97;&#110;&#x64;&#97;&#x2e;&#x68;&#x65;&#x6e;&#x64;&#114;&#x79;&#64;&#103;&#x6d;&#97;&#105;&#108;&#46;&#x63;&#x6f;&#109;">&#115;&#x75;&#x77;&#x61;&#x6e;&#x64;&#x61;&#x2e;&#104;&#x65;&#110;&#100;&#114;&#121;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#46;&#99;&#111;&#109;</a>&rdquo;</p>
 
 <p>Generating public/private rsa key pair.
 Enter file in which to save the key (/home/marjinal/.ssh/id_rsa):
@@ -65,7 +65,7 @@ Enter same passphrase again:
 Your identification has been saved in /home/marjinal/.ssh/id_rsa.
 Your public key has been saved in /home/marjinal/.ssh/id_rsa.pub.
 The key fingerprint is:
-04:76:d4:10:e6:08:92:06:00:28:a8:d6:28:f8:32:23 <a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#x73;&#x75;&#119;&#x61;&#x6e;&#x64;&#x61;&#46;&#104;&#101;&#110;&#x64;&#114;&#121;&#64;&#103;&#109;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#x6d;">&#x73;&#x75;&#119;&#97;&#110;&#100;&#x61;&#x2e;&#x68;&#101;&#110;&#100;&#x72;&#x79;&#64;&#x67;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#x6f;&#109;</a>
+04:76:d4:10:e6:08:92:06:00:28:a8:d6:28:f8:32:23 <a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#x3a;&#115;&#x75;&#119;&#x61;&#x6e;&#100;&#97;&#46;&#104;&#x65;&#110;&#x64;&#x72;&#121;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#46;&#x63;&#x6f;&#109;">&#115;&#117;&#119;&#97;&#x6e;&#100;&#x61;&#x2e;&#104;&#101;&#x6e;&#x64;&#114;&#x79;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#46;&#99;&#x6f;&#109;</a>
 The key&rsquo;s randomart image is:
 +&mdash;[ RSA 2048]&mdash;&mdash;+
 |O&hellip;. o.*+       |
