@@ -4,7 +4,7 @@
   <title><![CDATA[Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-09-22T03:16:23-04:00</updated>
+  <updated>2013-09-22T04:38:31-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -61,6 +61,40 @@
 </pre></td><td class='code'><pre><code class='xml'><span class='line'>mvn exec:java
 </span></code></pre></td></tr></table></div></figure>
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Install RabbitMQ di #CrunchBang]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/09/22/install-rabbitmq-di-crunchbang/"/>
+    <updated>2013-09-22T04:24:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/09/22/install-rabbitmq-di-crunchbang</id>
+    <content type="html"><![CDATA[<p>Ntah kenapa, isi kepala ini ingin mempelajari Message Broker, karena saya fans berat Spring, saya coba memilih RabbitMQ.</p>
+
+<p>Berikut cara install RabbitMQ di #CrunchBang:</p>
+
+<p>1) Tambahkan baris berikut ke dalam <code>/etc/apt/sources.list</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>deb http://www.rabbitmq.com/debian/ testing main</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2) Untuk menghilangkan peringatan karena <code>unsigned package</code>, jalankan command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
+</span><span class='line'>$ sudo apt-key add rabbitmq-signing-key-public.asc</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3) jalankan <code>sudo apt-get update</code>
+4) jalankan command berikut untuk meng-install rabbitmq</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo apt-get install rabbitmq-server</span></code></pre></td></tr></table></div></figure>
+
+
+<p>5) Tunggu sampai proses installation selesai, jika sudah selesai, jalankan command <code>rabbitmqctl status</code> untuk mengecek apakah rabbitmq sudah berjalan dengan normal atau belum.</p>
 ]]></content>
   </entry>
   
@@ -847,21 +881,6 @@ bukan semakin kaco :)</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>[Resources](#resources)</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Install pymongo menggunakan PIP]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/03/18/install-pymongo-menggunakan-pip/"/>
-    <updated>2013-03-18T14:03:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/03/18/install-pymongo-menggunakan-pip</id>
-    <content type="html"><![CDATA[<p>pymongo adalah driver yang digunakan python untuk melakukan koneksi ke mongodb.</p>
-
-<p>Berikut cara install pymongo menggunakan PIP</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>pip install pymongo</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
