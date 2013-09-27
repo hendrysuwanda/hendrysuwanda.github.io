@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Maven | Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/blog/categories/maven/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-09-17T12:14:10-04:00</updated>
+  <updated>2013-09-27T13:15:22-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Menjalankan Java Main Class menggunakan Maven Command]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/"/>
+    <updated>2013-09-27T13:02:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command</id>
+    <content type="html"><![CDATA[<p>Anggap, kita memiliki project java dengan struktur seperti di bawah ini</p>
+
+<p><img src="/images/maven/maven-run-main-class.png"></p>
+
+<p>Lalu, kita ingin menjalankan project tersebut dengan menggunakan maven. Maka kita harus menabahkan plugin <code>exec-maven-plugin</code> di dalam <code>pom.xml</code> seperti di bawah ini</p>
+
+<p>```xml
+&hellip;
+<build></p>
+
+<pre><code>&lt;plugins&gt;
+    ...
+    &lt;plugin&gt;
+        &lt;groupId&gt;org.codehaus.mojo&lt;/groupId&gt;
+        &lt;artifactId&gt;exec-maven-plugin&lt;/artifactId&gt;
+        &lt;configuration&gt;
+             &lt;mainClass&gt;com.hendrysuwanda.tutorial.javacodegeeks.App&lt;/mainClass&gt;
+        &lt;/configuration&gt;
+    &lt;/plugin&gt;
+&lt;/plugins&gt;
+</code></pre>
+
+<p></build>
+&hellip;
+```</p>
+
+<p>Lalu untuk menjalankan nya, kita dapat menggunakan command</p>
+
+<p><code>
+mvn exec:java
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Running maven offline mode]]></title>
@@ -158,25 +197,6 @@ Choose a number: :
 </code></p>
 
 <p>Kebetulan di local repo saya, masih memiliki 1 archetype. Selanjutnya, kita bisa memilih untuk menggunakan archetype yg kita inginkan.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Membuat project menggunakan Maven - Artifact secara langsung]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/01/26/membuat-project-menggunakan-maven-artifact-secara-langsung/"/>
-    <updated>2013-01-26T03:38:00-05:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/01/26/membuat-project-menggunakan-maven-artifact-secara-langsung</id>
-    <content type="html"><![CDATA[<p>Ketika pertama kali membuat project menggunakan Maven, aku biasanya mengetikkan perintah berikut:</p>
-
-<p><code>
-mvn archetype:generate
-</code></p>
-
-<p>Lalu maven, akan melakukan sync utk mengambil semua list archetype yang terdaftar di repo maven, dan biasanya ini akan membutuhkan waktu yg sangat lama, sementara archetype yang mau kita gunakan biasanya hanya standar (mis: maven-archetype-quickstart). Setelah google, akhirnya aku menemukan cara pintas utk membuat project dengan mendefinisikan secara langsung archetype yang aku gunakan seperti di bawah ini:</p>
-
-<p><code>
-mvn archetype:generate -DgroupId=com.hendrysuwanda.project.spring -DartifactId=project.spring.example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-</code></p>
 ]]></content>
   </entry>
   

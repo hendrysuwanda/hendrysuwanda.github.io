@@ -133,8 +133,14 @@
         <lastmod>2013-09-17T12:14:10-04:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://hendrysuwanda.github.io/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/
+        </loc>
+        <lastmod>2013-09-27T13:15:21-04:00</lastmod>
+    </url>
+    <url>
         <loc>http://hendrysuwanda.github.io/blog/archives/</loc>
-        <lastmod>2013-09-17T12:14:10-04:00</lastmod>
+        <lastmod>2013-09-27T13:15:21-04:00</lastmod>
     </url>
     <url>
         <loc>http://hendrysuwanda.github.io/robots.txt</loc>
@@ -142,6 +148,6 @@
     </url>
     <url>
         <loc>http://hendrysuwanda.github.io/</loc>
-        <lastmod>2013-09-17T12:14:10-04:00</lastmod>
+        <lastmod>2013-09-27T13:15:21-04:00</lastmod>
     </url>
 </urlset>

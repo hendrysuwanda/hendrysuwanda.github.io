@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Membuat project menggunakan Maven - Archetype local - Hendry Suwanda</title>
+  <title>Menjalankan Java Main Class menggunakan Maven Command - Hendry Suwanda</title>
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Jika kita telah membuat archetype, kita dapat menggunakan archetype tersebut utk membuat project, dengan mengetikkan perintah berikut: 1
-mvn &hellip;">
+  <meta name="description" content="Anggap, kita memiliki project java dengan struktur seperti di bawah ini Lalu, kita ingin menjalankan project tersebut dengan menggunakan maven. Maka &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ mvn &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://hendrysuwanda.github.io/blog/2013/01/26/membuat-project-menggunakan-maven-archetype-local">
+  <link rel="canonical" href="http://hendrysuwanda.github.io/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Hendry Suwanda" type="application/atom+xml">
@@ -69,7 +68,7 @@ mvn &hellip;">
   
   <header>
     
-      <h1 class="entry-title">Membuat Project Menggunakan Maven - Archetype Local</h1>
+      <h1 class="entry-title">Menjalankan Java Main Class Menggunakan Maven Command</h1>
     
     
       <p class="meta">
@@ -85,22 +84,20 @@ mvn &hellip;">
   
 
 
-<time datetime="2013-01-26T03:39:00-05:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+<time datetime="2013-09-27T13:02:00-04:00" pubdate data-updated="true">Sep 27<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Jika kita telah membuat archetype, kita dapat menggunakan archetype tersebut utk membuat project, dengan mengetikkan perintah berikut:</p>
+<div class="entry-content"><p>Anggap, kita memiliki project java dengan struktur seperti di bawah ini</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mvn archetype:generate -DarchetypeCatalog=local</span></code></pre></td></tr></table></div></figure>
+<p><img src="/images/maven/maven-run-main-class.png"></p>
 
+<p>Lalu, kita ingin menjalankan project tersebut dengan menggunakan maven. Maka kita harus menabahkan plugin <code>exec-maven-plugin</code> di dalam <code>pom.xml</code> seperti di bawah ini</p>
 
-<p>Maka, maven akan memberikan daftar archetype yang ada di local repository kita, seperti di bawah ini:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -114,27 +111,29 @@ mvn &hellip;">
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[INFO] Scanning for projects...
-</span><span class='line'>[INFO]
-</span><span class='line'>[INFO] ------------------------------------------------------------------------
-</span><span class='line'>[INFO] Building Maven Stub Project (No POM) 1
-</span><span class='line'>[INFO] ------------------------------------------------------------------------
-</span><span class='line'>[INFO]
-</span><span class='line'>[INFO] &gt;&gt;&gt; maven-archetype-plugin:2.0:generate (default-cli) @ standalone-pom &gt;&gt;&gt;
-</span><span class='line'>[INFO]
-</span><span class='line'>[INFO] &lt;&lt;&lt; maven-archetype-plugin:2.0:generate (default-cli) @ standalone-pom &lt;&lt;&lt;
-</span><span class='line'>[INFO]
-</span><span class='line'>[INFO] --- maven-archetype-plugin:2.0:generate (default-cli) @ standalone-pom ---
-</span><span class='line'>[INFO] Generating project in Interactive mode
-</span><span class='line'>[INFO] No archetype defined. Using maven-archetype-quickstart (org.apache.maven.archetypes:maven-archetype-quickstart:1.0)
-</span><span class='line'>Choose archetype:
-</span><span class='line'>1: local -&gt; project.zkoss.example-archetype (project.zkoss.example-archetype)
-</span><span class='line'>Choose a number: :</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>...
+</span><span class='line'><span class="nt">&lt;build&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;plugins&gt;</span>
+</span><span class='line'>        ...
+</span><span class='line'>      <span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;artifactId&gt;</span>exec-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>               <span class="nt">&lt;mainClass&gt;</span>com.hendrysuwanda.tutorial.javacodegeeks.App<span class="nt">&lt;/mainClass&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/plugin&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/plugins&gt;</span>
+</span><span class='line'><span class="nt">&lt;/build&gt;</span>
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Kebetulan di local repo saya, masih memiliki 1 archetype. Selanjutnya, kita bisa memilih untuk menggunakan archetype yg kita inginkan.</p>
+<p>Lalu untuk menjalankan nya, kita dapat menggunakan command</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>mvn exec:java
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 
@@ -157,7 +156,7 @@ mvn &hellip;">
   
 
 
-<time datetime="2013-01-26T03:39:00-05:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+<time datetime="2013-09-27T13:02:00-04:00" pubdate data-updated="true">Sep 27<span>th</span>, 2013</time>
       
 
 <span class="categories">
@@ -171,7 +170,7 @@ mvn &hellip;">
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://hendrysuwanda.github.io/blog/2013/01/26/membuat-project-menggunakan-maven-archetype-local/" data-via="" data-counturl="http://hendrysuwanda.github.io/blog/2013/01/26/membuat-project-menggunakan-maven-archetype-local/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://hendrysuwanda.github.io/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/" data-via="" data-counturl="http://hendrysuwanda.github.io/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/" >Tweet</a>
   
   
   
@@ -180,10 +179,8 @@ mvn &hellip;">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/01/26/membuat-project-menggunakan-maven-artifact-secara-langsung/" title="Previous Post: Membuat project menggunakan Maven - Artifact secara langsung">&laquo; Membuat project menggunakan Maven - Artifact secara langsung</a>
+        <a class="basic-alignment left" href="/blog/2013/09/17/a-remote-host-refused-an-attempted-connect-operation-dsra0010e-sql-state-equals-08001-error-code-equals-99-dot-999/" title="Previous Post: A remote host refused an attempted connect operation. DSRA0010E: SQL State = 08001-Error Code = -99.999">&laquo; A remote host refused an attempted connect operation. DSRA0010E: SQL State = 08001-Error Code = -99.999</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/03/10/install-maven-di-linux/" title="Next Post: Install Maven di Linux">Install Maven di Linux &raquo;</a>
       
     </p>
   </footer>

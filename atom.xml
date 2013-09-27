@@ -4,7 +4,7 @@
   <title><![CDATA[Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-09-17T12:14:10-04:00</updated>
+  <updated>2013-09-27T13:15:22-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,57 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Menjalankan Java Main Class menggunakan Maven Command]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/"/>
+    <updated>2013-09-27T13:02:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command</id>
+    <content type="html"><![CDATA[<p>Anggap, kita memiliki project java dengan struktur seperti di bawah ini</p>
+
+<p><img src="http://hendrysuwanda.github.io/images/maven/maven-run-main-class.png"></p>
+
+<p>Lalu, kita ingin menjalankan project tersebut dengan menggunakan maven. Maka kita harus menabahkan plugin <code>exec-maven-plugin</code> di dalam <code>pom.xml</code> seperti di bawah ini</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>...
+</span><span class='line'><span class="nt">&lt;build&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;plugins&gt;</span>
+</span><span class='line'>        ...
+</span><span class='line'>      <span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;artifactId&gt;</span>exec-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>               <span class="nt">&lt;mainClass&gt;</span>com.hendrysuwanda.tutorial.javacodegeeks.App<span class="nt">&lt;/mainClass&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/plugin&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/plugins&gt;</span>
+</span><span class='line'><span class="nt">&lt;/build&gt;</span>
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu untuk menjalankan nya, kita dapat menggunakan command</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>mvn exec:java
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[A remote host refused an attempted connect operation. DSRA0010E: SQL State = 08001-Error Code = -99.999]]></title>
@@ -811,25 +862,6 @@ bukan semakin kaco :)</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>pip install pymongo</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Install PIP di CrunchBang]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/03/18/install-pip-di-crunchbang/"/>
-    <updated>2013-03-18T13:58:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/03/18/install-pip-di-crunchbang</id>
-    <content type="html"><![CDATA[<p>PIP adalah sebuah tools yang berguna utk install dan manage semua package yang ada di python.</p>
-
-<p>Berikut cara untuk install PIP di CrunchBang</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install python-pip
-</span><span class='line'>
-</span><span class='line'>sudo apt-get install build-essential python-dev</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
