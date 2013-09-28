@@ -4,7 +4,7 @@
   <title><![CDATA[Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-09-22T04:38:31-04:00</updated>
+  <updated>2013-09-28T05:37:59-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Cara Menampilkan List Table di Oracle]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/09/28/cara-menampilkan-list-table-di-oracle/"/>
+    <updated>2013-09-28T05:33:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/09/28/cara-menampilkan-list-table-di-oracle</id>
+    <content type="html"><![CDATA[<blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
+
+
+<p>Ada banyak cara untuk mengetahui list table di oracle. yaitu:</p>
+
+<p>1) List Table yang di miliki current user, gunakan sintaks</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">user_tables</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2) List Table yang ada di database/schema, gunakan sintaks</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">dba_tables</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3) List table yang bisa di akses oleh current user, gunakan sintaks</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">all_tables</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Konversi Timestamp ke Date di Oracle]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/09/28/konversi-timestamp-ke-date-di-oracle/"/>
+    <updated>2013-09-28T05:25:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/09/28/konversi-timestamp-ke-date-di-oracle</id>
+    <content type="html"><![CDATA[<blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
+
+
+<p>Untuk mendapatkan current timestamp &amp; date di oracle, gunakan sintaks ini</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">systimestamp</span><span class="p">,</span> <span class="c1">--untuk mendapatkan current timestamp</span>
+</span><span class='line'>     <span class="n">sysdate</span> <span class="c1">-- untuk mendapatkan current date</span>
+</span><span class='line'>     <span class="k">from</span> <span class="n">dual</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk meng-konversi dari timestamp ke date, gunakan sintaks ini</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span>
+</span><span class='line'>  <span class="n">trunc</span><span class="p">(</span><span class="n">systimestamp</span><span class="p">)</span> <span class="c1">-- akan mengembalikan data dalam bentuk date</span>
+</span><span class='line'><span class="k">from</span> <span class="n">dual</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Menjalankan Java Main Class menggunakan Maven Command]]></title>
@@ -843,44 +910,6 @@ bukan semakin kaco :)</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install dnsutils </span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Download sourcecode dan javadocs menggunakan Maven]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/03/27/download-sourcecode-dan-javadocs-menggunakan-maven/"/>
-    <updated>2013-03-27T11:32:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/03/27/download-sourcecode-dan-javadocs-menggunakan-maven</id>
-    <content type="html"><![CDATA[<p>Terkadang kita membutuhkan source code dan javadocs dari dependency yang kita gunakan di project kita. Untuk mendownload source code, lakukan perintah berikut:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mvn dependency:sources</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Untuk mendownload javadocs, lakukan perintah berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mvn dependency:resolve -Dclassifier=javadoc</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Membuat Anchor Link di Markdown dan Octopress]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/03/19/membuat-anchor-link-di-markdown-dan-octopress/"/>
-    <updated>2013-03-19T12:01:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/03/19/membuat-anchor-link-di-markdown-dan-octopress</id>
-    <content type="html"><![CDATA[<p>Untuk membuat Anchor Link, pertama, kita tentukan terlebih dahulu tujuan nya. Di sini, saya ingin membuat 1 link yang ketika di klik, akan menuju ke SubTitle tertentu di halaman yg sama.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>### Resources&lt;a id="#resources"&gt;&lt;/a&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu, anggap, saya ingin membuat kata <code>Resources</code>, ketika di klik akan menuju ke SubTitle Resources.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[Resources](#resources)</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>

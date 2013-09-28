@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Install pymongo menggunakan PIP - Hendry Suwanda</title>
+  <title>Cara Menampilkan List Table di Oracle - Hendry Suwanda</title>
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="pymongo adalah driver yang digunakan python untuk melakukan koneksi ke mongodb. Berikut cara install pymongo menggunakan PIP 1
-pip install pymongo ">
+  <meta name="description" content="Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D Ada banyak cara untuk mengetahui list table di oracle. yaitu: 1) List Table yang di &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ pip install pymongo ">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://hendrysuwanda.github.io/blog/2013/03/18/install-pymongo-menggunakan-pip">
+  <link rel="canonical" href="http://hendrysuwanda.github.io/blog/2013/09/28/cara-menampilkan-list-table-di-oracle">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Hendry Suwanda" type="application/atom+xml">
@@ -69,7 +68,7 @@ pip install pymongo ">
   
   <header>
     
-      <h1 class="entry-title">Install Pymongo Menggunakan PIP</h1>
+      <h1 class="entry-title">Cara Menampilkan List Table Di Oracle</h1>
     
     
       <p class="meta">
@@ -85,19 +84,37 @@ pip install pymongo ">
   
 
 
-<time datetime="2013-03-18T14:03:00-04:00" pubdate data-updated="true">Mar 18<span>th</span>, 2013</time>
+<time datetime="2013-09-28T05:33:00-04:00" pubdate data-updated="true">Sep 28<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>pymongo adalah driver yang digunakan python untuk melakukan koneksi ke mongodb.</p>
+<div class="entry-content"><blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
 
-<p>Berikut cara install pymongo menggunakan PIP</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>pip install pymongo</span></code></pre></td></tr></table></div></figure>
+<p>Ada banyak cara untuk mengetahui list table di oracle. yaitu:</p>
+
+<p>1) List Table yang di miliki current user, gunakan sintaks</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">user_tables</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2) List Table yang ada di database/schema, gunakan sintaks</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">dba_tables</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3) List table yang bisa di akses oleh current user, gunakan sintaks</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">all_tables</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -121,12 +138,12 @@ pip install pymongo ">
   
 
 
-<time datetime="2013-03-18T14:03:00-04:00" pubdate data-updated="true">Mar 18<span>th</span>, 2013</time>
+<time datetime="2013-09-28T05:33:00-04:00" pubdate data-updated="true">Sep 28<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/crunchbang/'>CrunchBang</a>, <a class='category' href='/blog/categories/python/'>Python</a>
+    <a class='category' href='/blog/categories/oracle/'>oracle</a>
   
 </span>
 
@@ -135,7 +152,7 @@ pip install pymongo ">
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://hendrysuwanda.github.io/blog/2013/03/18/install-pymongo-menggunakan-pip/" data-via="" data-counturl="http://hendrysuwanda.github.io/blog/2013/03/18/install-pymongo-menggunakan-pip/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://hendrysuwanda.github.io/blog/2013/09/28/cara-menampilkan-list-table-di-oracle/" data-via="" data-counturl="http://hendrysuwanda.github.io/blog/2013/09/28/cara-menampilkan-list-table-di-oracle/" >Tweet</a>
   
   
   
@@ -144,10 +161,8 @@ pip install pymongo ">
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2013/03/18/install-pip-di-crunchbang/" title="Previous Post: Install PIP di CrunchBang">&laquo; Install PIP di CrunchBang</a>
+        <a class="basic-alignment left" href="/blog/2013/09/28/konversi-timestamp-ke-date-di-oracle/" title="Previous Post: Konversi Timestamp ke Date di Oracle">&laquo; Konversi Timestamp ke Date di Oracle</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/03/19/membuat-anchor-link-di-markdown-dan-octopress/" title="Next Post: Membuat Anchor Link di Markdown dan Octopress">Membuat Anchor Link di Markdown dan Octopress &raquo;</a>
       
     </p>
   </footer>
