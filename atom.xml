@@ -4,7 +4,7 @@
   <title><![CDATA[Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-09-28T05:37:59-04:00</updated>
+  <updated>2013-09-28T05:52:12-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[URL belajar bahasa inggris]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/09/28/url-belajar-bahasa-inggris/"/>
+    <updated>2013-09-28T05:46:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/09/28/url-belajar-bahasa-inggris</id>
+    <content type="html"><![CDATA[<blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
+
+
+<ol>
+<li><a href="http://www.englishclub.com/">English Club</a></li>
+<li><a href="http://www.bbc.co.uk/worldservice/learningenglish/">BBC Learning English</a></li>
+<li><a href="http://learningenglish.voanews.com/">VOA Learning English</a></li>
+<li><a href="http://livemocha.com/">Live Mocha</a></li>
+<li><a href="www.lingq.com/">Lingq</a>. <code>Diberi pinjam account gratis sama om kaiser :D</code></li>
+<li><a href="http://www.kaskus.co.id/forum/113/english">Kaskus English Forum</a></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Cara Menampilkan List Table di Oracle]]></title>
@@ -832,85 +852,6 @@ bukan semakin kaco :)</p>
 
 
 <p>Akhirnya saya lulus pelajaran helloworld PL/SQL :D</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Install dig di crunchbang]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/03/29/install-dig-di-crunchbang/"/>
-    <updated>2013-03-29T05:48:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/03/29/install-dig-di-crunchbang</id>
-    <content type="html"><![CDATA[<p>Dig adalah tools yang berguna utk memberikan informasi suatu DNS.</p>
-
-<p>contoh, kita ingin tahu, <code>www.google.com</code> lari ke mana saja, maka ketikkan</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>dig www.google.com +nostats +nocomments +nocmd</span></code></pre></td></tr></table></div></figure>
-
-
-<p>di lokal saya menghasilkan</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>; &lt;&lt;&gt;&gt; DiG 9.7.3 &lt;&lt;&gt;&gt; www.google.com +nostats +nocomments +nocmd
-</span><span class='line'>;; global options: +cmd
-</span><span class='line'>;www.google.com.          IN  A
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.42
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.46
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.48
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.49
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.53
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.57
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.59
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.16
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.20
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.24
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.26
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.27
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.31
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.35
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.37
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.38
-</span><span class='line'>google.com.       320440  IN  NS  ns4.google.com.
-</span><span class='line'>google.com.       320440  IN  NS  ns3.google.com.
-</span><span class='line'>google.com.       320440  IN  NS  ns1.google.com.
-</span><span class='line'>google.com.       320440  IN  NS  ns2.google.com.
-</span><span class='line'>ns1.google.com.       147620  IN  A   216.239.32.10
-</span><span class='line'>ns2.google.com.       147620  IN  A   216.239.34.10
-</span><span class='line'>ns3.google.com.       147620  IN  A   216.239.36.10
-</span><span class='line'>ns4.google.com.       147662  IN  A   216.239.38.10</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Untuk menginstall dig di crunchbang, ketikkan perintah berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install dnsutils </span></code></pre></td></tr></table></div></figure>
-
 ]]></content>
   </entry>
   

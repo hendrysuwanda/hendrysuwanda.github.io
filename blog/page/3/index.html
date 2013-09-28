@@ -9,7 +9,8 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Terkadang kita membutuhkan source code dan javadocs dari dependency yang kita gunakan di project kita. Untuk mendownload source code, lakukan &hellip;">
+  <meta name="description" content="Dig adalah tools yang berguna utk memberikan informasi suatu DNS. contoh, kita ingin tahu, www.google.com lari ke mana saja, maka ketikkan 1
+dig www. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +66,112 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/29/install-dig-di-crunchbang/">Install Dig Di Crunchbang</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-29T05:48:00-04:00" pubdate data-updated="true">Mar 29<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Dig adalah tools yang berguna utk memberikan informasi suatu DNS.</p>
+
+<p>contoh, kita ingin tahu, <code>www.google.com</code> lari ke mana saja, maka ketikkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dig www.google.com +nostats +nocomments +nocmd</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di lokal saya menghasilkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>; &lt;&lt;&gt;&gt; DiG 9.7.3 &lt;&lt;&gt;&gt; www.google.com +nostats +nocomments +nocmd
+</span><span class='line'>;; global options: +cmd
+</span><span class='line'>;www.google.com.          IN  A
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.42
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.46
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.48
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.49
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.53
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.57
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.59
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.16
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.20
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.24
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.26
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.27
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.31
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.35
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.37
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.38
+</span><span class='line'>google.com.       320440  IN  NS  ns4.google.com.
+</span><span class='line'>google.com.       320440  IN  NS  ns3.google.com.
+</span><span class='line'>google.com.       320440  IN  NS  ns1.google.com.
+</span><span class='line'>google.com.       320440  IN  NS  ns2.google.com.
+</span><span class='line'>ns1.google.com.       147620  IN  A   216.239.32.10
+</span><span class='line'>ns2.google.com.       147620  IN  A   216.239.34.10
+</span><span class='line'>ns3.google.com.       147620  IN  A   216.239.36.10
+</span><span class='line'>ns4.google.com.       147662  IN  A   216.239.38.10</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk menginstall dig di crunchbang, ketikkan perintah berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install dnsutils </span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -672,178 +779,9 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/24/koneksi-ke-github-menggunakan-ssh/">Koneksi Ke Github Menggunakan SSH</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-24T05:23:00-05:00" pubdate data-updated="true">Jan 24<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Kita dapat menggunakan Kunci SSH untuk melakukan koneksi yang aman antara komputer kita dengan github. Tutorial ini akan menunjukkan cara generate Kunci SSH dan menambahkan Kunci Public ke akun Github kita.</p>
-
-<h2>Langkah 1 &ndash; Pengecekkan kunci SSH</h2>
-
-<p><em>Jika anda sudah memiliki <code>keypair</code> yang ingin anda gunakan, anda dapat melompat ke <strong>langkah 4</strong></em>.</p>
-
-<p>Untuk melakukan pengecekkan, apakah anda sudah memiliki Kunci SSH, lakukan langkah berikut (melalui terminal):</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/.ssh
-</span><span class='line'># melakukan pengecekkan, apakah terdapat folder `.ssh` di direktory user yang anda pakai</span></code></pre></td></tr></table></div></figure>
-
-
-<p>jika perintah di atas, mengembalikan &ldquo;No such file or directory&rdquo;, silahkan lompat ke <strong>langkah 3</strong>.</p>
-
-<h2>Langkah 2 &ndash; Backup dan hapus kunci SSH</h2>
-
-<p>Jika langkah 1, menunjukkan bahwa anda sudah memiliki kunci SSH sebelumnya, jika ke depanya anda tetap ingin menggunakan kunci tersebut utk hal yang lain, lakukan backup &amp; hapus, dgn langkah-langkah berikut ini:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ ls
-</span><span class='line'>config  id_rsa  id_rsa.pub  known_hosts
-</span><span class='line'>
-</span><span class='line'>$ mkdir key_backup
-</span><span class='line'>
-</span><span class='line'>$ cp id_rsa* key_backup
-</span><span class='line'>
-</span><span class='line'>$ rm id_rsa*
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Langkah 3 &ndash; Generate kunci SSH yang baru</h2>
-
-<p>Untuk melakukan generate kunci SSH yang baru, lakukan langkah-langkah berikut ini:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ ssh-keygen -t rsa -C "suwanda.hendry@gmail.com"
-</span><span class='line'>
-</span><span class='line'>Generating public/private rsa key pair.
-</span><span class='line'>Enter file in which to save the key (/home/marjinal/.ssh/id_rsa): 
-</span><span class='line'>Enter passphrase (empty for no passphrase): 
-</span><span class='line'>Enter same passphrase again: 
-</span><span class='line'>Your identification has been saved in /home/marjinal/.ssh/id_rsa.
-</span><span class='line'>Your public key has been saved in /home/marjinal/.ssh/id_rsa.pub.
-</span><span class='line'>The key fingerprint is:
-</span><span class='line'>04:76:d4:10:e6:08:92:06:00:28:a8:d6:28:f8:32:23 suwanda.hendry@gmail.com
-</span><span class='line'>The key's randomart image is:
-</span><span class='line'>+--[ RSA 2048]----+
-</span><span class='line'>|O.... o.*+       |
-</span><span class='line'>|+ o. o *  .      |
-</span><span class='line'>|+.o   . o        |
-</span><span class='line'>|+o .   .         |
-</span><span class='line'>|o.      S        |
-</span><span class='line'>|E .              |
-</span><span class='line'>|.+               |
-</span><span class='line'>|                 |
-</span><span class='line'>|                 |
-</span><span class='line'>+-----------------+
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Langkah 4: Menambahkan kunci SSH ke GitHub</h2>
-
-<p>Jalankan perintah berikut untuk melakukan copy kuncu ke clipboard kita</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cat .ssh/id_rsa.pub | xclip -sel clip</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu  lakukan langkah-langkah berikut ini, utk menambahkan key ssh ke account github kita:</p>
-
-<ol>
-<li><p>Masuk ke halaman <code>Account Settings</code></p>
-
-<p> <img src="/images/github/account_settings.png"></p></li>
-<li><p>Klik <code>SSH Keys</code> pada sisi kiri layar</p>
-
-<p> <img src="/images/github/account_settings_ssh_keys.png"></p></li>
-<li><p>Klik <code>Add SSH Key</code></p>
-
-<p> <img src="/images/github/account_settings_ssh_keys_add_ssh_keys.png"></p></li>
-<li><p>Lalu isikan <code>title</code> sesuai keinginan anda, dan paste kan key ssh di <code>key</code>, lalu klik <code>Add key</code></p>
-
-<p> <img src="/images/github/account_settings_ssh_keys_add_ssh_keys_submit.png"></p></li>
-<li><p>Lalu GitHub akan meminta anda memasukkan password account github anda.</p>
-
-<p> <img src="/images/github/account_settings_ssh_keys_add_ssh_keys_password_confirm.png"></p></li>
-</ol>
-
-
-<h2>Langkah 5 &ndash; Test Key SSH</h2>
-
-<p>Ketikkan perintah berikut untuk memastikan key ssh anda telah terpasang dengan benar:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ ssh -T git@github.com</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Jika anda mendapatkan output sebagai berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Hi hendrysuwanda! You've successfully authenticated, but GitHub does not
-</span><span class='line'># provide shell access.</span></code></pre></td></tr></table></div></figure>
-
-
-<p>maka key ssh anda sudah dapat digunakan.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/4/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -856,6 +794,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/09/28/url-belajar-bahasa-inggris/">URL Belajar Bahasa Inggris</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/09/28/cara-menampilkan-list-table-di-oracle/">Cara Menampilkan List Table Di Oracle</a>
@@ -871,10 +813,6 @@
     
       <li class="post">
         <a href="/blog/2013/09/22/install-rabbitmq-di-crunchbang/">Install RabbitMQ Di #CrunchBang</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/17/a-remote-host-refused-an-attempted-connect-operation-dsra0010e-sql-state-equals-08001-error-code-equals-99-dot-999/">A Remote Host Refused an Attempted Connect Operation. DSRA0010E: SQL State = 08001-Error Code = -99.999</a>
       </li>
     
   </ul>
