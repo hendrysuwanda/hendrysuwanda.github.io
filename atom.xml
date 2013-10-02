@@ -4,7 +4,7 @@
   <title><![CDATA[Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-10-02T09:56:49-04:00</updated>
+  <updated>2013-10-02T12:09:23-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,394 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Sencha Touch Hello World]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/02/sencha-touch-hello-world/"/>
+    <updated>2013-10-02T11:41:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/02/sencha-touch-hello-world</id>
+    <content type="html"><![CDATA[<blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
+
+
+<p>Sebelum melakukan generate aplikasi yang pertama menggunakan Sencha Cmd, berikut yang mesti kita lakukan.
+* Direktori project saya, biasanya saya letakkan di <code>~/PROJECT/SENCHA_TOUCH</code>
+* Direktori Sencha SDK saya ada di <code>~/TOOLS/sencha/touch-2.2.1</code>
+* Lalu buat direktori sesuai dengan nama projectnya, karena kita mau buat hello world, maka saya buat folder hello world di dalam folder tersebut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/PROJECT/SENCHA_TOUCH
+</span><span class='line'>$ mkdir helloworld</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Generate Project</h3>
+
+<p>Untuk melakukan generate project, lakukan langkah-langkah berikut ini:
+1) Masuk ke dalam direktori <code>~/TOOLS/sencha/touch-2.2.1</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/TOOLS/sencha/touch-2.2.1</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2) Lalu jalankan command berikut ini</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sencha generate app HelloWorld ~/PROJECT/SENCHA_TOUCH/helloworld</span></code></pre></td></tr></table></div></figure>
+
+
+<p>maka akan muncul output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Sencha Cmd v3.1.2.342
+</span><span class='line'>[WRN] Sencha Cmd update is available (updating is recommended)
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-plugin:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] -before-generate-workspace:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] cmd-root-plugin.init-properties:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-properties:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-sencha-command:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] generate-workspace-impl:
+</span><span class='line'>[INF]      [echo] generating into /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld from /home/marjinal/bin/Sencha/Cmd/3.1.2.342/templates/workspace
+</span><span class='line'>[INF]     [mkdir] Created dir: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/packages
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] cmd-root-plugin.copy-framework-to-workspace-impl:
+</span><span class='line'>[INF] [propertyfile] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/workspace/sencha.cfg
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] copy-framework-to-workspace-impl:
+</span><span class='line'>[INF]      [copy] Copying 1960 files to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/touch
+</span><span class='line'>[INF]      [copy] Copying 1 file to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/touch
+</span><span class='line'>[INF]      [copy] Copying 1 file to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/touch
+</span><span class='line'>[INF] [propertyfile] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/workspace/sencha.cfg
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] copy-framework-to-workspace:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] generate-workspace:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] -after-generate-workspace:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-plugin:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] cmd-root-plugin.init-properties:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-properties:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-sencha-command:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] before-upgrade:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] generate-app-impl:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] generate-starter-app:
+</span><span class='line'>[INF]     [mkdir] Created dir: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/app/profile
+</span><span class='line'>[INF]     [mkdir] Created dir: /home/marjinal/TOOLS/sencha/touch-2.2.1/resources/icons
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] copy-sdk:
+</span><span class='line'>[INF]      [copy] Copying 1 file to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/resources/css
+</span><span class='line'>[INF]      [copy] Copying 4 files to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/resources/sass/stylesheets
+</span><span class='line'>[INF] [x-property-file] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/app/sencha.cfg
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] after-upgrade:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] generate-app:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] -after-generate-app:
+</span><span class='line'>[INF] [x-property-file] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/app/sencha.cfg
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Running Project</h3>
+
+<p>Untuk menjalankan project menggunakan Sencha Cmd, lakukan langkah berikut:</p>
+
+<p>1) masuk ke dalam directory project</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/PROJECT/SENCHA_TOUCH/</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2) lalu ketikkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sencha fs web -port 8000 start -map helloworld</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu akan muncul output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Sencha Cmd v3.1.2.342
+</span><span class='line'>[INF] Starting shutdown listener socket
+</span><span class='line'>[INF] Listening for stop requests on: 42787
+</span><span class='line'>[INF] Mapping http://localhost:8000/ to helloworld...
+</span><span class='line'>[INF] Starting http://localhost:8000
+</span><span class='line'>[INF] jetty-8.1.7.v20120910
+</span><span class='line'>[INF] NO JSP Support for /, did not find org.apache.jasper.servlet.JspServlet
+</span><span class='line'>[INF] started o.e.j.w.WebAppContext{/,file:/home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/}
+</span><span class='line'>[INF] started o.e.j.w.WebAppContext{/,file:/home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/}
+</span><span class='line'>[INF] Started SelectChannelConnector@0.0.0.0:8000
+</span><span class='line'>[INF] Started http://localhost:8000
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Jika tidak memiliki emulator (android, iphone, dll), kita bisa gunakan google chrome. Jalankan google chrome, lalu  masukkan url <a href="http://localhost:8000.">http://localhost:8000.</a></p>
+
+<p><img src="http://hendrysuwanda.github.io/images/sencha-touch/sencha-touch-helloworld-running.png"></p>
+
+<p>Done.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Install Sencha Touch SDK dan Sencha Cmd]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd/"/>
+    <updated>2013-10-02T11:01:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd</id>
+    <content type="html"><![CDATA[<blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
+
+
+<p>Sebelumnya, silahkan download <a href="http://www.sencha.com/products/touch/download/">Sencha Touch SDK</a> dan <a href="http://www.sencha.com/products/sencha-cmd/download">Sencha Cmd</a>. Untuk Sencha Cmd, saya download yang versi linux (<code>SenchaCmd-3.1.2.342-linux-x64.run.zip</code>).</p>
+
+<h3>Install Sencha Touch SDK</h3>
+
+<p>Untuk meng-install Sencha Touch SDK, cukup hanya dengan melakukan extract file yang anda download.</p>
+
+<h3>Install Sencha Cmd</h3>
+
+<p>1) Extract file <code>SenchaCmd-3.1.2.342-linux-x64.run.zip</code>
+2) Jalankan command berikut, untuk mengubah file menjadi executable</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ chmod +x SenchaCmd-3.1.2.342-linux-x64.run</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3) Jalankan command berikut, untuk memulai instalasi</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ ./SenchaCmd-3.1.2.342-linux-x64.run</span></code></pre></td></tr></table></div></figure>
+
+
+<p>4) Lalu akan muncul dialog <strong>Setup &ndash; Sencha Cmd</strong>. Klik <strong>Next</strong>.</p>
+
+<p><img src="http://hendrysuwanda.github.io/images/sencha-touch/1-setup-sencha-touch-welcome.png"></p>
+
+<p>5) Lalu akan muncul dialog <strong>License Agreement</strong>. Klik <strong>I accept the agreement</strong>, lalu klik <strong>Next</strong>.</p>
+
+<p><img src="http://hendrysuwanda.github.io/images/sencha-touch/2-setup-sencha-touch-license-agreement.png"></p>
+
+<p>6) Lalu akan muncul dialog <strong>Installation Directory</strong>. Pada <strong>Installation Directory</strong> biarkan terisi default, lalu klik <strong>Next</strong>.</p>
+
+<p><img src="http://hendrysuwanda.github.io/images/sencha-touch/3-setup-sencha-touch-installation-directory.png"></p>
+
+<p>7) Lalu akan muncul dialog <strong>Ready to Install</strong>. Klik <strong>Next</strong>.</p>
+
+<p><img src="http://hendrysuwanda.github.io/images/sencha-touch/4-setup-sencha-touch-ready-to-install.png"></p>
+
+<p>8) Lalu akan muncul dialog <strong>Installing</strong>. Proses install sedang berjalan</p>
+
+<p><img src="http://hendrysuwanda.github.io/images/sencha-touch/5-setup-sencha-touch-installing.png"></p>
+
+<p>9) Setelah proses install selesai, akan muncul dialog <strong>Completing the Sencha Cmd Setup Wizard</strong>. Klik <strong>Finish</strong></p>
+
+<p><img src="http://hendrysuwanda.github.io/images/sencha-touch/6-setup-sencha-touch-finish.png"></p>
+
+<p>10) Untuk menguji, apakah proses instal Sencha Cmd telah berhasil atau belum, buka terminal lalu jalankan command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sencha</span></code></pre></td></tr></table></div></figure>
+
+
+<p>jika muncul output sebagai berikut, berarti proses instal telah berhasil</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Sencha Cmd v3.1.2.342
+</span><span class='line'>Sencha Cmd provides several categories of commands and some global switches. In
+</span><span class='line'>most cases, the first step is to generate an application based on a Sencha SDK
+</span><span class='line'>such as Ext JS or Sencha Touch:
+</span><span class='line'>
+</span><span class='line'>    sencha -sdk /path/to/sdk generate app MyApp /path/to/myapp
+</span><span class='line'>
+</span><span class='line'>Sencha Cmd supports Ext JS 4.1.1a and higher and Sencha Touch 2.1 and higher.
+</span><span class='line'>
+</span><span class='line'>To get help on commands use the help command:
+</span><span class='line'>
+</span><span class='line'>    sencha help generate app
+</span><span class='line'>
+</span><span class='line'>For more information on using Sencha Cmd, consult the guides found here:
+</span><span class='line'>
+</span><span class='line'>http://docs.sencha.com/ext-js/4-2/#!/guide/command
+</span><span class='line'>http://docs.sencha.com/ext-js/4-1/#!/guide/command
+</span><span class='line'>
+</span><span class='line'>http://docs.sencha.com/touch/2-2/#!/guide/command
+</span><span class='line'>http://docs.sencha.com/touch/2-1/#!/guide/command
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Options
+</span><span class='line'>  * --cwd, -cw - Sets the directory from which commands should execute
+</span><span class='line'>  * --debug, -d - Sets log level to higher verbosity
+</span><span class='line'>  * --nologo, -n - Suppress the initial Sencha Cmd version display
+</span><span class='line'>  * --plain, -pl - enables plain logging output (no highlighting)
+</span><span class='line'>  * --quiet, -q - Sets log level to warnings and errors only
+</span><span class='line'>  * --sdk-path, -s - The location of the SDK to use for non-app commands
+</span><span class='line'>  * --time, -ti - Display the execution time after executing all commands
+</span><span class='line'>
+</span><span class='line'>Categories
+</span><span class='line'>  * app - Perform various application build processes
+</span><span class='line'>  * compass - Wraps execution of compass for sass compilation
+</span><span class='line'>  * compile - Compile sources to produce concatenated output and metadata
+</span><span class='line'>  * fs - Utility commands to work with files
+</span><span class='line'>  * generate - Generates models, controllers, etc. or an entire application
+</span><span class='line'>  * io - Create, deploy and manage applications on the Sencha.io cloud platform
+</span><span class='line'>  * iofs - Manage Files stored in the Sencha.io cloud platform
+</span><span class='line'>  * manifest - Extract class metadata
+</span><span class='line'>  * package - Manages local and remote packages
+</span><span class='line'>  * repository - Manage local repository and remote repository connections
+</span><span class='line'>  * theme - Commands for low-level operations on themes
+</span><span class='line'>
+</span><span class='line'>Commands
+</span><span class='line'>  * ant - Invoke Ant with helpful properties back to Sencha Cmd
+</span><span class='line'>  * build - Builds a project from a legacy JSB3 file.
+</span><span class='line'>  * config - Load a properties file or sets a configuration property
+</span><span class='line'>  * help - Displays help for commands
+</span><span class='line'>  * js - Executes arbitrary JavaScript file(s)
+</span><span class='line'>  * upgrade - Upgrades Sencha Cmd
+</span><span class='line'>  * which - Displays the path to the current version of Sencha Cmd
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mendapatkan tanggal awal dan akhir Bulan di Oracle]]></title>
@@ -838,71 +1226,6 @@
 </pre></td><td class='code'><pre><code class=''><span class='line'>&gt; cf login
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Install jdk 1.6 di ubuntu 12.04 server]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/04/16/install-jdk-1-dot-6-di-ubuntu-12-dot-04-server/"/>
-    <updated>2013-04-16T12:37:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/04/16/install-jdk-1-dot-6-di-ubuntu-12-dot-04-server</id>
-    <content type="html"><![CDATA[<p>Berikut cara install jdk 1.6 di ubuntu 12.04 (sebenarnya bisa di lakukan di semua ubuntu :D).</p>
-
-<ol>
-<li><p>Download jdk sesuai dengan bit pada ubuntu (kebetulan ubuntu ku versi 64 bit, jadi aku download jdk-6u43-linux-x64.bin)</p></li>
-<li><p>Buat folder <code>jvm</code> di <code>/usr/lib</code> dengan command berikut</p>
-
-<p> <code>
- sudo mkdir -p /usr/lib/jvm
-</code></p></li>
-<li><p>Lalu pindahkan jdk yang telah di download ke folder &lsquo;/usr/lib/jvm&rsquo; menggunakan perintah berikut</p>
-
-<p> <code>
- sudo mv jdk-6u43-linux-x64.bin /usr/lib/jvm/
-</code></p></li>
-<li><p>Lalu ubah file menjadi executable dengan perintah berikut</p>
-
-<p> <code>
- sudo chmod u+x jdk-6u43-linux-x64.bin
-</code></p></li>
-<li><p>Lalu jalankan file tersebut</p>
-
-<p> <code>
- sudo ./jdk-6u43-linux-x64.bin
-</code></p></li>
-<li><p>Tunggu sampai selesai, proses akan melakukan extract file tersebut ke dalam folder jdk1.6.0_43</p></li>
-<li><p>Lalu jalankan perintah berikut, utk mengaktifkan java yg baru kita install.</p>
-
-<p> &#8220;`
- sudo update-alternatives &mdash;install &ldquo;/usr/bin/java&rdquo; &ldquo;java&rdquo; &ldquo;/usr/lib/jvm/jdk1.6.0_43/bin/java&rdquo; 1</p>
-
-<p> sudo update-alternatives &mdash;install &ldquo;/usr/bin/javac&rdquo; &ldquo;javac&rdquo; &ldquo;/usr/lib/jvm/jdk1.6.0_43/bin/javac&rdquo; 1
- &#8220;`</p></li>
-</ol>
-
-
-<p>Done.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Duit di mata entrepreneur sukses]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/03/30/duit-di-mata-entrepreneur-sukses/"/>
-    <updated>2013-03-30T05:36:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/03/30/duit-di-mata-entrepreneur-sukses</id>
-    <content type="html"><![CDATA[<p>Kalau saya ambilkan cuplikan dari Steve Jobs (atau entrepreneur
-lain yang sukses):</p>
-
-<p>Dulu awal-awal mulainya gak mikirin duit, karena emang gak punya
-Setelah sukses, juga gak mikirin duit karena ada banyak dan gak masalah</p>
-
-<p>Jadi seumur hidup mereka gak pernah diperbudak oleh duit,
-karena sekedar untuk memikirkannya pun tidak. he he he.</p>
-
-<p>Dapat dilihat perbedaan cara pandangnya.
-Sama kondisinya, tapi cara pandang terhadap situasinya beda.</p>
-
-<p>&mdash; budi</p>
 ]]></content>
   </entry>
   

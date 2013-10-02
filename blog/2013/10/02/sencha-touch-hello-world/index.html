@@ -1,0 +1,424 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Sencha Touch Hello World - Hendry Suwanda</title>
+  <meta name="author" content="Hendry Suwanda">
+
+  
+  <meta name="description" content="Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D Sebelum melakukan generate aplikasi yang pertama menggunakan Sencha Cmd, berikut yang &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://hendrysuwanda.github.io/blog/2013/10/02/sencha-touch-hello-world">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Hendry Suwanda" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Hendry Suwanda</a></h1>
+  
+    <h2>Programming is like sex. One mistake and you have to support it for the rest of your life.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:hendrysuwanda.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Sencha Touch Hello World</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-02T11:41:00-04:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
+
+
+<p>Sebelum melakukan generate aplikasi yang pertama menggunakan Sencha Cmd, berikut yang mesti kita lakukan.
+* Direktori project saya, biasanya saya letakkan di <code>~/PROJECT/SENCHA_TOUCH</code>
+* Direktori Sencha SDK saya ada di <code>~/TOOLS/sencha/touch-2.2.1</code>
+* Lalu buat direktori sesuai dengan nama projectnya, karena kita mau buat hello world, maka saya buat folder hello world di dalam folder tersebut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/PROJECT/SENCHA_TOUCH
+</span><span class='line'>$ mkdir helloworld</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Generate Project</h3>
+
+<p>Untuk melakukan generate project, lakukan langkah-langkah berikut ini:
+1) Masuk ke dalam direktori <code>~/TOOLS/sencha/touch-2.2.1</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/TOOLS/sencha/touch-2.2.1</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2) Lalu jalankan command berikut ini</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sencha generate app HelloWorld ~/PROJECT/SENCHA_TOUCH/helloworld</span></code></pre></td></tr></table></div></figure>
+
+
+<p>maka akan muncul output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Sencha Cmd v3.1.2.342
+</span><span class='line'>[WRN] Sencha Cmd update is available (updating is recommended)
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-plugin:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] -before-generate-workspace:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] cmd-root-plugin.init-properties:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-properties:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-sencha-command:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] generate-workspace-impl:
+</span><span class='line'>[INF]      [echo] generating into /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld from /home/marjinal/bin/Sencha/Cmd/3.1.2.342/templates/workspace
+</span><span class='line'>[INF]     [mkdir] Created dir: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/packages
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] cmd-root-plugin.copy-framework-to-workspace-impl:
+</span><span class='line'>[INF] [propertyfile] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/workspace/sencha.cfg
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] copy-framework-to-workspace-impl:
+</span><span class='line'>[INF]      [copy] Copying 1960 files to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/touch
+</span><span class='line'>[INF]      [copy] Copying 1 file to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/touch
+</span><span class='line'>[INF]      [copy] Copying 1 file to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/touch
+</span><span class='line'>[INF] [propertyfile] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/workspace/sencha.cfg
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] copy-framework-to-workspace:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] generate-workspace:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] -after-generate-workspace:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-plugin:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] cmd-root-plugin.init-properties:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-properties:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-sencha-command:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] before-upgrade:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] generate-app-impl:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] generate-starter-app:
+</span><span class='line'>[INF]     [mkdir] Created dir: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/app/profile
+</span><span class='line'>[INF]     [mkdir] Created dir: /home/marjinal/TOOLS/sencha/touch-2.2.1/resources/icons
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] copy-sdk:
+</span><span class='line'>[INF]      [copy] Copying 1 file to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/resources/css
+</span><span class='line'>[INF]      [copy] Copying 4 files to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/resources/sass/stylesheets
+</span><span class='line'>[INF] [x-property-file] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/app/sencha.cfg
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] after-upgrade:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] generate-app:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] -after-generate-app:
+</span><span class='line'>[INF] [x-property-file] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/app/sencha.cfg
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Running Project</h3>
+
+<p>Untuk menjalankan project menggunakan Sencha Cmd, lakukan langkah berikut:</p>
+
+<p>1) masuk ke dalam directory project</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/PROJECT/SENCHA_TOUCH/</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2) lalu ketikkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sencha fs web -port 8000 start -map helloworld</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu akan muncul output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Sencha Cmd v3.1.2.342
+</span><span class='line'>[INF] Starting shutdown listener socket
+</span><span class='line'>[INF] Listening for stop requests on: 42787
+</span><span class='line'>[INF] Mapping http://localhost:8000/ to helloworld...
+</span><span class='line'>[INF] Starting http://localhost:8000
+</span><span class='line'>[INF] jetty-8.1.7.v20120910
+</span><span class='line'>[INF] NO JSP Support for /, did not find org.apache.jasper.servlet.JspServlet
+</span><span class='line'>[INF] started o.e.j.w.WebAppContext{/,file:/home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/}
+</span><span class='line'>[INF] started o.e.j.w.WebAppContext{/,file:/home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/}
+</span><span class='line'>[INF] Started SelectChannelConnector@0.0.0.0:8000
+</span><span class='line'>[INF] Started http://localhost:8000
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Jika tidak memiliki emulator (android, iphone, dll), kita bisa gunakan google chrome. Jalankan google chrome, lalu  masukkan url <a href="http://localhost:8000.">http://localhost:8000.</a></p>
+
+<p><img src="/images/sencha-touch/sencha-touch-helloworld-running.png"></p>
+
+<p>Done.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Hendry Suwanda</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-02T11:41:00-04:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/sencha-touch/'>sencha-touch</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://hendrysuwanda.github.io/blog/2013/10/02/sencha-touch-hello-world/" data-via="" data-counturl="http://hendrysuwanda.github.io/blog/2013/10/02/sencha-touch-hello-world/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd/" title="Previous Post: Install Sencha Touch SDK dan Sencha Cmd">&laquo; Install Sencha Touch SDK dan Sencha Cmd</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/02/sencha-touch-hello-world/">Sencha Touch Hello World</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd/">Install Sencha Touch SDK Dan Sencha Cmd</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle/">Mendapatkan Tanggal Awal Dan Akhir Bulan Di Oracle</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/29/url-belajar-wicket/">URL Belajar Wicket</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/28/url-belajar-spring-batch/">URL Belajar Spring-Batch</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Hendry Suwanda -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

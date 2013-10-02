@@ -9,7 +9,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="I know, my english is very bad, but, I believe in the phrase, &#8220;no practice, no learning&#8221;. so, if you feel something is wrong with my post &hellip;">
+  <meta name="description" content="Bulan kemaren (Agustus &ndash; 2013), gw dapat laporan dari client, bahwa server aplikasi tidak dapat connect ke core banking, ketika di lakukan test &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,162 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/17/a-remote-host-refused-an-attempted-connect-operation-dsra0010e-sql-state-equals-08001-error-code-equals-99-dot-999/">A Remote Host Refused an Attempted Connect Operation. DSRA0010E: SQL State = 08001-Error Code = -99.999</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-17T11:58:00-04:00" pubdate data-updated="true">Sep 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Bulan kemaren (Agustus &ndash; 2013), gw dapat laporan dari client, bahwa server aplikasi tidak dapat connect ke core banking, ketika di lakukan test connection dari ibm console (websphere) muncul error seperti di bawah ini</p>
+
+<blockquote><p>The application requester cannot establish the connection. (A remote host refused an attempted connect operation.) DSRA0010E: SQL State = 08001, Error Code = -99.999</p></blockquote>
+
+
+<p>Setelah google, di dapatkan 2 link berikut</p>
+
+<ol>
+<li><a href="http://madhutomy.blogspot.com/2013/03/javasqlsqlexception-invalid-arguments.html">link 1</a>, dia mengalami hal serupa, karena dia lupa memilih &ldquo;Component-managed authentication alias&rdquo;</li>
+<li><a href="http://www-01.ibm.com/support/docview.wss?uid=swg21235300">link 2</a>, langsung dari support websphere, menyarankan untuk me-restart websphere.</li>
+</ol>
+
+
+<p>Solusi 1, jelas tidak mungkin, karena aplikasi sebelumnya dapat berjalan dengan lancar. Solusi 2, masih boleh di coba, dan ternyata setelah di lakukan restart websphere, tetap tidak dapat lakukan test connection, dengan message error masih sama seperti di atas.</p>
+
+<p>hmmm, akhirnya gw curiga sama firewall, gw minta ijin sama client, untuk dapat melakukan koneksi melalui laptop saya, dimana, jaringan yang saya gunakan tidak di block oleh firewall. Saya develop aplikasi java mini (mendadak :( )), untuk melakukan test connection ke core banking (AS/400). Source code untuk aplikasi java tersebut dapat di lihat <a href="https://github.com/hendrysuwanda/test-connection-as-400">di sini</a>. Dan alhamdullilah, ternyata saya dapat melakukan koneksi ke core banking.</p>
+
+<p>Setelah vendor firewall di panggil, akhirnya di ketahui, untuk dapat melakukan koneksi ke AS/400, kita mesti membuka 3 port berikut, yaitu (449, 8476, 8471)</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/13/lupa-password-websphere-application-server-administrative-console/">Lupa Password WebSphere Application Server Administrative Console</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-13T08:55:00-04:00" pubdate data-updated="true">Sep 13<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Di laptop gw, sudah terinstall WebSphere Application Server 8.5, tapi sudah lama nggak pakai, dan sialnya hari ini (12/09/2013) gw berkeinginan mau memakainya.</p>
+
+<p>Ketika di jalanakan &amp; ingin masuk ke Administrative console (ibm/console), s**l, gw lupa passwordnya :(</p>
+
+<p>Setelah google, ternyata kita bisa non-aktifkan security mode dari websphere dengan cara.</p>
+
+<p>1) Matikan dulu websphere (jika masih jalan)
+2) Buka file <code>security.xml</code> yang ada fi folder <code>&lt;HOME_WEBSPHERE&gt;\AppServer\profiles\&lt;PROFILES NAME&gt;\config\cells\&lt;NODE CELL NAME&gt;</code>, contoh di tempat saya ada di, <code>C:\Program Files (x86)\IBM\WebSphere\AppServer\profiles\AppSrv01\config\cells\JPS-01122Node01Cell</code></p>
+
+<p>3) Lalu edit yang ada di sini</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;security:Security</span>
+</span><span class='line'>  <span class="na">xmi:version=</span><span class="s">&quot;2.0&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:xmi=</span><span class="s">&quot;http://www.omg.org/XMI&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:orb.securityprotocol=</span><span class="s">&quot;http://www.ibm.com/websphere/appserver/schemas/5.0/orb.securityprotocol.xmi&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:security=</span><span class="s">&quot;http://www.ibm.com/websphere/appserver/schemas/5.0/security.xmi&quot;</span>
+</span><span class='line'>  <span class="na">xmi:id=</span><span class="s">&quot;Security_1&quot;</span> <span class="na">useLocalSecurityServer=</span><span class="s">&quot;true&quot;</span>
+</span><span class='line'>  <span class="na">useDomainQualifiedUserNames=</span><span class="s">&quot;false&quot;</span> <span class="na">enabled=</span><span class="s">&quot;true&quot;</span> <span class="na">cacheTimeout=</span><span class="s">&quot;600&quot;</span>
+</span><span class='line'>  <span class="na">issuePermissionWarning=</span><span class="s">&quot;true&quot;</span> <span class="na">activeProtocol=</span><span class="s">&quot;BOTH&quot;</span> <span class="na">enforceJava2Security=</span><span class="s">&quot;false&quot;</span>
+</span><span class='line'>  <span class="na">enforceFineGrainedJCASecurity=</span><span class="s">&quot;false&quot;</span> <span class="na">appEnabled=</span><span class="s">&quot;false&quot;</span>
+</span><span class='line'>  <span class="na">dynamicallyUpdateSSLConfig=</span><span class="s">&quot;true&quot;</span> <span class="na">allowBasicAuth=</span><span class="s">&quot;true&quot;</span>
+</span><span class='line'>  <span class="na">activeAuthMechanism=</span><span class="s">&quot;LTPA_1&quot;</span> <span class="na">activeUserRegistry=</span><span class="s">&quot;WIMUserRegistry_1&quot;</span>
+</span><span class='line'>  <span class="na">defaultSSLSettings=</span><span class="s">&quot;SSLConfig_JPS-01122Node01_1&quot;</span> <span class="na">adminPreferredAuthMech=</span><span class="s">&quot;RSAToken_1&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>nilai dari parameter enabled ubah dari true menjadi false,  kurang lebih jadi seperti di bawah ini.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;security:Security</span>
+</span><span class='line'>  <span class="na">xmi:version=</span><span class="s">&quot;2.0&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:xmi=</span><span class="s">&quot;http://www.omg.org/XMI&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:orb.securityprotocol=</span><span class="s">&quot;http://www.ibm.com/websphere/appserver/schemas/5.0/orb.securityprotocol.xmi&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:security=</span><span class="s">&quot;http://www.ibm.com/websphere/appserver/schemas/5.0/security.xmi&quot;</span>
+</span><span class='line'>  <span class="na">xmi:id=</span><span class="s">&quot;Security_1&quot;</span> <span class="na">useLocalSecurityServer=</span><span class="s">&quot;true&quot;</span>
+</span><span class='line'>  <span class="na">useDomainQualifiedUserNames=</span><span class="s">&quot;false&quot;</span> <span class="na">enabled=</span><span class="s">&quot;false&quot;</span> <span class="na">cacheTimeout=</span><span class="s">&quot;600&quot;</span>
+</span><span class='line'>  <span class="na">issuePermissionWarning=</span><span class="s">&quot;true&quot;</span> <span class="na">activeProtocol=</span><span class="s">&quot;BOTH&quot;</span> <span class="na">enforceJava2Security=</span><span class="s">&quot;false&quot;</span>
+</span><span class='line'>  <span class="na">enforceFineGrainedJCASecurity=</span><span class="s">&quot;false&quot;</span> <span class="na">appEnabled=</span><span class="s">&quot;false&quot;</span>
+</span><span class='line'>  <span class="na">dynamicallyUpdateSSLConfig=</span><span class="s">&quot;true&quot;</span> <span class="na">allowBasicAuth=</span><span class="s">&quot;true&quot;</span>
+</span><span class='line'>  <span class="na">activeAuthMechanism=</span><span class="s">&quot;LTPA_1&quot;</span> <span class="na">activeUserRegistry=</span><span class="s">&quot;WIMUserRegistry_1&quot;</span>
+</span><span class='line'>  <span class="na">defaultSSLSettings=</span><span class="s">&quot;SSLConfig_JPS-01122Node01_1&quot;</span> <span class="na">adminPreferredAuthMech=</span><span class="s">&quot;RSAToken_1&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>4) Hidupkan kembali websphere. Sekarang anda tidak perlu lagi memasukkan password untuk mengakses Administrative console (ibm/console).</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -668,125 +824,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/16/install-jdk-1-dot-6-di-ubuntu-12-dot-04-server/">Install Jdk 1.6 Di Ubuntu 12.04 Server</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-16T12:37:00-04:00" pubdate data-updated="true">Apr 16<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Berikut cara install jdk 1.6 di ubuntu 12.04 (sebenarnya bisa di lakukan di semua ubuntu :D).</p>
-
-<ol>
-<li><p>Download jdk sesuai dengan bit pada ubuntu (kebetulan ubuntu ku versi 64 bit, jadi aku download jdk-6u43-linux-x64.bin)</p></li>
-<li><p>Buat folder <code>jvm</code> di <code>/usr/lib</code> dengan command berikut</p>
-
-<p> <code>
- sudo mkdir -p /usr/lib/jvm
-</code></p></li>
-<li><p>Lalu pindahkan jdk yang telah di download ke folder &lsquo;/usr/lib/jvm&rsquo; menggunakan perintah berikut</p>
-
-<p> <code>
- sudo mv jdk-6u43-linux-x64.bin /usr/lib/jvm/
-</code></p></li>
-<li><p>Lalu ubah file menjadi executable dengan perintah berikut</p>
-
-<p> <code>
- sudo chmod u+x jdk-6u43-linux-x64.bin
-</code></p></li>
-<li><p>Lalu jalankan file tersebut</p>
-
-<p> <code>
- sudo ./jdk-6u43-linux-x64.bin
-</code></p></li>
-<li><p>Tunggu sampai selesai, proses akan melakukan extract file tersebut ke dalam folder jdk1.6.0_43</p></li>
-<li><p>Lalu jalankan perintah berikut, utk mengaktifkan java yg baru kita install.</p>
-
-<p> &#8220;`
- sudo update-alternatives &mdash;install &ldquo;/usr/bin/java&rdquo; &ldquo;java&rdquo; &ldquo;/usr/lib/jvm/jdk1.6.0_43/bin/java&rdquo; 1</p>
-
-<p> sudo update-alternatives &mdash;install &ldquo;/usr/bin/javac&rdquo; &ldquo;javac&rdquo; &ldquo;/usr/lib/jvm/jdk1.6.0_43/bin/javac&rdquo; 1
- &#8220;`</p></li>
-</ol>
-
-
-<p>Done.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/30/duit-di-mata-entrepreneur-sukses/">Duit Di Mata Entrepreneur Sukses</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-30T05:36:00-04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Kalau saya ambilkan cuplikan dari Steve Jobs (atau entrepreneur
-lain yang sukses):</p>
-
-<p>Dulu awal-awal mulainya gak mikirin duit, karena emang gak punya
-Setelah sukses, juga gak mikirin duit karena ada banyak dan gak masalah</p>
-
-<p>Jadi seumur hidup mereka gak pernah diperbudak oleh duit,
-karena sekedar untuk memikirkannya pun tidak. he he he.</p>
-
-<p>Dapat dilihat perbedaan cara pandangnya.
-Sama kondisinya, tapi cara pandang terhadap situasinya beda.</p>
-
-<p>&mdash; budi</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -804,6 +841,14 @@ Sama kondisinya, tapi cara pandang terhadap situasinya beda.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/02/sencha-touch-hello-world/">Sencha Touch Hello World</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd/">Install Sencha Touch SDK Dan Sencha Cmd</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle/">Mendapatkan Tanggal Awal Dan Akhir Bulan Di Oracle</a>
       </li>
     
@@ -813,14 +858,6 @@ Sama kondisinya, tapi cara pandang terhadap situasinya beda.</p>
     
       <li class="post">
         <a href="/blog/2013/09/28/url-belajar-spring-batch/">URL Belajar Spring-Batch</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/28/url-belajar-bahasa-inggris/">URL Belajar Bahasa Inggris</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/28/cara-menampilkan-list-table-di-oracle/">Cara Menampilkan List Table Di Oracle</a>
       </li>
     
   </ul>

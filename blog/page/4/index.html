@@ -9,10 +9,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Perlengkapan Berikut daftar tools/files yang di perlukan: apache-maven-3.0.5
-Terminal
-wget
-vi/vim Langkah 1 Buka terminal dan ketikkan perintah &hellip;">
+  <meta name="description" content="Berikut cara menampilkan versi dari package, kernel, debian, maupun crunchbang yang terinstall di environment kita. Package Cara ini hanya berjalan &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,6 +65,200 @@ vi/vim Langkah 1 Buka terminal dan ketikkan perintah &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/17/cara-menampilkan-versi-package-kernel-debian-dan-crunchbang/">Cara Menampilkan Versi Package, Kernel, Debian Dan Crunchbang</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-17T06:04:00-04:00" pubdate data-updated="true">Mar 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Berikut cara menampilkan versi dari package, kernel, debian, maupun crunchbang yang terinstall di environment kita.</p>
+
+<h3>Package</h3>
+
+<blockquote><blockquote><p>Cara ini hanya berjalan di linux turunan debian</p></blockquote></blockquote>
+
+<p>Ketikkan perintah berikut, untuk mengetahui versi dari package yang sudah terinstall di environment kita, ganti <code>&lt;package_name&gt;</code> dengan package yang di inginkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dpkg -l | grep &lt;package_name&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>contoh</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dpkg -l | grep libc6</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di environment saya akan menampilkan hasil seperti di bawah ini</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ii  libc6                    2.11.3-4           Embedded GNU C Library: Shared libraries
+</span><span class='line'>ii  libc6-dev                2.11.3-4           Embedded GNU C Library: Development Libraries and Header Files</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Kernel</h3>
+
+<p>Ada 2 cara untuk mengetahui versi kernel yang kita gunakan. Pertama, dengan mengetikkan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>uname -a</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Perintah di atas, akan mencetak semua informasi dari kernel yang kita gunakan, di environment saya, menampilkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Linux marjinal 2.6.32-5-amd64 #1 SMP Mon Jan 16 16:22:28 UTC 2012 x86_64 GNU/Linux</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Kedua, dengan mengetikkan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>uname -r</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Perintah diatas, hanya akan mencetak versi dari kernel, di environment saya, menampilkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>2.6.32-5-amd64</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Cara kedua, sangat bermanfaat, jika kita ingin mengintall package yang membutuhkan versi kernel, contoh, <code>kernel header</code>, sehingga kita dapat mengetikkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install linux-headers-$(uname -r)</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Debian</h3>
+
+<p>Untuk mengetahui versi debian, ketikkan perintah berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cat /etc/debian_version</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di environment saya menampilkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>6.0.4</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Crunchbang</h3>
+
+<p>Untuk mengetahui versi Crunchbang, ketikkan perintah berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cat /etc/lsb-release-crunchbang</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di environment saya menampilkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DISTRIB_ID=CrunchBang
+</span><span class='line'>DISTRIB_RELEASE=10
+</span><span class='line'>DISTRIB_CODENAME=statler
+</span><span class='line'>DISTRIB_DESCRIPTION="CrunchBang 10 statler"</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/17/install-mongodb-di-linux/">Install MongoDB Di Linux</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-17T05:33:00-04:00" pubdate data-updated="true">Mar 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>Persiapan</h3>
+
+<p>Sebelum mengikuti tutorial ini, berikut struktur direktori yang saya gunakan di environment yang saya gunakan:</p>
+
+<ol>
+<li>Application Directory: /home/marjinal/TOOLS/mongodb</li>
+<li>Data directory: /home/marjinal/TOOLS/mongodb/data/db</li>
+</ol>
+
+
+<p>Linux yang saya gunakan CrunchBang 10 statler (64 bit), dan MongoDB yang akan saya install versi 2.4.1</p>
+
+<h3>Download</h3>
+
+<p>Untuk mendownload mongodb dengan mengetikkan command berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd /home/marjinal/TOOLS/mongodb</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>64 bit</strong></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget -c http://downloads.mongodb.org/linux/mongodb-linux-x86_64-2.4.1.tgz</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>32 bit</strong></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget -c http://downloads.mongodb.org/linux/mongodb-linux-i686-2.4.1.tgz</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -487,6 +678,14 @@ vi/vim Langkah 1 Buka terminal dan ketikkan perintah &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/02/sencha-touch-hello-world/">Sencha Touch Hello World</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd/">Install Sencha Touch SDK Dan Sencha Cmd</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle/">Mendapatkan Tanggal Awal Dan Akhir Bulan Di Oracle</a>
       </li>
     
@@ -496,14 +695,6 @@ vi/vim Langkah 1 Buka terminal dan ketikkan perintah &hellip;">
     
       <li class="post">
         <a href="/blog/2013/09/28/url-belajar-spring-batch/">URL Belajar Spring-Batch</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/28/url-belajar-bahasa-inggris/">URL Belajar Bahasa Inggris</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/28/cara-menampilkan-list-table-di-oracle/">Cara Menampilkan List Table Di Oracle</a>
       </li>
     
   </ul>
