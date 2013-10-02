@@ -4,7 +4,7 @@
   <title><![CDATA[Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-09-28T05:52:12-04:00</updated>
+  <updated>2013-10-02T09:56:49-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,174 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mendapatkan tanggal awal dan akhir Bulan di Oracle]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle/"/>
+    <updated>2013-10-02T06:06:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle</id>
+    <content type="html"><![CDATA[<blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
+
+
+<p>Anggap, sekarang tanggal 15 oktober 2013. Untuk menambahkan/mengurangi bulan, kita bisa menggunakan sintaks</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">add_months</span><span class="p">(</span><span class="nb">date</span><span class="p">,</span> <span class="n">inc</span><span class="o">/</span><span class="nb">dec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>dimana:</p>
+
+<ul>
+<li><code>date</code> adalah data tipe date yang di jadikan patokan</li>
+<li><code>inc</code> adalah total penambahan bulan, dalam positif. Contoh, <code>select add_months(sysdate, 5) from dual</code>, akan menghasilkan tanggal sekarang + 5 bulan
+, <code>dec</code> adalah total pengurangan bulan, dalam negatif. Contoh <code>select add_months(sysdate, -5) from dual</code>, akan menghasilkan tanggal sekarang &ndash; 5 bulan</li>
+</ul>
+
+
+<h3>Bulan Sebelumnya</h3>
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan september-2013, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan agustus-2013, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan juli-2013, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mi">3</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Dan seterusnya</p>
+
+<h3>Bulan Sekarang</h3>
+
+<p>untuk mendapatkan tanggal awal &amp; akhir untuk bulan oktober, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Bulan Selanjutnya</h3>
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan november-2013, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan desember-2013, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan januari-2014, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Dan seterusnya.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[URL belajar Wicket]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/09/29/url-belajar-wicket/"/>
+    <updated>2013-09-29T03:35:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/09/29/url-belajar-wicket</id>
+    <content type="html"><![CDATA[<p><a href="http://www.rent-a-hero.de/cms/node/10">Apache Wicket with Twitter Bootstrap and Impromptu JQuery Overlay</a></p>
+
+<p><a href="http://tomaszdziurko.pl/2012/03/wicket-and-twitter-bootstrap-navbar/">Using Twitter Bootstrap Navbar as a Wicket component</a></p>
+
+<p><a href="http://www.mkyong.com/tutorials/wicket-tutorials">mkyong &ndash; Wicket Tutorial</a></p>
+
+<p><a href="http://blog.bosch-si.com/apache-wicket-lessons-learned/">Apache Wicket – three years of lessons learned</a></p>
+
+<p><a href="https://github.com/bitstorm/Wicket-tutorial-examples">Wicket-tutorial-examples</a></p>
+
+<p><a href="http://wicketguide.comsysto.com/">wicket guide</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[URL belajar Spring-Batch]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/09/28/url-belajar-spring-batch/"/>
+    <updated>2013-09-28T08:02:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/09/28/url-belajar-spring-batch</id>
+    <content type="html"><![CDATA[<h2><a href="http://www.mkyong.com">mkyong</a></h2>
+
+<ol>
+<li><a href="http://www.mkyong.com/tutorials/spring-batch-tutorial/">Spring Batch Tutorial</a></li>
+<li><a href="http://www.mkyong.com/spring-batch/spring-batch-hello-world-example/">Spring Batch Hello World Example</a></li>
+</ol>
+
+
+<h2><a href="http://blogs.justenougharchitecture.com">Mathew&rsquo;s Thoughts!</a></h2>
+
+<ol>
+<li><a href="http://blogs.justenougharchitecture.com/?p=124">Spring Batch 2.0 – Part I – Simple Tasklet</a></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[URL belajar bahasa inggris]]></title>
@@ -735,123 +903,6 @@ karena sekedar untuk memikirkannya pun tidak. he he he.</p>
 Sama kondisinya, tapi cara pandang terhadap situasinya beda.</p>
 
 <p>&mdash; budi</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Kutipan #1]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/03/30/kutipan-number-1/"/>
-    <updated>2013-03-30T05:33:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/03/30/kutipan-number-1</id>
-    <content type="html"><![CDATA[<p>Di sekolah anda belajar untuk tahu,
-Di jalanan anda belajar untuk bisa :)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Proses belajar dengan cara mengikuti seringkali tidak benar]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/03/30/proses-belajar-dengan-cara-mengikuti-seringkali-tidak-benar/"/>
-    <updated>2013-03-30T05:19:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/03/30/proses-belajar-dengan-cara-mengikuti-seringkali-tidak-benar</id>
-    <content type="html"><![CDATA[<blockquote><p>Artikel ini merupakan artikel pertama di kategori kehidupan, begitu juga dengan kategori `Budi Rahardjo&#8217; :D, Jujur saya sangat nge-fans dengan bapak yg satu ini, apalagi dengan tulisannya, jadi saya mulai terpikiran utk menulis semua tulisan(email) pak budi di milis startuplokal di blog saya ini.</p></blockquote>
-
-<p>Proses belajar dengan cara mengikuti seringkali tidak benar.</p>
-
-<p>Yang benar itu adalah mencari panduan/dokumentasi yang
-benar seperti apa kemudian dilakukan seperti itu.</p>
-
-<p>Saya ambil beberapa contoh ya.</p>
-
-<h1>1</h1>
-
-<p>Suatu ketika saya menguji mahasiswa. Pertanyaan (klasik) saya:
-&ldquo;Mengapa Anda menuliskan dan mengurutkan daftar pustaka
-seperti itu?&rdquo;
-Jawaban mahasiswa adalah melihat kakak kelasnya.
-Dan kebetulan yang dia contoh &hellip; SALAH BESAR. he he he.
-Jadi kelihatan banget salahnya.
-Saya tanya, tahu aturan sebenarnya? Dia tidak tahu. hi hi hi.</p>
-
-<h1>2</h1>
-
-<p>Suatu ketika saya ditanya, kenapa sholat kamu seperti itu.
-Saya jawab karena saya lihat orang-orang di sekitar saya
-sholatnya seperti itu. hi hi hi.
-Kata kawan saya, jadi kamu sholatnya seperti ketika kamu
-sholat waktu kecil dan ikut2an orang di sekitar kamu?
-Saya jawab, iya &hellip; he he he.
-Dia tanya, pernah baca buku tata cara sholat.
-<em>Plak</em> &hellip; bagai tamparan di pipi. Malu. Bener juga dia ya.</p>
-
-<h1>3</h1>
-
-<p>Suatu ketika saya lihat ada orang merokok di dalam lift.
-Saya bilang mas gak boleh merokok di lift.
-Dia bilang, ah yang lain juga kayak gitu.
-Nah &hellip; pingsan deh saya.</p>
-
-<p>Jadi kita-kita yang sudah tua-tua ini <em>jangan ditiru</em> mentah2.
-Cari ilmunya yang benar kemudian itu yang dijalankan.
-Dengan demikian generasi kita akan menjadi semakin baik,
-bukan semakin kaco :)</p>
-
-<p>Semangat!</p>
-
-<p>&mdash; budi</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Cara Menampilkan Hasil dari dbms_output.put_line(message)]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/03/30/cara-menampilkan-hasil-dari-dbms-output-dot-put-line-message/"/>
-    <updated>2013-03-30T04:45:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/03/30/cara-menampilkan-hasil-dari-dbms-output-dot-put-line-message</id>
-    <content type="html"><![CDATA[<p>Belakangan ini saya lagi belajar PL/SQL dari situs <a href="http://www.tutorialspoint.com/plsql/index.htm">ini</a>.</p>
-
-<p>Tapi sialnya, ketika masih menulis script helloworld tidak mendapatkan hasilnya, scriptnya sebagai berikut:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">DECLARE</span>
-</span><span class='line'>   <span class="n">message</span>  <span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span><span class="o">=</span> <span class="s1">&#39;Hello, World!&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="k">BEGIN</span>
-</span><span class='line'>   <span class="n">dbms_output</span><span class="p">.</span><span class="n">put_line</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
-</span><span class='line'><span class="k">END</span><span class="p">;</span>
-</span><span class='line'><span class="o">/</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Masih helloworld aja sudah gagal :D. tapi tenang dulu, dari hasil google yg nggak sengaja, ternyata secara default, oracle mematikan hasil dari perintah ini <code>dbms_output.put_line(message);</code>, untuk mengaktifkannya, tambahkan script berikut di awal script PL/SQL</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">set</span> <span class="n">serveroutput</span> <span class="k">on</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>kurang lebih, script helloworld saya diatas menjadi seperti di bawah ini:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">set</span> <span class="n">serveroutput</span> <span class="k">on</span><span class="p">;</span>
-</span><span class='line'><span class="k">DECLARE</span>
-</span><span class='line'>   <span class="n">message</span>  <span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span><span class="o">=</span> <span class="s1">&#39;Hello, World!&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="k">BEGIN</span>
-</span><span class='line'>   <span class="n">dbms_output</span><span class="p">.</span><span class="n">put_line</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
-</span><span class='line'><span class="k">END</span><span class="p">;</span>
-</span><span class='line'><span class="o">/</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Akhirnya saya lulus pelajaran helloworld PL/SQL :D</p>
 ]]></content>
   </entry>
   

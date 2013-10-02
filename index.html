@@ -9,11 +9,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D English Club
-BBC Learning English
-VOA Learning English
-Live Mocha
-Lingq. Diberi pinjam &hellip;">
+  <meta name="description" content="Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D Anggap, sekarang tanggal 15 oktober 2013. Untuk menambahkan/mengurangi bulan, kita bisa &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,6 +65,255 @@ Lingq. Diberi pinjam &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle/">Mendapatkan Tanggal Awal Dan Akhir Bulan Di Oracle</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-02T06:06:00-04:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
+
+
+<p>Anggap, sekarang tanggal 15 oktober 2013. Untuk menambahkan/mengurangi bulan, kita bisa menggunakan sintaks</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">add_months</span><span class="p">(</span><span class="nb">date</span><span class="p">,</span> <span class="n">inc</span><span class="o">/</span><span class="nb">dec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>dimana:</p>
+
+<ul>
+<li><code>date</code> adalah data tipe date yang di jadikan patokan</li>
+<li><code>inc</code> adalah total penambahan bulan, dalam positif. Contoh, <code>select add_months(sysdate, 5) from dual</code>, akan menghasilkan tanggal sekarang + 5 bulan
+, <code>dec</code> adalah total pengurangan bulan, dalam negatif. Contoh <code>select add_months(sysdate, -5) from dual</code>, akan menghasilkan tanggal sekarang &ndash; 5 bulan</li>
+</ul>
+
+
+<h3>Bulan Sebelumnya</h3>
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan september-2013, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan agustus-2013, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan juli-2013, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mi">3</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Dan seterusnya</p>
+
+<h3>Bulan Sekarang</h3>
+
+<p>untuk mendapatkan tanggal awal &amp; akhir untuk bulan oktober, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Bulan Selanjutnya</h3>
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan november-2013, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan desember-2013, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan januari-2014, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Dan seterusnya.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/29/url-belajar-wicket/">URL Belajar Wicket</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-29T03:35:00-04:00" pubdate data-updated="true">Sep 29<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.rent-a-hero.de/cms/node/10">Apache Wicket with Twitter Bootstrap and Impromptu JQuery Overlay</a></p>
+
+<p><a href="http://tomaszdziurko.pl/2012/03/wicket-and-twitter-bootstrap-navbar/">Using Twitter Bootstrap Navbar as a Wicket component</a></p>
+
+<p><a href="http://www.mkyong.com/tutorials/wicket-tutorials">mkyong &ndash; Wicket Tutorial</a></p>
+
+<p><a href="http://blog.bosch-si.com/apache-wicket-lessons-learned/">Apache Wicket – three years of lessons learned</a></p>
+
+<p><a href="https://github.com/bitstorm/Wicket-tutorial-examples">Wicket-tutorial-examples</a></p>
+
+<p><a href="http://wicketguide.comsysto.com/">wicket guide</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/28/url-belajar-spring-batch/">URL Belajar Spring-Batch</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-28T08:02:00-04:00" pubdate data-updated="true">Sep 28<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2><a href="http://www.mkyong.com">mkyong</a></h2>
+
+<ol>
+<li><a href="http://www.mkyong.com/tutorials/spring-batch-tutorial/">Spring Batch Tutorial</a></li>
+<li><a href="http://www.mkyong.com/spring-batch/spring-batch-hello-world-example/">Spring Batch Hello World Example</a></li>
+</ol>
+
+
+<h2><a href="http://blogs.justenougharchitecture.com">Mathew&rsquo;s Thoughts!</a></h2>
+
+<ol>
+<li><a href="http://blogs.justenougharchitecture.com/?p=124">Spring Batch 2.0 – Part I – Simple Tasklet</a></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -533,229 +778,6 @@ Lingq. Diberi pinjam &hellip;">
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/31/sublimetext-how-to-select-same-word-and-replace-it/">SublimeText - How to Select Same Word and Replace It</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-31T11:41:00-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>I know, my english is very bad, but, I believe in the phrase, &#8220;no practice, no learning&#8221;. so, if you feel something is wrong with my post, please do not hesitate to comment.</p></blockquote>
-
-
-<p>Consider, i have the source code as shown below</p>
-
-<p><img src="/images/sublimetext/sample-source-code.png"></p>
-
-<p>I want to change the word <code>AND</code> that is in line 1155 and 1172 became the <code>OR</code>, then I do the following steps:</p>
-
-<p>1) Move the cursor to the line 1155, put in the word <code>AND</code> and press <code>CTRL+D</code>, as shown below.</p>
-
-<p><img src="/images/sublimetext/select-word-n-replace-1.png"></p>
-
-<p>2) If I press <code>CTRL+D</code> again, then that will be selected is the word <code>AND</code> next in line 1158, as shown below.</p>
-
-<p><img src="/images/sublimetext/select-word-n-replace-2.png"></p>
-
-<p>3) Because I want to select the word <code>AND</code> in line 1172, then I move the cursor to line 1172, put in the word <code>AND</code>, the press <code>CTRL+D</code> again, as shown below.</p>
-
-<p><img src="/images/sublimetext/select-word-n-replace-3.png"></p>
-
-<p>4) Then type the word <code>OR</code>, so the word <code>AND</code> that is on the line in 1155 and 1172 will be changed to the word <code>OR</code>, as shown below.</p>
-
-<p><img src="/images/sublimetext/select-word-n-replace-4.png"></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/31/angularjs-binding/">AngularJS - Binding</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-31T11:33:00-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Binding merupakan fitur utama dari AngularJS. Ia menyediakan mekanisme sederhana untuk meng-integrasi HTML kita dengan Data kita melalui &#8220;.</p>
-
-<p>Data-Binding di Web Aplikasi Angular adalah sinkronisasi otomatis antara komponen <code>model</code> dan <code>view</code>. Cara yang Angular implementasi pada <code>data-binding</code> memungkinkan kita memperlakukan <code>model</code> sebagai satu-satunya sumber kebenaran di aplikasi kita. <code>view</code> adalah gambaran dari <code>model</code> setiap saat. Ketika <code>model</code> berubah, <code>view</code> menggambarkan perubahan, begitu juga sebaliknya.</p>
-
-<p><strong><em> Data-Binding di Sistem template klasik</em></strong></p>
-
-<p><img src="/images/angularjs/One_Way_Data_Binding.png"></p>
-
-<p>Sebagian besar sistem template mengikat data hanya dalam 1 arah: mereka menggabungkan komponen template dan model bersama-sama kedalam sebuah view, seperti di ilustrasikan pada diagram di atas. Setelah penggabungan terjadi, perubahan pada model atau bagian terkati pada view tidak otomatis terceminkan pada view.  Lebih buruk, segala perubahan yang user buat di view tidak di cerminkan pada model. Ini artinya developer harus menulis kode yang selalu sinkron view dengan model anda model dengan view.</p>
-
-<p><strong><em> Data-Binding di template Angular</em></strong></p>
-
-<p><img src="/images/angularjs/Two_Way_Data_Binding.png"></p>
-
-<p>Cara template angular bekerja berbeda, seperti di ilustrasikan pada diagram di atas. Mereka berbeda karena template pertama (yang merupakan HTML uncompiled bersama dengan markup tambahan dan directive) di compile pada browser, dan kedua, langkah kompilasi menghasilkan live view. Kita katakan live karena segala perubahan pada view secara langsung dicerminkan pada model, dan segala perubahan pada model di sebarkan ke view. Ini membuat model selalu satu-satunya-sumber-kebenaran untuk keadaan aplikasi, sangat menyederhanakan model pemrograman untuk developer. Anda dapat menganggap view seperti hanya sebuah proyeksi instan model Anda.</p>
-
-<p><strong><em> Contoh Data-Binding di AngularJS</em></strong></p>
-
-<p>Kita akan memulai dengan menyiapkan <code>div</code> dengan sebuah atribute <a href="http://docs.angularjs.org/api/ng.directive:ngApp"><code>ng-app</code></a>.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;title&gt;</span>Belajar AngularJS<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">ng-app=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>      
-</span><span class='line'>      <span class="nt">&lt;h1&gt;</span><span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;js/angular.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>jika kita menjalankan script di atas, maka akan muncul angka 2. Jika kita ganti &#8220; dengan hello world, maka akan muncul Hello world di browser kita.</p>
-
-<p>Sekarang, kita ingin melakukan binding, dari sebuah text box, ketika user mengetikkan sesuatu, secara realtime apa yg di ketikkan user akan tampil di bawahnya, seperti gambar di bawah ini.</p>
-
-<p><img src="/images/angularjs/binding-model.png"></p>
-
-<p>maka, kita akan ubah, script kita diatas menjadi seperti di bawah ini.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;title&gt;</span>Belajar AngularJS<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">ng-app=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">ng-model=</span><span class="s">&quot;data.message&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;h1&gt;</span><span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;js/angular.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>data.message</code> merupakan model, seperti penjelasan sebelumnya, jadi segala perubahan yang di lakukan oleh user terhadap input text box, maka akan mengikat ke model, dan segala perubahan di model akan mengikat ke dalam tag <code>&lt;h1&gt;&lt;/h1&gt;</code>.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/31/angularjs-pengenalan/">AngularJS - Pengenalan</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-31T11:25:00-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>AngularJS merupakan teknologi client-side murni, ditulis selurunya dalam JavaScript. Ia bekerja dengan teknologi web yang sudah lama terbentuk (HTML, CSS dan JavaScript) untuk membuat pengembangan Web Aplikasi lebih mudah dan cepat dari sebelumnya.</p>
-
-<p>Di kembangkan pada 2009 oleh Miško Hevery dan Adam Abrons &ndash; keduanya karyawan google pada waktu itu. AngularJS merupakan project open source dengan lisensi MIT. Kita bahkan bisa menggunakan logo nya, dimana tersedia dibawah lisensi <em>Creative Attribution-ShareAlike 3.0 Unported</em>.</p>
-
-<p>Untuk mengetahu lebih lanjut mengenai AngularJS, silahkan kunjungi <a href="http://docs.angularjs.org/guide/introduction">alamat ini</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -771,23 +793,23 @@ Lingq. Diberi pinjam &hellip;">
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle/">Mendapatkan Tanggal Awal Dan Akhir Bulan Di Oracle</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/29/url-belajar-wicket/">URL Belajar Wicket</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/09/28/url-belajar-spring-batch/">URL Belajar Spring-Batch</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/09/28/url-belajar-bahasa-inggris/">URL Belajar Bahasa Inggris</a>
       </li>
     
       <li class="post">
         <a href="/blog/2013/09/28/cara-menampilkan-list-table-di-oracle/">Cara Menampilkan List Table Di Oracle</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/28/konversi-timestamp-ke-date-di-oracle/">Konversi Timestamp Ke Date Di Oracle</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/">Menjalankan Java Main Class Menggunakan Maven Command</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/22/install-rabbitmq-di-crunchbang/">Install RabbitMQ Di #CrunchBang</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: url | Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/blog/categories/url/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-09-28T05:52:12-04:00</updated>
+  <updated>2013-10-02T09:56:49-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[URL belajar Wicket]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/09/29/url-belajar-wicket/"/>
+    <updated>2013-09-29T03:35:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/09/29/url-belajar-wicket</id>
+    <content type="html"><![CDATA[<p><a href="http://www.rent-a-hero.de/cms/node/10">Apache Wicket with Twitter Bootstrap and Impromptu JQuery Overlay</a></p>
+
+<p><a href="http://tomaszdziurko.pl/2012/03/wicket-and-twitter-bootstrap-navbar/">Using Twitter Bootstrap Navbar as a Wicket component</a></p>
+
+<p><a href="http://www.mkyong.com/tutorials/wicket-tutorials">mkyong &ndash; Wicket Tutorial</a></p>
+
+<p><a href="http://blog.bosch-si.com/apache-wicket-lessons-learned/">Apache Wicket – three years of lessons learned</a></p>
+
+<p><a href="https://github.com/bitstorm/Wicket-tutorial-examples">Wicket-tutorial-examples</a></p>
+
+<p><a href="http://wicketguide.comsysto.com/">wicket guide</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[URL belajar Spring-Batch]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/09/28/url-belajar-spring-batch/"/>
+    <updated>2013-09-28T08:02:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/09/28/url-belajar-spring-batch</id>
+    <content type="html"><![CDATA[<h2><a href="http://www.mkyong.com">mkyong</a></h2>
+
+<ol>
+<li><a href="http://www.mkyong.com/tutorials/spring-batch-tutorial/">Spring Batch Tutorial</a></li>
+<li><a href="http://www.mkyong.com/spring-batch/spring-batch-hello-world-example/">Spring Batch Hello World Example</a></li>
+</ol>
+
+
+<h2><a href="http://blogs.justenougharchitecture.com">Mathew&rsquo;s Thoughts!</a></h2>
+
+<ol>
+<li><a href="http://blogs.justenougharchitecture.com/?p=124">Spring Batch 2.0 – Part I – Simple Tasklet</a></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[URL belajar bahasa inggris]]></title>

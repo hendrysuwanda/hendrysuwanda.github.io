@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Oracle | Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/blog/categories/oracle/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-09-28T05:52:12-04:00</updated>
+  <updated>2013-10-02T09:56:49-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,102 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Mendapatkan tanggal awal dan akhir Bulan di Oracle]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle/"/>
+    <updated>2013-10-02T06:06:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle</id>
+    <content type="html"><![CDATA[<p><blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote></p>
+
+<p>Anggap, sekarang tanggal 15 oktober 2013. Untuk menambahkan/mengurangi bulan, kita bisa menggunakan sintaks</p>
+
+<p><code>sql
+add_months(date, inc/dec)
+</code></p>
+
+<p>dimana:</p>
+
+<ul>
+<li><code>date</code> adalah data tipe date yang di jadikan patokan</li>
+<li><code>inc</code> adalah total penambahan bulan, dalam positif. Contoh, <code>select add_months(sysdate, 5) from dual</code>, akan menghasilkan tanggal sekarang + 5 bulan
+, <code>dec</code> adalah total pengurangan bulan, dalam negatif. Contoh <code>select add_months(sysdate, -5) from dual</code>, akan menghasilkan tanggal sekarang &ndash; 5 bulan</li>
+</ul>
+
+
+<h3>Bulan Sebelumnya</h3>
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan september-2013, gunakan script berikut:</p>
+
+<p><code>sql
+SELECT
+ADD_MONTHS(TRUNC(SYSDATE, 'MM'), -1),
+ADD_MONTHS(TRUNC(SYSDATE, 'MM'), 0) -1
+FROM DUAL;
+</code>
+Untuk mendapatkan tanggal awal &amp; akhir untuk bulan agustus-2013, gunakan script berikut:</p>
+
+<p><code>sql
+SELECT
+ADD_MONTHS(TRUNC(SYSDATE, 'MM'), -2),
+ADD_MONTHS(TRUNC(SYSDATE, 'MM'), 1) -1
+FROM DUAL;
+</code></p>
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan juli-2013, gunakan script berikut:</p>
+
+<p><code>sql
+SELECT
+ADD_MONTHS(TRUNC(SYSDATE, 'MM'), -3),
+ADD_MONTHS(TRUNC(SYSDATE, 'MM'), 2) -1
+FROM DUAL;
+</code></p>
+
+<p>Dan seterusnya</p>
+
+<h3>Bulan Sekarang</h3>
+
+<p>untuk mendapatkan tanggal awal &amp; akhir untuk bulan oktober, gunakan script berikut:</p>
+
+<p><code>sql
+SELECT
+ADD_MONTHS(TRUNC(SYSDATE, 'MM'), 0),
+ADD_MONTHS(TRUNC(SYSDATE, 'MM'), 1) -1
+FROM DUAL;
+</code></p>
+
+<h3>Bulan Selanjutnya</h3>
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan november-2013, gunakan script berikut:</p>
+
+<p><code>sql
+SELECT
+ADD_MONTHS(TRUNC(SYSDATE, 'MM'), 1),
+ADD_MONTHS(TRUNC(SYSDATE, 'MM'), 2) -1
+FROM DUAL;
+</code></p>
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan desember-2013, gunakan script berikut:</p>
+
+<p><code>sql
+SELECT
+ADD_MONTHS(TRUNC(SYSDATE, 'MM'), 2),
+ADD_MONTHS(TRUNC(SYSDATE, 'MM'), 3) -1
+FROM DUAL;
+</code></p>
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan januari-2014, gunakan script berikut:</p>
+
+<p><code>sql
+SELECT
+ADD_MONTHS(TRUNC(SYSDATE, 'MM'), 3),
+ADD_MONTHS(TRUNC(SYSDATE, 'MM'), 4) -1
+FROM DUAL;
+</code></p>
+
+<p>Dan seterusnya.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Cara Menampilkan Hasil dari dbms_output.put_line(message)]]></title>
