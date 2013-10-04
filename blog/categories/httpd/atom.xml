@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: httpd | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/httpd/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-10-04T11:24:48-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Error 'Unable to open logs' ketika menjalankan httpd]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/"/>
+    <updated>2013-10-04T11:13:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd</id>
+    <content type="html"><![CDATA[<p>Hari ini ada masalah di production. Teman melakukan restart server production, tapi yg sialnya tidak ada yg tau kalau ada proxy/web server sebelum akses user di lanjutkan ke tomcat.</p>
+
+<p>Proxy/web server yg kami gunakan adalah httpd. Tapi ketika di jalankan dengan menggunakan command</p>
+
+<p><code>
+service httpd start
+</code></p>
+
+<p>muncul error</p>
+
+<p>```
+Starting httpd: no listening sockets available, shutting down</p>
+
+<p>Unable to open logs
+```</p>
+
+<p>Ritual pertama yg saya lakukan, check apakah port 80 lagi di pakai oleh service lain dengan menggunakan command</p>
+
+<p><code>
+netstat -npl | grep 80
+</code></p>
+
+<p>hasilnya</p>
+
+<p><code>
+tcp        0      0 ::ffff:127.0.0.1:8005       :::*                        LISTEN      2750/java
+tcp        0      0 :::8009                     :::*                        LISTEN      2750/java
+tcp        0      0 :::8080                     :::*                        LISTEN      2750/java
+tcp        0      0 :::80                       :::*                        LISTEN      1502/httpd
+</code></p>
+
+<p>dari hasil diatas, ternyata port 80 lagi digunakan oleh <code>httpd</code>. Ternyata <code>httpd</code> dalam keadaan deadlock, walaupun sudah membuka port 80, tapi kita tetap tidak bisa akses.</p>
+
+<p>Ok, ritual kedua, kita stop httpd dengan menjalankan command</p>
+
+<p><code>
+service httpd stop
+</code></p>
+
+<p>hasilnya</p>
+
+<p><code>
+FAILED
+</code></p>
+
+<p>mantap. ternyata <code>httpd</code> benar2 dalam keadaan deadlock/hang. jalan satu2nya kita kill proses <code>httpd</code> tersebut.</p>
+
+<p>Untuk kill proses httpd, sebelumnya kita mesti tahu dulu prosess id nya, dengan menjalankan command</p>
+
+<p><code>
+ps ax | grep httpd
+</code></p>
+
+<p>hasilnya</p>
+
+<p><code>
+1501 ?        S      0:00 /bin/bash -c ulimit -S -c 0 &gt;/dev/null 2&gt;&amp;1 ; /usr/sbin/httpd
+1502 ?        S      0:00 /usr/sbin/httpd
+4713 pts/0    S+     0:00 grep httpd
+</code></p>
+
+<p>Bisa kita lihat, ada 3 prosess yang mengandung kata httpd. Sekarang jalankan command berikut untuk melakukan kill prosess tersebut</p>
+
+<p><code>
+$ kill -9 1501
+$ kill -9 1502
+</code></p>
+
+<p>Lalu jalankan lagi command berikut</p>
+
+<p><code>
+service httpd start
+</code></p>
+
+<p>untuk menjalankan httpd kembali.</p>
+]]></content>
+  </entry>
+  
+</feed>

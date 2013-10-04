@@ -9,7 +9,14 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Berikut cara install jdk 1.6 di ubuntu 12.04 (sebenarnya bisa di lakukan di semua ubuntu :D). Download jdk sesuai dengan bit pada ubuntu (kebetulan &hellip;">
+  <meta name="description" content="Berikut list database yang saya miliki: 1
+2
+3
+4
+&gt; show dbs
+local 0.078125GB
+pcat 0.453125GB
+test 0.203125GB anggap, saya ingin menghapus database &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +72,207 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/11/delete-database-di-mongodb/">Delete Database Di mongoDB</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-11T07:17:00-04:00" pubdate data-updated="true">May 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Berikut list database yang saya miliki:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; show dbs
+</span><span class='line'>local 0.078125GB
+</span><span class='line'>pcat  0.453125GB
+</span><span class='line'>test  0.203125GB
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>anggap, saya ingin menghapus database test, ada 3 cara untuk melakukannya:</p>
+
+<h4>1. menggunakan script</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mongo test --eval "db.dropDatabase()"</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>2. Login &amp; use database yg mau di delete</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; use test
+</span><span class='line'>&gt; db.dropDatabase()</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>3. Stop service &amp; delete manual file database</h4>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/11/find-data-yang-memiliki-field-tertentu-di-mongodb/">Find Data Yang Memiliki Field Tertentu Di mongoDB</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-11T07:09:00-04:00" pubdate data-updated="true">May 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Karena MongoDB memiliki sifat yang flexible untuk strukture collections, maka ada kemungkinan kita mau mencari documents tertentu di dalam collection yang memiliki field tertentu.</p>
+
+<p>Contoh, saya punya collection dengan documents seperti di bawah ini:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; db.test2.find()
+</span><span class='line'>{ "_id" : ObjectId("518ded066186c4ef4300a7cd"), "x" : "hello", "y" : 400 }
+</span><span class='line'>{ "_id" : ObjectId("518ded106186c4ef4300a7ce"), "x" : "hello", "z" : 1 }
+</span><span class='line'>{ "_id" : ObjectId("518ded136186c4ef4300a7cf"), "x" : "hello", "zz" : 1 }
+</span><span class='line'>{ "_id" : 101, "arr" : [ "hi", "hi", "hi", "hi", "hi", "hi", "bye" ], "x" : "hello", "y" : 101 }</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Saya ingin mencari document yang memiliki field &ldquo;arr&rdquo;, maka cara yang saya lakukan:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; db.test2.find({arr: {$exists: true}})
+</span><span class='line'>{ "_id" : 101, "arr" : [ "hi", "hi", "hi", "hi", "hi", "hi", "bye" ], "x" : "hello", "y" : 101 }</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/11/perkenalan-dengan-cloudfoundry/">Perkenalan Dengan CloudFoundry</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-11T05:53:00-04:00" pubdate data-updated="true">May 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Cloud Foundry merupakan Open Platform as a Service (PaaS). Dengan menggunakan cloud foundry kita bisa melakukan deploy aplikasi kita secara gratis. CloudFoundry mendukung beberapa bahasa pemrograman sebagai berikut:</p>
+
+<ul>
+<li>JVM Based (Java, Scala)</li>
+<li>Ruby</li>
+<li>Javascript (Node.js)</li>
+</ul>
+
+
+<p>Dan beberapa database:
+* PostgreSQL
+* redis
+* mongoDB
+* MySQL</p>
+
+<p>dan messaging service, RabbitMQ.</p>
+
+<p>CloudFoundry menyediakan console untuk memanage aplikasi kita di cloudfoundry, untuk versi 1, namanya <strong>VMC</strong> &amp; untuk versi 2 berubah menjadi <strong>CF</strong>.</p>
+
+<h2>Install CF</h2>
+
+<p>Berhubung CF di buat menggunakan Ruby, jadi sebelum melakukan install CF,  pastikan Ruby sudah terinstall di environment kita. Untuk melakukan install CF, ketikkan perintah berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ gem install cf</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Login ke CloudFoundry</h2>
+
+<p>Untuk dapat menggunakan CF, terlebih dahulu kita mesti login ke cloudfoundry. Open terminal, dan lakukan langkah berikut</p>
+
+<h4>Menentukan target</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; cf target api.cloudfoundry.com</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>login</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; cf login
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -535,140 +743,6 @@ bukan semakin kaco :)</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/19/membuat-anchor-link-di-markdown-dan-octopress/">Membuat Anchor Link Di Markdown Dan Octopress</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-19T12:01:00-04:00" pubdate data-updated="true">Mar 19<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Untuk membuat Anchor Link, pertama, kita tentukan terlebih dahulu tujuan nya. Di sini, saya ingin membuat 1 link yang ketika di klik, akan menuju ke SubTitle tertentu di halaman yg sama.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>### Resources&lt;a id="#resources"&gt;&lt;/a&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu, anggap, saya ingin membuat kata <code>Resources</code>, ketika di klik akan menuju ke SubTitle Resources.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[Resources](#resources)</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/18/install-pymongo-menggunakan-pip/">Install Pymongo Menggunakan PIP</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-18T14:03:00-04:00" pubdate data-updated="true">Mar 18<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>pymongo adalah driver yang digunakan python untuk melakukan koneksi ke mongodb.</p>
-
-<p>Berikut cara install pymongo menggunakan PIP</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>pip install pymongo</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/18/install-pip-di-crunchbang/">Install PIP Di CrunchBang</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-18T13:58:00-04:00" pubdate data-updated="true">Mar 18<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>PIP adalah sebuah tools yang berguna utk install dan manage semua package yang ada di python.</p>
-
-<p>Berikut cara untuk install PIP di CrunchBang</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install python-pip
-</span><span class='line'>
-</span><span class='line'>sudo apt-get install build-essential python-dev</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -686,23 +760,23 @@ bukan semakin kaco :)</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/">Error &#8216;Unable to Open Logs&#8217; Ketika Menjalankan Httpd</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/04/rename-column-di-oracle/">Rename Column Di Oracle</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang/">List File/Directory Dalam Bentuk Tree Di Crunchbang</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/02/sencha-touch-hello-world/">Sencha Touch Hello World</a>
       </li>
     
       <li class="post">
         <a href="/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd/">Install Sencha Touch SDK Dan Sencha Cmd</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle/">Mendapatkan Tanggal Awal Dan Akhir Bulan Di Oracle</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/29/url-belajar-wicket/">URL Belajar Wicket</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/28/url-belajar-spring-batch/">URL Belajar Spring-Batch</a>
       </li>
     
   </ul>

@@ -176,15 +176,31 @@
         <loc>
             http://hendrysuwanda.github.io/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd/
         </loc>
-        <lastmod>2013-10-02T11:41:00-04:00</lastmod>
+        <lastmod>2013-10-02T12:20:02-04:00</lastmod>
     </url>
     <url>
         <loc>http://hendrysuwanda.github.io/blog/2013/10/02/sencha-touch-hello-world/</loc>
-        <lastmod>2013-10-02T12:09:22-04:00</lastmod>
+        <lastmod>2013-10-02T12:20:00-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://hendrysuwanda.github.io/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang/
+        </loc>
+        <lastmod>2013-10-04T10:43:13-04:00</lastmod>
+    </url>
+    <url>
+        <loc>http://hendrysuwanda.github.io/blog/2013/10/04/rename-column-di-oracle/</loc>
+        <lastmod>2013-10-04T11:11:48-04:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://hendrysuwanda.github.io/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/
+        </loc>
+        <lastmod>2013-10-04T11:24:47-04:00</lastmod>
     </url>
     <url>
         <loc>http://hendrysuwanda.github.io/blog/archives/</loc>
-        <lastmod>2013-10-02T12:09:22-04:00</lastmod>
+        <lastmod>2013-10-04T11:24:47-04:00</lastmod>
     </url>
     <url>
         <loc>http://hendrysuwanda.github.io/robots.txt</loc>
@@ -192,6 +208,6 @@
     </url>
     <url>
         <loc>http://hendrysuwanda.github.io/</loc>
-        <lastmod>2013-10-02T12:09:22-04:00</lastmod>
+        <lastmod>2013-10-04T11:24:47-04:00</lastmod>
     </url>
 </urlset>

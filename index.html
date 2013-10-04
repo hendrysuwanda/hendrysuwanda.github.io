@@ -9,7 +9,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D Sebelum melakukan generate aplikasi yang pertama menggunakan Sencha Cmd, berikut yang &hellip;">
+  <meta name="description" content="Hari ini ada masalah di production. Teman melakukan restart server production, tapi yg sialnya tidak ada yg tau kalau ada proxy/web server sebelum &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +65,264 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/">Error &#8216;Unable to Open Logs&#8217; Ketika Menjalankan Httpd</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-04T11:13:00-04:00" pubdate data-updated="true">Oct 4<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Hari ini ada masalah di production. Teman melakukan restart server production, tapi yg sialnya tidak ada yg tau kalau ada proxy/web server sebelum akses user di lanjutkan ke tomcat.</p>
+
+<p>Proxy/web server yg kami gunakan adalah httpd. Tapi ketika di jalankan dengan menggunakan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>service httpd start</span></code></pre></td></tr></table></div></figure>
+
+
+<p>muncul error</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Starting httpd: no listening sockets available, shutting down
+</span><span class='line'>
+</span><span class='line'>Unable to open logs</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ritual pertama yg saya lakukan, check apakah port 80 lagi di pakai oleh service lain dengan menggunakan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>netstat -npl | grep 80</span></code></pre></td></tr></table></div></figure>
+
+
+<p>hasilnya</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>tcp        0      0 ::ffff:127.0.0.1:8005       :::*                        LISTEN      2750/java
+</span><span class='line'>tcp        0      0 :::8009                     :::*                        LISTEN      2750/java
+</span><span class='line'>tcp        0      0 :::8080                     :::*                        LISTEN      2750/java
+</span><span class='line'>tcp        0      0 :::80                       :::*                        LISTEN      1502/httpd</span></code></pre></td></tr></table></div></figure>
+
+
+<p>dari hasil diatas, ternyata port 80 lagi digunakan oleh <code>httpd</code>. Ternyata <code>httpd</code> dalam keadaan deadlock, walaupun sudah membuka port 80, tapi kita tetap tidak bisa akses.</p>
+
+<p>Ok, ritual kedua, kita stop httpd dengan menjalankan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>service httpd stop</span></code></pre></td></tr></table></div></figure>
+
+
+<p>hasilnya</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>FAILED</span></code></pre></td></tr></table></div></figure>
+
+
+<p>mantap. ternyata <code>httpd</code> benar2 dalam keadaan deadlock/hang. jalan satu2nya kita kill proses <code>httpd</code> tersebut.</p>
+
+<p>Untuk kill proses httpd, sebelumnya kita mesti tahu dulu prosess id nya, dengan menjalankan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ps ax | grep httpd</span></code></pre></td></tr></table></div></figure>
+
+
+<p>hasilnya</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1501 ?        S      0:00 /bin/bash -c ulimit -S -c 0 &gt;/dev/null 2&gt;&1 ; /usr/sbin/httpd
+</span><span class='line'>1502 ?        S      0:00 /usr/sbin/httpd
+</span><span class='line'>4713 pts/0    S+     0:00 grep httpd</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Bisa kita lihat, ada 3 prosess yang mengandung kata httpd. Sekarang jalankan command berikut untuk melakukan kill prosess tersebut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ kill -9 1501
+</span><span class='line'>$ kill -9 1502</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu jalankan lagi command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>service httpd start</span></code></pre></td></tr></table></div></figure>
+
+
+<p>untuk menjalankan httpd kembali.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/04/rename-column-di-oracle/">Rename Column Di Oracle</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-04T11:09:00-04:00" pubdate data-updated="true">Oct 4<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Sintaks untuk rename column di oracle sebagai berikut</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table</span> <span class="n">name</span><span class="o">&gt;</span> <span class="k">rename</span> <span class="k">column</span> <span class="o">&lt;</span><span class="k">column</span> <span class="n">name</span><span class="o">&gt;</span> <span class="k">to</span> <span class="o">&lt;</span><span class="k">new</span> <span class="k">column</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>anggap, kita memiliki table dengan struktur seperti ini</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">CS_EXCHANGE_RATE</span> <span class="p">(</span>
+</span><span class='line'>  <span class="n">EXCHANGE_RATE_DATE</span>   <span class="nb">DATE</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">CURRENCY_CODE</span>        <span class="nb">CHAR</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">RATE</span>                 <span class="nb">NUMBER</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu, kita ingin mengubah, nama kolum <code>RATE</code>, menjadi <code>VALUE</code>. Maka jalankan sintaks berikut</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">alter</span> <span class="k">table</span> <span class="n">CS_EXCHANGE_RATE</span> <span class="k">rename</span> <span class="k">column</span> <span class="n">RATE</span> <span class="k">to</span> <span class="n">VALUE</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang/">List File/Directory Dalam Bentuk Tree Di Crunchbang</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-04T10:38:00-04:00" pubdate data-updated="true">Oct 4<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Saya selalu melihat di video tutorial yg menggunakan *nix, mereka selalu list file/directory dalam bentuk seperti ini</p>
+
+<p><img src="/images/linux/list-files-in-tree.png"></p>
+
+<p>setelah google, ternyata mereka menggunakan <code>tree</code>.
+Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo apt-get install tree
+</span><span class='line'>[sudo] password for marjinal: 
+</span><span class='line'>Reading package lists... Done
+</span><span class='line'>Building dependency tree       
+</span><span class='line'>Reading state information... Done
+</span><span class='line'>The following NEW packages will be installed:
+</span><span class='line'>  tree
+</span><span class='line'>0 upgraded, 1 newly installed, 0 to remove and 200 not upgraded.
+</span><span class='line'>Need to get 32.4 kB of archives.
+</span><span class='line'>After this operation, 98.3 kB of additional disk space will be used.
+</span><span class='line'>Get:1 http://ftp.debian.org/debian/ squeeze/main tree amd64 1.5.3-1 [32.4 kB]
+</span><span class='line'>Fetched 32.4 kB in 6s (5,168 B/s)
+</span><span class='line'>Selecting previously deselected package tree.
+</span><span class='line'>(Reading database ... 112215 files and directories currently installed.)
+</span><span class='line'>Unpacking tree (from .../tree_1.5.3-1_amd64.deb) ...
+</span><span class='line'>Processing triggers for man-db ...
+</span><span class='line'>Setting up tree (1.5.3-1) ...</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -864,206 +1122,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/28/konversi-timestamp-ke-date-di-oracle/">Konversi Timestamp Ke Date Di Oracle</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-28T05:25:00-04:00" pubdate data-updated="true">Sep 28<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
-
-
-<p>Untuk mendapatkan current timestamp &amp; date di oracle, gunakan sintaks ini</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">systimestamp</span><span class="p">,</span> <span class="c1">--untuk mendapatkan current timestamp</span>
-</span><span class='line'>     <span class="n">sysdate</span> <span class="c1">-- untuk mendapatkan current date</span>
-</span><span class='line'>     <span class="k">from</span> <span class="n">dual</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Untuk meng-konversi dari timestamp ke date, gunakan sintaks ini</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span>
-</span><span class='line'>  <span class="n">trunc</span><span class="p">(</span><span class="n">systimestamp</span><span class="p">)</span> <span class="c1">-- akan mengembalikan data dalam bentuk date</span>
-</span><span class='line'><span class="k">from</span> <span class="n">dual</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/">Menjalankan Java Main Class Menggunakan Maven Command</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-27T13:02:00-04:00" pubdate data-updated="true">Sep 27<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Anggap, kita memiliki project java dengan struktur seperti di bawah ini</p>
-
-<p><img src="/images/maven/maven-run-main-class.png"></p>
-
-<p>Lalu, kita ingin menjalankan project tersebut dengan menggunakan maven. Maka kita harus menabahkan plugin <code>exec-maven-plugin</code> di dalam <code>pom.xml</code> seperti di bawah ini</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>...
-</span><span class='line'><span class="nt">&lt;build&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;plugins&gt;</span>
-</span><span class='line'>        ...
-</span><span class='line'>      <span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;artifactId&gt;</span>exec-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;configuration&gt;</span>
-</span><span class='line'>               <span class="nt">&lt;mainClass&gt;</span>com.hendrysuwanda.tutorial.javacodegeeks.App<span class="nt">&lt;/mainClass&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/configuration&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/plugin&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/plugins&gt;</span>
-</span><span class='line'><span class="nt">&lt;/build&gt;</span>
-</span><span class='line'>...
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu untuk menjalankan nya, kita dapat menggunakan command</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>mvn exec:java
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/22/install-rabbitmq-di-crunchbang/">Install RabbitMQ Di #CrunchBang</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-22T04:24:00-04:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Ntah kenapa, isi kepala ini ingin mempelajari Message Broker, karena saya fans berat Spring, saya coba memilih RabbitMQ.</p>
-
-<p>Berikut cara install RabbitMQ di #CrunchBang:</p>
-
-<p>1) Tambahkan baris berikut ke dalam <code>/etc/apt/sources.list</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>deb http://www.rabbitmq.com/debian/ testing main</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2) Untuk menghilangkan peringatan karena <code>unsigned package</code>, jalankan command berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
-</span><span class='line'>$ sudo apt-key add rabbitmq-signing-key-public.asc</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3) jalankan <code>sudo apt-get update</code>
-4) jalankan command berikut untuk meng-install rabbitmq</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo apt-get install rabbitmq-server</span></code></pre></td></tr></table></div></figure>
-
-
-<p>5) Tunggu sampai proses installation selesai, jika sudah selesai, jalankan command <code>rabbitmqctl status</code> untuk mengecek apakah rabbitmq sudah berjalan dengan normal atau belum.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -1079,23 +1137,23 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/">Error &#8216;Unable to Open Logs&#8217; Ketika Menjalankan Httpd</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/04/rename-column-di-oracle/">Rename Column Di Oracle</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang/">List File/Directory Dalam Bentuk Tree Di Crunchbang</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/10/02/sencha-touch-hello-world/">Sencha Touch Hello World</a>
       </li>
     
       <li class="post">
         <a href="/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd/">Install Sencha Touch SDK Dan Sencha Cmd</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle/">Mendapatkan Tanggal Awal Dan Akhir Bulan Di Oracle</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/29/url-belajar-wicket/">URL Belajar Wicket</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/09/28/url-belajar-spring-batch/">URL Belajar Spring-Batch</a>
       </li>
     
   </ul>

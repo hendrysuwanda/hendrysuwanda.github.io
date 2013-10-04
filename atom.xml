@@ -4,7 +4,7 @@
   <title><![CDATA[Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-10-02T12:09:23-04:00</updated>
+  <updated>2013-10-04T11:24:48-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,183 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Error 'Unable to open logs' ketika menjalankan httpd]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/"/>
+    <updated>2013-10-04T11:13:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd</id>
+    <content type="html"><![CDATA[<p>Hari ini ada masalah di production. Teman melakukan restart server production, tapi yg sialnya tidak ada yg tau kalau ada proxy/web server sebelum akses user di lanjutkan ke tomcat.</p>
+
+<p>Proxy/web server yg kami gunakan adalah httpd. Tapi ketika di jalankan dengan menggunakan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>service httpd start</span></code></pre></td></tr></table></div></figure>
+
+
+<p>muncul error</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Starting httpd: no listening sockets available, shutting down
+</span><span class='line'>
+</span><span class='line'>Unable to open logs</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ritual pertama yg saya lakukan, check apakah port 80 lagi di pakai oleh service lain dengan menggunakan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>netstat -npl | grep 80</span></code></pre></td></tr></table></div></figure>
+
+
+<p>hasilnya</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>tcp        0      0 ::ffff:127.0.0.1:8005       :::*                        LISTEN      2750/java
+</span><span class='line'>tcp        0      0 :::8009                     :::*                        LISTEN      2750/java
+</span><span class='line'>tcp        0      0 :::8080                     :::*                        LISTEN      2750/java
+</span><span class='line'>tcp        0      0 :::80                       :::*                        LISTEN      1502/httpd</span></code></pre></td></tr></table></div></figure>
+
+
+<p>dari hasil diatas, ternyata port 80 lagi digunakan oleh <code>httpd</code>. Ternyata <code>httpd</code> dalam keadaan deadlock, walaupun sudah membuka port 80, tapi kita tetap tidak bisa akses.</p>
+
+<p>Ok, ritual kedua, kita stop httpd dengan menjalankan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>service httpd stop</span></code></pre></td></tr></table></div></figure>
+
+
+<p>hasilnya</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>FAILED</span></code></pre></td></tr></table></div></figure>
+
+
+<p>mantap. ternyata <code>httpd</code> benar2 dalam keadaan deadlock/hang. jalan satu2nya kita kill proses <code>httpd</code> tersebut.</p>
+
+<p>Untuk kill proses httpd, sebelumnya kita mesti tahu dulu prosess id nya, dengan menjalankan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ps ax | grep httpd</span></code></pre></td></tr></table></div></figure>
+
+
+<p>hasilnya</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1501 ?        S      0:00 /bin/bash -c ulimit -S -c 0 &gt;/dev/null 2&gt;&1 ; /usr/sbin/httpd
+</span><span class='line'>1502 ?        S      0:00 /usr/sbin/httpd
+</span><span class='line'>4713 pts/0    S+     0:00 grep httpd</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Bisa kita lihat, ada 3 prosess yang mengandung kata httpd. Sekarang jalankan command berikut untuk melakukan kill prosess tersebut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ kill -9 1501
+</span><span class='line'>$ kill -9 1502</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu jalankan lagi command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>service httpd start</span></code></pre></td></tr></table></div></figure>
+
+
+<p>untuk menjalankan httpd kembali.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[rename column di oracle]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/04/rename-column-di-oracle/"/>
+    <updated>2013-10-04T11:09:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/04/rename-column-di-oracle</id>
+    <content type="html"><![CDATA[<p>Sintaks untuk rename column di oracle sebagai berikut</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table</span> <span class="n">name</span><span class="o">&gt;</span> <span class="k">rename</span> <span class="k">column</span> <span class="o">&lt;</span><span class="k">column</span> <span class="n">name</span><span class="o">&gt;</span> <span class="k">to</span> <span class="o">&lt;</span><span class="k">new</span> <span class="k">column</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>anggap, kita memiliki table dengan struktur seperti ini</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">CS_EXCHANGE_RATE</span> <span class="p">(</span>
+</span><span class='line'>  <span class="n">EXCHANGE_RATE_DATE</span>   <span class="nb">DATE</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">CURRENCY_CODE</span>        <span class="nb">CHAR</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">RATE</span>                 <span class="nb">NUMBER</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu, kita ingin mengubah, nama kolum <code>RATE</code>, menjadi <code>VALUE</code>. Maka jalankan sintaks berikut</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">alter</span> <span class="k">table</span> <span class="n">CS_EXCHANGE_RATE</span> <span class="k">rename</span> <span class="k">column</span> <span class="n">RATE</span> <span class="k">to</span> <span class="n">VALUE</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[List File/Directory dalam bentuk tree di crunchbang]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang/"/>
+    <updated>2013-10-04T10:38:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang</id>
+    <content type="html"><![CDATA[<p>Saya selalu melihat di video tutorial yg menggunakan *nix, mereka selalu list file/directory dalam bentuk seperti ini</p>
+
+<p><img src="http://hendrysuwanda.github.io/images/linux/list-files-in-tree.png"></p>
+
+<p>setelah google, ternyata mereka menggunakan <code>tree</code>.
+Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo apt-get install tree
+</span><span class='line'>[sudo] password for marjinal: 
+</span><span class='line'>Reading package lists... Done
+</span><span class='line'>Building dependency tree       
+</span><span class='line'>Reading state information... Done
+</span><span class='line'>The following NEW packages will be installed:
+</span><span class='line'>  tree
+</span><span class='line'>0 upgraded, 1 newly installed, 0 to remove and 200 not upgraded.
+</span><span class='line'>Need to get 32.4 kB of archives.
+</span><span class='line'>After this operation, 98.3 kB of additional disk space will be used.
+</span><span class='line'>Get:1 http://ftp.debian.org/debian/ squeeze/main tree amd64 1.5.3-1 [32.4 kB]
+</span><span class='line'>Fetched 32.4 kB in 6s (5,168 B/s)
+</span><span class='line'>Selecting previously deselected package tree.
+</span><span class='line'>(Reading database ... 112215 files and directories currently installed.)
+</span><span class='line'>Unpacking tree (from .../tree_1.5.3-1_amd64.deb) ...
+</span><span class='line'>Processing triggers for man-db ...
+</span><span class='line'>Setting up tree (1.5.3-1) ...</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sencha Touch Hello World]]></title>
@@ -1105,126 +1282,6 @@
 </span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure>
 
 
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Delete database di mongoDB]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/05/11/delete-database-di-mongodb/"/>
-    <updated>2013-05-11T07:17:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/05/11/delete-database-di-mongodb</id>
-    <content type="html"><![CDATA[<p>Berikut list database yang saya miliki:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; show dbs
-</span><span class='line'>local 0.078125GB
-</span><span class='line'>pcat  0.453125GB
-</span><span class='line'>test  0.203125GB
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>anggap, saya ingin menghapus database test, ada 3 cara untuk melakukannya:</p>
-
-<h4>1. menggunakan script</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mongo test --eval "db.dropDatabase()"</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>2. Login &amp; use database yg mau di delete</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; use test
-</span><span class='line'>&gt; db.dropDatabase()</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>3. Stop service &amp; delete manual file database</h4>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Find data yang memiliki field tertentu di mongoDB]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/05/11/find-data-yang-memiliki-field-tertentu-di-mongodb/"/>
-    <updated>2013-05-11T07:09:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/05/11/find-data-yang-memiliki-field-tertentu-di-mongodb</id>
-    <content type="html"><![CDATA[<p>Karena MongoDB memiliki sifat yang flexible untuk strukture collections, maka ada kemungkinan kita mau mencari documents tertentu di dalam collection yang memiliki field tertentu.</p>
-
-<p>Contoh, saya punya collection dengan documents seperti di bawah ini:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; db.test2.find()
-</span><span class='line'>{ "_id" : ObjectId("518ded066186c4ef4300a7cd"), "x" : "hello", "y" : 400 }
-</span><span class='line'>{ "_id" : ObjectId("518ded106186c4ef4300a7ce"), "x" : "hello", "z" : 1 }
-</span><span class='line'>{ "_id" : ObjectId("518ded136186c4ef4300a7cf"), "x" : "hello", "zz" : 1 }
-</span><span class='line'>{ "_id" : 101, "arr" : [ "hi", "hi", "hi", "hi", "hi", "hi", "bye" ], "x" : "hello", "y" : 101 }</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Saya ingin mencari document yang memiliki field &ldquo;arr&rdquo;, maka cara yang saya lakukan:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; db.test2.find({arr: {$exists: true}})
-</span><span class='line'>{ "_id" : 101, "arr" : [ "hi", "hi", "hi", "hi", "hi", "hi", "bye" ], "x" : "hello", "y" : 101 }</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Perkenalan dengan CloudFoundry]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/05/11/perkenalan-dengan-cloudfoundry/"/>
-    <updated>2013-05-11T05:53:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/05/11/perkenalan-dengan-cloudfoundry</id>
-    <content type="html"><![CDATA[<p>Cloud Foundry merupakan Open Platform as a Service (PaaS). Dengan menggunakan cloud foundry kita bisa melakukan deploy aplikasi kita secara gratis. CloudFoundry mendukung beberapa bahasa pemrograman sebagai berikut:</p>
-
-<ul>
-<li>JVM Based (Java, Scala)</li>
-<li>Ruby</li>
-<li>Javascript (Node.js)</li>
-</ul>
-
-
-<p>Dan beberapa database:
-* PostgreSQL
-* redis
-* mongoDB
-* MySQL</p>
-
-<p>dan messaging service, RabbitMQ.</p>
-
-<p>CloudFoundry menyediakan console untuk memanage aplikasi kita di cloudfoundry, untuk versi 1, namanya <strong>VMC</strong> &amp; untuk versi 2 berubah menjadi <strong>CF</strong>.</p>
-
-<h2>Install CF</h2>
-
-<p>Berhubung CF di buat menggunakan Ruby, jadi sebelum melakukan install CF,  pastikan Ruby sudah terinstall di environment kita. Untuk melakukan install CF, ketikkan perintah berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ gem install cf</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Login ke CloudFoundry</h2>
-
-<p>Untuk dapat menggunakan CF, terlebih dahulu kita mesti login ke cloudfoundry. Open terminal, dan lakukan langkah berikut</p>
-
-<h4>Menentukan target</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; cf target api.cloudfoundry.com</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>login</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; cf login
-</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
