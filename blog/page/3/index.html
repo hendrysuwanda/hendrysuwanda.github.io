@@ -1,88 +1,135 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Hendry Suwanda</title>
-  <meta name="author" content="Hendry Suwanda">
+<!DOCTYPE HTML>
 
-  
-  <meta name="description" content="Berikut list database yang saya miliki: 1
-2
-3
-4
-&gt; show dbs
-local 0.078125GB
-pcat 0.453125GB
-test 0.203125GB anggap, saya ingin menghapus database &hellip;">
-  
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Hendry Suwanda</title>
+	<meta name="author" content="Hendry Suwanda">
+
+	
+	<meta name="description" content="Jul 21st, 2013 Octopress Cara Deploy Octopress Di Github Blog ini menggunakan engine Octopress, dimana merupakan static site generator, yang mana &hellip;">
+	
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  
-  <link rel="canonical" href="http://hendrysuwanda.github.io/blog/page/3">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Hendry Suwanda" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+	<link href="/atom.xml" rel="alternate" title="Hendry Suwanda" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://hendrysuwanda.github.io/blog/page/3/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href="/javascripts/libs/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<!-- <link href="/javascripts/libs/bootstrap-3.0.0/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"> -->
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 
   
 
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("suwanda.hendry@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+	
+</div>
+<hgroup>
   <h1><a href="/">Hendry Suwanda</a></h1>
   
     <h2>Programming is like sex. One mistake and you have to support it for the rest of your life.</h2>
   
 </hgroup>
 
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:hendrysuwanda.github.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
+<nav id="main-nav"><nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hendry Suwanda</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li >
+                    <a href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="http://google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:hendrysuwanda.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
 
 </nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/11/delete-database-di-mongodb/">Delete Database Di mongoDB</a></h1>
-    
-    
-      <p class="meta">
-        
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner">
+<div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
 
 
 
@@ -94,14 +141,148 @@ test 0.203125GB anggap, saya ingin menghapus database &hellip;">
   
 
 
-<time datetime="2013-05-11T07:17:00-04:00" pubdate data-updated="true">May 11<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
+<time datetime="2013-07-21T21:19:00-04:00" data-updated="true" itemprop="datePublished">Jul 21<span>st</span>, 2013</time></div>
+		<div class="tags">
 
 
-  <div class="entry-content"><p>Berikut list database yang saya miliki:</p>
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/07/21/cara-deploy-octopress-di-github/" itemprop="url">Cara Deploy Octopress Di Github</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Blog ini menggunakan engine <a href="http://octopress.org/">Octopress</a>, dimana merupakan static site generator, yang mana kita bisa deploy content blog kita ke github.</p>
+
+<p>Berikut cara deploy Octopress di github.</p>
+
+<h3>Buat repository baru di github</h3>
+
+<p>Jika kita ingin memiliki blog dengan url, blogsaya.github.io, maka kita harus <a href="https://github.com/new">membuat repository</a> dengan repository name <code>blogsaya.github.io</code>.</p>
+
+<h3>Setup Github Page</h3>
+
+<p>Anggap, direktori octopress saya, ada di <code>/home/hendrysuwanda/blogsaya.github.io</code>, maka</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$cd /home/hendrysuwanda/blogsaya.github.io
+</span><span class='line'>
+</span><span class='line'>$ rake setup_github_pages</span></code></pre></td></tr></table></div></figure>
+
+
+<p>akan muncul log seperti di bawah ini</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Enter the read/write url for your repository
+</span><span class='line'>(For example, 'git@github.com:your_username/your_username.github.io)
+</span><span class='line'>           or 'https://github.com/your_username/your_username.github.io')
+</span><span class='line'>Repository url: </span></code></pre></td></tr></table></div></figure>
+
+
+<p>kita mesti memasukkan url dari repository yang kita buat di langkah 1, contoh, saya memasukkan <code>https://github.com/hendrysuwanda/blogsaya.github.io</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Enter the read/write url for your repository
+</span><span class='line'>(For example, 'git@github.com:your_username/your_username.github.io)
+</span><span class='line'>           or 'https://github.com/your_username/your_username.github.io')
+</span><span class='line'>Repository url: https://github.com/hendrysuwanda/blogsaya.github.io
+</span><span class='line'>rm -rf _deploy
+</span><span class='line'>mkdir _deploy
+</span><span class='line'>cd _deploy
+</span><span class='line'>Initialized empty Git repository in /windows/blogsaya.github.io/_deploy/.git/
+</span><span class='line'>[master (root-commit) 9f45a14] Octopress init
+</span><span class='line'> 1 files changed, 1 insertions(+), 0 deletions(-)
+</span><span class='line'> create mode 100644 index.html
+</span><span class='line'>cd -
+</span><span class='line'>
+</span><span class='line'>---
+</span><span class='line'>## Now you can deploy to http://blogsaya.github.io with `rake deploy` ##</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Deploy ke github</h3>
+
+<p>Sebelum melakukan deploy ke github, terlebih dahulu, jalankan command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate</span></code></pre></td></tr></table></div></figure>
+
+
+<p>command di atas, berguna untuk meng-generate content blog kita, dan meletakkan ke dalam folder <code>_deploy/</code>. Setelah itu, jalankan command berikut untuk deploy ke github.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Tunggu beberapa menit, sekarang kita sudah punya blog, yang bisa di akses di <code>blogsaya.github.io</code>.</p>
+
+<h3>Note</h3>
+
+<p>Jangan lupa untuk melakukan commit source dari blog kita, dengan menjalankan command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>git add .
+</span><span class='line'>git commit -m 'your message'
+</span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-11T07:17:00-04:00" data-updated="true" itemprop="datePublished">May 11<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mongodb/'>mongoDB</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/05/11/delete-database-di-mongodb/" itemprop="url">Delete Database Di mongoDB</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Berikut list database yang saya miliki:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -131,42 +312,41 @@ test 0.203125GB anggap, saya ingin menghapus database &hellip;">
 
 
 <h4>3. Stop service &amp; delete manual file database</h4>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-11T07:09:00-04:00" data-updated="true" itemprop="datePublished">May 11<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mongodb/'>mongoDB</a>
+
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/11/find-data-yang-memiliki-field-tertentu-di-mongodb/">Find Data Yang Memiliki Field Tertentu Di mongoDB</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-11T07:09:00-04:00" pubdate data-updated="true">May 11<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Karena MongoDB memiliki sifat yang flexible untuk strukture collections, maka ada kemungkinan kita mau mencari documents tertentu di dalam collection yang memiliki field tertentu.</p>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/05/11/find-data-yang-memiliki-field-tertentu-di-mongodb/" itemprop="url">Find Data Yang Memiliki Field Tertentu Di mongoDB</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Karena MongoDB memiliki sifat yang flexible untuk strukture collections, maka ada kemungkinan kita mau mencari documents tertentu di dalam collection yang memiliki field tertentu.</p>
 
 <p>Contoh, saya punya collection dengan documents seperti di bawah ini:</p>
 
@@ -189,42 +369,41 @@ test 0.203125GB anggap, saya ingin menghapus database &hellip;">
 </pre></td><td class='code'><pre><code class=''><span class='line'>&gt; db.test2.find({arr: {$exists: true}})
 </span><span class='line'>{ "_id" : 101, "arr" : [ "hi", "hi", "hi", "hi", "hi", "hi", "bye" ], "x" : "hello", "y" : 101 }</span></code></pre></td></tr></table></div></figure>
 
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-11T05:53:00-04:00" data-updated="true" itemprop="datePublished">May 11<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/cloudfoundry/'>CloudFoundry</a>
+
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/11/perkenalan-dengan-cloudfoundry/">Perkenalan Dengan CloudFoundry</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-11T05:53:00-04:00" pubdate data-updated="true">May 11<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Cloud Foundry merupakan Open Platform as a Service (PaaS). Dengan menggunakan cloud foundry kita bisa melakukan deploy aplikasi kita secara gratis. CloudFoundry mendukung beberapa bahasa pemrograman sebagai berikut:</p>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/05/11/perkenalan-dengan-cloudfoundry/" itemprop="url">Perkenalan Dengan CloudFoundry</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Cloud Foundry merupakan Open Platform as a Service (PaaS). Dengan menggunakan cloud foundry kita bisa melakukan deploy aplikasi kita secara gratis. CloudFoundry mendukung beberapa bahasa pemrograman sebagai berikut:</p>
 
 <ul>
 <li>JVM Based (Java, Scala)</li>
@@ -267,42 +446,41 @@ test 0.203125GB anggap, saya ingin menghapus database &hellip;">
 </pre></td><td class='code'><pre><code class=''><span class='line'>&gt; cf login
 </span></code></pre></td></tr></table></div></figure>
 
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-16T12:37:00-04:00" data-updated="true" itemprop="datePublished">Apr 16<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/java/'>Java</a>, <a class='category' href='/blog/categories/ubuntu/'>Ubuntu</a>
+
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/16/install-jdk-1-dot-6-di-ubuntu-12-dot-04-server/">Install Jdk 1.6 Di Ubuntu 12.04 Server</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-16T12:37:00-04:00" pubdate data-updated="true">Apr 16<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Berikut cara install jdk 1.6 di ubuntu 12.04 (sebenarnya bisa di lakukan di semua ubuntu :D).</p>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/04/16/install-jdk-1-dot-6-di-ubuntu-12-dot-04-server/" itemprop="url">Install Jdk 1.6 Di Ubuntu 12.04 Server</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Berikut cara install jdk 1.6 di ubuntu 12.04 (sebenarnya bisa di lakukan di semua ubuntu :D).</p>
 
 <ol>
 <li><p>Download jdk sesuai dengan bit pada ubuntu (kebetulan ubuntu ku versi 64 bit, jadi aku download jdk-6u43-linux-x64.bin)</p></li>
@@ -338,42 +516,41 @@ test 0.203125GB anggap, saya ingin menghapus database &hellip;">
 
 
 <p>Done.</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-30T05:36:00-04:00" data-updated="true" itemprop="datePublished">Mar 30<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/budi-rahardjo/'>Budi Rahardjo</a>, <a class='category' href='/blog/categories/kehidupan/'>Kehidupan</a>
+
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/30/duit-di-mata-entrepreneur-sukses/">Duit Di Mata Entrepreneur Sukses</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-30T05:36:00-04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Kalau saya ambilkan cuplikan dari Steve Jobs (atau entrepreneur
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/30/duit-di-mata-entrepreneur-sukses/" itemprop="url">Duit Di Mata Entrepreneur Sukses</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Kalau saya ambilkan cuplikan dari Steve Jobs (atau entrepreneur
 lain yang sukses):</p>
 
 <p>Dulu awal-awal mulainya gak mikirin duit, karena emang gak punya
@@ -386,79 +563,77 @@ karena sekedar untuk memikirkannya pun tidak. he he he.</p>
 Sama kondisinya, tapi cara pandang terhadap situasinya beda.</p>
 
 <p>&mdash; budi</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-30T05:33:00-04:00" data-updated="true" itemprop="datePublished">Mar 30<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/kehidupan/'>Kehidupan</a>, <a class='category' href='/blog/categories/kutipan/'>Kutipan</a>
+
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/30/kutipan-number-1/">Kutipan #1</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-30T05:33:00-04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Di sekolah anda belajar untuk tahu,
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/30/kutipan-number-1/" itemprop="url">Kutipan #1</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Di sekolah anda belajar untuk tahu,
 Di jalanan anda belajar untuk bisa :)</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-30T05:19:00-04:00" data-updated="true" itemprop="datePublished">Mar 30<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/budi-rahardjo/'>Budi Rahardjo</a>, <a class='category' href='/blog/categories/kehidupan/'>Kehidupan</a>
+
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/30/proses-belajar-dengan-cara-mengikuti-seringkali-tidak-benar/">Proses Belajar Dengan Cara Mengikuti Seringkali Tidak Benar</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-30T05:19:00-04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><blockquote><p>Artikel ini merupakan artikel pertama di kategori kehidupan, begitu juga dengan kategori `Budi Rahardjo&#8217; :D, Jujur saya sangat nge-fans dengan bapak yg satu ini, apalagi dengan tulisannya, jadi saya mulai terpikiran utk menulis semua tulisan(email) pak budi di milis startuplokal di blog saya ini.</p></blockquote>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/30/proses-belajar-dengan-cara-mengikuti-seringkali-tidak-benar/" itemprop="url">Proses Belajar Dengan Cara Mengikuti Seringkali Tidak Benar</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<blockquote><p>Artikel ini merupakan artikel pertama di kategori kehidupan, begitu juga dengan kategori `Budi Rahardjo&#8217; :D, Jujur saya sangat nge-fans dengan bapak yg satu ini, apalagi dengan tulisannya, jadi saya mulai terpikiran utk menulis semua tulisan(email) pak budi di milis startuplokal di blog saya ini.</p></blockquote>
 
 <p>Proses belajar dengan cara mengikuti seringkali tidak benar.</p>
 
@@ -503,42 +678,41 @@ bukan semakin kaco :)</p>
 <p>Semangat!</p>
 
 <p>&mdash; budi</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-30T04:45:00-04:00" data-updated="true" itemprop="datePublished">Mar 30<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/oracle/'>Oracle</a>, <a class='category' href='/blog/categories/pl-slash-sql/'>PL/SQL</a>
+
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/30/cara-menampilkan-hasil-dari-dbms-output-dot-put-line-message/">Cara Menampilkan Hasil Dari dbms_output.put_line(message)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-30T04:45:00-04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Belakangan ini saya lagi belajar PL/SQL dari situs <a href="http://www.tutorialspoint.com/plsql/index.htm">ini</a>.</p>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/30/cara-menampilkan-hasil-dari-dbms-output-dot-put-line-message/" itemprop="url">Cara Menampilkan Hasil Dari dbms_output.put_line(message)</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Belakangan ini saya lagi belajar PL/SQL dari situs <a href="http://www.tutorialspoint.com/plsql/index.htm">ini</a>.</p>
 
 <p>Tapi sialnya, ketika masih menulis script helloworld tidak mendapatkan hasilnya, scriptnya sebagai berikut:</p>
 
@@ -584,42 +758,41 @@ bukan semakin kaco :)</p>
 
 
 <p>Akhirnya saya lulus pelajaran helloworld PL/SQL :D</p>
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-29T05:48:00-04:00" data-updated="true" itemprop="datePublished">Mar 29<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/crunchbang/'>CrunchBang</a>
+
+
 </div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/29/install-dig-di-crunchbang/">Install Dig Di Crunchbang</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-29T05:48:00-04:00" pubdate data-updated="true">Mar 29<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Dig adalah tools yang berguna utk memberikan informasi suatu DNS.</p>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/29/install-dig-di-crunchbang/" itemprop="url">Install Dig Di Crunchbang</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Dig adalah tools yang berguna utk memberikan informasi suatu DNS.</p>
 
 <p>contoh, kita ingin tahu, <code>www.google.com</code> lari ke mana saja, maka ketikkan</p>
 
@@ -690,114 +863,36 @@ bukan semakin kaco :)</p>
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install dnsutils </span></code></pre></td></tr></table></div></figure>
 
-</div>
-  
-  
 
+		
+		
+	</div>
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/27/download-sourcecode-dan-javadocs-menggunakan-maven/">Download Sourcecode Dan Javadocs Menggunakan Maven</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-27T11:32:00-04:00" pubdate data-updated="true">Mar 27<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Terkadang kita membutuhkan source code dan javadocs dari dependency yang kita gunakan di project kita. Untuk mendownload source code, lakukan perintah berikut:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mvn dependency:sources</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Untuk mendownload javadocs, lakukan perintah berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mvn dependency:resolve -Dclassifier=javadoc</span></code></pre></td></tr></table></div></figure>
+</article>
 
 </div>
-  
-  
-
-
-    </article>
-  
-  <div class="pagination">
+<nav id="pagenavi">
     
-      <a class="prev" href="/blog/page/4/">&larr; Older</a>
+        <a href="/blog/page/2/" class="prev">Prev</a>
     
-    <a href="/blog/archives">Blog Archives</a>
     
-    <a class="next" href="/blog/page/2/">Newer &rarr;</a>
+        <a href="/blog/page/4/" class="next">Next</a>
     
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/">Error &#8216;Unable to Open Logs&#8217; Ketika Menjalankan Httpd</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/04/rename-column-di-oracle/">Rename Column Di Oracle</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang/">List File/Directory Dalam Bentuk Tree Di Crunchbang</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/02/sencha-touch-hello-world/">Sencha Touch Hello World</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd/">Install Sencha Touch SDK Dan Sencha Cmd</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hendry Suwanda -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+    <div class="center"><a href="/blog/archives">Blog Archives</a></div>
+</nav></div>
+			</div>
+			<footer id="footer" class="inner"><p class="text-muted credits">
+  Copyright &copy; 2013 - Hendry Suwanda<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
 </p>
 
-</footer>
-  
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+			<script src="/javascripts/libs/bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
 
 
 
@@ -819,5 +914,7 @@ bukan semakin kaco :)</p>
 
 
 
+		</div>
+	</div>
 </body>
 </html>

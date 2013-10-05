@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: spring-batch | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/spring-batch/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-10-05T00:46:26-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    <email><![CDATA[suwanda.hendry@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Berkenalan dengan Spring-Batch]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/04/berkenalan-dengan-spring-batch/"/>
+    <updated>2013-10-04T13:30:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/04/berkenalan-dengan-spring-batch</id>
+    <content type="html"><![CDATA[<p>Spring batch adalah framework untuk melakukan proses batch, mengeksekusi serangkaian <code>job</code>. Dimana <code>job</code> terdiri dari banyak <code>step</code> dan setiap <code>step</code> terdiri dari proses <code>READ-PROCESS-WRITE</code> atau <code>SINGLE-OPERATION</code> (<code>tasklet</code>).</p>
+
+<p>Berikut beberapa istilah yang sering di gunakan di Spring Batch:</p>
+
+<ul>
+<li><strong>Job</strong> &ndash; Menggambarkan suatu pekerjaan. Misal, membaca file DPK (Dana Pihak Ketiga), lalu menyimpannya ke dalam database. Setelah itu menampilkannya ke dalam laporan <code>Combined-Statement</code>.</li>
+<li><strong>Step</strong> &ndash; Sebuah <strong>job</strong> terdiri dari satu atau dua <strong>step</strong>. Dalam contoh di atas, misalnya:
+
+<ul>
+<li>Step 1: Membaca File DPK &amp; Meyimpan ke dalam database</li>
+<li>Step 2: Menampilkan data DPK ke dalam laporan <code>Combined-Statement</code></li>
+</ul>
+</li>
+<li><strong>JobInstance</strong> &ndash; Sebuah instance yang sedang berjalan dari sebuah <code>job</code> yang telah di tetapkan. Anggap, <code>job</code> adalah sebuah class dan <code>jobinstance</code> adalah sebuah object dari class <code>job</code>. Contoh, <code>job</code> membaca file DPK jalan setiap awal bulan, berarti kita memiliki 1 JobInstance setiap bulannya. 1 <code>job</code> yang berjalan sama dengan 1 <code>jobinstance</code>.</li>
+<li><strong>JobParameters</strong> &ndash; Parameter-parameter yang digunakan oleh <code>JobInstance</code>. Contoh, secara default, laporan <code>Combined-Statement</code> yang di generate adalah untuk periode T-1, tapi kita ingin membuatnya lebih dinamis, jadi kita bisa generatekan laporan untuk periode T-N, jadi, kita mesti melemparkan nilai <code>N</code> ke dalam <code>JobParameters</code>, dimana <code>JobParameters</code> nanti akan di lemparkan sebagai baris perintah argumen.</li>
+<li><strong>JobExecution</strong> &ndash; Setiap menjalankan <code>JobInstance</code> akan menghasilkan <code>JobExecution</code>. Contoh, ketika job membaca file DPK gagal, lalu job di jalankan lagi dan berhasil. Maka kita akan memiliki 1 <code>JobInstance</code> dan memiliki 2 <code>JobExecution</code>, 1 yang berhasil &amp; 1 lagi yang gagal.</li>
+<li><strong>StepExecution</strong> &ndash; Sama seperti <code>JobExecution</code>, tapi ini untuk menggambarkan hasil dari <code>Step</code>.</li>
+<li><strong>JobRepository</strong> &ndash; Sebuah <a href="http://www.relationaldbdesign.com/oracle8i-pl-sql-programming/oracle-pl-sql-programming-glossary.php">persistent store</a> untuk menyimpan semua informasi meta-data <code>job</code>. Menyimpan informasi <code>JobInstance</code>,<code>JobExecution</code> dan <code>StepExecution</code>. Repositori dibutuhkan untuk mengetahui apakah sebelumnya <code>job</code> gagal atau tidak, jika gagal maka bisa di jalankan kembali. Secara default informasi ini di simpan di memory, tapi kita bisa setting untuk menyimpannya di database.</li>
+<li><strong>JobLauncher</strong> &ndash; Seperti namanya, object ini memungkinkan kita untuk memulai sebuah <code>job</code>. Ia menggunakan <code>JobRepository</code> untuk mendapakan <code>JobExecution</code> yang valid.</li>
+</ul>
+
+
+<h3>SINGLE-OPERATION</h3>
+
+<ul>
+<li><strong>TaskLet</strong> &ndash; Situasi dimana kita tidak memiliki input and pengolahan keluaran (<code>SINGLE-OPERATION</code>). Misalnya, kita ingin memanggil/menjalankan sebuah store procedure.</li>
+</ul>
+
+
+<h3>READ-PROCESS-WRITE</h3>
+
+<ul>
+<li><strong>ItemReader</strong> &ndash; Sebuah abstract class yang digunakan untuk menggambarkan sebuah object yang memungkinkan kita untuk membaca sebuah object yang ingin kita proses. Misal, kita ingin membaca file DPK, atau kita ingin membaca data dari database.</li>
+<li><strong>ItemWritter</strong> &ndash; Sebuah abstract class yang digunakan untuk menulis hasil akhir dari proses batch. Misal, kita ingin meng-generate laporan <code>Combined-Statement</code>.</li>
+<li><strong>ItemProcessor</strong> &ndash; Sebuah abstract class yang digunakan untuk melakukan <code>business logic</code> dari data yang di hasilkan oleh <code>ItemReader</code> sebelum di lemparkan ke <code>ItemWritter</code>.</li>
+</ul>
+
+
+<p>Dalam tulisan selanjutnya kita akan melihat contoh dari penggunaan masing-masing item tersebut.</p>
+]]></content>
+  </entry>
+  
+</feed>

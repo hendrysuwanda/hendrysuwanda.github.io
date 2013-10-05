@@ -1,682 +1,909 @@
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Blog Archive - Hendry Suwanda</title>
-  <meta name="author" content="Hendry Suwanda">
+<!DOCTYPE HTML>
 
-  
-  <meta name="description" content="Blog Archive 2013 Error &#8216;Unable to open logs&#8217; ketika menjalankan httpd
-Oct 04 2013 posted in httpd, linux rename column di oracle
-Oct 04 &hellip;">
-  
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Blog Archives - Hendry Suwanda</title>
+	<meta name="author" content="Hendry Suwanda">
+
+	
+	<meta name="description" content="2013 Oct 4 spring-batch Berkenalan dengan Spring-Batch Oct 4 httpd, linux Error &#8216;Unable to open logs&#8217; ketika menjalankan httpd Oct 4 &hellip;">
+	
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  
-  <link rel="canonical" href="http://hendrysuwanda.github.io/blog/archives">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Hendry Suwanda" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+	<link href="/atom.xml" rel="alternate" title="Hendry Suwanda" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://hendrysuwanda.github.io/blog/archives/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href="/javascripts/libs/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<!-- <link href="/javascripts/libs/bootstrap-3.0.0/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"> -->
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 
   
 
 </head>
 
-<body   >
-  <header role="banner"><hgroup>
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("suwanda.hendry@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+	
+</div>
+<hgroup>
   <h1><a href="/">Hendry Suwanda</a></h1>
   
     <h2>Programming is like sex. One mistake and you have to support it for the rest of your life.</h2>
   
 </hgroup>
 
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:hendrysuwanda.github.io" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
+<nav id="main-nav"><nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hendry Suwanda</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li >
+                    <a href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="http://google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:hendrysuwanda.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
 
 </nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article role="article">
-  
-  <header>
-    <h1 class="entry-title">Blog Archive</h1>
-    
-  </header>
-  
-  <div id="blog-archives">
+<nav id="sub-nav">
+	<div class="social">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><div itemscope itemtype="http://schema.org/Blog">
+
+	
 
 
+	
+	
+	<section class="archives"><h1 class="year">2013</h1>
 
-  
-  <h2>2013</h2>
-
-<article>
-  
-<h1><a href="/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/">Error &#8216;Unable to open logs&#8217; ketika menjalankan httpd</a></h1>
-<time datetime="2013-10-04T11:13:00-04:00" pubdate><span class='month'>Oct</span> <span class='day'>04</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/httpd/'>httpd</a>, <a class='category' href='/blog/categories/linux/'>linux</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-10-04T13:30:00-04:00" itemprop="datePublished">Oct  4</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/spring-batch/'>spring-batch</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/10/04/berkenalan-dengan-spring-batch/">Berkenalan dengan Spring-Batch</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/10/04/rename-column-di-oracle/">rename column di oracle</a></h1>
-<time datetime="2013-10-04T11:09:00-04:00" pubdate><span class='month'>Oct</span> <span class='day'>04</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/oracle/'>oracle</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-10-04T11:13:00-04:00" itemprop="datePublished">Oct  4</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/httpd/'>httpd</a>, <a class='category' href='/blog/categories/linux/'>linux</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/">Error &#8216;Unable to open logs&#8217; ketika menjalankan httpd</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang/">List File/Directory dalam bentuk tree di crunchbang</a></h1>
-<time datetime="2013-10-04T10:38:00-04:00" pubdate><span class='month'>Oct</span> <span class='day'>04</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/crunchbang/'>crunchbang</a>, <a class='category' href='/blog/categories/linux/'>linux</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-10-04T11:09:00-04:00" itemprop="datePublished">Oct  4</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/oracle/'>oracle</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/10/04/rename-column-di-oracle/">rename column di oracle</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/10/02/sencha-touch-hello-world/">Sencha Touch Hello World</a></h1>
-<time datetime="2013-10-02T11:41:00-04:00" pubdate><span class='month'>Oct</span> <span class='day'>02</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/sencha-touch/'>sencha-touch</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-10-04T10:38:00-04:00" itemprop="datePublished">Oct  4</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/crunchbang/'>crunchbang</a>, <a class='category' href='/blog/categories/linux/'>linux</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang/">List File/Directory dalam bentuk tree di crunchbang</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd/">Install Sencha Touch SDK dan Sencha Cmd</a></h1>
-<time datetime="2013-10-02T11:01:00-04:00" pubdate><span class='month'>Oct</span> <span class='day'>02</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/sencha-touch/'>sencha-touch</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-10-02T11:41:00-04:00" itemprop="datePublished">Oct  2</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/sencha-touch/'>sencha-touch</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/10/02/sencha-touch-hello-world/">Sencha Touch Hello World</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle/">Mendapatkan tanggal awal dan akhir Bulan di Oracle</a></h1>
-<time datetime="2013-10-02T06:06:00-04:00" pubdate><span class='month'>Oct</span> <span class='day'>02</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/oracle/'>Oracle</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-10-02T11:01:00-04:00" itemprop="datePublished">Oct  2</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/sencha-touch/'>sencha-touch</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd/">Install Sencha Touch SDK dan Sencha Cmd</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/09/29/url-belajar-wicket/">URL belajar Wicket</a></h1>
-<time datetime="2013-09-29T03:35:00-04:00" pubdate><span class='month'>Sep</span> <span class='day'>29</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/url/'>url</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-10-02T06:06:00-04:00" itemprop="datePublished">Oct  2</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/oracle/'>Oracle</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle/">Mendapatkan tanggal awal dan akhir Bulan di Oracle</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/09/28/url-belajar-spring-batch/">URL belajar Spring-Batch</a></h1>
-<time datetime="2013-09-28T08:02:00-04:00" pubdate><span class='month'>Sep</span> <span class='day'>28</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/url/'>url</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-09-29T03:35:00-04:00" itemprop="datePublished">Sep 29</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/url/'>url</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/09/29/url-belajar-wicket/">URL belajar Wicket</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/09/28/url-belajar-bahasa-inggris/">URL belajar bahasa inggris</a></h1>
-<time datetime="2013-09-28T05:46:00-04:00" pubdate><span class='month'>Sep</span> <span class='day'>28</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/url/'>url</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-09-28T08:02:00-04:00" itemprop="datePublished">Sep 28</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/url/'>url</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/09/28/url-belajar-spring-batch/">URL belajar Spring-Batch</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/09/28/cara-menampilkan-list-table-di-oracle/">Cara Menampilkan List Table di Oracle</a></h1>
-<time datetime="2013-09-28T05:33:00-04:00" pubdate><span class='month'>Sep</span> <span class='day'>28</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/oracle/'>oracle</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-09-28T05:46:00-04:00" itemprop="datePublished">Sep 28</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/url/'>url</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/09/28/url-belajar-bahasa-inggris/">URL belajar bahasa inggris</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/09/28/konversi-timestamp-ke-date-di-oracle/">Konversi Timestamp ke Date di Oracle</a></h1>
-<time datetime="2013-09-28T05:25:00-04:00" pubdate><span class='month'>Sep</span> <span class='day'>28</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/oracle/'>oracle</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-09-28T05:33:00-04:00" itemprop="datePublished">Sep 28</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/oracle/'>oracle</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/09/28/cara-menampilkan-list-table-di-oracle/">Cara Menampilkan List Table di Oracle</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/">Menjalankan Java Main Class menggunakan Maven Command</a></h1>
-<time datetime="2013-09-27T13:02:00-04:00" pubdate><span class='month'>Sep</span> <span class='day'>27</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/maven/'>Maven</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-09-28T05:25:00-04:00" itemprop="datePublished">Sep 28</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/oracle/'>oracle</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/09/28/konversi-timestamp-ke-date-di-oracle/">Konversi Timestamp ke Date di Oracle</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/09/22/install-rabbitmq-di-crunchbang/">Install RabbitMQ di #CrunchBang</a></h1>
-<time datetime="2013-09-22T04:24:00-04:00" pubdate><span class='month'>Sep</span> <span class='day'>22</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/number-cruchbang/'>#CruchBang</a>, <a class='category' href='/blog/categories/rabbitmq/'>RabbitMQ</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-09-27T13:02:00-04:00" itemprop="datePublished">Sep 27</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/maven/'>Maven</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/">Menjalankan Java Main Class menggunakan Maven Command</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/09/17/a-remote-host-refused-an-attempted-connect-operation-dsra0010e-sql-state-equals-08001-error-code-equals-99-dot-999/">A remote host refused an attempted connect operation. DSRA0010E: SQL State = 08001-Error Code = -99.999</a></h1>
-<time datetime="2013-09-17T11:58:00-04:00" pubdate><span class='month'>Sep</span> <span class='day'>17</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/websphere/'>Websphere</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-09-22T04:24:00-04:00" itemprop="datePublished">Sep 22</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/number-cruchbang/'>#CruchBang</a>, <a class='category' href='/blog/categories/rabbitmq/'>RabbitMQ</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/09/22/install-rabbitmq-di-crunchbang/">Install RabbitMQ di #CrunchBang</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/09/13/lupa-password-websphere-application-server-administrative-console/">Lupa Password WebSphere Application Server administrative console</a></h1>
-<time datetime="2013-09-13T08:55:00-04:00" pubdate><span class='month'>Sep</span> <span class='day'>13</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/websphere/'>Websphere</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-09-17T11:58:00-04:00" itemprop="datePublished">Sep 17</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/websphere/'>Websphere</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/09/17/a-remote-host-refused-an-attempted-connect-operation-dsra0010e-sql-state-equals-08001-error-code-equals-99-dot-999/">A remote host refused an attempted connect operation. DSRA0010E: SQL State = 08001-Error Code = -99.999</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/08/31/sublimetext-how-to-select-same-word-and-replace-it/">SublimeText - How to Select Same Word and Replace It</a></h1>
-<time datetime="2013-08-31T11:41:00-04:00" pubdate><span class='month'>Aug</span> <span class='day'>31</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/sublimetext/'>SublimeText</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-09-13T08:55:00-04:00" itemprop="datePublished">Sep 13</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/websphere/'>Websphere</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/09/13/lupa-password-websphere-application-server-administrative-console/">Lupa Password WebSphere Application Server administrative console</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/08/31/angularjs-binding/">AngularJS - Binding</a></h1>
-<time datetime="2013-08-31T11:33:00-04:00" pubdate><span class='month'>Aug</span> <span class='day'>31</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/angularjs/'>AngularJS</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-08-31T11:41:00-04:00" itemprop="datePublished">Aug 31</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/sublimetext/'>SublimeText</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/08/31/sublimetext-how-to-select-same-word-and-replace-it/">SublimeText - How to Select Same Word and Replace It</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/08/31/angularjs-pengenalan/">AngularJS - Pengenalan</a></h1>
-<time datetime="2013-08-31T11:25:00-04:00" pubdate><span class='month'>Aug</span> <span class='day'>31</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/angularjs/'>AngularJS</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-08-31T11:33:00-04:00" itemprop="datePublished">Aug 31</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/angularjs/'>AngularJS</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/08/31/angularjs-binding/">AngularJS - Binding</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/07/21/running-maven-offline-mode/">Running maven offline mode</a></h1>
-<time datetime="2013-07-21T21:59:00-04:00" pubdate><span class='month'>Jul</span> <span class='day'>21</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/maven/'>Maven</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-08-31T11:25:00-04:00" itemprop="datePublished">Aug 31</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/angularjs/'>AngularJS</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/08/31/angularjs-pengenalan/">AngularJS - Pengenalan</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/07/21/cara-deploy-octopress-di-github/">Cara Deploy Octopress di github</a></h1>
-<time datetime="2013-07-21T21:19:00-04:00" pubdate><span class='month'>Jul</span> <span class='day'>21</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/octopress/'>Octopress</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-07-21T21:59:00-04:00" itemprop="datePublished">Jul 21</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/maven/'>Maven</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/07/21/running-maven-offline-mode/">Running maven offline mode</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/05/11/delete-database-di-mongodb/">Delete database di mongoDB</a></h1>
-<time datetime="2013-05-11T07:17:00-04:00" pubdate><span class='month'>May</span> <span class='day'>11</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/mongodb/'>mongoDB</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-07-21T21:19:00-04:00" itemprop="datePublished">Jul 21</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/07/21/cara-deploy-octopress-di-github/">Cara Deploy Octopress di github</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/05/11/find-data-yang-memiliki-field-tertentu-di-mongodb/">Find data yang memiliki field tertentu di mongoDB</a></h1>
-<time datetime="2013-05-11T07:09:00-04:00" pubdate><span class='month'>May</span> <span class='day'>11</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/mongodb/'>mongoDB</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-05-11T07:17:00-04:00" itemprop="datePublished">May 11</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/mongodb/'>mongoDB</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/05/11/delete-database-di-mongodb/">Delete database di mongoDB</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/05/11/perkenalan-dengan-cloudfoundry/">Perkenalan dengan CloudFoundry</a></h1>
-<time datetime="2013-05-11T05:53:00-04:00" pubdate><span class='month'>May</span> <span class='day'>11</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/cloudfoundry/'>CloudFoundry</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-05-11T07:09:00-04:00" itemprop="datePublished">May 11</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/mongodb/'>mongoDB</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/05/11/find-data-yang-memiliki-field-tertentu-di-mongodb/">Find data yang memiliki field tertentu di mongoDB</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/04/16/install-jdk-1-dot-6-di-ubuntu-12-dot-04-server/">Install jdk 1.6 di ubuntu 12.04 server</a></h1>
-<time datetime="2013-04-16T12:37:00-04:00" pubdate><span class='month'>Apr</span> <span class='day'>16</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/java/'>Java</a>, <a class='category' href='/blog/categories/ubuntu/'>Ubuntu</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-05-11T05:53:00-04:00" itemprop="datePublished">May 11</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/cloudfoundry/'>CloudFoundry</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/05/11/perkenalan-dengan-cloudfoundry/">Perkenalan dengan CloudFoundry</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/03/30/duit-di-mata-entrepreneur-sukses/">Duit di mata entrepreneur sukses</a></h1>
-<time datetime="2013-03-30T05:36:00-04:00" pubdate><span class='month'>Mar</span> <span class='day'>30</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/budi-rahardjo/'>Budi Rahardjo</a>, <a class='category' href='/blog/categories/kehidupan/'>Kehidupan</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-04-16T12:37:00-04:00" itemprop="datePublished">Apr 16</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/java/'>Java</a>, <a class='category' href='/blog/categories/ubuntu/'>Ubuntu</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/04/16/install-jdk-1-dot-6-di-ubuntu-12-dot-04-server/">Install jdk 1.6 di ubuntu 12.04 server</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/03/30/kutipan-number-1/">Kutipan #1</a></h1>
-<time datetime="2013-03-30T05:33:00-04:00" pubdate><span class='month'>Mar</span> <span class='day'>30</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/kehidupan/'>Kehidupan</a>, <a class='category' href='/blog/categories/kutipan/'>Kutipan</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-03-30T05:36:00-04:00" itemprop="datePublished">Mar 30</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/budi-rahardjo/'>Budi Rahardjo</a>, <a class='category' href='/blog/categories/kehidupan/'>Kehidupan</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/30/duit-di-mata-entrepreneur-sukses/">Duit di mata entrepreneur sukses</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/03/30/proses-belajar-dengan-cara-mengikuti-seringkali-tidak-benar/">Proses belajar dengan cara mengikuti seringkali tidak benar</a></h1>
-<time datetime="2013-03-30T05:19:00-04:00" pubdate><span class='month'>Mar</span> <span class='day'>30</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/budi-rahardjo/'>Budi Rahardjo</a>, <a class='category' href='/blog/categories/kehidupan/'>Kehidupan</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-03-30T05:33:00-04:00" itemprop="datePublished">Mar 30</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/kehidupan/'>Kehidupan</a>, <a class='category' href='/blog/categories/kutipan/'>Kutipan</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/30/kutipan-number-1/">Kutipan #1</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/03/30/cara-menampilkan-hasil-dari-dbms-output-dot-put-line-message/">Cara Menampilkan Hasil dari dbms_output.put_line(message)</a></h1>
-<time datetime="2013-03-30T04:45:00-04:00" pubdate><span class='month'>Mar</span> <span class='day'>30</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/oracle/'>Oracle</a>, <a class='category' href='/blog/categories/pl-slash-sql/'>PL/SQL</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-03-30T05:19:00-04:00" itemprop="datePublished">Mar 30</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/budi-rahardjo/'>Budi Rahardjo</a>, <a class='category' href='/blog/categories/kehidupan/'>Kehidupan</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/30/proses-belajar-dengan-cara-mengikuti-seringkali-tidak-benar/">Proses belajar dengan cara mengikuti seringkali tidak benar</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/03/29/install-dig-di-crunchbang/">Install dig di crunchbang</a></h1>
-<time datetime="2013-03-29T05:48:00-04:00" pubdate><span class='month'>Mar</span> <span class='day'>29</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/crunchbang/'>CrunchBang</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-03-30T04:45:00-04:00" itemprop="datePublished">Mar 30</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/oracle/'>Oracle</a>, <a class='category' href='/blog/categories/pl-slash-sql/'>PL/SQL</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/30/cara-menampilkan-hasil-dari-dbms-output-dot-put-line-message/">Cara Menampilkan Hasil dari dbms_output.put_line(message)</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/03/27/download-sourcecode-dan-javadocs-menggunakan-maven/">Download sourcecode dan javadocs menggunakan Maven</a></h1>
-<time datetime="2013-03-27T11:32:00-04:00" pubdate><span class='month'>Mar</span> <span class='day'>27</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/maven/'>Maven</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-03-29T05:48:00-04:00" itemprop="datePublished">Mar 29</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/crunchbang/'>CrunchBang</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/29/install-dig-di-crunchbang/">Install dig di crunchbang</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/03/19/membuat-anchor-link-di-markdown-dan-octopress/">Membuat Anchor Link di Markdown dan Octopress</a></h1>
-<time datetime="2013-03-19T12:01:00-04:00" pubdate><span class='month'>Mar</span> <span class='day'>19</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/markdown/'>Markdown</a>, <a class='category' href='/blog/categories/octopress/'>Octopress</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-03-27T11:32:00-04:00" itemprop="datePublished">Mar 27</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/maven/'>Maven</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/27/download-sourcecode-dan-javadocs-menggunakan-maven/">Download sourcecode dan javadocs menggunakan Maven</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/03/18/install-pymongo-menggunakan-pip/">Install pymongo menggunakan PIP</a></h1>
-<time datetime="2013-03-18T14:03:00-04:00" pubdate><span class='month'>Mar</span> <span class='day'>18</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/crunchbang/'>CrunchBang</a>, <a class='category' href='/blog/categories/python/'>Python</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-03-19T12:01:00-04:00" itemprop="datePublished">Mar 19</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/markdown/'>Markdown</a>, <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/19/membuat-anchor-link-di-markdown-dan-octopress/">Membuat Anchor Link di Markdown dan Octopress</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/03/18/install-pip-di-crunchbang/">Install PIP di CrunchBang</a></h1>
-<time datetime="2013-03-18T13:58:00-04:00" pubdate><span class='month'>Mar</span> <span class='day'>18</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/crunchbang/'>CrunchBang</a>, <a class='category' href='/blog/categories/python/'>Python</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-03-18T14:03:00-04:00" itemprop="datePublished">Mar 18</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/crunchbang/'>CrunchBang</a>, <a class='category' href='/blog/categories/python/'>Python</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/18/install-pymongo-menggunakan-pip/">Install pymongo menggunakan PIP</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/03/17/cara-menampilkan-versi-package-kernel-debian-dan-crunchbang/">Cara Menampilkan Versi Package, Kernel, Debian dan Crunchbang</a></h1>
-<time datetime="2013-03-17T06:04:00-04:00" pubdate><span class='month'>Mar</span> <span class='day'>17</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/crunchbang/'>CrunchBang</a>, <a class='category' href='/blog/categories/debian/'>Debian</a>, <a class='category' href='/blog/categories/linux/'>Linux</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-03-18T13:58:00-04:00" itemprop="datePublished">Mar 18</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/crunchbang/'>CrunchBang</a>, <a class='category' href='/blog/categories/python/'>Python</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/18/install-pip-di-crunchbang/">Install PIP di CrunchBang</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/03/17/install-mongodb-di-linux/">Install MongoDB di Linux</a></h1>
-<time datetime="2013-03-17T05:33:00-04:00" pubdate><span class='month'>Mar</span> <span class='day'>17</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/mongodb/'>MongoDB</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-03-17T06:04:00-04:00" itemprop="datePublished">Mar 17</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/crunchbang/'>CrunchBang</a>, <a class='category' href='/blog/categories/debian/'>Debian</a>, <a class='category' href='/blog/categories/linux/'>Linux</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/17/cara-menampilkan-versi-package-kernel-debian-dan-crunchbang/">Cara Menampilkan Versi Package, Kernel, Debian dan Crunchbang</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/03/10/install-maven-di-linux/">Install Maven di Linux</a></h1>
-<time datetime="2013-03-10T06:15:00-04:00" pubdate><span class='month'>Mar</span> <span class='day'>10</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/maven/'>Maven</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-03-17T05:33:00-04:00" itemprop="datePublished">Mar 17</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/mongodb/'>MongoDB</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/17/install-mongodb-di-linux/">Install MongoDB di Linux</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/01/26/membuat-project-menggunakan-maven-archetype-local/">Membuat project menggunakan Maven - Archetype local</a></h1>
-<time datetime="2013-01-26T03:39:00-05:00" pubdate><span class='month'>Jan</span> <span class='day'>26</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/maven/'>Maven</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-03-10T06:15:00-04:00" itemprop="datePublished">Mar 10</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/maven/'>Maven</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/03/10/install-maven-di-linux/">Install Maven di Linux</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/01/26/membuat-project-menggunakan-maven-artifact-secara-langsung/">Membuat project menggunakan Maven - Artifact secara langsung</a></h1>
-<time datetime="2013-01-26T03:38:00-05:00" pubdate><span class='month'>Jan</span> <span class='day'>26</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/maven/'>Maven</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-01-26T03:39:00-05:00" itemprop="datePublished">Jan 26</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/maven/'>Maven</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/01/26/membuat-project-menggunakan-maven-archetype-local/">Membuat project menggunakan Maven - Archetype local</a></h1>
 </article>
 
+	
 
 
-<article>
-  
-<h1><a href="/blog/2013/01/24/koneksi-ke-github-menggunakan-ssh/">Koneksi ke Github menggunakan SSH</a></h1>
-<time datetime="2013-01-24T05:23:00-05:00" pubdate><span class='month'>Jan</span> <span class='day'>24</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/github/'>GitHub</a></span>
-</footer>
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-01-26T03:38:00-05:00" itemprop="datePublished">Jan 26</time></span>
+		<br>
+		<span class="tags">
 
 
+	<a class='category' href='/blog/categories/maven/'>Maven</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/01/26/membuat-project-menggunakan-maven-artifact-secara-langsung/">Membuat project menggunakan Maven - Artifact secara langsung</a></h1>
 </article>
 
-</div>
+	
 
-  
+
+<article itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<span class="date"><time datetime="2013-01-24T05:23:00-05:00" itemprop="datePublished">Jan 24</time></span>
+		<br>
+		<span class="tags">
+
+
+	<a class='category' href='/blog/categories/github/'>GitHub</a>
+
+
+</span>
+	    
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/01/24/koneksi-ke-github-menggunakan-ssh/">Koneksi ke Github menggunakan SSH</a></h1>
 </article>
 
-</div>
-
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/">Error 'Unable to Open Logs' Ketika Menjalankan Httpd</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/04/rename-column-di-oracle/">Rename Column Di Oracle</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang/">List File/Directory Dalam Bentuk Tree Di Crunchbang</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/02/sencha-touch-hello-world/">Sencha Touch Hello World</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd/">Install Sencha Touch SDK Dan Sencha Cmd</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-
-
-
-  
-</aside>
-
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Hendry Suwanda -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+  </section>
+</div></div>
+			</div>
+			<footer id="footer" class="inner"><p class="text-muted credits">
+  Copyright &copy; 2013 - Hendry Suwanda<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
 </p>
 
-</footer>
-  
+Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a></footer>
+			<script src="/javascripts/libs/bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
 
 
 
@@ -698,5 +925,7 @@ Oct 04 &hellip;">
 
 
 
+		</div>
+	</div>
 </body>
 </html>
