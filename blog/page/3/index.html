@@ -9,7 +9,8 @@
 	<meta name="author" content="Hendry Suwanda">
 
 	
-	<meta name="description" content="Jul 21st, 2013 Octopress Cara Deploy Octopress Di Github Blog ini menggunakan engine Octopress, dimana merupakan static site generator, yang mana &hellip;">
+	<meta name="description" content="Jul 21st, 2013 Maven Running Maven Offline Mode Terkadang, sangat menjengkelkan, ketika menjalankan command berikut 1
+mvn clean install maven &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -125,6 +126,53 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-21T21:59:00-04:00" data-updated="true" itemprop="datePublished">Jul 21<span>st</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/maven/'>Maven</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/07/21/running-maven-offline-mode/" itemprop="url">Running Maven Offline Mode</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Terkadang, sangat menjengkelkan, ketika menjalankan command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn clean install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>maven melakukan update repository ke maven repo (apalagi kalau lagi internet lelet :( ). Setelah google sana sini, ternyata kita bisa menjalankan maven dengan offline mode, dengan menambahkan parameter `-o&#8217;, sehingga command di atas menjadi</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn clean install -o</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -758,111 +806,6 @@ bukan semakin kaco :)</p>
 
 
 <p>Akhirnya saya lulus pelajaran helloworld PL/SQL :D</p>
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-29T05:48:00-04:00" data-updated="true" itemprop="datePublished">Mar 29<span>th</span>, 2013</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/crunchbang/'>CrunchBang</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2013/03/29/install-dig-di-crunchbang/" itemprop="url">Install Dig Di Crunchbang</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>Dig adalah tools yang berguna utk memberikan informasi suatu DNS.</p>
-
-<p>contoh, kita ingin tahu, <code>www.google.com</code> lari ke mana saja, maka ketikkan</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>dig www.google.com +nostats +nocomments +nocmd</span></code></pre></td></tr></table></div></figure>
-
-
-<p>di lokal saya menghasilkan</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>; &lt;&lt;&gt;&gt; DiG 9.7.3 &lt;&lt;&gt;&gt; www.google.com +nostats +nocomments +nocmd
-</span><span class='line'>;; global options: +cmd
-</span><span class='line'>;www.google.com.          IN  A
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.42
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.46
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.48
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.49
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.53
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.57
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.59
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.16
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.20
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.24
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.26
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.27
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.31
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.35
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.37
-</span><span class='line'>www.google.com.       162 IN  A   114.121.192.38
-</span><span class='line'>google.com.       320440  IN  NS  ns4.google.com.
-</span><span class='line'>google.com.       320440  IN  NS  ns3.google.com.
-</span><span class='line'>google.com.       320440  IN  NS  ns1.google.com.
-</span><span class='line'>google.com.       320440  IN  NS  ns2.google.com.
-</span><span class='line'>ns1.google.com.       147620  IN  A   216.239.32.10
-</span><span class='line'>ns2.google.com.       147620  IN  A   216.239.34.10
-</span><span class='line'>ns3.google.com.       147620  IN  A   216.239.36.10
-</span><span class='line'>ns4.google.com.       147662  IN  A   216.239.38.10</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Untuk menginstall dig di crunchbang, ketikkan perintah berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install dnsutils </span></code></pre></td></tr></table></div></figure>
-
 
 		
 		

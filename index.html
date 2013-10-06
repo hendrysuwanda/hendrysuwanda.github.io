@@ -9,7 +9,7 @@
 	<meta name="author" content="Hendry Suwanda">
 
 	
-	<meta name="description" content="Oct 4th, 2013 spring-batch Berkenalan Dengan Spring-Batch Spring batch adalah framework untuk melakukan proses batch, mengeksekusi serangkaian job. &hellip;">
+	<meta name="description" content="Oct 6th, 2013 mysql Membuat AUTO_INCREMENT Di Mysql AUTO_INCREMENT memungkinkan kita untuk mendapatkan angka/nomor yang unik ketika sebuah record di &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -125,6 +125,79 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-06T01:41:00-04:00" data-updated="true" itemprop="datePublished">Oct 6<span>th</span>, 2013</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/mysql/'>mysql</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2013/10/06/membuat-auto-increment-di-mysql/" itemprop="url">Membuat AUTO_INCREMENT Di Mysql</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p><code>AUTO_INCREMENT</code> memungkinkan kita untuk mendapatkan angka/nomor yang unik ketika sebuah record di <code>insert</code> ke dalam <code>table</code>. Angka/nomor hasil dari <code>AUTO_INCREMENT</code> biasanya di pakai sebagai nilai dari primary key suatu table.</p>
+
+<p>MySQL database telah menyediakan fitur ini. Kita tinggal menetapkan sebuah field sebagai <code>AUTO_INCREMENT</code>, lalu mysql yang akan meng-handle untuk menggenerate nilai yang unik ketika sebuah record di <code>insert</code>.</p>
+
+<p>Anggap, kita ingin membuat table seperti di bawah ini di mysql.</p>
+
+<p><img src="/images/mysql/tbl_user.png"></p>
+
+<p>Dan kita ingin, agar user_id nilai nya selalu unik ketika ada penambahan data user baru. Maka DDL yang di butuhkan sebagai berikut:</p>
+
+<figure class='code'><figcaption><span>user.sql</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">USER</span><span class="p">(</span>
+</span><span class='line'>  <span class="n">USER_ID</span> <span class="nb">INT</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">USERNAME</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">PASSWORD</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="k">CONSTRAINT</span> <span class="n">P_USER_ID</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">USER_ID</span><span class="p">)</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Coba jalankan script berikut untuk insert data ke table</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">USER</span> <span class="p">(</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;user1&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">(</span><span class="s1">&#39;123456789&#39;</span><span class="p">));</span>
+</span><span class='line'><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">USER</span> <span class="p">(</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;user2&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">(</span><span class="s1">&#39;123456789&#39;</span><span class="p">));</span>
+</span><span class='line'><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">USER</span> <span class="p">(</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;user3&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">(</span><span class="s1">&#39;123456789&#39;</span><span class="p">));</span>
+</span><span class='line'><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">USER</span> <span class="p">(</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;user4&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">(</span><span class="s1">&#39;123456789&#39;</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Kita tidak perlu mendefinisikan nilai dari user_id, karena mysql secara otomatis akan melakukannya.</p>
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
@@ -1132,52 +1205,6 @@ Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command beriku
 
 <ol>
 <li><a href="http://blogs.justenougharchitecture.com/?p=124">Spring Batch 2.0 – Part I – Simple Tasklet</a></li>
-</ol>
-
-
-		
-		
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<div class="meta">
-		<div class="date">
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-28T05:46:00-04:00" data-updated="true" itemprop="datePublished">Sep 28<span>th</span>, 2013</time></div>
-		<div class="tags">
-
-
-	<a class='category' href='/blog/categories/url/'>url</a>
-
-
-</div>
-		
-	</div>
-	<h1 class="title" itemprop="name"><a href="/blog/2013/09/28/url-belajar-bahasa-inggris/" itemprop="url">URL Belajar Bahasa Inggris</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
-
-
-<ol>
-<li><a href="http://www.englishclub.com/">English Club</a></li>
-<li><a href="http://www.bbc.co.uk/worldservice/learningenglish/">BBC Learning English</a></li>
-<li><a href="http://learningenglish.voanews.com/">VOA Learning English</a></li>
-<li><a href="http://livemocha.com/">Live Mocha</a></li>
-<li><a href="www.lingq.com/">Lingq</a>. <code>Diberi pinjam account gratis sama om kaiser :D</code></li>
-<li><a href="http://www.kaskus.co.id/forum/113/english">Kaskus English Forum</a></li>
 </ol>
 
 

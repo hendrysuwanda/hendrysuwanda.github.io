@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mysql | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/mysql/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-10-06T02:28:19-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    <email><![CDATA[suwanda.hendry@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Membuat AUTO_INCREMENT di mysql]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/06/membuat-auto-increment-di-mysql/"/>
+    <updated>2013-10-06T01:41:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/06/membuat-auto-increment-di-mysql</id>
+    <content type="html"><![CDATA[<p><code>AUTO_INCREMENT</code> memungkinkan kita untuk mendapatkan angka/nomor yang unik ketika sebuah record di <code>insert</code> ke dalam <code>table</code>. Angka/nomor hasil dari <code>AUTO_INCREMENT</code> biasanya di pakai sebagai nilai dari primary key suatu table.</p>
+
+<p>MySQL database telah menyediakan fitur ini. Kita tinggal menetapkan sebuah field sebagai <code>AUTO_INCREMENT</code>, lalu mysql yang akan meng-handle untuk menggenerate nilai yang unik ketika sebuah record di <code>insert</code>.</p>
+
+<p>Anggap, kita ingin membuat table seperti di bawah ini di mysql.</p>
+
+<p><img src="/images/mysql/tbl_user.png"></p>
+
+<p>Dan kita ingin, agar user_id nilai nya selalu unik ketika ada penambahan data user baru. Maka DDL yang di butuhkan sebagai berikut:</p>
+
+<p>```sql user.sql
+CREATE TABLE USER(</p>
+
+<pre><code>USER_ID INT NOT NULL AUTO_INCREMENT,
+USERNAME VARCHAR(45) NOT NULL,
+PASSWORD VARCHAR(45) NOT NULL,
+CONSTRAINT P_USER_ID PRIMARY KEY (USER_ID) 
+</code></pre>
+
+<p>);
+```</p>
+
+<p>Coba jalankan script berikut untuk insert data ke table</p>
+
+<p><code>sql
+INSERT INTO USER (USERNAME, PASSWORD) VALUES('user1', password('123456789'));
+INSERT INTO USER (USERNAME, PASSWORD) VALUES('user2', password('123456789'));
+INSERT INTO USER (USERNAME, PASSWORD) VALUES('user3', password('123456789'));
+INSERT INTO USER (USERNAME, PASSWORD) VALUES('user4', password('123456789'));
+</code></p>
+
+<p>Kita tidak perlu mendefinisikan nilai dari user_id, karena mysql secara otomatis akan melakukannya.</p>
+]]></content>
+  </entry>
+  
+</feed>
