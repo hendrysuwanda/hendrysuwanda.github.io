@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Linux | Hendry Suwanda]]></title>
-  <link href="http://hendrysuwanda.github.io/blog/categories/linux/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Apache | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/apache/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
   <updated>2013-10-08T10:32:43-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
@@ -12,100 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Cara Menampilkan Versi Package, Kernel, Debian dan Crunchbang]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/03/17/cara-menampilkan-versi-package-kernel-debian-dan-crunchbang/"/>
-    <updated>2013-03-17T06:04:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/03/17/cara-menampilkan-versi-package-kernel-debian-dan-crunchbang</id>
-    <content type="html"><![CDATA[<p>Berikut cara menampilkan versi dari package, kernel, debian, maupun crunchbang yang terinstall di environment kita.</p>
-
-<h3>Package</h3>
-
-<blockquote><blockquote><p>Cara ini hanya berjalan di linux turunan debian</p></blockquote></blockquote>
-
-<p>Ketikkan perintah berikut, untuk mengetahui versi dari package yang sudah terinstall di environment kita, ganti <code>&lt;package_name&gt;</code> dengan package yang di inginkan</p>
-
-<p><code>
-dpkg -l | grep &lt;package_name&gt;
-</code></p>
-
-<p>contoh</p>
-
-<p><code>
-dpkg -l | grep libc6
-</code></p>
-
-<p>di environment saya akan menampilkan hasil seperti di bawah ini</p>
-
-<p><code>
-ii  libc6                    2.11.3-4           Embedded GNU C Library: Shared libraries
-ii  libc6-dev                2.11.3-4           Embedded GNU C Library: Development Libraries and Header Files
-</code></p>
-
-<h3>Kernel</h3>
-
-<p>Ada 2 cara untuk mengetahui versi kernel yang kita gunakan. Pertama, dengan mengetikkan perintah berikut:</p>
-
-<p><code>
-uname -a
-</code></p>
-
-<p>Perintah di atas, akan mencetak semua informasi dari kernel yang kita gunakan, di environment saya, menampilkan</p>
-
-<p><code>
-Linux marjinal 2.6.32-5-amd64 #1 SMP Mon Jan 16 16:22:28 UTC 2012 x86_64 GNU/Linux
-</code></p>
-
-<p>Kedua, dengan mengetikkan perintah berikut:</p>
-
-<p><code>
-uname -r
-</code></p>
-
-<p>Perintah diatas, hanya akan mencetak versi dari kernel, di environment saya, menampilkan</p>
-
-<p><code>
-2.6.32-5-amd64
-</code></p>
-
-<p>Cara kedua, sangat bermanfaat, jika kita ingin mengintall package yang membutuhkan versi kernel, contoh, <code>kernel header</code>, sehingga kita dapat mengetikkan</p>
-
-<p><code>
-apt-get install linux-headers-$(uname -r)
-</code></p>
-
-<h3>Debian</h3>
-
-<p>Untuk mengetahui versi debian, ketikkan perintah berikut</p>
-
-<p><code>
-cat /etc/debian_version
-</code></p>
-
-<p>di environment saya menampilkan</p>
-
-<p><code>
-6.0.4
-</code></p>
-
-<h3>Crunchbang</h3>
-
-<p>Untuk mengetahui versi Crunchbang, ketikkan perintah berikut</p>
-
-<p><code>
-cat /etc/lsb-release-crunchbang
-</code>
-di environment saya menampilkan</p>
-
-<p><code>
-DISTRIB_ID=CrunchBang
-DISTRIB_RELEASE=10
-DISTRIB_CODENAME=statler
-DISTRIB_DESCRIPTION="CrunchBang 10 statler"
-</code></p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Membuat SSL Certificate di Apache/Crunchbang Linux]]></title>
@@ -166,7 +72,7 @@ Locality Name (eg, city) []:Jakarta Selatan
 Organization Name (eg, company) [Internet Widgits Pty Ltd]:Hendry Suwanda
 Organizational Unit Name (eg, section) []:&ndash;
 Common Name (e.g. server FQDN or YOUR name) []:www.hendrysuwanda.com
-Email Address []:<a href="&#109;&#97;&#x69;&#x6c;&#x74;&#x6f;&#58;&#115;&#x75;&#119;&#x61;&#x6e;&#x64;&#97;&#x2e;&#104;&#x65;&#110;&#x64;&#114;&#121;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#99;&#111;&#109;">&#x73;&#117;&#x77;&#97;&#x6e;&#100;&#97;&#x2e;&#x68;&#x65;&#x6e;&#x64;&#114;&#x79;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#x63;&#111;&#109;</a></p>
+Email Address []:<a href="&#x6d;&#97;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#115;&#x75;&#119;&#97;&#x6e;&#100;&#x61;&#46;&#104;&#101;&#x6e;&#x64;&#114;&#121;&#x40;&#103;&#x6d;&#97;&#105;&#x6c;&#46;&#x63;&#111;&#109;">&#x73;&#117;&#x77;&#97;&#x6e;&#100;&#97;&#x2e;&#104;&#101;&#110;&#x64;&#x72;&#x79;&#x40;&#x67;&#x6d;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#109;</a></p>
 
 <p>```</p>
 
