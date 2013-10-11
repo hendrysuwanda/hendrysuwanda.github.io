@@ -4,7 +4,7 @@
   <title><![CDATA[Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-10-11T11:46:25-04:00</updated>
+  <updated>2013-10-11T12:24:20-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,91 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[While Loop di Oracle/PLSQL]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/11/while-loop-di-oracle-slash-plsql/"/>
+    <updated>2013-10-11T12:11:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/11/while-loop-di-oracle-slash-plsql</id>
+    <content type="html"><![CDATA[<p>Sintaks untuk <code>while loop</code> di oracle seperti ini:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">WHILE</span> <span class="n">condition</span>
+</span><span class='line'><span class="n">LOOP</span>
+</span><span class='line'>   <span class="err">{</span><span class="p">.</span><span class="n">statements</span><span class="p">.</span><span class="err">}</span>
+</span><span class='line'><span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Kita menggunakan <code>while loop</code> ketika kita tidak yakin berapa kali kita akan meng-eksekusi <code>loop body</code>. Karena <code>while condition</code> di evaluasi sebelum masuk ke dalam <code>loop</code>, ini memungkinkan <code>loop body</code> tidak akan di eksekusi sama sekali.</p>
+
+<p>Contoh: kita akan membuat function yang berfungsi untuk mencari posisi terakhir dari karakter <code>x</code> dari suatu <code>String</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="n">LAST_INDEX</span><span class="p">(</span><span class="n">P_STRING</span> <span class="k">IN</span> <span class="n">VARCHAR2</span><span class="p">,</span> <span class="n">P_CHAR</span> <span class="k">IN</span> <span class="n">VARCHAR2</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">RETURN</span> <span class="nb">NUMBER</span> <span class="k">DETERMINISTIC</span>
+</span><span class='line'>  <span class="k">AS</span>
+</span><span class='line'>    <span class="n">V_INDEX</span>         <span class="nb">NUMBER</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">V_START</span>         <span class="nb">NUMBER</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">BEGIN</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">V_START</span> <span class="p">:</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">SELECT</span> <span class="n">INSTR</span><span class="p">(</span><span class="n">P_STRING</span><span class="p">,</span> <span class="n">P_CHAR</span><span class="p">,</span> <span class="n">V_START</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">INTO</span> <span class="n">V_INDEX</span>
+</span><span class='line'>    <span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">WHILE</span> <span class="n">V_INDEX</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="n">LOOP</span>
+</span><span class='line'>      <span class="n">V_START</span> <span class="p">:</span><span class="o">=</span> <span class="n">V_INDEX</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">SELECT</span> <span class="n">INSTR</span><span class="p">(</span><span class="n">P_STRING</span><span class="p">,</span> <span class="n">P_CHAR</span><span class="p">,</span> <span class="n">V_START</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">INTO</span> <span class="n">V_INDEX</span>
+</span><span class='line'>      <span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">RETURN</span> <span class="n">V_START</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">END</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>test:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="n">LAST_INDEX</span><span class="p">(</span><span class="s1">&#39;123X567X89X123&#39;</span><span class="p">,</span><span class="s1">&#39;X&#39;</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>result:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="mi">11</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Membuat AUTO_INCREMENT di mysql]]></title>
@@ -1241,19 +1326,6 @@ Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command beriku
 
 
 <p><code>data.message</code> merupakan model, seperti penjelasan sebelumnya, jadi segala perubahan yang di lakukan oleh user terhadap input text box, maka akan mengikat ke model, dan segala perubahan di model akan mengikat ke dalam tag <code>&lt;h1&gt;&lt;/h1&gt;</code>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[AngularJS - Pengenalan]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/08/31/angularjs-pengenalan/"/>
-    <updated>2013-08-31T11:25:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/08/31/angularjs-pengenalan</id>
-    <content type="html"><![CDATA[<p>AngularJS merupakan teknologi client-side murni, ditulis selurunya dalam JavaScript. Ia bekerja dengan teknologi web yang sudah lama terbentuk (HTML, CSS dan JavaScript) untuk membuat pengembangan Web Aplikasi lebih mudah dan cepat dari sebelumnya.</p>
-
-<p>Di kembangkan pada 2009 oleh Miško Hevery dan Adam Abrons &ndash; keduanya karyawan google pada waktu itu. AngularJS merupakan project open source dengan lisensi MIT. Kita bahkan bisa menggunakan logo nya, dimana tersedia dibawah lisensi <em>Creative Attribution-ShareAlike 3.0 Unported</em>.</p>
-
-<p>Untuk mengetahu lebih lanjut mengenai AngularJS, silahkan kunjungi <a href="http://docs.angularjs.org/guide/introduction">alamat ini</a></p>
 ]]></content>
   </entry>
   

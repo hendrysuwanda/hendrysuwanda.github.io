@@ -4,11 +4,17 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Menjalankan Java Main Class menggunakan Maven Command - Hendry Suwanda</title>
+  <title>While Loop di Oracle/PLSQL - Hendry Suwanda</title>
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Sep 27th, 2013 Menjalankan Java Main Class Menggunakan Maven Command Anggap, kita memiliki project java dengan struktur seperti di bawah ini Lalu, &hellip;">
+  <meta name="description" content="Oct 11th, 2013 While Loop Di Oracle/PLSQL Sintaks untuk while loop di oracle seperti ini: 1
+2
+3
+4
+WHILE condition
+LOOP {.statements.}
+END LOOP; Kita &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -17,7 +23,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://hendrysuwanda.github.io/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command">
+  <link rel="canonical" href="http://hendrysuwanda.github.io/blog/2013/10/11/while-loop-di-oracle-slash-plsql">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Hendry Suwanda" type="application/atom+xml">
 
@@ -98,24 +104,35 @@
   
 
 
-<time datetime="2013-09-27T13:02:00-04:00" pubdate data-updated="true">Sep 27<span>th</span>, 2013</time>
+<time datetime="2013-10-11T12:11:00-04:00" pubdate data-updated="true">Oct 11<span>th</span>, 2013</time>
         
       </p>
     
     
     <h1 class="entry-title">
-        Menjalankan Java Main Class Menggunakan Maven Command
+        While Loop Di Oracle/PLSQL
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix"><p>Anggap, kita memiliki project java dengan struktur seperti di bawah ini</p>
+<div class="entry-content clearfix"><p>Sintaks untuk <code>while loop</code> di oracle seperti ini:</p>
 
-<p><img src="/images/maven/maven-run-main-class.png"></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">WHILE</span> <span class="n">condition</span>
+</span><span class='line'><span class="n">LOOP</span>
+</span><span class='line'>   <span class="err">{</span><span class="p">.</span><span class="n">statements</span><span class="p">.</span><span class="err">}</span>
+</span><span class='line'><span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>Lalu, kita ingin menjalankan project tersebut dengan menggunakan maven. Maka kita harus menabahkan plugin <code>exec-maven-plugin</code> di dalam <code>pom.xml</code> seperti di bawah ini</p>
+
+<p>Kita menggunakan <code>while loop</code> ketika kita tidak yakin berapa kali kita akan meng-eksekusi <code>loop body</code>. Karena <code>while condition</code> di evaluasi sebelum masuk ke dalam <code>loop</code>, ini memungkinkan <code>loop body</code> tidak akan di eksekusi sama sekali.</p>
+
+<p>Contoh: kita akan membuat function yang berfungsi untuk mencari posisi terakhir dari karakter <code>x</code> dari suatu <code>String</code>.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -131,27 +148,50 @@
 <span class='line-number'>12</span>
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>...
-</span><span class='line'><span class="nt">&lt;build&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;plugins&gt;</span>
-</span><span class='line'>        ...
-</span><span class='line'>      <span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;artifactId&gt;</span>exec-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;configuration&gt;</span>
-</span><span class='line'>               <span class="nt">&lt;mainClass&gt;</span>com.hendrysuwanda.tutorial.javacodegeeks.App<span class="nt">&lt;/mainClass&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/configuration&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/plugin&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/plugins&gt;</span>
-</span><span class='line'><span class="nt">&lt;/build&gt;</span>
-</span><span class='line'>...
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="n">LAST_INDEX</span><span class="p">(</span><span class="n">P_STRING</span> <span class="k">IN</span> <span class="n">VARCHAR2</span><span class="p">,</span> <span class="n">P_CHAR</span> <span class="k">IN</span> <span class="n">VARCHAR2</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">RETURN</span> <span class="nb">NUMBER</span> <span class="k">DETERMINISTIC</span>
+</span><span class='line'>  <span class="k">AS</span>
+</span><span class='line'>    <span class="n">V_INDEX</span>         <span class="nb">NUMBER</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">V_START</span>         <span class="nb">NUMBER</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">BEGIN</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">V_START</span> <span class="p">:</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">SELECT</span> <span class="n">INSTR</span><span class="p">(</span><span class="n">P_STRING</span><span class="p">,</span> <span class="n">P_CHAR</span><span class="p">,</span> <span class="n">V_START</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">INTO</span> <span class="n">V_INDEX</span>
+</span><span class='line'>    <span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">WHILE</span> <span class="n">V_INDEX</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="n">LOOP</span>
+</span><span class='line'>      <span class="n">V_START</span> <span class="p">:</span><span class="o">=</span> <span class="n">V_INDEX</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">SELECT</span> <span class="n">INSTR</span><span class="p">(</span><span class="n">P_STRING</span><span class="p">,</span> <span class="n">P_CHAR</span><span class="p">,</span> <span class="n">V_START</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">INTO</span> <span class="n">V_INDEX</span>
+</span><span class='line'>      <span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">RETURN</span> <span class="n">V_START</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">END</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Lalu untuk menjalankan nya, kita dapat menggunakan command</p>
+<p>test:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>mvn exec:java
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="n">LAST_INDEX</span><span class="p">(</span><span class="s1">&#39;123X567X89X123&#39;</span><span class="p">,</span><span class="s1">&#39;X&#39;</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>result:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="mi">11</span>
 </span></code></pre></td></tr></table></div></figure>
 
 </div>
@@ -176,12 +216,12 @@
   
 
 
-<time datetime="2013-09-27T13:02:00-04:00" pubdate data-updated="true">Sep 27<span>th</span>, 2013</time>
+<time datetime="2013-10-11T12:11:00-04:00" pubdate data-updated="true">Oct 11<span>th</span>, 2013</time>
           
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/maven/'>Maven</a>
+    <a class='category' href='/blog/categories/oracle/'>oracle</a>, <a class='category' href='/blog/categories/pl-slash-sql/'>pl/sql</a>
   
 </span>
 
@@ -190,7 +230,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://hendrysuwanda.github.io/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/" data-via="" data-counturl="http://hendrysuwanda.github.io/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://hendrysuwanda.github.io/blog/2013/10/11/while-loop-di-oracle-slash-plsql/" data-via="" data-counturl="http://hendrysuwanda.github.io/blog/2013/10/11/while-loop-di-oracle-slash-plsql/" >Tweet</a>
   
   
   
@@ -200,10 +240,8 @@
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/blog/2013/09/22/install-rabbitmq-di-crunchbang/" title="Previous Post: Install RabbitMQ di #CrunchBang">&laquo; Install RabbitMQ di #CrunchBang</a></li>
+            <li class="previous"><a href="/blog/2013/10/06/membuat-auto-increment-di-mysql/" title="Previous Post: Membuat AUTO_INCREMENT di mysql">&laquo; Membuat AUTO_INCREMENT di mysql</a></li>
             
-            
-            <li class="next"><a href="/blog/2013/09/28/konversi-timestamp-ke-date-di-oracle/" title="Next Post: Konversi Timestamp ke Date di Oracle">Konversi Timestamp ke Date di Oracle &raquo;</a></li>
             
           </ul>
         
@@ -228,7 +266,7 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2013/10/11/while-loop-di-oracle-slash-plsql/">While Loop Di Oracle/PLSQL</a>
+    <a class="list-group-item active" href="/blog/2013/10/11/while-loop-di-oracle-slash-plsql/">While Loop Di Oracle/PLSQL</a>
     
     <a class="list-group-item " href="/blog/2013/10/06/membuat-auto-increment-di-mysql/">Membuat AUTO_INCREMENT Di Mysql</a>
     
@@ -274,8 +312,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://hendrysuwanda.github.io/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/';
-        var disqus_url = 'http://hendrysuwanda.github.io/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/';
+        var disqus_identifier = 'http://hendrysuwanda.github.io/blog/2013/10/11/while-loop-di-oracle-slash-plsql/';
+        var disqus_url = 'http://hendrysuwanda.github.io/blog/2013/10/11/while-loop-di-oracle-slash-plsql/';
         var disqus_script = 'embed.js';
       
     (function () {

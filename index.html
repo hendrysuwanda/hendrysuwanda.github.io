@@ -8,7 +8,13 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Oct 6th, 2013 Membuat AUTO_INCREMENT Di Mysql AUTO_INCREMENT memungkinkan kita untuk mendapatkan angka/nomor yang unik ketika sebuah record di &hellip;">
+  <meta name="description" content="Oct 11th, 2013 While Loop Di Oracle/PLSQL Sintaks untuk while loop di oracle seperti ini: 1
+2
+3
+4
+WHILE condition
+LOOP {.statements.}
+END LOOP; Kita &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +89,118 @@
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-11T12:11:00-04:00" pubdate data-updated="true">Oct 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/11/while-loop-di-oracle-slash-plsql/">While Loop Di Oracle/PLSQL</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Sintaks untuk <code>while loop</code> di oracle seperti ini:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">WHILE</span> <span class="n">condition</span>
+</span><span class='line'><span class="n">LOOP</span>
+</span><span class='line'>   <span class="err">{</span><span class="p">.</span><span class="n">statements</span><span class="p">.</span><span class="err">}</span>
+</span><span class='line'><span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Kita menggunakan <code>while loop</code> ketika kita tidak yakin berapa kali kita akan meng-eksekusi <code>loop body</code>. Karena <code>while condition</code> di evaluasi sebelum masuk ke dalam <code>loop</code>, ini memungkinkan <code>loop body</code> tidak akan di eksekusi sama sekali.</p>
+
+<p>Contoh: kita akan membuat function yang berfungsi untuk mencari posisi terakhir dari karakter <code>x</code> dari suatu <code>String</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="n">LAST_INDEX</span><span class="p">(</span><span class="n">P_STRING</span> <span class="k">IN</span> <span class="n">VARCHAR2</span><span class="p">,</span> <span class="n">P_CHAR</span> <span class="k">IN</span> <span class="n">VARCHAR2</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">RETURN</span> <span class="nb">NUMBER</span> <span class="k">DETERMINISTIC</span>
+</span><span class='line'>  <span class="k">AS</span>
+</span><span class='line'>    <span class="n">V_INDEX</span>         <span class="nb">NUMBER</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">V_START</span>         <span class="nb">NUMBER</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">BEGIN</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">V_START</span> <span class="p">:</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">SELECT</span> <span class="n">INSTR</span><span class="p">(</span><span class="n">P_STRING</span><span class="p">,</span> <span class="n">P_CHAR</span><span class="p">,</span> <span class="n">V_START</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">INTO</span> <span class="n">V_INDEX</span>
+</span><span class='line'>    <span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">WHILE</span> <span class="n">V_INDEX</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="n">LOOP</span>
+</span><span class='line'>      <span class="n">V_START</span> <span class="p">:</span><span class="o">=</span> <span class="n">V_INDEX</span><span class="p">;</span>
+</span><span class='line'>      <span class="k">SELECT</span> <span class="n">INSTR</span><span class="p">(</span><span class="n">P_STRING</span><span class="p">,</span> <span class="n">P_CHAR</span><span class="p">,</span> <span class="n">V_START</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">INTO</span> <span class="n">V_INDEX</span>
+</span><span class='line'>      <span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">RETURN</span> <span class="n">V_START</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">END</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>test:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="n">LAST_INDEX</span><span class="p">(</span><span class="s1">&#39;123X567X89X123&#39;</span><span class="p">,</span><span class="s1">&#39;X&#39;</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>result:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="mi">11</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -1133,55 +1251,6 @@ Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command beriku
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-28T08:02:00-04:00" pubdate data-updated="true">Sep 28<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/28/url-belajar-spring-batch/">URL Belajar Spring-Batch</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><h2><a href="http://www.mkyong.com">mkyong</a></h2>
-
-<ol>
-<li><a href="http://www.mkyong.com/tutorials/spring-batch-tutorial/">Spring Batch Tutorial</a></li>
-<li><a href="http://www.mkyong.com/spring-batch/spring-batch-hello-world-example/">Spring Batch Hello World Example</a></li>
-</ol>
-
-
-<h2><a href="http://blogs.justenougharchitecture.com">Mathew&rsquo;s Thoughts!</a></h2>
-
-<ol>
-<li><a href="http://blogs.justenougharchitecture.com/?p=124">Spring Batch 2.0 – Part I – Simple Tasklet</a></li>
-</ol>
-
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1205,6 +1274,8 @@ Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command beriku
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2013/10/11/while-loop-di-oracle-slash-plsql/">While Loop Di Oracle/PLSQL</a>
+    
     <a class="list-group-item " href="/blog/2013/10/06/membuat-auto-increment-di-mysql/">Membuat AUTO_INCREMENT Di Mysql</a>
     
     <a class="list-group-item " href="/blog/2013/10/04/berkenalan-dengan-spring-batch/">Berkenalan Dengan Spring-Batch</a>
@@ -1212,8 +1283,6 @@ Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command beriku
     <a class="list-group-item " href="/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/">Error &#8216;Unable to Open Logs&#8217; Ketika Menjalankan Httpd</a>
     
     <a class="list-group-item " href="/blog/2013/10/04/rename-column-di-oracle/">Rename Column Di Oracle</a>
-    
-    <a class="list-group-item " href="/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang/">List File/Directory Dalam Bentuk Tree Di Crunchbang</a>
     
   </div>
 </section>
@@ -1245,6 +1314,19 @@ Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command beriku
     <script src="/javascripts/libs/bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
 <script src="/javascripts/modernizr-2.0.js"></script>
 
+
+<script type="text/javascript">
+      var disqus_shortname = 'hendrysuwanda';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 

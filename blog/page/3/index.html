@@ -8,8 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Jul 21st, 2013 Running Maven Offline Mode Terkadang, sangat menjengkelkan, ketika menjalankan command berikut 1
-mvn clean install maven melakukan &hellip;">
+  <meta name="description" content="Aug 31st, 2013 AngularJS - Pengenalan AngularJS merupakan teknologi client-side murni, ditulis selurunya dalam JavaScript. Ia bekerja dengan &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +83,46 @@ mvn clean install maven melakukan &hellip;">
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-31T11:25:00-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/31/angularjs-pengenalan/">AngularJS - Pengenalan</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>AngularJS merupakan teknologi client-side murni, ditulis selurunya dalam JavaScript. Ia bekerja dengan teknologi web yang sudah lama terbentuk (HTML, CSS dan JavaScript) untuk membuat pengembangan Web Aplikasi lebih mudah dan cepat dari sebelumnya.</p>
+
+<p>Di kembangkan pada 2009 oleh Miško Hevery dan Adam Abrons &ndash; keduanya karyawan google pada waktu itu. AngularJS merupakan project open source dengan lisensi MIT. Kita bahkan bisa menggunakan logo nya, dimana tersedia dibawah lisensi <em>Creative Attribution-ShareAlike 3.0 Unported</em>.</p>
+
+<p>Untuk mengetahu lebih lanjut mengenai AngularJS, silahkan kunjungi <a href="http://docs.angularjs.org/guide/introduction">alamat ini</a></p>
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -700,87 +739,6 @@ bukan semakin kaco :)</p>
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-30T04:45:00-04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/30/cara-menampilkan-hasil-dari-dbms-output-dot-put-line-message/">Cara Menampilkan Hasil Dari dbms_output.put_line(message)</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Belakangan ini saya lagi belajar PL/SQL dari situs <a href="http://www.tutorialspoint.com/plsql/index.htm">ini</a>.</p>
-
-<p>Tapi sialnya, ketika masih menulis script helloworld tidak mendapatkan hasilnya, scriptnya sebagai berikut:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">DECLARE</span>
-</span><span class='line'>   <span class="n">message</span>  <span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span><span class="o">=</span> <span class="s1">&#39;Hello, World!&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="k">BEGIN</span>
-</span><span class='line'>   <span class="n">dbms_output</span><span class="p">.</span><span class="n">put_line</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
-</span><span class='line'><span class="k">END</span><span class="p">;</span>
-</span><span class='line'><span class="o">/</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Masih helloworld aja sudah gagal :D. tapi tenang dulu, dari hasil google yg nggak sengaja, ternyata secara default, oracle mematikan hasil dari perintah ini <code>dbms_output.put_line(message);</code>, untuk mengaktifkannya, tambahkan script berikut di awal script PL/SQL</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">set</span> <span class="n">serveroutput</span> <span class="k">on</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>kurang lebih, script helloworld saya diatas menjadi seperti di bawah ini:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">set</span> <span class="n">serveroutput</span> <span class="k">on</span><span class="p">;</span>
-</span><span class='line'><span class="k">DECLARE</span>
-</span><span class='line'>   <span class="n">message</span>  <span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span><span class="o">=</span> <span class="s1">&#39;Hello, World!&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="k">BEGIN</span>
-</span><span class='line'>   <span class="n">dbms_output</span><span class="p">.</span><span class="n">put_line</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
-</span><span class='line'><span class="k">END</span><span class="p">;</span>
-</span><span class='line'><span class="o">/</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Akhirnya saya lulus pelajaran helloworld PL/SQL :D</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -804,6 +762,8 @@ bukan semakin kaco :)</p>
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2013/10/11/while-loop-di-oracle-slash-plsql/">While Loop Di Oracle/PLSQL</a>
+    
     <a class="list-group-item " href="/blog/2013/10/06/membuat-auto-increment-di-mysql/">Membuat AUTO_INCREMENT Di Mysql</a>
     
     <a class="list-group-item " href="/blog/2013/10/04/berkenalan-dengan-spring-batch/">Berkenalan Dengan Spring-Batch</a>
@@ -811,8 +771,6 @@ bukan semakin kaco :)</p>
     <a class="list-group-item " href="/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/">Error &#8216;Unable to Open Logs&#8217; Ketika Menjalankan Httpd</a>
     
     <a class="list-group-item " href="/blog/2013/10/04/rename-column-di-oracle/">Rename Column Di Oracle</a>
-    
-    <a class="list-group-item " href="/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang/">List File/Directory Dalam Bentuk Tree Di Crunchbang</a>
     
   </div>
 </section>
@@ -844,6 +802,19 @@ bukan semakin kaco :)</p>
     <script src="/javascripts/libs/bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
 <script src="/javascripts/modernizr-2.0.js"></script>
 
+
+<script type="text/javascript">
+      var disqus_shortname = 'hendrysuwanda';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
