@@ -8,13 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Oct 11th, 2013 While Loop Di Oracle/PLSQL Sintaks untuk while loop di oracle seperti ini: 1
-2
-3
-4
-WHILE condition
-LOOP {.statements.}
-END LOOP; Kita &hellip;">
+  <meta name="description" content="Oct 11th, 2013 Ekuivalen Fungsi Left, Mid Dan Right Di Oracle Oracle tidak memiliki fungsi Left, Mid dan Right seperti di SQLServer, tapi kita &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -92,6 +86,87 @@ END LOOP; Kita &hellip;">
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-11T13:25:00-04:00" pubdate data-updated="true">Oct 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/11/ekuivalen-fungsi-left-mid-right-di-oracle/">Ekuivalen Fungsi Left, Mid Dan Right Di Oracle</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Oracle tidak memiliki fungsi <code>Left</code>, <code>Mid</code> dan <code>Right</code> seperti di SQLServer, tapi kita menggunakan fungsi <code>substr</code> agar dapat bekerja sesuai dengan 3 fungsi tersebut.</p>
+
+<div class="well">
+    Sebenarnya fungsi substr di oracle sama dengan fungsi mid di sqlserver
+</div>
+
+
+<h3>Left</h3>
+
+<figure class='code'><figcaption><span>SQLServer</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">LEFT</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;Indo&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>Oracle</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">SUBSTR</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;Indo&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Mid</h3>
+
+<figure class='code'><figcaption><span>SQLServer</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">MID</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;nesia&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span>Oracle</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">SUBSTR</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;nesia&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Right</h3>
+
+<figure class='code'><figcaption><span>SQLServer</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">RIGHT</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;nesia&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<figure class='code'><figcaption><span>Oracle</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">SUBSTR</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;nesia&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>-5 = Di hitung dari kanan ke kiri, dalam contoh di atas merupakan posisi <code>n</code>.</p>
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -1208,52 +1283,6 @@ Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command beriku
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-29T03:35:00-04:00" pubdate data-updated="true">Sep 29<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/29/url-belajar-wicket/">URL Belajar Wicket</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p><a href="http://www.rent-a-hero.de/cms/node/10">Apache Wicket with Twitter Bootstrap and Impromptu JQuery Overlay</a></p>
-
-<p><a href="http://tomaszdziurko.pl/2012/03/wicket-and-twitter-bootstrap-navbar/">Using Twitter Bootstrap Navbar as a Wicket component</a></p>
-
-<p><a href="http://www.mkyong.com/tutorials/wicket-tutorials">mkyong &ndash; Wicket Tutorial</a></p>
-
-<p><a href="http://blog.bosch-si.com/apache-wicket-lessons-learned/">Apache Wicket – three years of lessons learned</a></p>
-
-<p><a href="https://github.com/bitstorm/Wicket-tutorial-examples">Wicket-tutorial-examples</a></p>
-
-<p><a href="http://wicketguide.comsysto.com/">wicket guide</a></p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1277,6 +1306,8 @@ Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command beriku
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2013/10/11/ekuivalen-fungsi-left-mid-right-di-oracle/">Ekuivalen Fungsi Left, Mid Dan Right Di Oracle</a>
+    
     <a class="list-group-item " href="/blog/2013/10/11/while-loop-di-oracle-slash-plsql/">While Loop Di Oracle/PLSQL</a>
     
     <a class="list-group-item " href="/blog/2013/10/06/membuat-auto-increment-di-mysql/">Membuat AUTO_INCREMENT Di Mysql</a>
@@ -1284,8 +1315,6 @@ Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command beriku
     <a class="list-group-item " href="/blog/2013/10/04/berkenalan-dengan-spring-batch/">Berkenalan Dengan Spring-Batch</a>
     
     <a class="list-group-item " href="/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/">Error &#8216;Unable to Open Logs&#8217; Ketika Menjalankan Httpd</a>
-    
-    <a class="list-group-item " href="/blog/2013/10/04/rename-column-di-oracle/">Rename Column Di Oracle</a>
     
   </div>
 </section>

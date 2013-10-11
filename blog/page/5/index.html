@@ -8,7 +8,10 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Jan 26th, 2013 Membuat Project Menggunakan Maven - Archetype Local Jika kita telah membuat archetype, kita dapat menggunakan archetype tersebut utk &hellip;">
+  <meta name="description" content="Mar 10th, 2013 Install Maven Di Linux Perlengkapan Berikut daftar tools/files yang di perlukan: apache-maven-3.0.5
+Terminal
+wget
+vi/vim Langkah 1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +89,114 @@
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-10T06:15:00-04:00" pubdate data-updated="true">Mar 10<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/10/install-maven-di-linux/">Install Maven Di Linux</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><h3>Perlengkapan</h3>
+
+<p>Berikut daftar tools/files yang di perlukan:</p>
+
+<ul>
+<li>apache-maven-3.0.5</li>
+<li>Terminal</li>
+<li>wget</li>
+<li>vi/vim</li>
+</ul>
+
+
+<h3>Langkah 1</h3>
+
+<p>Buka terminal dan ketikkan perintah berikut untuk melakukan download maven versi 3.0.5</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget -c http://apache.mesi.com.ar/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.zip</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Langkah 2</h3>
+
+<p>Extract file maven hasil download dengan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>unzip apache-maven-3.0.5-bin.zip</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Langkah 3</h3>
+
+<p>Selanjutnya, tambahkan direktori maven di letakkan ke system path. Ini gunanya, agar kita bisa gunakan perintah maven di direktori mana pun. Buka .bashrc menggunakan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vi ~/.bashrc</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Langkah 4</h3>
+
+<p>Tambahkan perintah di bawah ini, di akhir file tersebut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export M2_HOME=/usr/local/maven
+</span><span class='line'>
+</span><span class='line'>export PATH=${M2_HOME}/bin:${PATH}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu simpan dengan tekan tombol escape, lalu <code>:wq!</code></p>
+
+<h3>Langkah 5</h3>
+
+<p>Selesai, utk mengetesnya, ketikkan perintah berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn -version</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di environment saya, muncul log berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Apache Maven 3.0.5 (r01de14724cdef164cd33c7c8c2fe155faf9602da; 2013-02-19 08:51:28-0500)
+</span><span class='line'>Maven home: /home/marjinal/TOOLS/apache-maven-3.0.5
+</span><span class='line'>Java version: 1.7.0_10, vendor: Oracle Corporation
+</span><span class='line'>Java home: /usr/local/java/jdk1.7.0_10/jre
+</span><span class='line'>Default locale: en_US, platform encoding: UTF-8
+</span><span class='line'>OS name: "linux", version: "2.6.32-5-amd64", arch: "amd64", family: "unix"</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -405,6 +516,8 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2013/10/11/ekuivalen-fungsi-left-mid-right-di-oracle/">Ekuivalen Fungsi Left, Mid Dan Right Di Oracle</a>
+    
     <a class="list-group-item " href="/blog/2013/10/11/while-loop-di-oracle-slash-plsql/">While Loop Di Oracle/PLSQL</a>
     
     <a class="list-group-item " href="/blog/2013/10/06/membuat-auto-increment-di-mysql/">Membuat AUTO_INCREMENT Di Mysql</a>
@@ -412,8 +525,6 @@
     <a class="list-group-item " href="/blog/2013/10/04/berkenalan-dengan-spring-batch/">Berkenalan Dengan Spring-Batch</a>
     
     <a class="list-group-item " href="/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/">Error &#8216;Unable to Open Logs&#8217; Ketika Menjalankan Httpd</a>
-    
-    <a class="list-group-item " href="/blog/2013/10/04/rename-column-di-oracle/">Rename Column Di Oracle</a>
     
   </div>
 </section>

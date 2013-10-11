@@ -8,8 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Sep 28th, 2013 URL Belajar Spring-Batch mkyong Spring Batch Tutorial
-Spring Batch Hello World Example Mathew&rsquo;s Thoughts! Spring Batch 2.0 – &hellip;">
+  <meta name="description" content="Sep 29th, 2013 URL Belajar Wicket Apache Wicket with Twitter Bootstrap and Impromptu JQuery Overlay Using Twitter Bootstrap Navbar as a Wicket &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,6 +86,52 @@ Spring Batch Hello World Example Mathew&rsquo;s Thoughts! Spring Batch 2.0 – &
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-29T03:35:00-04:00" pubdate data-updated="true">Sep 29<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/29/url-belajar-wicket/">URL Belajar Wicket</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p><a href="http://www.rent-a-hero.de/cms/node/10">Apache Wicket with Twitter Bootstrap and Impromptu JQuery Overlay</a></p>
+
+<p><a href="http://tomaszdziurko.pl/2012/03/wicket-and-twitter-bootstrap-navbar/">Using Twitter Bootstrap Navbar as a Wicket component</a></p>
+
+<p><a href="http://www.mkyong.com/tutorials/wicket-tutorials">mkyong &ndash; Wicket Tutorial</a></p>
+
+<p><a href="http://blog.bosch-si.com/apache-wicket-lessons-learned/">Apache Wicket – three years of lessons learned</a></p>
+
+<p><a href="https://github.com/bitstorm/Wicket-tutorial-examples">Wicket-tutorial-examples</a></p>
+
+<p><a href="http://wicketguide.comsysto.com/">wicket guide</a></p>
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -659,130 +704,6 @@ Spring Batch Hello World Example Mathew&rsquo;s Thoughts! Spring Batch 2.0 – &
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-31T11:33:00-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/31/angularjs-binding/">AngularJS - Binding</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Binding merupakan fitur utama dari AngularJS. Ia menyediakan mekanisme sederhana untuk meng-integrasi HTML kita dengan Data kita melalui &#8220;.</p>
-
-<p>Data-Binding di Web Aplikasi Angular adalah sinkronisasi otomatis antara komponen <code>model</code> dan <code>view</code>. Cara yang Angular implementasi pada <code>data-binding</code> memungkinkan kita memperlakukan <code>model</code> sebagai satu-satunya sumber kebenaran di aplikasi kita. <code>view</code> adalah gambaran dari <code>model</code> setiap saat. Ketika <code>model</code> berubah, <code>view</code> menggambarkan perubahan, begitu juga sebaliknya.</p>
-
-<p><strong><em> Data-Binding di Sistem template klasik</em></strong></p>
-
-<p><img src="/images/angularjs/One_Way_Data_Binding.png"></p>
-
-<p>Sebagian besar sistem template mengikat data hanya dalam 1 arah: mereka menggabungkan komponen template dan model bersama-sama kedalam sebuah view, seperti di ilustrasikan pada diagram di atas. Setelah penggabungan terjadi, perubahan pada model atau bagian terkati pada view tidak otomatis terceminkan pada view.  Lebih buruk, segala perubahan yang user buat di view tidak di cerminkan pada model. Ini artinya developer harus menulis kode yang selalu sinkron view dengan model anda model dengan view.</p>
-
-<p><strong><em> Data-Binding di template Angular</em></strong></p>
-
-<p><img src="/images/angularjs/Two_Way_Data_Binding.png"></p>
-
-<p>Cara template angular bekerja berbeda, seperti di ilustrasikan pada diagram di atas. Mereka berbeda karena template pertama (yang merupakan HTML uncompiled bersama dengan markup tambahan dan directive) di compile pada browser, dan kedua, langkah kompilasi menghasilkan live view. Kita katakan live karena segala perubahan pada view secara langsung dicerminkan pada model, dan segala perubahan pada model di sebarkan ke view. Ini membuat model selalu satu-satunya-sumber-kebenaran untuk keadaan aplikasi, sangat menyederhanakan model pemrograman untuk developer. Anda dapat menganggap view seperti hanya sebuah proyeksi instan model Anda.</p>
-
-<p><strong><em> Contoh Data-Binding di AngularJS</em></strong></p>
-
-<p>Kita akan memulai dengan menyiapkan <code>div</code> dengan sebuah atribute <a href="http://docs.angularjs.org/api/ng.directive:ngApp"><code>ng-app</code></a>.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;title&gt;</span>Belajar AngularJS<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">ng-app=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>      
-</span><span class='line'>      <span class="nt">&lt;h1&gt;</span><span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;js/angular.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>jika kita menjalankan script di atas, maka akan muncul angka 2. Jika kita ganti &#8220; dengan hello world, maka akan muncul Hello world di browser kita.</p>
-
-<p>Sekarang, kita ingin melakukan binding, dari sebuah text box, ketika user mengetikkan sesuatu, secara realtime apa yg di ketikkan user akan tampil di bawahnya, seperti gambar di bawah ini.</p>
-
-<p><img src="/images/angularjs/binding-model.png"></p>
-
-<p>maka, kita akan ubah, script kita diatas menjadi seperti di bawah ini.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;title&gt;</span>Belajar AngularJS<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">ng-app=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">ng-model=</span><span class="s">&quot;data.message&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;h1&gt;</span><span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;js/angular.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>data.message</code> merupakan model, seperti penjelasan sebelumnya, jadi segala perubahan yang di lakukan oleh user terhadap input text box, maka akan mengikat ke model, dan segala perubahan di model akan mengikat ke dalam tag <code>&lt;h1&gt;&lt;/h1&gt;</code>.</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -806,6 +727,8 @@ Spring Batch Hello World Example Mathew&rsquo;s Thoughts! Spring Batch 2.0 – &
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2013/10/11/ekuivalen-fungsi-left-mid-right-di-oracle/">Ekuivalen Fungsi Left, Mid Dan Right Di Oracle</a>
+    
     <a class="list-group-item " href="/blog/2013/10/11/while-loop-di-oracle-slash-plsql/">While Loop Di Oracle/PLSQL</a>
     
     <a class="list-group-item " href="/blog/2013/10/06/membuat-auto-increment-di-mysql/">Membuat AUTO_INCREMENT Di Mysql</a>
@@ -813,8 +736,6 @@ Spring Batch Hello World Example Mathew&rsquo;s Thoughts! Spring Batch 2.0 – &
     <a class="list-group-item " href="/blog/2013/10/04/berkenalan-dengan-spring-batch/">Berkenalan Dengan Spring-Batch</a>
     
     <a class="list-group-item " href="/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/">Error &#8216;Unable to Open Logs&#8217; Ketika Menjalankan Httpd</a>
-    
-    <a class="list-group-item " href="/blog/2013/10/04/rename-column-di-oracle/">Rename Column Di Oracle</a>
     
   </div>
 </section>
