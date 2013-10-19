@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: sbt | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/sbt/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-10-19T11:02:48-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    <email><![CDATA[suwanda.hendry@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Merubah versi scala di sbt console secara permanent]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console-secara-permanent/"/>
+    <updated>2013-10-19T10:51:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console-secara-permanent</id>
+    <content type="html"><![CDATA[<p>Pada tulisan saya <a href="http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console/">sebelumnya</a>, versi scala yang di pakai tidak permanent, karena ketika keluar dari <code>sbt console</code>, versi scala kembali lagi ke versi default dari <code>sbt</code> yang di gunakan.</p>
+
+<p>```
+$ sbt
+[info] Set current project to marjinal (in build file:/home/marjinal/)</p>
+
+<blockquote><p>console
+[info] Updating {file:/home/marjinal/}marjinal&hellip;
+[info] Resolving org.fusesource.jansi#jansi;1.4 &hellip;
+[info] Done updating.
+[info] Starting scala interpreter&hellip;
+[info]
+Welcome to Scala version 2.10.2 (Java HotSpot&trade; 64-Bit Server VM, Java 1.7.0_10).
+Type in expressions to have them evaluated.
+Type :help for more information.</p></blockquote>
+
+<p>scala>
+```</p>
+
+<p>Untuk merubah versi scala menjadi permanent, buat file <code>global.sbt</code>, letakkan ke dalam <code>~/.sbt/{versisbt}</code> (jika versi sbt 0.13.0, ubah <code>versisbt</code> menjadi <code>0.13</code>)</p>
+
+<p><code>
+vi ~/.sbt/0.13/global.sbt
+</code></p>
+
+<p>Lalu isikan</p>
+
+<p><code>
+scalaVersion := "2.10.3"
+</code></p>
+
+<p>jika anda ingin menggunakan versi scala yang lain, ubah <code>2.10.3</code> menjadi yang anda inginkan.</p>
+
+<h3>Test</h3>
+
+<p>```
+$ sbt
+[info] Set current project to marjinal (in build file:/home/marjinal/)</p>
+
+<blockquote><p>console
+[info] Updating {file:/home/marjinal/}marjinal&hellip;
+[info] Resolving org.fusesource.jansi#jansi;1.4 &hellip;
+[info] Done updating.
+[info] Starting scala interpreter&hellip;
+[info]
+Welcome to Scala version 2.10.3 (Java HotSpot&trade; 64-Bit Server VM, Java 1.7.0_10).
+Type in expressions to have them evaluated.
+Type :help for more information.</p></blockquote>
+
+<p>scala>
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Merubah versi scala di sbt console]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console/"/>
+    <updated>2013-10-19T10:19:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console</id>
+    <content type="html"><![CDATA[<p>Saat saya menulis tulisan ini, versi terakhir scala adalah 2.10.3.</p>
+
+<p>Tapi ketika saya menjalankan <code>sbt console</code>, sbt masih menggunakan versi 2.10.2. Agar <code>sbt console</code> menggunakan versi 2.10.3 (atau versi yang kita inginkan), sebelum menjalankan command <code>console</code> ketikkan <code>++ scalaversion</code>, contoh <code>++ 2.10.3</code></p>
+
+<h3>Test</h3>
+
+<p>```
+[info] Set current project to marjinal (in build file:/home/marjinal/)</p>
+
+<blockquote><p>++ 2.10.3
+[info] Setting version to 2.10.3
+[info] Set current project to marjinal (in build file:/home/marjinal/)
+console
+[info] Starting scala interpreter&hellip;
+[info]
+Welcome to Scala version 2.10.3 (Java HotSpot&trade; 64-Bit Server VM, Java 1.7.0_10).
+Type in expressions to have them evaluated.
+Type :help for more information.</p></blockquote>
+
+<p>scala>
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Check versi sbt]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/19/check-versi-sbt/"/>
+    <updated>2013-10-19T10:13:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/19/check-versi-sbt</id>
+    <content type="html"><![CDATA[<p>Untuk mengecek versi sbt, jalankan command berikut:</p>
+
+<p><code>
+$ sbt sbt-version
+</code></p>
+
+<p>Output:</p>
+
+<p><code>
+[info] Set current project to marjinal (in build file:/home/marjinal/)
+[info] 0.13.0
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Install SBT di crunchbang]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/19/install-sbt-di-crunchbang/"/>
+    <updated>2013-10-19T09:51:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/19/install-sbt-di-crunchbang</id>
+    <content type="html"><![CDATA[<p>Di tulisan ini saya ingin menginstall sbt versi <code>0.13.0</code> di crunchbang.</p>
+
+<h3>Download sbt-launch</h3>
+
+<p>Download sbt-launch &amp; letakkan ke dalam folder <code>~/bin</code>.</p>
+
+<p><code>
+$ cd ~/bin
+$ wget -c http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.0/sbt-launch.jar
+</code></p>
+
+<p>Output:</p>
+
+<p>```
+&mdash;2013-10-19 09:22:26&mdash;  <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.0/sbt-launch.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.0/sbt-launch.jar</a>
+Resolving repo.typesafe.com&hellip; 54.236.91.228, 107.21.30.253, 54.236.87.147
+Connecting to repo.typesafe.com|54.236.91.228|:80&hellip; connected.
+HTTP request sent, awaiting response&hellip; 200 OK
+Length: 1132093 (1.1M) [application/java-archive]
+Saving to: “sbt-launch.jar”</p>
+
+<p>100%[========================================================================================================================================================>] 1,132,093   21.9K/s   in 31s</p>
+
+<p>2013-10-19 09:23:02 (35.7 KB/s) &ndash; “sbt-launch.jar” saved [1132093/1132093]</p>
+
+<p>```</p>
+
+<h3>Install sbt</h3>
+
+<p>Buat script dengan nama <code>sbt</code>, lalu letakkan ke dalam folder <code>~/bin</code>:</p>
+
+<p><code>
+$ cd ~/bin
+$ vi sbt
+</code></p>
+
+<p>Lalu isikan seperti di bawah ini:</p>
+
+<p><code>
+SBT_OPTS="-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
+java $SBT_OPTS -jar `dirname $0`/sbt-launch.jar "$@"
+</code></p>
+
+<p>Lalu save dengan ketikkan <code>:wq</code> dan buat script menjadi executable:</p>
+
+<p><code>
+$ chmod +x sbt
+</code></p>
+
+<h3>Test</h3>
+
+<p>Untuk menge-test apakah sbt sudah berjalan atau belom, ketikkan sembarang command dengan sbt. Di sini saya ingin mengecek versi dari sbt:</p>
+
+<p><code>
+$ sbt sbt-version
+</code></p>
+
+<p>Output:</p>
+
+<p>```
+Getting org.scala-sbt sbt 0.13.0 &hellip;
+downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt/0.13.0/jars/sbt.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt/0.13.0/jars/sbt.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#sbt;0.13.0!sbt.jar (3102ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/main/0.13.0/jars/main.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/main/0.13.0/jars/main.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#main;0.13.0!main.jar (113062ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-interface/0.13.0/jars/compiler-interface-src.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-interface/0.13.0/jars/compiler-interface-src.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#compiler-interface;0.13.0!compiler-interface-src.jar (2295ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-interface/0.13.0/jars/compiler-interface-bin.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-interface/0.13.0/jars/compiler-interface-bin.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#compiler-interface;0.13.0!compiler-interface-bin.jar (7793ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_8_2/0.13.0/jars/compiler-interface-bin.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_8_2/0.13.0/jars/compiler-interface-bin.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#precompiled-2_8_2;0.13.0!compiler-interface-bin.jar (8379ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_9_2/0.13.0/jars/compiler-interface-bin.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_9_2/0.13.0/jars/compiler-interface-bin.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#precompiled-2_9_2;0.13.0!compiler-interface-bin.jar (7139ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_9_3/0.13.0/jars/compiler-interface-bin.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_9_3/0.13.0/jars/compiler-interface-bin.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#precompiled-2_9_3;0.13.0!compiler-interface-bin.jar (8814ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/actions/0.13.0/jars/actions.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/actions/0.13.0/jars/actions.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#actions;0.13.0!actions.jar (19182ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/main-settings/0.13.0/jars/main-settings.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/main-settings/0.13.0/jars/main-settings.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#main-settings;0.13.0!main-settings.jar (21100ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/interface/0.13.0/jars/interface.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/interface/0.13.0/jars/interface.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#interface;0.13.0!interface.jar (3331ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/io/0.13.0/jars/io.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/io/0.13.0/jars/io.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#io;0.13.0!io.jar (14387ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/ivy/0.13.0/jars/ivy.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/ivy/0.13.0/jars/ivy.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#ivy;0.13.0!ivy.jar (50749ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/launcher-interface/0.13.0/jars/launcher-interface.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/launcher-interface/0.13.0/jars/launcher-interface.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#launcher-interface;0.13.0!launcher-interface.jar (3289ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/logging/0.13.0/jars/logging.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/logging/0.13.0/jars/logging.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#logging;0.13.0!logging.jar (7008ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/process/0.13.0/jars/process.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/process/0.13.0/jars/process.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#process;0.13.0!process.jar (5271ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/run/0.13.0/jars/run.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/run/0.13.0/jars/run.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#run;0.13.0!run.jar (8107ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/command/0.13.0/jars/command.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/command/0.13.0/jars/command.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#command;0.13.0!command.jar (10176ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/classpath/0.13.0/jars/classpath.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/classpath/0.13.0/jars/classpath.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#classpath;0.13.0!classpath.jar (6644ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/completion/0.13.0/jars/completion.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/completion/0.13.0/jars/completion.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#completion;0.13.0!completion.jar (13117ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/api/0.13.0/jars/api.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/api/0.13.0/jars/api.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#api;0.13.0!api.jar (27268ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-integration/0.13.0/jars/compiler-integration.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-integration/0.13.0/jars/compiler-integration.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#compiler-integration;0.13.0!compiler-integration.jar (16963ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-ivy-integration/0.13.0/jars/compiler-ivy-integration.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-ivy-integration/0.13.0/jars/compiler-ivy-integration.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#compiler-ivy-integration;0.13.0!compiler-ivy-integration.jar (2360ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/relation/0.13.0/jars/relation.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/relation/0.13.0/jars/relation.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#relation;0.13.0!relation.jar (5727ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/task-system/0.13.0/jars/task-system.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/task-system/0.13.0/jars/task-system.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#task-system;0.13.0!task-system.jar (13756ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/tasks/0.13.0/jars/tasks.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/tasks/0.13.0/jars/tasks.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#tasks;0.13.0!tasks.jar (25036ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/tracking/0.13.0/jars/tracking.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/tracking/0.13.0/jars/tracking.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#tracking;0.13.0!tracking.jar (4494ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/testing/0.13.0/jars/testing.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/testing/0.13.0/jars/testing.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#testing;0.13.0!testing.jar (4865ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/control/0.13.0/jars/control.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/control/0.13.0/jars/control.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#control;0.13.0!control.jar (2624ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/collections/0.13.0/jars/collections.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/collections/0.13.0/jars/collections.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#collections;0.13.0!collections.jar (14381ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/incremental-compiler/0.13.0/jars/incremental-compiler.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/incremental-compiler/0.13.0/jars/incremental-compiler.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#incremental-compiler;0.13.0!incremental-compiler.jar (11719ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compile/0.13.0/jars/compile.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compile/0.13.0/jars/compile.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#compile;0.13.0!compile.jar (5027ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/persist/0.13.0/jars/persist.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/persist/0.13.0/jars/persist.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#persist;0.13.0!persist.jar (6237ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/classfile/0.13.0/jars/classfile.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/classfile/0.13.0/jars/classfile.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#classfile;0.13.0!classfile.jar (4795ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbinary/sbinary_2.10/0.4.2/jars/sbinary_2.10.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbinary/sbinary_2.10/0.4.2/jars/sbinary_2.10.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-tools.sbinary#sbinary_2.10;0.4.2!sbinary_2.10.jar (40445ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/cross/0.13.0/jars/cross.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/cross/0.13.0/jars/cross.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#cross;0.13.0!cross.jar (2800ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/cache/0.13.0/jars/cache.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/cache/0.13.0/jars/cache.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#cache;0.13.0!cache.jar (5507ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/test-agent/0.13.0/jars/test-agent.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/test-agent/0.13.0/jars/test-agent.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#test-agent;0.13.0!test-agent.jar (3557ms)
+</code></pre>
+
+<p>downloading <a href="http://repo1.maven.org/maven2/org/scala-sbt/test-interface/1.0/test-interface-1.0.jar">http://repo1.maven.org/maven2/org/scala-sbt/test-interface/1.0/test-interface-1.0.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#test-interface;1.0!test-interface.jar (2579ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/apply-macro/0.13.0/jars/apply-macro.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/apply-macro/0.13.0/jars/apply-macro.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#apply-macro;0.13.0!apply-macro.jar (4793ms)
+</code></pre>
+
+<p>:: retrieving :: org.scala-sbt#boot-app</p>
+
+<pre><code>confs: [default]
+43 artifacts copied, 0 already retrieved (12440kB/310ms)
+</code></pre>
+
+<p>[info] Set current project to marjinal (in build file:/home/homedirectory/)
+[info] 0.13.0</p>
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -8,10 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Mar 10th, 2013 Install Maven Di Linux Perlengkapan Berikut daftar tools/files yang di perlukan: apache-maven-3.0.5
-Terminal
-wget
-vi/vim Langkah 1 &hellip;">
+  <meta name="description" content="Mar 18th, 2013 Install PIP Di CrunchBang PIP adalah sebuah tools yang berguna utk install dan manage semua package yang ada di python. Berikut cara &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -89,6 +86,392 @@ vi/vim Langkah 1 &hellip;">
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-18T13:58:00-04:00" pubdate data-updated="true">Mar 18<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/18/install-pip-di-crunchbang/">Install PIP Di CrunchBang</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>PIP adalah sebuah tools yang berguna utk install dan manage semua package yang ada di python.</p>
+
+<p>Berikut cara untuk install PIP di CrunchBang</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install python-pip
+</span><span class='line'>
+</span><span class='line'>sudo apt-get install build-essential python-dev</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-17T06:04:00-04:00" pubdate data-updated="true">Mar 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/17/cara-menampilkan-versi-package-kernel-debian-dan-crunchbang/">Cara Menampilkan Versi Package, Kernel, Debian Dan Crunchbang</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Berikut cara menampilkan versi dari package, kernel, debian, maupun crunchbang yang terinstall di environment kita.</p>
+
+<h3>Package</h3>
+
+<blockquote><blockquote><p>Cara ini hanya berjalan di linux turunan debian</p></blockquote></blockquote>
+
+<p>Ketikkan perintah berikut, untuk mengetahui versi dari package yang sudah terinstall di environment kita, ganti <code>&lt;package_name&gt;</code> dengan package yang di inginkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dpkg -l | grep &lt;package_name&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>contoh</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dpkg -l | grep libc6</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di environment saya akan menampilkan hasil seperti di bawah ini</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ii  libc6                    2.11.3-4           Embedded GNU C Library: Shared libraries
+</span><span class='line'>ii  libc6-dev                2.11.3-4           Embedded GNU C Library: Development Libraries and Header Files</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Kernel</h3>
+
+<p>Ada 2 cara untuk mengetahui versi kernel yang kita gunakan. Pertama, dengan mengetikkan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>uname -a</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Perintah di atas, akan mencetak semua informasi dari kernel yang kita gunakan, di environment saya, menampilkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Linux marjinal 2.6.32-5-amd64 #1 SMP Mon Jan 16 16:22:28 UTC 2012 x86_64 GNU/Linux</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Kedua, dengan mengetikkan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>uname -r</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Perintah diatas, hanya akan mencetak versi dari kernel, di environment saya, menampilkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>2.6.32-5-amd64</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Cara kedua, sangat bermanfaat, jika kita ingin mengintall package yang membutuhkan versi kernel, contoh, <code>kernel header</code>, sehingga kita dapat mengetikkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install linux-headers-$(uname -r)</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Debian</h3>
+
+<p>Untuk mengetahui versi debian, ketikkan perintah berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cat /etc/debian_version</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di environment saya menampilkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>6.0.4</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Crunchbang</h3>
+
+<p>Untuk mengetahui versi Crunchbang, ketikkan perintah berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cat /etc/lsb-release-crunchbang</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di environment saya menampilkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DISTRIB_ID=CrunchBang
+</span><span class='line'>DISTRIB_RELEASE=10
+</span><span class='line'>DISTRIB_CODENAME=statler
+</span><span class='line'>DISTRIB_DESCRIPTION="CrunchBang 10 statler"</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-17T05:33:00-04:00" pubdate data-updated="true">Mar 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/17/install-mongodb-di-linux/">Install MongoDB Di Linux</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><h3>Persiapan</h3>
+
+<p>Sebelum mengikuti tutorial ini, berikut struktur direktori yang saya gunakan di environment yang saya gunakan:</p>
+
+<ol>
+<li>Application Directory: /home/marjinal/TOOLS/mongodb</li>
+<li>Data directory: /home/marjinal/TOOLS/mongodb/data/db</li>
+</ol>
+
+
+<p>Linux yang saya gunakan CrunchBang 10 statler (64 bit), dan MongoDB yang akan saya install versi 2.4.1</p>
+
+<h3>Download</h3>
+
+<p>Untuk mendownload mongodb dengan mengetikkan command berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd /home/marjinal/TOOLS/mongodb</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>64 bit</strong></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget -c http://downloads.mongodb.org/linux/mongodb-linux-x86_64-2.4.1.tgz</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>32 bit</strong></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget -c http://downloads.mongodb.org/linux/mongodb-linux-i686-2.4.1.tgz</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-10T10:20:00-04:00" pubdate data-updated="true">Mar 10<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/10/membuat-ssl-certificate-di-apache-slash-crunchbang-linux/">Membuat SSL Certificate Di Apache/Crunchbang Linux</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><h2>Tentang SSL Certificate</h2>
+
+<p>SSL Certificate adalah cara untuk mengenkripsi informasi situs dan membuat koneksi yang lebih aman. Selain itu, sertifikat dapan menunjukkan informasi identifikasi <em>virtual private server</em> untuk pengunjung situs.</p>
+
+<h2>Langkah 1 &ndash; Mengaktifkan SSL Module</h2>
+
+<p>Untuk mengaktifkan <em>SSL Module</em> ketikkan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo a2enmod ssl</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Setelah itu, restart apache:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo /etc/init.d/apache2 restart</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Langkah 2 &ndash; Buat direktori baru</h2>
+
+<p>Kita butuh membuat direktory baru untuk menyimpan key dan cerfiticate server.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo mkdir /etc/apache2/ssl</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Langkah 3 &ndash; Membuat Self Signed SSL Certificate</h2>
+
+<p>Untuk membuat sertifikat yang baru, ketikkan perintah di bawah ini. Kita dapat menentukan berapa lama sertifikat tersebut seharusnya tetap berlaku dengan mengubah 365 dengan jumlah hari yang kita inginkan.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Perintah di atas akan membuat key &amp; sertifikat ke dalam direktori yang baru kita buat di langkah 2.</p>
+
+<p>Perintah ini akan menampilkan field2 yang harus kita isikan, seperti di bawah ini (isi sesuai dengan keinginan kita):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>You are about to be asked to enter information that will be incorporated
+</span><span class='line'>into your certificate request.
+</span><span class='line'>What you are about to enter is what is called a Distinguished Name or a DN.
+</span><span class='line'>There are quite a few fields but you can leave some blank
+</span><span class='line'>For some fields there will be a default value,
+</span><span class='line'>If you enter '.', the field will be left blank.
+</span><span class='line'>-----
+</span><span class='line'>Country Name (2 letter code) [AU]:ID
+</span><span class='line'>State or Province Name (full name) [Some-State]:Jakarta
+</span><span class='line'>Locality Name (eg, city) []:Jakarta Selatan
+</span><span class='line'>Organization Name (eg, company) [Internet Widgits Pty Ltd]:Hendry Suwanda
+</span><span class='line'>Organizational Unit Name (eg, section) []:-
+</span><span class='line'>Common Name (e.g. server FQDN or YOUR name) []:www.hendrysuwanda.com
+</span><span class='line'>Email Address []:suwanda.hendry@gmail.com
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Langkah 4 &ndash; Setup Sertifikat</h3>
+
+<p>Buka file SSL config dengan mengetikan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo vi /etc/apache2/sites-available/default</span></code></pre></td></tr></table></div></figure>
+
+
+<p>tambahkan settingan seperti di bawah ini:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;VirtualHost *:443&gt;
+</span><span class='line'>  ServerName www.hendrysuwanda.com:443
+</span><span class='line'>
+</span><span class='line'>  SSLEngine on
+</span><span class='line'>  SSLCertificateFile /etc/apache2/ssl/apache.crt
+</span><span class='line'>  SSLCertificateKeyFile /etc/apache2/ssl/apache.key
+</span><span class='line'>&lt;/VirtualHost&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Langkah 5 &ndash; Mengaktifkan VirtualHost baru</h3>
+
+<p>Untuk mengaktifkan VirtualHost yang baru kita buat, ketikkan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo a2ensite default</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu restart service apache, dengan mengetikkan perintah:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo /etc/init.d/apache2 restart</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Selesai, SSL Certificate sudah terpasang, untuk mencoba nya silahkan buka link <a href="https://localhost">https://localhost</a> (address)</p>
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -516,15 +899,15 @@ vi/vim Langkah 1 &hellip;">
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2013/10/19/merubah-versi-scala-di-sbt-console-secara-permanent/">Merubah Versi Scala Di Sbt Console Secara Permanent</a>
+    
+    <a class="list-group-item " href="/blog/2013/10/19/merubah-versi-scala-di-sbt-console/">Merubah Versi Scala Di Sbt Console</a>
+    
+    <a class="list-group-item " href="/blog/2013/10/19/check-versi-sbt/">Check Versi Sbt</a>
+    
+    <a class="list-group-item " href="/blog/2013/10/19/install-sbt-di-crunchbang/">Install SBT Di Crunchbang</a>
+    
     <a class="list-group-item " href="/blog/2013/10/11/ekuivalen-fungsi-left-mid-right-di-oracle/">Ekuivalen Fungsi Left, Mid Dan Right Di Oracle</a>
-    
-    <a class="list-group-item " href="/blog/2013/10/11/while-loop-di-oracle-slash-plsql/">While Loop Di Oracle/PLSQL</a>
-    
-    <a class="list-group-item " href="/blog/2013/10/06/membuat-auto-increment-di-mysql/">Membuat AUTO_INCREMENT Di Mysql</a>
-    
-    <a class="list-group-item " href="/blog/2013/10/04/berkenalan-dengan-spring-batch/">Berkenalan Dengan Spring-Batch</a>
-    
-    <a class="list-group-item " href="/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/">Error &#8216;Unable to Open Logs&#8217; Ketika Menjalankan Httpd</a>
     
   </div>
 </section>

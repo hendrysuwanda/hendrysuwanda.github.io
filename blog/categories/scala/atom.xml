@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: scala | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/scala/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-10-19T11:02:48-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    <email><![CDATA[suwanda.hendry@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Merubah versi scala di sbt console secara permanent]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console-secara-permanent/"/>
+    <updated>2013-10-19T10:51:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console-secara-permanent</id>
+    <content type="html"><![CDATA[<p>Pada tulisan saya <a href="http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console/">sebelumnya</a>, versi scala yang di pakai tidak permanent, karena ketika keluar dari <code>sbt console</code>, versi scala kembali lagi ke versi default dari <code>sbt</code> yang di gunakan.</p>
+
+<p>```
+$ sbt
+[info] Set current project to marjinal (in build file:/home/marjinal/)</p>
+
+<blockquote><p>console
+[info] Updating {file:/home/marjinal/}marjinal&hellip;
+[info] Resolving org.fusesource.jansi#jansi;1.4 &hellip;
+[info] Done updating.
+[info] Starting scala interpreter&hellip;
+[info]
+Welcome to Scala version 2.10.2 (Java HotSpot&trade; 64-Bit Server VM, Java 1.7.0_10).
+Type in expressions to have them evaluated.
+Type :help for more information.</p></blockquote>
+
+<p>scala>
+```</p>
+
+<p>Untuk merubah versi scala menjadi permanent, buat file <code>global.sbt</code>, letakkan ke dalam <code>~/.sbt/{versisbt}</code> (jika versi sbt 0.13.0, ubah <code>versisbt</code> menjadi <code>0.13</code>)</p>
+
+<p><code>
+vi ~/.sbt/0.13/global.sbt
+</code></p>
+
+<p>Lalu isikan</p>
+
+<p><code>
+scalaVersion := "2.10.3"
+</code></p>
+
+<p>jika anda ingin menggunakan versi scala yang lain, ubah <code>2.10.3</code> menjadi yang anda inginkan.</p>
+
+<h3>Test</h3>
+
+<p>```
+$ sbt
+[info] Set current project to marjinal (in build file:/home/marjinal/)</p>
+
+<blockquote><p>console
+[info] Updating {file:/home/marjinal/}marjinal&hellip;
+[info] Resolving org.fusesource.jansi#jansi;1.4 &hellip;
+[info] Done updating.
+[info] Starting scala interpreter&hellip;
+[info]
+Welcome to Scala version 2.10.3 (Java HotSpot&trade; 64-Bit Server VM, Java 1.7.0_10).
+Type in expressions to have them evaluated.
+Type :help for more information.</p></blockquote>
+
+<p>scala>
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Merubah versi scala di sbt console]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console/"/>
+    <updated>2013-10-19T10:19:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console</id>
+    <content type="html"><![CDATA[<p>Saat saya menulis tulisan ini, versi terakhir scala adalah 2.10.3.</p>
+
+<p>Tapi ketika saya menjalankan <code>sbt console</code>, sbt masih menggunakan versi 2.10.2. Agar <code>sbt console</code> menggunakan versi 2.10.3 (atau versi yang kita inginkan), sebelum menjalankan command <code>console</code> ketikkan <code>++ scalaversion</code>, contoh <code>++ 2.10.3</code></p>
+
+<h3>Test</h3>
+
+<p>```
+[info] Set current project to marjinal (in build file:/home/marjinal/)</p>
+
+<blockquote><p>++ 2.10.3
+[info] Setting version to 2.10.3
+[info] Set current project to marjinal (in build file:/home/marjinal/)
+console
+[info] Starting scala interpreter&hellip;
+[info]
+Welcome to Scala version 2.10.3 (Java HotSpot&trade; 64-Bit Server VM, Java 1.7.0_10).
+Type in expressions to have them evaluated.
+Type :help for more information.</p></blockquote>
+
+<p>scala>
+```</p>
+]]></content>
+  </entry>
+  
+</feed>

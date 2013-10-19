@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Install SBT di crunchbang - Hendry Suwanda</title>
+  <meta name="author" content="Hendry Suwanda">
+
+  
+  <meta name="description" content="Oct 19th, 2013 Install SBT Di Crunchbang Di tulisan ini saya ingin menginstall sbt versi 0.13.0 di crunchbang. Download sbt-launch Download sbt- &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://hendrysuwanda.github.io/blog/2013/10/19/install-sbt-di-crunchbang">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Hendry Suwanda" type="application/atom+xml">
+
+  <link href="/javascripts/libs/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<!-- <link href="/javascripts/libs/bootstrap-3.0.0/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"> -->
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+  
+
+</head>
+
+  <body   >
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hendry Suwanda</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+                <li >
+                    <a href="/about">About</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="http://google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:hendrysuwanda.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9">
+    <article class="hentry" role="article">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-19T09:51:00-04:00" pubdate data-updated="true">Oct 19<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title">
+        Install SBT Di Crunchbang
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix"><p>Di tulisan ini saya ingin menginstall sbt versi <code>0.13.0</code> di crunchbang.</p>
+
+<h3>Download sbt-launch</h3>
+
+<p>Download sbt-launch &amp; letakkan ke dalam folder <code>~/bin</code>.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/bin
+</span><span class='line'>$ wget -c http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.0/sbt-launch.jar</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>--2013-10-19 09:22:26--  http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.0/sbt-launch.jar
+</span><span class='line'>Resolving repo.typesafe.com... 54.236.91.228, 107.21.30.253, 54.236.87.147
+</span><span class='line'>Connecting to repo.typesafe.com|54.236.91.228|:80... connected.
+</span><span class='line'>HTTP request sent, awaiting response... 200 OK
+</span><span class='line'>Length: 1132093 (1.1M) [application/java-archive]
+</span><span class='line'>Saving to: “sbt-launch.jar”
+</span><span class='line'>
+</span><span class='line'>100%[========================================================================================================================================================&gt;] 1,132,093   21.9K/s   in 31s     
+</span><span class='line'>
+</span><span class='line'>2013-10-19 09:23:02 (35.7 KB/s) - “sbt-launch.jar” saved [1132093/1132093]
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Install sbt</h3>
+
+<p>Buat script dengan nama <code>sbt</code>, lalu letakkan ke dalam folder <code>~/bin</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/bin
+</span><span class='line'>$ vi sbt</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu isikan seperti di bawah ini:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SBT_OPTS="-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
+</span><span class='line'>java $SBT_OPTS -jar `dirname $0`/sbt-launch.jar "$@"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu save dengan ketikkan <code>:wq</code> dan buat script menjadi executable:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ chmod +x sbt</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Test</h3>
+
+<p>Untuk menge-test apakah sbt sudah berjalan atau belom, ketikkan sembarang command dengan sbt. Di sini saya ingin mengecek versi dari sbt:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sbt sbt-version</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Getting org.scala-sbt sbt 0.13.0 ...
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt/0.13.0/jars/sbt.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#sbt;0.13.0!sbt.jar (3102ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/main/0.13.0/jars/main.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#main;0.13.0!main.jar (113062ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-interface/0.13.0/jars/compiler-interface-src.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#compiler-interface;0.13.0!compiler-interface-src.jar (2295ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-interface/0.13.0/jars/compiler-interface-bin.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#compiler-interface;0.13.0!compiler-interface-bin.jar (7793ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_8_2/0.13.0/jars/compiler-interface-bin.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#precompiled-2_8_2;0.13.0!compiler-interface-bin.jar (8379ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_9_2/0.13.0/jars/compiler-interface-bin.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#precompiled-2_9_2;0.13.0!compiler-interface-bin.jar (7139ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_9_3/0.13.0/jars/compiler-interface-bin.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#precompiled-2_9_3;0.13.0!compiler-interface-bin.jar (8814ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/actions/0.13.0/jars/actions.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#actions;0.13.0!actions.jar (19182ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/main-settings/0.13.0/jars/main-settings.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#main-settings;0.13.0!main-settings.jar (21100ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/interface/0.13.0/jars/interface.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#interface;0.13.0!interface.jar (3331ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/io/0.13.0/jars/io.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#io;0.13.0!io.jar (14387ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/ivy/0.13.0/jars/ivy.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#ivy;0.13.0!ivy.jar (50749ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/launcher-interface/0.13.0/jars/launcher-interface.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#launcher-interface;0.13.0!launcher-interface.jar (3289ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/logging/0.13.0/jars/logging.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#logging;0.13.0!logging.jar (7008ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/process/0.13.0/jars/process.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#process;0.13.0!process.jar (5271ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/run/0.13.0/jars/run.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#run;0.13.0!run.jar (8107ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/command/0.13.0/jars/command.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#command;0.13.0!command.jar (10176ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/classpath/0.13.0/jars/classpath.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#classpath;0.13.0!classpath.jar (6644ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/completion/0.13.0/jars/completion.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#completion;0.13.0!completion.jar (13117ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/api/0.13.0/jars/api.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#api;0.13.0!api.jar (27268ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-integration/0.13.0/jars/compiler-integration.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#compiler-integration;0.13.0!compiler-integration.jar (16963ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-ivy-integration/0.13.0/jars/compiler-ivy-integration.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#compiler-ivy-integration;0.13.0!compiler-ivy-integration.jar (2360ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/relation/0.13.0/jars/relation.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#relation;0.13.0!relation.jar (5727ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/task-system/0.13.0/jars/task-system.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#task-system;0.13.0!task-system.jar (13756ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/tasks/0.13.0/jars/tasks.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#tasks;0.13.0!tasks.jar (25036ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/tracking/0.13.0/jars/tracking.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#tracking;0.13.0!tracking.jar (4494ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/testing/0.13.0/jars/testing.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#testing;0.13.0!testing.jar (4865ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/control/0.13.0/jars/control.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#control;0.13.0!control.jar (2624ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/collections/0.13.0/jars/collections.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#collections;0.13.0!collections.jar (14381ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/incremental-compiler/0.13.0/jars/incremental-compiler.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#incremental-compiler;0.13.0!incremental-compiler.jar (11719ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compile/0.13.0/jars/compile.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#compile;0.13.0!compile.jar (5027ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/persist/0.13.0/jars/persist.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#persist;0.13.0!persist.jar (6237ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/classfile/0.13.0/jars/classfile.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#classfile;0.13.0!classfile.jar (4795ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbinary/sbinary_2.10/0.4.2/jars/sbinary_2.10.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-tools.sbinary#sbinary_2.10;0.4.2!sbinary_2.10.jar (40445ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/cross/0.13.0/jars/cross.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#cross;0.13.0!cross.jar (2800ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/cache/0.13.0/jars/cache.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#cache;0.13.0!cache.jar (5507ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/test-agent/0.13.0/jars/test-agent.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#test-agent;0.13.0!test-agent.jar (3557ms)
+</span><span class='line'>downloading http://repo1.maven.org/maven2/org/scala-sbt/test-interface/1.0/test-interface-1.0.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#test-interface;1.0!test-interface.jar (2579ms)
+</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/apply-macro/0.13.0/jars/apply-macro.jar ...
+</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#apply-macro;0.13.0!apply-macro.jar (4793ms)
+</span><span class='line'>:: retrieving :: org.scala-sbt#boot-app
+</span><span class='line'>  confs: [default]
+</span><span class='line'>  43 artifacts copied, 0 already retrieved (12440kB/310ms)
+</span><span class='line'>[info] Set current project to marjinal (in build file:/home/homedirectory/)
+</span><span class='line'>[info] 0.13.0
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Hendry Suwanda</span></span>
+
+          
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-19T09:51:00-04:00" pubdate data-updated="true">Oct 19<span>th</span>, 2013</time>
+          
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/crunchbang/'>crunchbang</a>, <a class='category' href='/blog/categories/sbt/'>sbt</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://hendrysuwanda.github.io/blog/2013/10/19/install-sbt-di-crunchbang/" data-via="" data-counturl="http://hendrysuwanda.github.io/blog/2013/10/19/install-sbt-di-crunchbang/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2013/10/11/ekuivalen-fungsi-left-mid-right-di-oracle/" title="Previous Post: Ekuivalen Fungsi Left, Mid dan Right di Oracle">&laquo; Ekuivalen Fungsi Left, Mid dan Right di Oracle</a></li>
+            
+            
+            <li class="next"><a href="/blog/2013/10/19/check-versi-sbt/" title="Next Post: Check versi sbt">Check versi sbt &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+      </section>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2013/10/19/merubah-versi-scala-di-sbt-console-secara-permanent/">Merubah Versi Scala Di Sbt Console Secara Permanent</a>
+    
+    <a class="list-group-item " href="/blog/2013/10/19/merubah-versi-scala-di-sbt-console/">Merubah Versi Scala Di Sbt Console</a>
+    
+    <a class="list-group-item " href="/blog/2013/10/19/check-versi-sbt/">Check Versi Sbt</a>
+    
+    <a class="list-group-item active" href="/blog/2013/10/19/install-sbt-di-crunchbang/">Install SBT Di Crunchbang</a>
+    
+    <a class="list-group-item " href="/blog/2013/10/11/ekuivalen-fungsi-left-mid-right-di-oracle/">Ekuivalen Fungsi Left, Mid Dan Right Di Oracle</a>
+    
+  </div>
+</section>
+
+
+
+
+
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2013 - Hendry Suwanda<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    <script src="/javascripts/libs/bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'hendrysuwanda';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://hendrysuwanda.github.io/blog/2013/10/19/install-sbt-di-crunchbang/';
+        var disqus_url = 'http://hendrysuwanda.github.io/blog/2013/10/19/install-sbt-di-crunchbang/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </body>
+</html>
