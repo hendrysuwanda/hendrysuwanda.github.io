@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ide | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/ide/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-10-26T13:10:29-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    <email><![CDATA[suwanda.hendry@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[IntelliJ IDEA and Eclipse Shortcuts]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/26/intellij-idea-and-eclipse-shortcuts/"/>
+    <updated>2013-10-26T10:57:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/26/intellij-idea-and-eclipse-shortcuts</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.catalysts.cc/en/wissenswertes/intellij-idea-and-eclipse-shortcuts/"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
+</div>
+
+
+<p>Setelah sekitar tujuh tahun secara eksklusif menggunakan Eclipse untuk pengembangan Java, saya baru mendapatkan kesempatan untuk bekerja pada proyek dimana <code>IntelliJ IDEA</code> adalah editor standar. Tiba-tiba saya dicoba dan diuji keyboard shortcut eclipse tidak bekerja lagi. Aku masih dalam proses belajar Keyboard Shortcut IntelliJ tapi ini adalah favorit saya sampai sekarang (setara dengan keyboard shortcut eclipse). Ini mungkin membantu orang lain yang beralih dari Eclipse ke IntelliJ. Tentu saja, ada plugin IntelliJ yang tersedia yang mana membuat IntelliJ IDEA berperilaku seperti Eclipse (shortcut dan perilaku compiler yang sama) tapi mengapa melakukan itu?</p>
+
+<p>Pada tabel di bawah, dalam beberapa kasus, shortcut tidak memetakan 1:1, tapi mereka mencapai efek yang sama.</p>
+
+<table class="table table-bordered">
+<tr>
+    <th>Eclipse</th>
+    <th>IntelliJ IDEA</th>
+    <th>Description</th>
+</tr>
+<tr>
+    <td>F4</td>
+    <td>CTRL + H</td>
+    <td>Menampilkan <code>type hierarchy</code></td>
+</tr>
+<tr>
+    <td>CTRL + ALT + G</td>
+    <td>CTRL + ALT + F7</td>
+    <td>Menemukan Penggunaan</td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + U</td>
+    <td>CTRL + F7</td>
+    <td>Menemukan Penggunaan di file yang sama</td>
+</tr>
+<tr>
+    <td>ALT + SHIFT + R</td>
+    <td>SHIFT + F6</td>
+    <td>Rename</td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + R</td>
+    <td>CTRL + SHIFT + N</td>
+    <td>Membuka <code>file</code> / membuka <code>resource</code></td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + X,J</td>
+    <td>CTRL + SHIFT + F10</td>
+    <td>Menjalankan (program java)</td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + O</td>
+    <td>CTRL + ALT + O</td>
+    <td>Mengatur <code>import</code></td>
+</tr>
+<tr>
+    <td>CTRL + O</td>
+    <td>CTRL + F12</td>
+    <td>Menampilkan <code>file structure / outline</code> saat ini</td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + M</td>
+    <td>CTRL + ALT + V</td>
+    <td>Membuat <code>refactoring</code>variable lokal </td>
+</tr>
+<tr>
+    <td>syso + CTRL + SPACE</td>
+    <td>sout + CTRL + J</td>
+    <td><code>System.out.println("")</code></td>
+</tr>
+<tr>
+    <td>ALT + UP/DOWN</td>
+    <td>CTRL + SHIFT + UP/DOWN</td>
+    <td>Memindahkan baris</td>
+</tr>
+<tr>
+    <td>CTRL + D</td>
+    <td>CTRL + Y</td>
+    <td>Hapus baris saat ini</td>
+</tr>
+<tr>
+    <td></td>
+    <td>ALT + H</td>
+    <td>Menampilkan riwayat <code>subversion</code></td>
+</tr>
+<tr>
+    <td>CTRL + H</td>
+    <td>CTRL + SHIFT + F</td>
+    <td>Mencari (Menemukan di dalam <code>path</code>)</td>
+</tr>
+<tr>
+    <td>"semi" mengaturnya <code>window -> preferences </code> </td>
+    <td>CTRL + SHIFT + ENTER</td>
+    <td>Jika saya ingin menambahkan titk koma <code>;</code> pada akhir <code>statement</code></td>
+</tr>
+<tr>
+    <td>CTRL + 1 atau CTRL + SHIFT + L</td>
+    <td>CTRL + ALT + V</td>
+    <td>Memperkenalkan variable lokal</td>
+</tr>
+<tr>
+    <td>ALT + SHIFT + S</td>
+    <td>ALT + INSERT</td>
+    <td>generate <code>getters/setters</code></td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + F</td>
+    <td>CTRL + ALT + L</td>
+    <td>format kode</td>
+</tr>
+<tr>
+    <td>CTRL + Y</td>
+    <td>CTRL + SHIFT + Z</td>
+    <td>redo</td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + C</td>
+    <td>CTRL + /</td>
+    <td>comment out lines</td>
+</tr>
+<tr>
+    <td>CTRL + ALT + H</td>
+    <td>CTRL + ALT + H</td>
+    <td>Menampilkan <code>call hierarchy</code></td>
+</tr>
+<tr>
+    <td></td>
+    <td>CTRL + ALT + F7</td>
+    <td>Untuk melompat ke salah satu pemanggil dari <code>method</code></td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + I</td>
+    <td>ALT + F8</td>
+    <td>Mengevaluasi ekspresi (dalam <code>debugger</code>)</td>
+</tr>
+<tr>
+    <td>F3</td>
+    <td>CTRL + B</td>
+    <td>Menuju deklarasi (contoh. menuju deklarasi <code>method</code>)</td>
+</tr>
+</table>
+
+
+<p>Satu hal yang saya tidak menyadari pada awalnya adalah bahwa tombol <code>Scroll to Source</code> di IntelliJ IDEA pada dasarnya sama dengan tombol <code>Link with Editor</code> di eclipse.</p>
+]]></content>
+  </entry>
+  
+</feed>

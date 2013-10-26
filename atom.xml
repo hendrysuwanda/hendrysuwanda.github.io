@@ -4,7 +4,7 @@
   <title><![CDATA[Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-10-19T11:02:48-04:00</updated>
+  <updated>2013-10-26T13:10:29-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,202 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[IntelliJ IDEA and Eclipse Shortcuts]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/26/intellij-idea-and-eclipse-shortcuts/"/>
+    <updated>2013-10-26T10:57:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/26/intellij-idea-and-eclipse-shortcuts</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.catalysts.cc/en/wissenswertes/intellij-idea-and-eclipse-shortcuts/"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
+</div>
+
+
+<p>Setelah sekitar tujuh tahun secara eksklusif menggunakan Eclipse untuk pengembangan Java, saya baru mendapatkan kesempatan untuk bekerja pada proyek dimana <code>IntelliJ IDEA</code> adalah editor standar. Tiba-tiba saya dicoba dan diuji keyboard shortcut eclipse tidak bekerja lagi. Aku masih dalam proses belajar Keyboard Shortcut IntelliJ tapi ini adalah favorit saya sampai sekarang (setara dengan keyboard shortcut eclipse). Ini mungkin membantu orang lain yang beralih dari Eclipse ke IntelliJ. Tentu saja, ada plugin IntelliJ yang tersedia yang mana membuat IntelliJ IDEA berperilaku seperti Eclipse (shortcut dan perilaku compiler yang sama) tapi mengapa melakukan itu?</p>
+
+<p>Pada tabel di bawah, dalam beberapa kasus, shortcut tidak memetakan 1:1, tapi mereka mencapai efek yang sama.</p>
+
+<table class="table table-bordered">
+<tr>
+    <th>Eclipse</th>
+    <th>IntelliJ IDEA</th>
+    <th>Description</th>
+</tr>
+<tr>
+    <td>F4</td>
+    <td>CTRL + H</td>
+    <td>Menampilkan <code>type hierarchy</code></td>
+</tr>
+<tr>
+    <td>CTRL + ALT + G</td>
+    <td>CTRL + ALT + F7</td>
+    <td>Menemukan Penggunaan</td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + U</td>
+    <td>CTRL + F7</td>
+    <td>Menemukan Penggunaan di file yang sama</td>
+</tr>
+<tr>
+    <td>ALT + SHIFT + R</td>
+    <td>SHIFT + F6</td>
+    <td>Rename</td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + R</td>
+    <td>CTRL + SHIFT + N</td>
+    <td>Membuka <code>file</code> / membuka <code>resource</code></td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + X,J</td>
+    <td>CTRL + SHIFT + F10</td>
+    <td>Menjalankan (program java)</td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + O</td>
+    <td>CTRL + ALT + O</td>
+    <td>Mengatur <code>import</code></td>
+</tr>
+<tr>
+    <td>CTRL + O</td>
+    <td>CTRL + F12</td>
+    <td>Menampilkan <code>file structure / outline</code> saat ini</td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + M</td>
+    <td>CTRL + ALT + V</td>
+    <td>Membuat <code>refactoring</code>variable lokal </td>
+</tr>
+<tr>
+    <td>syso + CTRL + SPACE</td>
+    <td>sout + CTRL + J</td>
+    <td><code>System.out.println("")</code></td>
+</tr>
+<tr>
+    <td>ALT + UP/DOWN</td>
+    <td>CTRL + SHIFT + UP/DOWN</td>
+    <td>Memindahkan baris</td>
+</tr>
+<tr>
+    <td>CTRL + D</td>
+    <td>CTRL + Y</td>
+    <td>Hapus baris saat ini</td>
+</tr>
+<tr>
+    <td></td>
+    <td>ALT + H</td>
+    <td>Menampilkan riwayat <code>subversion</code></td>
+</tr>
+<tr>
+    <td>CTRL + H</td>
+    <td>CTRL + SHIFT + F</td>
+    <td>Mencari (Menemukan di dalam <code>path</code>)</td>
+</tr>
+<tr>
+    <td>&#8220;semi&#8221; mengaturnya <code>window -> preferences </code> </td>
+    <td>CTRL + SHIFT + ENTER</td>
+    <td>Jika saya ingin menambahkan titk koma <code>;</code> pada akhir <code>statement</code></td>
+</tr>
+<tr>
+    <td>CTRL + 1 atau CTRL + SHIFT + L</td>
+    <td>CTRL + ALT + V</td>
+    <td>Memperkenalkan variable lokal</td>
+</tr>
+<tr>
+    <td>ALT + SHIFT + S</td>
+    <td>ALT + INSERT</td>
+    <td>generate <code>getters/setters</code></td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + F</td>
+    <td>CTRL + ALT + L</td>
+    <td>format kode</td>
+</tr>
+<tr>
+    <td>CTRL + Y</td>
+    <td>CTRL + SHIFT + Z</td>
+    <td>redo</td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + C</td>
+    <td>CTRL + /</td>
+    <td>comment out lines</td>
+</tr>
+<tr>
+    <td>CTRL + ALT + H</td>
+    <td>CTRL + ALT + H</td>
+    <td>Menampilkan <code>call hierarchy</code></td>
+</tr>
+<tr>
+    <td></td>
+    <td>CTRL + ALT + F7</td>
+    <td>Untuk melompat ke salah satu pemanggil dari <code>method</code></td>
+</tr>
+<tr>
+    <td>CTRL + SHIFT + I</td>
+    <td>ALT + F8</td>
+    <td>Mengevaluasi ekspresi (dalam <code>debugger</code>)</td>
+</tr>
+<tr>
+    <td>F3</td>
+    <td>CTRL + B</td>
+    <td>Menuju deklarasi (contoh. menuju deklarasi <code>method</code>)</td>
+</tr>
+</table>
+
+
+<p>Satu hal yang saya tidak menyadari pada awalnya adalah bahwa tombol <code>Scroll to Source</code> di IntelliJ IDEA pada dasarnya sama dengan tombol <code>Link with Editor</code> di eclipse.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fungsi Replace di Excel]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/20/fungsi-replace-di-excel/"/>
+    <updated>2013-10-20T02:53:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/20/fungsi-replace-di-excel</id>
+    <content type="html"><![CDATA[<p>Kemaren saya mendapatkan masalah seperti ini, saya ingin mengubah data berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>--lbl.menu.report.referralbonds
+</span><span class='line'>----lbl.menu.report.rb.transactionstatus
+</span><span class='line'>----lbl.menu.report.rb.transactionhistory
+</span><span class='line'>----lbl.menu.report.rb.dailybalance
+</span><span class='line'>----lbl.menu.report.rb.bondsproductlist</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Menjadi</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>lbl.menu.report.referralbonds
+</span><span class='line'>lbl.menu.report.rb.transactionstatus
+</span><span class='line'>lbl.menu.report.rb.transactionhistory
+</span><span class='line'>lbl.menu.report.rb.dailybalance
+</span><span class='line'>lbl.menu.report.rb.bondsproductlist</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Setelah tanya ke teman, ternyata di excel ada fungsi <code>SUBSTITUTE</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>=SUBSTITUTE(&lt;source&gt;, &lt;oldvalue&gt;, &lt;newvalue&gt;)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>contoh</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>=SUBSTITUTE("----lbl.menu.report.rb.bondsproductlist", "-", "")</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Merubah versi scala di sbt console secara permanent]]></title>
@@ -1387,6 +1583,7 @@ Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command beriku
 <li><a href="http://livemocha.com/">Live Mocha</a></li>
 <li><a href="www.lingq.com/">Lingq</a>. <code>Diberi pinjam account gratis sama om kaiser :D</code></li>
 <li><a href="http://www.kaskus.co.id/forum/113/english">Kaskus English Forum</a></li>
+<li><a href="http://englishmaven.org/index.html">English Maven</a></li>
 </ol>
 
 ]]></content>
@@ -1420,91 +1617,6 @@ Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command beriku
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">all_tables</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Konversi Timestamp ke Date di Oracle]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/09/28/konversi-timestamp-ke-date-di-oracle/"/>
-    <updated>2013-09-28T05:25:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/09/28/konversi-timestamp-ke-date-di-oracle</id>
-    <content type="html"><![CDATA[<blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
-
-
-<p>Untuk mendapatkan current timestamp &amp; date di oracle, gunakan sintaks ini</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">systimestamp</span><span class="p">,</span> <span class="c1">--untuk mendapatkan current timestamp</span>
-</span><span class='line'>     <span class="n">sysdate</span> <span class="c1">-- untuk mendapatkan current date</span>
-</span><span class='line'>     <span class="k">from</span> <span class="n">dual</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Untuk meng-konversi dari timestamp ke date, gunakan sintaks ini</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span>
-</span><span class='line'>  <span class="n">trunc</span><span class="p">(</span><span class="n">systimestamp</span><span class="p">)</span> <span class="c1">-- akan mengembalikan data dalam bentuk date</span>
-</span><span class='line'><span class="k">from</span> <span class="n">dual</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Menjalankan Java Main Class menggunakan Maven Command]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/"/>
-    <updated>2013-09-27T13:02:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command</id>
-    <content type="html"><![CDATA[<p>Anggap, kita memiliki project java dengan struktur seperti di bawah ini</p>
-
-<p><img src="http://hendrysuwanda.github.io/images/maven/maven-run-main-class.png"></p>
-
-<p>Lalu, kita ingin menjalankan project tersebut dengan menggunakan maven. Maka kita harus menabahkan plugin <code>exec-maven-plugin</code> di dalam <code>pom.xml</code> seperti di bawah ini</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>...
-</span><span class='line'><span class="nt">&lt;build&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;plugins&gt;</span>
-</span><span class='line'>        ...
-</span><span class='line'>      <span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;artifactId&gt;</span>exec-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;configuration&gt;</span>
-</span><span class='line'>               <span class="nt">&lt;mainClass&gt;</span>com.hendrysuwanda.tutorial.javacodegeeks.App<span class="nt">&lt;/mainClass&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/configuration&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/plugin&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/plugins&gt;</span>
-</span><span class='line'><span class="nt">&lt;/build&gt;</span>
-</span><span class='line'>...
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu untuk menjalankan nya, kita dapat menggunakan command</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>mvn exec:java
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>

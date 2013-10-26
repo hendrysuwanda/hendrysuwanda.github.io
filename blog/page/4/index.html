@@ -8,7 +8,14 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="May 11th, 2013 Perkenalan Dengan CloudFoundry Cloud Foundry merupakan Open Platform as a Service (PaaS). Dengan menggunakan cloud foundry kita bisa &hellip;">
+  <meta name="description" content="May 11th, 2013 Delete Database Di mongoDB Berikut list database yang saya miliki: 1
+2
+3
+4
+&gt; show dbs
+local 0.078125GB
+pcat 0.453125GB
+test 0. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +93,129 @@
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-11T07:17:00-04:00" pubdate data-updated="true">May 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/11/delete-database-di-mongodb/">Delete Database Di mongoDB</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Berikut list database yang saya miliki:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; show dbs
+</span><span class='line'>local 0.078125GB
+</span><span class='line'>pcat  0.453125GB
+</span><span class='line'>test  0.203125GB
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>anggap, saya ingin menghapus database test, ada 3 cara untuk melakukannya:</p>
+
+<h4>1. menggunakan script</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mongo test --eval "db.dropDatabase()"</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>2. Login &amp; use database yg mau di delete</h4>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; use test
+</span><span class='line'>&gt; db.dropDatabase()</span></code></pre></td></tr></table></div></figure>
+
+
+<h4>3. Stop service &amp; delete manual file database</h4>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-11T07:09:00-04:00" pubdate data-updated="true">May 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/05/11/find-data-yang-memiliki-field-tertentu-di-mongodb/">Find Data Yang Memiliki Field Tertentu Di mongoDB</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Karena MongoDB memiliki sifat yang flexible untuk strukture collections, maka ada kemungkinan kita mau mencari documents tertentu di dalam collection yang memiliki field tertentu.</p>
+
+<p>Contoh, saya punya collection dengan documents seperti di bawah ini:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; db.test2.find()
+</span><span class='line'>{ "_id" : ObjectId("518ded066186c4ef4300a7cd"), "x" : "hello", "y" : 400 }
+</span><span class='line'>{ "_id" : ObjectId("518ded106186c4ef4300a7ce"), "x" : "hello", "z" : 1 }
+</span><span class='line'>{ "_id" : ObjectId("518ded136186c4ef4300a7cf"), "x" : "hello", "zz" : 1 }
+</span><span class='line'>{ "_id" : 101, "arr" : [ "hi", "hi", "hi", "hi", "hi", "hi", "bye" ], "x" : "hello", "y" : 101 }</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Saya ingin mencari document yang memiliki field &ldquo;arr&rdquo;, maka cara yang saya lakukan:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; db.test2.find({arr: {$exists: true}})
+</span><span class='line'>{ "_id" : 101, "arr" : [ "hi", "hi", "hi", "hi", "hi", "hi", "bye" ], "x" : "hello", "y" : 101 }</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -634,94 +764,6 @@ bukan semakin kaco :)</p>
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-19T12:01:00-04:00" pubdate data-updated="true">Mar 19<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/19/membuat-anchor-link-di-markdown-dan-octopress/">Membuat Anchor Link Di Markdown Dan Octopress</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Untuk membuat Anchor Link, pertama, kita tentukan terlebih dahulu tujuan nya. Di sini, saya ingin membuat 1 link yang ketika di klik, akan menuju ke SubTitle tertentu di halaman yg sama.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>### Resources&lt;a id="#resources"&gt;&lt;/a&gt;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu, anggap, saya ingin membuat kata <code>Resources</code>, ketika di klik akan menuju ke SubTitle Resources.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[Resources](#resources)</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-18T14:03:00-04:00" pubdate data-updated="true">Mar 18<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/18/install-pymongo-menggunakan-pip/">Install Pymongo Menggunakan PIP</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>pymongo adalah driver yang digunakan python untuk melakukan koneksi ke mongodb.</p>
-
-<p>Berikut cara install pymongo menggunakan PIP</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>pip install pymongo</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -745,15 +787,15 @@ bukan semakin kaco :)</p>
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2013/10/26/intellij-idea-and-eclipse-shortcuts/">IntelliJ IDEA and Eclipse Shortcuts</a>
+    
+    <a class="list-group-item " href="/blog/2013/10/20/fungsi-replace-di-excel/">Fungsi Replace Di Excel</a>
+    
     <a class="list-group-item " href="/blog/2013/10/19/merubah-versi-scala-di-sbt-console-secara-permanent/">Merubah Versi Scala Di Sbt Console Secara Permanent</a>
     
     <a class="list-group-item " href="/blog/2013/10/19/merubah-versi-scala-di-sbt-console/">Merubah Versi Scala Di Sbt Console</a>
     
     <a class="list-group-item " href="/blog/2013/10/19/check-versi-sbt/">Check Versi Sbt</a>
-    
-    <a class="list-group-item " href="/blog/2013/10/19/install-sbt-di-crunchbang/">Install SBT Di Crunchbang</a>
-    
-    <a class="list-group-item " href="/blog/2013/10/11/ekuivalen-fungsi-left-mid-right-di-oracle/">Ekuivalen Fungsi Left, Mid Dan Right Di Oracle</a>
     
   </div>
 </section>

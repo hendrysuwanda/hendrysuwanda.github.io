@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: excel | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/excel/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-10-26T13:10:29-04:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    <email><![CDATA[suwanda.hendry@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Fungsi Replace di Excel]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/20/fungsi-replace-di-excel/"/>
+    <updated>2013-10-20T02:53:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/20/fungsi-replace-di-excel</id>
+    <content type="html"><![CDATA[<p>Kemaren saya mendapatkan masalah seperti ini, saya ingin mengubah data berikut:</p>
+
+<p><code>
+--lbl.menu.report.referralbonds
+----lbl.menu.report.rb.transactionstatus
+----lbl.menu.report.rb.transactionhistory
+----lbl.menu.report.rb.dailybalance
+----lbl.menu.report.rb.bondsproductlist
+</code></p>
+
+<p>Menjadi</p>
+
+<p><code>
+lbl.menu.report.referralbonds
+lbl.menu.report.rb.transactionstatus
+lbl.menu.report.rb.transactionhistory
+lbl.menu.report.rb.dailybalance
+lbl.menu.report.rb.bondsproductlist
+</code></p>
+
+<p>Setelah tanya ke teman, ternyata di excel ada fungsi <code>SUBSTITUTE</code></p>
+
+<p><code>
+=SUBSTITUTE(&lt;source&gt;, &lt;oldvalue&gt;, &lt;newvalue&gt;)
+</code></p>
+
+<p>contoh</p>
+
+<p><code>
+=SUBSTITUTE("----lbl.menu.report.rb.bondsproductlist", "-", "")
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>
