@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: CrunchBang | Hendry Suwanda]]></title>
+  <title><![CDATA[Category: crunchbang | Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/blog/categories/crunchbang/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-10-26T13:10:29-04:00</updated>
+  <updated>2013-10-26T14:58:54-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,350 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Install SBT di crunchbang]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/19/install-sbt-di-crunchbang/"/>
+    <updated>2013-10-19T09:51:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/19/install-sbt-di-crunchbang</id>
+    <content type="html"><![CDATA[<p>Di tulisan ini saya ingin menginstall sbt versi <code>0.13.0</code> di crunchbang.</p>
+
+<h3>Download sbt-launch</h3>
+
+<p>Download sbt-launch &amp; letakkan ke dalam folder <code>~/bin</code>.</p>
+
+<p><code>
+$ cd ~/bin
+$ wget -c http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.0/sbt-launch.jar
+</code></p>
+
+<p>Output:</p>
+
+<p>```
+&mdash;2013-10-19 09:22:26&mdash;  <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.0/sbt-launch.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.0/sbt-launch.jar</a>
+Resolving repo.typesafe.com&hellip; 54.236.91.228, 107.21.30.253, 54.236.87.147
+Connecting to repo.typesafe.com|54.236.91.228|:80&hellip; connected.
+HTTP request sent, awaiting response&hellip; 200 OK
+Length: 1132093 (1.1M) [application/java-archive]
+Saving to: “sbt-launch.jar”</p>
+
+<p>100%[========================================================================================================================================================>] 1,132,093   21.9K/s   in 31s</p>
+
+<p>2013-10-19 09:23:02 (35.7 KB/s) &ndash; “sbt-launch.jar” saved [1132093/1132093]</p>
+
+<p>```</p>
+
+<h3>Install sbt</h3>
+
+<p>Buat script dengan nama <code>sbt</code>, lalu letakkan ke dalam folder <code>~/bin</code>:</p>
+
+<p><code>
+$ cd ~/bin
+$ vi sbt
+</code></p>
+
+<p>Lalu isikan seperti di bawah ini:</p>
+
+<p><code>
+SBT_OPTS="-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
+java $SBT_OPTS -jar `dirname $0`/sbt-launch.jar "$@"
+</code></p>
+
+<p>Lalu save dengan ketikkan <code>:wq</code> dan buat script menjadi executable:</p>
+
+<p><code>
+$ chmod +x sbt
+</code></p>
+
+<h3>Test</h3>
+
+<p>Untuk menge-test apakah sbt sudah berjalan atau belom, ketikkan sembarang command dengan sbt. Di sini saya ingin mengecek versi dari sbt:</p>
+
+<p><code>
+$ sbt sbt-version
+</code></p>
+
+<p>Output:</p>
+
+<p>```
+Getting org.scala-sbt sbt 0.13.0 &hellip;
+downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt/0.13.0/jars/sbt.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt/0.13.0/jars/sbt.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#sbt;0.13.0!sbt.jar (3102ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/main/0.13.0/jars/main.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/main/0.13.0/jars/main.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#main;0.13.0!main.jar (113062ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-interface/0.13.0/jars/compiler-interface-src.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-interface/0.13.0/jars/compiler-interface-src.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#compiler-interface;0.13.0!compiler-interface-src.jar (2295ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-interface/0.13.0/jars/compiler-interface-bin.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-interface/0.13.0/jars/compiler-interface-bin.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#compiler-interface;0.13.0!compiler-interface-bin.jar (7793ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_8_2/0.13.0/jars/compiler-interface-bin.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_8_2/0.13.0/jars/compiler-interface-bin.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#precompiled-2_8_2;0.13.0!compiler-interface-bin.jar (8379ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_9_2/0.13.0/jars/compiler-interface-bin.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_9_2/0.13.0/jars/compiler-interface-bin.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#precompiled-2_9_2;0.13.0!compiler-interface-bin.jar (7139ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_9_3/0.13.0/jars/compiler-interface-bin.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_9_3/0.13.0/jars/compiler-interface-bin.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#precompiled-2_9_3;0.13.0!compiler-interface-bin.jar (8814ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/actions/0.13.0/jars/actions.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/actions/0.13.0/jars/actions.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#actions;0.13.0!actions.jar (19182ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/main-settings/0.13.0/jars/main-settings.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/main-settings/0.13.0/jars/main-settings.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#main-settings;0.13.0!main-settings.jar (21100ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/interface/0.13.0/jars/interface.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/interface/0.13.0/jars/interface.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#interface;0.13.0!interface.jar (3331ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/io/0.13.0/jars/io.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/io/0.13.0/jars/io.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#io;0.13.0!io.jar (14387ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/ivy/0.13.0/jars/ivy.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/ivy/0.13.0/jars/ivy.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#ivy;0.13.0!ivy.jar (50749ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/launcher-interface/0.13.0/jars/launcher-interface.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/launcher-interface/0.13.0/jars/launcher-interface.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#launcher-interface;0.13.0!launcher-interface.jar (3289ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/logging/0.13.0/jars/logging.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/logging/0.13.0/jars/logging.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#logging;0.13.0!logging.jar (7008ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/process/0.13.0/jars/process.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/process/0.13.0/jars/process.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#process;0.13.0!process.jar (5271ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/run/0.13.0/jars/run.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/run/0.13.0/jars/run.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#run;0.13.0!run.jar (8107ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/command/0.13.0/jars/command.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/command/0.13.0/jars/command.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#command;0.13.0!command.jar (10176ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/classpath/0.13.0/jars/classpath.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/classpath/0.13.0/jars/classpath.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#classpath;0.13.0!classpath.jar (6644ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/completion/0.13.0/jars/completion.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/completion/0.13.0/jars/completion.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#completion;0.13.0!completion.jar (13117ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/api/0.13.0/jars/api.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/api/0.13.0/jars/api.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#api;0.13.0!api.jar (27268ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-integration/0.13.0/jars/compiler-integration.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-integration/0.13.0/jars/compiler-integration.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#compiler-integration;0.13.0!compiler-integration.jar (16963ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-ivy-integration/0.13.0/jars/compiler-ivy-integration.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-ivy-integration/0.13.0/jars/compiler-ivy-integration.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#compiler-ivy-integration;0.13.0!compiler-ivy-integration.jar (2360ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/relation/0.13.0/jars/relation.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/relation/0.13.0/jars/relation.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#relation;0.13.0!relation.jar (5727ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/task-system/0.13.0/jars/task-system.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/task-system/0.13.0/jars/task-system.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#task-system;0.13.0!task-system.jar (13756ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/tasks/0.13.0/jars/tasks.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/tasks/0.13.0/jars/tasks.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#tasks;0.13.0!tasks.jar (25036ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/tracking/0.13.0/jars/tracking.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/tracking/0.13.0/jars/tracking.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#tracking;0.13.0!tracking.jar (4494ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/testing/0.13.0/jars/testing.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/testing/0.13.0/jars/testing.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#testing;0.13.0!testing.jar (4865ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/control/0.13.0/jars/control.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/control/0.13.0/jars/control.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#control;0.13.0!control.jar (2624ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/collections/0.13.0/jars/collections.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/collections/0.13.0/jars/collections.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#collections;0.13.0!collections.jar (14381ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/incremental-compiler/0.13.0/jars/incremental-compiler.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/incremental-compiler/0.13.0/jars/incremental-compiler.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#incremental-compiler;0.13.0!incremental-compiler.jar (11719ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compile/0.13.0/jars/compile.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compile/0.13.0/jars/compile.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#compile;0.13.0!compile.jar (5027ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/persist/0.13.0/jars/persist.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/persist/0.13.0/jars/persist.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#persist;0.13.0!persist.jar (6237ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/classfile/0.13.0/jars/classfile.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/classfile/0.13.0/jars/classfile.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#classfile;0.13.0!classfile.jar (4795ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbinary/sbinary_2.10/0.4.2/jars/sbinary_2.10.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbinary/sbinary_2.10/0.4.2/jars/sbinary_2.10.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-tools.sbinary#sbinary_2.10;0.4.2!sbinary_2.10.jar (40445ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/cross/0.13.0/jars/cross.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/cross/0.13.0/jars/cross.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#cross;0.13.0!cross.jar (2800ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/cache/0.13.0/jars/cache.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/cache/0.13.0/jars/cache.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#cache;0.13.0!cache.jar (5507ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/test-agent/0.13.0/jars/test-agent.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/test-agent/0.13.0/jars/test-agent.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#test-agent;0.13.0!test-agent.jar (3557ms)
+</code></pre>
+
+<p>downloading <a href="http://repo1.maven.org/maven2/org/scala-sbt/test-interface/1.0/test-interface-1.0.jar">http://repo1.maven.org/maven2/org/scala-sbt/test-interface/1.0/test-interface-1.0.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#test-interface;1.0!test-interface.jar (2579ms)
+</code></pre>
+
+<p>downloading <a href="http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/apply-macro/0.13.0/jars/apply-macro.jar">http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/apply-macro/0.13.0/jars/apply-macro.jar</a> &hellip;</p>
+
+<pre><code>[SUCCESSFUL ] org.scala-sbt#apply-macro;0.13.0!apply-macro.jar (4793ms)
+</code></pre>
+
+<p>:: retrieving :: org.scala-sbt#boot-app</p>
+
+<pre><code>confs: [default]
+43 artifacts copied, 0 already retrieved (12440kB/310ms)
+</code></pre>
+
+<p>[info] Set current project to marjinal (in build file:/home/homedirectory/)
+[info] 0.13.0</p>
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[List File/Directory dalam bentuk tree di crunchbang]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang/"/>
+    <updated>2013-10-04T10:38:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang</id>
+    <content type="html"><![CDATA[<p>Saya selalu melihat di video tutorial yg menggunakan *nix, mereka selalu list file/directory dalam bentuk seperti ini</p>
+
+<p><img src="/images/linux/list-files-in-tree.png"></p>
+
+<p>setelah google, ternyata mereka menggunakan <code>tree</code>.
+Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command berikut</p>
+
+<p>```sh
+$ sudo apt-get install tree
+[sudo] password for marjinal:
+Reading package lists&hellip; Done
+Building dependency tree
+Reading state information&hellip; Done
+The following NEW packages will be installed:</p>
+
+<pre><code>tree
+</code></pre>
+
+<p>0 upgraded, 1 newly installed, 0 to remove and 200 not upgraded.
+Need to get 32.4 kB of archives.
+After this operation, 98.3 kB of additional disk space will be used.
+Get:1 <a href="http://ftp.debian.org/debian/">http://ftp.debian.org/debian/</a> squeeze/main tree amd64 1.5.3-1 [32.4 kB]
+Fetched 32.4 kB in 6s (5,168 B/s)
+Selecting previously deselected package tree.
+(Reading database &hellip; 112215 files and directories currently installed.)
+Unpacking tree (from &hellip;/tree_1.5.3-1_amd64.deb) &hellip;
+Processing triggers for man-db &hellip;
+Setting up tree (1.5.3-1) &hellip;
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Install RabbitMQ di #CrunchBang]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/09/22/install-rabbitmq-di-crunchbang/"/>
+    <updated>2013-09-22T04:24:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/09/22/install-rabbitmq-di-crunchbang</id>
+    <content type="html"><![CDATA[<p>Ntah kenapa, isi kepala ini ingin mempelajari Message Broker, karena saya fans berat Spring, saya coba memilih RabbitMQ.</p>
+
+<p>Berikut cara install RabbitMQ di #CrunchBang:</p>
+
+<p>1) Tambahkan baris berikut ke dalam <code>/etc/apt/sources.list</code></p>
+
+<p><code>
+deb http://www.rabbitmq.com/debian/ testing main
+</code></p>
+
+<p>2) Untuk menghilangkan peringatan karena <code>unsigned package</code>, jalankan command berikut</p>
+
+<p><code>
+$ wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
+$ sudo apt-key add rabbitmq-signing-key-public.asc
+</code></p>
+
+<p>3) jalankan <code>sudo apt-get update</code>
+4) jalankan command berikut untuk meng-install rabbitmq</p>
+
+<p><code>
+$ sudo apt-get install rabbitmq-server
+</code></p>
+
+<p>5) Tunggu sampai proses installation selesai, jika sudah selesai, jalankan command <code>rabbitmqctl status</code> untuk mengecek apakah rabbitmq sudah berjalan dengan normal atau belum.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Install dig di crunchbang]]></title>
@@ -78,221 +422,6 @@ sudo apt-get install dnsutils
 <p><code>
 pip install pymongo
 </code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Install PIP di CrunchBang]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/03/18/install-pip-di-crunchbang/"/>
-    <updated>2013-03-18T13:58:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/03/18/install-pip-di-crunchbang</id>
-    <content type="html"><![CDATA[<p>PIP adalah sebuah tools yang berguna utk install dan manage semua package yang ada di python.</p>
-
-<p>Berikut cara untuk install PIP di CrunchBang</p>
-
-<p>```
-sudo apt-get install python-pip</p>
-
-<p>sudo apt-get install build-essential python-dev
-```</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Cara Menampilkan Versi Package, Kernel, Debian dan Crunchbang]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/03/17/cara-menampilkan-versi-package-kernel-debian-dan-crunchbang/"/>
-    <updated>2013-03-17T06:04:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/03/17/cara-menampilkan-versi-package-kernel-debian-dan-crunchbang</id>
-    <content type="html"><![CDATA[<p>Berikut cara menampilkan versi dari package, kernel, debian, maupun crunchbang yang terinstall di environment kita.</p>
-
-<h3>Package</h3>
-
-<blockquote><blockquote><p>Cara ini hanya berjalan di linux turunan debian</p></blockquote></blockquote>
-
-<p>Ketikkan perintah berikut, untuk mengetahui versi dari package yang sudah terinstall di environment kita, ganti <code>&lt;package_name&gt;</code> dengan package yang di inginkan</p>
-
-<p><code>
-dpkg -l | grep &lt;package_name&gt;
-</code></p>
-
-<p>contoh</p>
-
-<p><code>
-dpkg -l | grep libc6
-</code></p>
-
-<p>di environment saya akan menampilkan hasil seperti di bawah ini</p>
-
-<p><code>
-ii  libc6                    2.11.3-4           Embedded GNU C Library: Shared libraries
-ii  libc6-dev                2.11.3-4           Embedded GNU C Library: Development Libraries and Header Files
-</code></p>
-
-<h3>Kernel</h3>
-
-<p>Ada 2 cara untuk mengetahui versi kernel yang kita gunakan. Pertama, dengan mengetikkan perintah berikut:</p>
-
-<p><code>
-uname -a
-</code></p>
-
-<p>Perintah di atas, akan mencetak semua informasi dari kernel yang kita gunakan, di environment saya, menampilkan</p>
-
-<p><code>
-Linux marjinal 2.6.32-5-amd64 #1 SMP Mon Jan 16 16:22:28 UTC 2012 x86_64 GNU/Linux
-</code></p>
-
-<p>Kedua, dengan mengetikkan perintah berikut:</p>
-
-<p><code>
-uname -r
-</code></p>
-
-<p>Perintah diatas, hanya akan mencetak versi dari kernel, di environment saya, menampilkan</p>
-
-<p><code>
-2.6.32-5-amd64
-</code></p>
-
-<p>Cara kedua, sangat bermanfaat, jika kita ingin mengintall package yang membutuhkan versi kernel, contoh, <code>kernel header</code>, sehingga kita dapat mengetikkan</p>
-
-<p><code>
-apt-get install linux-headers-$(uname -r)
-</code></p>
-
-<h3>Debian</h3>
-
-<p>Untuk mengetahui versi debian, ketikkan perintah berikut</p>
-
-<p><code>
-cat /etc/debian_version
-</code></p>
-
-<p>di environment saya menampilkan</p>
-
-<p><code>
-6.0.4
-</code></p>
-
-<h3>Crunchbang</h3>
-
-<p>Untuk mengetahui versi Crunchbang, ketikkan perintah berikut</p>
-
-<p><code>
-cat /etc/lsb-release-crunchbang
-</code>
-di environment saya menampilkan</p>
-
-<p><code>
-DISTRIB_ID=CrunchBang
-DISTRIB_RELEASE=10
-DISTRIB_CODENAME=statler
-DISTRIB_DESCRIPTION="CrunchBang 10 statler"
-</code></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Membuat SSL Certificate di Apache/Crunchbang Linux]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/03/10/membuat-ssl-certificate-di-apache-slash-crunchbang-linux/"/>
-    <updated>2013-03-10T10:20:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/03/10/membuat-ssl-certificate-di-apache-slash-crunchbang-linux</id>
-    <content type="html"><![CDATA[<h2>Tentang SSL Certificate</h2>
-
-<p>SSL Certificate adalah cara untuk mengenkripsi informasi situs dan membuat koneksi yang lebih aman. Selain itu, sertifikat dapan menunjukkan informasi identifikasi <em>virtual private server</em> untuk pengunjung situs.</p>
-
-<h2>Langkah 1 &ndash; Mengaktifkan SSL Module</h2>
-
-<p>Untuk mengaktifkan <em>SSL Module</em> ketikkan perintah berikut:</p>
-
-<p><code>
-sudo a2enmod ssl
-</code></p>
-
-<p>Setelah itu, restart apache:</p>
-
-<p><code>
-sudo /etc/init.d/apache2 restart
-</code></p>
-
-<h2>Langkah 2 &ndash; Buat direktori baru</h2>
-
-<p>Kita butuh membuat direktory baru untuk menyimpan key dan cerfiticate server.</p>
-
-<p><code>
-sudo mkdir /etc/apache2/ssl
-</code></p>
-
-<h2>Langkah 3 &ndash; Membuat Self Signed SSL Certificate</h2>
-
-<p>Untuk membuat sertifikat yang baru, ketikkan perintah di bawah ini. Kita dapat menentukan berapa lama sertifikat tersebut seharusnya tetap berlaku dengan mengubah 365 dengan jumlah hari yang kita inginkan.</p>
-
-<p>```
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt</p>
-
-<p>```</p>
-
-<p>Perintah di atas akan membuat key &amp; sertifikat ke dalam direktori yang baru kita buat di langkah 2.</p>
-
-<p>Perintah ini akan menampilkan field2 yang harus kita isikan, seperti di bawah ini (isi sesuai dengan keinginan kita):</p>
-
-<p>```
-You are about to be asked to enter information that will be incorporated
-into your certificate request.
-What you are about to enter is what is called a Distinguished Name or a DN.
-There are quite a few fields but you can leave some blank
-For some fields there will be a default value,</p>
-
-<h2>If you enter &lsquo;.&rsquo;, the field will be left blank.</h2>
-
-<p>Country Name (2 letter code) [AU]:ID
-State or Province Name (full name) [Some-State]:Jakarta
-Locality Name (eg, city) []:Jakarta Selatan
-Organization Name (eg, company) [Internet Widgits Pty Ltd]:Hendry Suwanda
-Organizational Unit Name (eg, section) []:&ndash;
-Common Name (e.g. server FQDN or YOUR name) []:www.hendrysuwanda.com
-Email Address []:<a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#58;&#115;&#117;&#119;&#x61;&#110;&#x64;&#97;&#46;&#x68;&#x65;&#110;&#x64;&#x72;&#x79;&#64;&#103;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#109;">&#115;&#117;&#x77;&#97;&#x6e;&#x64;&#97;&#x2e;&#104;&#101;&#110;&#100;&#x72;&#x79;&#64;&#x67;&#109;&#x61;&#105;&#108;&#46;&#99;&#111;&#x6d;</a></p>
-
-<p>```</p>
-
-<h3>Langkah 4 &ndash; Setup Sertifikat</h3>
-
-<p>Buka file SSL config dengan mengetikan perintah berikut:</p>
-
-<p><code>
-sudo vi /etc/apache2/sites-available/default
-</code></p>
-
-<p>tambahkan settingan seperti di bawah ini:</p>
-
-<p>```
-<VirtualHost *:443></p>
-
-<pre><code>ServerName www.hendrysuwanda.com:443
-
-SSLEngine on
-SSLCertificateFile /etc/apache2/ssl/apache.crt
-SSLCertificateKeyFile /etc/apache2/ssl/apache.key
-</code></pre>
-
-<p></VirtualHost>
-```</p>
-
-<h3>Langkah 5 &ndash; Mengaktifkan VirtualHost baru</h3>
-
-<p>Untuk mengaktifkan VirtualHost yang baru kita buat, ketikkan perintah berikut:</p>
-
-<p><code>
-sudo a2ensite default
-</code></p>
-
-<p>Lalu restart service apache, dengan mengetikkan perintah:</p>
-
-<p><code>
-sudo /etc/init.d/apache2 restart
-</code></p>
-
-<p>Selesai, SSL Certificate sudah terpasang, untuk mencoba nya silahkan buka link <a href="https://localhost">https://localhost</a> (address)</p>
 ]]></content>
   </entry>
   

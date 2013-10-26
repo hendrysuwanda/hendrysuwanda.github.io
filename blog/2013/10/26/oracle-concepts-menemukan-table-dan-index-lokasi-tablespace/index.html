@@ -4,11 +4,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>SublimeText - How to Select Same Word and Replace It - Hendry Suwanda</title>
+  <title>Oracle Concepts - Menemukan table dan index lokasi tablespace - Hendry Suwanda</title>
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Aug 31st, 2013 SublimeText - How to Select Same Word and Replace It I know, my english is very bad, but, I believe in the phrase, &#8220;no practice &hellip;">
+  <meta name="description" content="Oct 26th, 2013 Oracle Concepts - Menemukan Table Dan Index Lokasi Tablespace Artikel ini saya translate dari sini. Tujuan saya translate artikel ini &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -17,7 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://hendrysuwanda.github.io/blog/2013/08/31/sublimetext-how-to-select-same-word-and-replace-it">
+  <link rel="canonical" href="http://hendrysuwanda.github.io/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="Hendry Suwanda" type="application/atom+xml">
 
@@ -101,43 +101,50 @@
   
 
 
-<time datetime="2013-08-31T11:41:00-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
+<time datetime="2013-10-26T14:42:00-04:00" pubdate data-updated="true">Oct 26<span>th</span>, 2013</time>
         
       </p>
     
     
     <h1 class="entry-title">
-        SublimeText - How to Select Same Word and Replace It
+        Oracle Concepts - Menemukan Table Dan Index Lokasi Tablespace
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix"><blockquote><p>I know, my english is very bad, but, I believe in the phrase, &#8220;no practice, no learning&#8221;. so, if you feel something is wrong with my post, please do not hesitate to comment.</p></blockquote>
+<div class="entry-content clearfix"><div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://javacolors.blogspot.com/2008/10/intellij-shortcuts-vs-eclipse-shortcuts.html"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
+</div>
 
 
-<p>Consider, i have the source code as shown below</p>
+<p>Mencari tahu yang memiliki <code>table</code> dan apa <code>tablespace</code> nya adalah kebutuhan yang cukup umum dari <code>DBA</code>. Dalam query ini, kita menggunakan <code>dba_tables view</code> untuk menemukan pemilik dan nama <code>tablespace</code> dari tabel <code>EMP</code>.</p>
 
-<p><img src="/images/sublimetext/sample-source-code.png"></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'> <span class="k">SQL</span><span class="o">&gt;</span>  <span class="k">select</span> <span class="k">owner</span><span class="p">,</span> <span class="k">table_name</span><span class="p">,</span> <span class="n">tablespace_name</span>
+</span><span class='line'>  <span class="mi">2</span>   <span class="k">from</span> <span class="n">dba_tables</span>
+</span><span class='line'>  <span class="mi">3</span>  <span class="k">where</span> <span class="k">table_name</span><span class="o">=</span><span class="s1">&#39;EMP&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">OWNER</span>                <span class="k">TABLE_NAME</span>           <span class="n">TABLESPACE_NAME</span>
+</span><span class='line'><span class="c1">-------------------- -------------------- -------------</span>
+</span><span class='line'><span class="n">SCOTT</span>                <span class="n">EMP</span>                  <span class="n">USERS</span>
+</span><span class='line'><span class="n">POLL</span>                 <span class="n">EMP</span>                  <span class="n">USERS</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>I want to change the word <code>AND</code> that is in line 1155 and 1172 became the <code>OR</code>, then I do the following steps:</p>
 
-<p>1) Move the cursor to the line 1155, put in the word <code>AND</code> and press <code>CTRL+D</code>, as shown below.</p>
+<p>Seperti yang dapat kita lihat dari query ini, kita memiliki 2 table yang disebut <code>EMP</code>, dimiliki oleh 2 <code>user</code> yang berbeda (SCOTT dan POLL). Kedua table terdapat dalam <code>tablespace</code> USERS.</p>
 
-<p><img src="/images/sublimetext/select-word-n-replace-1.png"></p>
-
-<p>2) If I press <code>CTRL+D</code> again, then that will be selected is the word <code>AND</code> next in line 1158, as shown below.</p>
-
-<p><img src="/images/sublimetext/select-word-n-replace-2.png"></p>
-
-<p>3) Because I want to select the word <code>AND</code> in line 1172, then I move the cursor to line 1172, put in the word <code>AND</code>, the press <code>CTRL+D</code> again, as shown below.</p>
-
-<p><img src="/images/sublimetext/select-word-n-replace-3.png"></p>
-
-<p>4) Then type the word <code>OR</code>, so the word <code>AND</code> that is on the line in 1155 and 1172 will be changed to the word <code>OR</code>, as shown below.</p>
-
-<p><img src="/images/sublimetext/select-word-n-replace-4.png"></p>
+<p>Sebuah latihan yang bagus untuk anda mungkin mencoba menggabungkan query ini dengan sebuah <code>view</code> seperti <code>dba_extents</code> dan mencari tahu seberapa besar tabel ini dialokasikan.</p>
 </div>
 
 
@@ -160,12 +167,12 @@
   
 
 
-<time datetime="2013-08-31T11:41:00-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
+<time datetime="2013-10-26T14:42:00-04:00" pubdate data-updated="true">Oct 26<span>th</span>, 2013</time>
           
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/sublimetext/'>sublimetext</a>
+    <a class='category' href='/blog/categories/oracle/'>oracle</a>, <a class='category' href='/blog/categories/translate/'>translate</a>
   
 </span>
 
@@ -174,7 +181,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://hendrysuwanda.github.io/blog/2013/08/31/sublimetext-how-to-select-same-word-and-replace-it/" data-via="" data-counturl="http://hendrysuwanda.github.io/blog/2013/08/31/sublimetext-how-to-select-same-word-and-replace-it/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://hendrysuwanda.github.io/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace/" data-via="" data-counturl="http://hendrysuwanda.github.io/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace/" >Tweet</a>
   
   
   
@@ -184,10 +191,8 @@
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/blog/2013/08/31/angularjs-binding/" title="Previous Post: AngularJS - Binding">&laquo; AngularJS - Binding</a></li>
+            <li class="previous"><a href="/blog/2013/10/26/intellij-shortcuts-vs-eclipse-shortcuts/" title="Previous Post: IntelliJ shortcuts vs Eclipse shortcuts ">&laquo; IntelliJ shortcuts vs Eclipse shortcuts </a></li>
             
-            
-            <li class="next"><a href="/blog/2013/09/13/lupa-password-websphere-application-server-administrative-console/" title="Next Post: Lupa Password WebSphere Application Server administrative console">Lupa Password WebSphere Application Server administrative console &raquo;</a></li>
             
           </ul>
         
@@ -212,7 +217,7 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace/">Oracle Concepts - Menemukan Table Dan Index Lokasi Tablespace</a>
+    <a class="list-group-item active" href="/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace/">Oracle Concepts - Menemukan Table Dan Index Lokasi Tablespace</a>
     
     <a class="list-group-item " href="/blog/2013/10/26/intellij-shortcuts-vs-eclipse-shortcuts/">IntelliJ Shortcuts vs Eclipse Shortcuts</a>
     
@@ -258,8 +263,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://hendrysuwanda.github.io/blog/2013/08/31/sublimetext-how-to-select-same-word-and-replace-it/';
-        var disqus_url = 'http://hendrysuwanda.github.io/blog/2013/08/31/sublimetext-how-to-select-same-word-and-replace-it/';
+        var disqus_identifier = 'http://hendrysuwanda.github.io/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace/';
+        var disqus_url = 'http://hendrysuwanda.github.io/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace/';
         var disqus_script = 'embed.js';
       
     (function () {

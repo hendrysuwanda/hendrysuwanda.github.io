@@ -4,7 +4,7 @@
   <title><![CDATA[Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-10-26T13:10:29-04:00</updated>
+  <updated>2013-10-26T14:58:54-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,147 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Oracle Concepts - Menemukan table dan index lokasi tablespace]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace/"/>
+    <updated>2013-10-26T14:42:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://javacolors.blogspot.com/2008/10/intellij-shortcuts-vs-eclipse-shortcuts.html"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
+</div>
+
+
+<p>Mencari tahu yang memiliki <code>table</code> dan apa <code>tablespace</code> nya adalah kebutuhan yang cukup umum dari <code>DBA</code>. Dalam query ini, kita menggunakan <code>dba_tables view</code> untuk menemukan pemilik dan nama <code>tablespace</code> dari tabel <code>EMP</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'> <span class="k">SQL</span><span class="o">&gt;</span>  <span class="k">select</span> <span class="k">owner</span><span class="p">,</span> <span class="k">table_name</span><span class="p">,</span> <span class="n">tablespace_name</span>
+</span><span class='line'>  <span class="mi">2</span>   <span class="k">from</span> <span class="n">dba_tables</span>
+</span><span class='line'>  <span class="mi">3</span>  <span class="k">where</span> <span class="k">table_name</span><span class="o">=</span><span class="s1">&#39;EMP&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">OWNER</span>                <span class="k">TABLE_NAME</span>           <span class="n">TABLESPACE_NAME</span>
+</span><span class='line'><span class="c1">-------------------- -------------------- -------------</span>
+</span><span class='line'><span class="n">SCOTT</span>                <span class="n">EMP</span>                  <span class="n">USERS</span>
+</span><span class='line'><span class="n">POLL</span>                 <span class="n">EMP</span>                  <span class="n">USERS</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Seperti yang dapat kita lihat dari query ini, kita memiliki 2 table yang disebut <code>EMP</code>, dimiliki oleh 2 <code>user</code> yang berbeda (SCOTT dan POLL). Kedua table terdapat dalam <code>tablespace</code> USERS.</p>
+
+<p>Sebuah latihan yang bagus untuk anda mungkin mencoba menggabungkan query ini dengan sebuah <code>view</code> seperti <code>dba_extents</code> dan mencari tahu seberapa besar tabel ini dialokasikan.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[IntelliJ shortcuts vs Eclipse shortcuts ]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/26/intellij-shortcuts-vs-eclipse-shortcuts/"/>
+    <updated>2013-10-26T14:14:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/26/intellij-shortcuts-vs-eclipse-shortcuts</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://javacolors.blogspot.com/2008/10/intellij-shortcuts-vs-eclipse-shortcuts.html"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
+</div>
+
+
+<p>Baru-baru ini, saya mulai bekerja dengan IntelliJ. Tapi, jujur, setelah beberapa tahun dengan Eclipse, sulit untuk menjadi efektif karena tombol shortcut yang berbeda antara dua IDE tersebut. Permintaan kecil di Google dan saya mendapatkan ini:</p>
+
+<table class="table table-bordered">
+<tr>
+    <th>Description</th>
+    <th>Eclipse shortcut</th>
+    <th>IntelliJ shortcut</th>
+</tr>
+<tr>
+    <td>Navigasi sebuah tipe java</td>
+    <td>CTRL + ALT + T</td>
+    <td>CTRL + N</td>
+</tr>
+<tr>
+    <td>Navigasi sebuah <code>Resource</code></td>
+    <td>CTRL + ALT + R</td>
+    <td>CTRL + SHIFT + N</td>
+</tr>
+<tr>
+    <td>Sumber terakhir perbaikan</td>
+    <td>ALT + LEFT ARROW</td>
+    <td>CTRL + ALT + LEFT ARROW</td>
+</tr>
+<tr>
+    <td>Debug</td>
+    <td>F11</td>
+    <td>SHIFT + F9</td>
+</tr>
+<tr>
+    <td>Membuka Deklarasi</td>
+    <td>F3</td>
+    <td>CTRL + SHIFT + B</td>
+</tr>
+<tr>
+    <td>Membuka <code>Hierarchy</code></td>
+    <td>F4</td>
+    <td>CTRL + H</td>
+</tr>
+<tr>
+    <td>Mengatur <code>import</code></td>
+    <td>CTRL + SHIFT + O</td>
+    <td>CTRL + ALT + O</td>
+</tr>
+<tr>
+    <td><code>Find</code></td>
+    <td>CTRL + F</td>
+    <td>CTRL + F</td>
+</tr>
+<tr>
+    <td><code>Find Again/previous</code></td>
+    <td>F3 atau SHIFT + F3</td>
+    <td>F3 atau SHIFT + F3</td>
+</tr>
+<tr>
+    <td>(DEBUG) Step Into</td>
+    <td>F5</td>
+    <td>F7</td>
+</tr>
+<tr>
+    <td>(DEBUG) Step Over</td>
+    <td>F6</td>
+    <td>F8</td>
+</tr>
+<tr>
+    <td>(DEBUG) Step Out</td>
+    <td>F7</td>
+    <td>SHIFT + F8</td>
+</tr>
+
+<tr>
+    <td>(DEBUG) Resume</td>
+    <td>F8</td>
+    <td>F9</td>
+</tr>
+
+<tr>
+    <td>Untuk menemukan <code>implement</code> dari sebuah abstrak <code>method</code></td>
+    <td></td>
+    <td>CTRL + ALT + B</td>
+</tr>
+<tr>
+    <td>Menemukan penggunaan</td>
+    <td>CTRL + SHIFT + G</td>
+    <td>ALT + F7</td>
+</tr>
+</table>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[IntelliJ IDEA and Eclipse Shortcuts]]></title>
@@ -1564,60 +1705,6 @@ Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command beriku
 <ol>
 <li><a href="http://blogs.justenougharchitecture.com/?p=124">Spring Batch 2.0 – Part I – Simple Tasklet</a></li>
 </ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[URL belajar bahasa inggris]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/09/28/url-belajar-bahasa-inggris/"/>
-    <updated>2013-09-28T05:46:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/09/28/url-belajar-bahasa-inggris</id>
-    <content type="html"><![CDATA[<blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
-
-
-<ol>
-<li><a href="http://www.englishclub.com/">English Club</a></li>
-<li><a href="http://www.bbc.co.uk/worldservice/learningenglish/">BBC Learning English</a></li>
-<li><a href="http://learningenglish.voanews.com/">VOA Learning English</a></li>
-<li><a href="http://livemocha.com/">Live Mocha</a></li>
-<li><a href="www.lingq.com/">Lingq</a>. <code>Diberi pinjam account gratis sama om kaiser :D</code></li>
-<li><a href="http://www.kaskus.co.id/forum/113/english">Kaskus English Forum</a></li>
-<li><a href="http://englishmaven.org/index.html">English Maven</a></li>
-</ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Cara Menampilkan List Table di Oracle]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/09/28/cara-menampilkan-list-table-di-oracle/"/>
-    <updated>2013-09-28T05:33:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/09/28/cara-menampilkan-list-table-di-oracle</id>
-    <content type="html"><![CDATA[<blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
-
-
-<p>Ada banyak cara untuk mengetahui list table di oracle. yaitu:</p>
-
-<p>1) List Table yang di miliki current user, gunakan sintaks</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">user_tables</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2) List Table yang ada di database/schema, gunakan sintaks</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">dba_tables</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3) List table yang bisa di akses oleh current user, gunakan sintaks</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">all_tables</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>

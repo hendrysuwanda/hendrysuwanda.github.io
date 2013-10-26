@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: MongoDB | Hendry Suwanda]]></title>
+  <title><![CDATA[Category: mongodb | Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/blog/categories/mongodb/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-10-26T13:10:29-04:00</updated>
+  <updated>2013-10-26T14:58:54-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Delete database di mongoDB]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/05/11/delete-database-di-mongodb/"/>
+    <updated>2013-05-11T07:17:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/05/11/delete-database-di-mongodb</id>
+    <content type="html"><![CDATA[<p>Berikut list database yang saya miliki:</p>
+
+<p>```</p>
+
+<blockquote><p>show dbs
+local   0.078125GB
+pcat    0.453125GB
+test    0.203125GB</p></blockquote>
+
+<p>```</p>
+
+<p>anggap, saya ingin menghapus database test, ada 3 cara untuk melakukannya:</p>
+
+<h4>1. menggunakan script</h4>
+
+<p><code>
+mongo test --eval "db.dropDatabase()"
+</code></p>
+
+<h4>2. Login &amp; use database yg mau di delete</h4>
+
+<p>```</p>
+
+<blockquote><p>use test
+db.dropDatabase()
+```</p></blockquote>
+
+<h4>3. Stop service &amp; delete manual file database</h4>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Find data yang memiliki field tertentu di mongoDB]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/05/11/find-data-yang-memiliki-field-tertentu-di-mongodb/"/>
+    <updated>2013-05-11T07:09:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/05/11/find-data-yang-memiliki-field-tertentu-di-mongodb</id>
+    <content type="html"><![CDATA[<p>Karena MongoDB memiliki sifat yang flexible untuk strukture collections, maka ada kemungkinan kita mau mencari documents tertentu di dalam collection yang memiliki field tertentu.</p>
+
+<p>Contoh, saya punya collection dengan documents seperti di bawah ini:</p>
+
+<p>```</p>
+
+<blockquote><p>db.test2.find()
+{ &ldquo;<em>id&rdquo; : ObjectId(&ldquo;518ded066186c4ef4300a7cd&rdquo;), &ldquo;x&rdquo; : &ldquo;hello&rdquo;, &ldquo;y&rdquo; : 400 }
+{ &ldquo;</em>id&rdquo; : ObjectId(&ldquo;518ded106186c4ef4300a7ce&rdquo;), &ldquo;x&rdquo; : &ldquo;hello&rdquo;, &ldquo;z&rdquo; : 1 }
+{ &ldquo;<em>id&rdquo; : ObjectId(&ldquo;518ded136186c4ef4300a7cf&rdquo;), &ldquo;x&rdquo; : &ldquo;hello&rdquo;, &ldquo;zz&rdquo; : 1 }
+{ &ldquo;</em>id&rdquo; : 101, &ldquo;arr&rdquo; : [ &ldquo;hi&rdquo;, &ldquo;hi&rdquo;, &ldquo;hi&rdquo;, &ldquo;hi&rdquo;, &ldquo;hi&rdquo;, &ldquo;hi&rdquo;, &ldquo;bye&rdquo; ], &ldquo;x&rdquo; : &ldquo;hello&rdquo;, &ldquo;y&rdquo; : 101 }
+```</p></blockquote>
+
+<p>Saya ingin mencari document yang memiliki field &ldquo;arr&rdquo;, maka cara yang saya lakukan:</p>
+
+<p>```</p>
+
+<blockquote><p>db.test2.find({arr: {$exists: true}})
+{ &ldquo;_id&rdquo; : 101, &ldquo;arr&rdquo; : [ &ldquo;hi&rdquo;, &ldquo;hi&rdquo;, &ldquo;hi&rdquo;, &ldquo;hi&rdquo;, &ldquo;hi&rdquo;, &ldquo;hi&rdquo;, &ldquo;bye&rdquo; ], &ldquo;x&rdquo; : &ldquo;hello&rdquo;, &ldquo;y&rdquo; : 101 }
+```</p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Install MongoDB di Linux]]></title>

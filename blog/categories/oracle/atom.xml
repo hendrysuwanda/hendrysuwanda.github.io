@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Oracle | Hendry Suwanda]]></title>
+  <title><![CDATA[Category: oracle | Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/blog/categories/oracle/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-10-26T13:10:29-04:00</updated>
+  <updated>2013-10-26T14:58:54-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,180 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Oracle Concepts - Menemukan table dan index lokasi tablespace]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace/"/>
+    <updated>2013-10-26T14:42:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://javacolors.blogspot.com/2008/10/intellij-shortcuts-vs-eclipse-shortcuts.html"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
+</div>
+
+
+<p>Mencari tahu yang memiliki <code>table</code> dan apa <code>tablespace</code> nya adalah kebutuhan yang cukup umum dari <code>DBA</code>. Dalam query ini, kita menggunakan <code>dba_tables view</code> untuk menemukan pemilik dan nama <code>tablespace</code> dari tabel <code>EMP</code>.</p>
+
+<p>```sql
+ SQL>  select owner, table_name, tablespace_name
+  2   from dba_tables
+  3  where table_name=&lsquo;EMP&rsquo;;</p>
+
+<p>OWNER                TABLE_NAME           TABLESPACE_NAME</p>
+
+<hr />
+
+<p>SCOTT                EMP                  USERS
+POLL                 EMP                  USERS
+```</p>
+
+<p>Seperti yang dapat kita lihat dari query ini, kita memiliki 2 table yang disebut <code>EMP</code>, dimiliki oleh 2 <code>user</code> yang berbeda (SCOTT dan POLL). Kedua table terdapat dalam <code>tablespace</code> USERS.</p>
+
+<p>Sebuah latihan yang bagus untuk anda mungkin mencoba menggabungkan query ini dengan sebuah <code>view</code> seperti <code>dba_extents</code> dan mencari tahu seberapa besar tabel ini dialokasikan.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ekuivalen Fungsi Left, Mid dan Right di Oracle]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/11/ekuivalen-fungsi-left-mid-right-di-oracle/"/>
+    <updated>2013-10-11T13:25:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/11/ekuivalen-fungsi-left-mid-right-di-oracle</id>
+    <content type="html"><![CDATA[<p>Oracle tidak memiliki fungsi <code>Left</code>, <code>Mid</code> dan <code>Right</code> seperti di SQLServer, tapi kita menggunakan fungsi <code>substr</code> agar dapat bekerja sesuai dengan 3 fungsi tersebut.</p>
+
+<div class="well">
+    Sebenarnya fungsi substr di oracle sama dengan fungsi mid di sqlserver
+</div>
+
+
+<h3>Left</h3>
+
+<p><code>sql SQLServer
+LEFT('Indonesia', 4) = 'Indo'
+</code></p>
+
+<p><code>sql Oracle
+SUBSTR('Indonesia', 1, 4) = 'Indo'
+</code></p>
+
+<h3>Mid</h3>
+
+<p><code>sql SQLServer
+MID('Indonesia', 5, 5) = 'nesia'
+</code>
+<code>sql Oracle
+SUBSTR('Indonesia', 5, 5) = 'nesia'
+</code></p>
+
+<h3>Right</h3>
+
+<p><code>sql SQLServer
+RIGHT('Indonesia', 5) = 'nesia'
+</code>
+<code>sql Oracle
+SUBSTR('Indonesia', -5, 5) = 'nesia'
+</code></p>
+
+<p>-5 = Di hitung dari kanan ke kiri, dalam contoh di atas merupakan posisi <code>n</code>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[While Loop di Oracle/PLSQL]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/11/while-loop-di-oracle-slash-plsql/"/>
+    <updated>2013-10-11T12:11:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/11/while-loop-di-oracle-slash-plsql</id>
+    <content type="html"><![CDATA[<p>Sintaks untuk <code>while loop</code> di oracle seperti ini:</p>
+
+<p><code>sql
+WHILE condition
+LOOP
+   {.statements.}
+END LOOP;
+</code></p>
+
+<p>Kita menggunakan <code>while loop</code> ketika kita tidak yakin berapa kali kita akan meng-eksekusi <code>loop body</code>. Karena <code>while condition</code> di evaluasi sebelum masuk ke dalam <code>loop</code>, ini memungkinkan <code>loop body</code> tidak akan di eksekusi sama sekali.</p>
+
+<p>Contoh: kita akan membuat function yang berfungsi untuk mencari posisi terakhir dari karakter <code>x</code> dari suatu <code>String</code>.</p>
+
+<p>```sql
+CREATE OR REPLACE FUNCTION LAST_INDEX(P_STRING IN VARCHAR2, P_CHAR IN VARCHAR2)</p>
+
+<pre><code>RETURN NUMBER DETERMINISTIC
+</code></pre>
+
+<p>  AS</p>
+
+<pre><code>V_INDEX         NUMBER;
+V_START         NUMBER;
+</code></pre>
+
+<p>  BEGIN</p>
+
+<pre><code>V_START :=1;
+SELECT INSTR(P_STRING, P_CHAR, V_START) 
+  INTO V_INDEX
+FROM DUAL;
+
+WHILE V_INDEX &lt;&gt; 0
+LOOP
+  V_START := V_INDEX;
+  SELECT INSTR(P_STRING, P_CHAR, V_START+1) 
+    INTO V_INDEX
+  FROM DUAL;      
+END LOOP;
+
+RETURN V_START;
+</code></pre>
+
+<p>  END;
+```</p>
+
+<p>test:</p>
+
+<p><code>sql
+SELECT LAST_INDEX('123X567X89X123','X') FROM DUAL;
+</code></p>
+
+<p>result:</p>
+
+<p><code>
+11
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[rename column di oracle]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/04/rename-column-di-oracle/"/>
+    <updated>2013-10-04T11:09:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/04/rename-column-di-oracle</id>
+    <content type="html"><![CDATA[<p>Sintaks untuk rename column di oracle sebagai berikut</p>
+
+<p><code>sql
+alter table &lt;table name&gt; rename column &lt;column name&gt; to &lt;new column name&gt;;
+</code></p>
+
+<p>anggap, kita memiliki table dengan struktur seperti ini</p>
+
+<p>```sql
+CREATE TABLE CS_EXCHANGE_RATE (</p>
+
+<pre><code>EXCHANGE_RATE_DATE  DATE NOT NULL,          
+CURRENCY_CODE       CHAR(3) NOT NULL,
+RATE                NUMBER(18,10) NOT NULL
+</code></pre>
+
+<p>);
+```</p>
+
+<p>Lalu, kita ingin mengubah, nama kolum <code>RATE</code>, menjadi <code>VALUE</code>. Maka jalankan sintaks berikut</p>
+
+<p><code>sql
+alter table CS_EXCHANGE_RATE rename column RATE to VALUE;
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Mendapatkan tanggal awal dan akhir Bulan di Oracle]]></title>
@@ -106,46 +280,6 @@ FROM DUAL;
 </code></p>
 
 <p>Dan seterusnya.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Cara Menampilkan Hasil dari dbms_output.put_line(message)]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/03/30/cara-menampilkan-hasil-dari-dbms-output-dot-put-line-message/"/>
-    <updated>2013-03-30T04:45:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/03/30/cara-menampilkan-hasil-dari-dbms-output-dot-put-line-message</id>
-    <content type="html"><![CDATA[<p>Belakangan ini saya lagi belajar PL/SQL dari situs <a href="http://www.tutorialspoint.com/plsql/index.htm">ini</a>.</p>
-
-<p>Tapi sialnya, ketika masih menulis script helloworld tidak mendapatkan hasilnya, scriptnya sebagai berikut:</p>
-
-<p><code>sql
-DECLARE
-   message  varchar2(20):= 'Hello, World!';
-BEGIN
-   dbms_output.put_line(message);
-END;
-/
-</code></p>
-
-<p>Masih helloworld aja sudah gagal :D. tapi tenang dulu, dari hasil google yg nggak sengaja, ternyata secara default, oracle mematikan hasil dari perintah ini <code>dbms_output.put_line(message);</code>, untuk mengaktifkannya, tambahkan script berikut di awal script PL/SQL</p>
-
-<p><code>sql
-set serveroutput on;
-</code></p>
-
-<p>kurang lebih, script helloworld saya diatas menjadi seperti di bawah ini:</p>
-
-<p><code>sql
-set serveroutput on;
-DECLARE
-   message  varchar2(20):= 'Hello, World!';
-BEGIN
-   dbms_output.put_line(message);
-END;
-/
-</code></p>
-
-<p>Akhirnya saya lulus pelajaran helloworld PL/SQL :D</p>
 ]]></content>
   </entry>
   

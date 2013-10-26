@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: PL/SQL | Hendry Suwanda]]></title>
+  <title><![CDATA[Category: pl/sql | Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/blog/categories/pl-slash-sql/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-10-26T13:10:29-04:00</updated>
+  <updated>2013-10-26T14:58:54-04:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,71 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[While Loop di Oracle/PLSQL]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/10/11/while-loop-di-oracle-slash-plsql/"/>
+    <updated>2013-10-11T12:11:00-04:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/10/11/while-loop-di-oracle-slash-plsql</id>
+    <content type="html"><![CDATA[<p>Sintaks untuk <code>while loop</code> di oracle seperti ini:</p>
+
+<p><code>sql
+WHILE condition
+LOOP
+   {.statements.}
+END LOOP;
+</code></p>
+
+<p>Kita menggunakan <code>while loop</code> ketika kita tidak yakin berapa kali kita akan meng-eksekusi <code>loop body</code>. Karena <code>while condition</code> di evaluasi sebelum masuk ke dalam <code>loop</code>, ini memungkinkan <code>loop body</code> tidak akan di eksekusi sama sekali.</p>
+
+<p>Contoh: kita akan membuat function yang berfungsi untuk mencari posisi terakhir dari karakter <code>x</code> dari suatu <code>String</code>.</p>
+
+<p>```sql
+CREATE OR REPLACE FUNCTION LAST_INDEX(P_STRING IN VARCHAR2, P_CHAR IN VARCHAR2)</p>
+
+<pre><code>RETURN NUMBER DETERMINISTIC
+</code></pre>
+
+<p>  AS</p>
+
+<pre><code>V_INDEX         NUMBER;
+V_START         NUMBER;
+</code></pre>
+
+<p>  BEGIN</p>
+
+<pre><code>V_START :=1;
+SELECT INSTR(P_STRING, P_CHAR, V_START) 
+  INTO V_INDEX
+FROM DUAL;
+
+WHILE V_INDEX &lt;&gt; 0
+LOOP
+  V_START := V_INDEX;
+  SELECT INSTR(P_STRING, P_CHAR, V_START+1) 
+    INTO V_INDEX
+  FROM DUAL;      
+END LOOP;
+
+RETURN V_START;
+</code></pre>
+
+<p>  END;
+```</p>
+
+<p>test:</p>
+
+<p><code>sql
+SELECT LAST_INDEX('123X567X89X123','X') FROM DUAL;
+</code></p>
+
+<p>result:</p>
+
+<p><code>
+11
+</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Cara Menampilkan Hasil dari dbms_output.put_line(message)]]></title>
