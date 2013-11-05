@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: nodejs | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/nodejs/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-11-05T08:45:20-05:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    <email><![CDATA[suwanda.hendry@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Upgrade NodeJS menggunakan n]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/05/upgrade-nodejs-menggunakan-n/"/>
+    <updated>2013-11-05T08:40:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/05/upgrade-nodejs-menggunakan-n</id>
+    <content type="html"><![CDATA[<p>Dengan menggunakan <code>n</code>, kita dapat melakukan upgrade/downgrade versi nodejs dengan mudah.</p>
+
+<p>Untuk melihat daftar versi nodejs, ketikkan command berikut</p>
+
+<p><code>
+n ls
+</code></p>
+
+<p>Output</p>
+
+<p>```
+/usr/local/bin/node</p>
+
+<pre><code>0.8.6
+0.8.7
+0.8.8
+0.8.9
+0.8.10
+0.8.11
+0.8.12
+0.8.13
+0.8.14
+0.8.15
+</code></pre>
+
+<p>  ο 0.8.16</p>
+
+<pre><code>0.8.17
+0.8.18
+0.8.19
+0.8.20
+0.8.21
+0.8.22
+0.8.23
+0.8.24
+0.8.25
+0.8.26
+0.9.0
+0.9.1
+0.9.2
+0.9.3
+0.9.4
+0.9.5
+0.9.6
+0.9.7
+0.9.8
+0.9.9
+0.9.10
+0.9.11
+0.9.12
+0.10.0
+0.10.1
+0.10.2
+0.10.3
+0.10.4
+0.10.5
+0.10.6
+0.10.7
+0.10.8
+0.10.9
+0.10.10
+0.10.11
+0.10.12
+0.10.13
+0.10.14
+0.10.15
+0.10.16
+0.10.17
+0.10.18
+0.10.19
+0.10.20
+0.10.21 
+0.11.0
+0.11.1
+0.11.2
+0.11.3
+0.11.4
+0.11.5
+0.11.6
+0.11.7
+0.11.8
+</code></pre>
+
+<p>```</p>
+
+<p>Simbol <code>ο</code>, menandakan versi nodejs yang sedang saya gunakan. Saya ingin menggunakan versi 0.10.21, maka saya akan mengetikkan command</p>
+
+<p><code>
+sudo n 0.10.21
+</code></p>
+
+<p>Output</p>
+
+<p>```</p>
+
+<pre><code> install : 0.10.21
+   mkdir : /usr/local/n/versions/0.10.21
+   fetch : http://nodejs.org/dist/v0.10.21/node-v0.10.21-linux-x64.tar.gz
+</code></pre>
+
+<p>/usr/local/bin/node
+   installed : v0.10.21</p>
+
+<p>```</p>
+
+<p>Jika ingin menginstall versi stable, kita bisa menggunakan command</p>
+
+<p><code>
+sudo n stable
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Semua tentang npm]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/05/semua-tentang-npm/"/>
+    <updated>2013-11-05T08:27:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/05/semua-tentang-npm</id>
+    <content type="html"><![CDATA[<h3>Apa itu npm?</h3>
+
+<p><code>npm</code> adalah manajer paket <code>NodeJS</code>. Sesuai dengan namanya, Anda dapat menggunakannya untuk menginstal program <code>node</code>. <code>npm</code> akan mempermudah kita saat development dalam menentukan dan menghubungkan dependensi.</p>
+
+<h3>Install</h3>
+
+<p>Untuk menginstal <code>npm</code>, kita hanya cukup menjalankan command</p>
+
+<p><code>
+curl http://npmjs.org/install.sh | sh
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Semua tentang n]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/05/semua-tentang-n/"/>
+    <updated>2013-11-05T08:02:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/05/semua-tentang-n</id>
+    <content type="html"><![CDATA[<h3>Apa itu n?</h3>
+
+<p><code>n</code>  adalah Node version management. Dengan menggunakan n, kita bisa melakukan:</p>
+
+<ol>
+<li>Install/upgrade nodejs ke versi berapapun</li>
+<li>Kita bisa pindah-pindah versi nodejs. dari versi lama ke yg baru, maupun sebaliknya.</li>
+</ol>
+
+
+<h3>Install</h3>
+
+<p>Untuk menginstall <code>n</code>, terlebih dahulu kita mesti sudah menginstall <code>npm</code> (jika anda belum menginstall <code>npm</code>, silahkan baca <a href="http://hendrysuwanda.github.io/blog/2013/11/05/semua-tentang-npm/">artikel ini</a>).</p>
+
+<p>Ketikkan perintah berikut, untuk menginstall <code>n</code>:</p>
+
+<p><code>
+npm install -g n
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

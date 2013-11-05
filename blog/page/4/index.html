@@ -8,8 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Jul 21st, 2013 Running Maven Offline Mode Terkadang, sangat menjengkelkan, ketika menjalankan command berikut 1
-mvn clean install maven melakukan &hellip;">
+  <meta name="description" content="Sep 28th, 2013 Cara Menampilkan List Table Di Oracle Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D Ada banyak cara untuk mengetahui &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -106,6 +105,645 @@ mvn clean install maven melakukan &hellip;">
   
 
 
+<time datetime="2013-09-28T05:33:00-04:00" pubdate data-updated="true">Sep 28<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/28/cara-menampilkan-list-table-di-oracle/">Cara Menampilkan List Table Di Oracle</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
+
+
+<p>Ada banyak cara untuk mengetahui list table di oracle. yaitu:</p>
+
+<p>1) List Table yang di miliki current user, gunakan sintaks</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">user_tables</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2) List Table yang ada di database/schema, gunakan sintaks</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">dba_tables</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3) List table yang bisa di akses oleh current user, gunakan sintaks</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">all_tables</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-28T05:25:00-04:00" pubdate data-updated="true">Sep 28<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/28/konversi-timestamp-ke-date-di-oracle/">Konversi Timestamp Ke Date Di Oracle</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
+
+
+<p>Untuk mendapatkan current timestamp &amp; date di oracle, gunakan sintaks ini</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">systimestamp</span><span class="p">,</span> <span class="c1">--untuk mendapatkan current timestamp</span>
+</span><span class='line'>     <span class="n">sysdate</span> <span class="c1">-- untuk mendapatkan current date</span>
+</span><span class='line'>     <span class="k">from</span> <span class="n">dual</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk meng-konversi dari timestamp ke date, gunakan sintaks ini</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span>
+</span><span class='line'>  <span class="n">trunc</span><span class="p">(</span><span class="n">systimestamp</span><span class="p">)</span> <span class="c1">-- akan mengembalikan data dalam bentuk date</span>
+</span><span class='line'><span class="k">from</span> <span class="n">dual</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-27T13:02:00-04:00" pubdate data-updated="true">Sep 27<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/">Menjalankan Java Main Class Menggunakan Maven Command</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Anggap, kita memiliki project java dengan struktur seperti di bawah ini</p>
+
+<p><img src="/images/maven/maven-run-main-class.png"></p>
+
+<p>Lalu, kita ingin menjalankan project tersebut dengan menggunakan maven. Maka kita harus menabahkan plugin <code>exec-maven-plugin</code> di dalam <code>pom.xml</code> seperti di bawah ini</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>...
+</span><span class='line'><span class="nt">&lt;build&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;plugins&gt;</span>
+</span><span class='line'>        ...
+</span><span class='line'>      <span class="nt">&lt;plugin&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;artifactId&gt;</span>exec-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;configuration&gt;</span>
+</span><span class='line'>               <span class="nt">&lt;mainClass&gt;</span>com.hendrysuwanda.tutorial.javacodegeeks.App<span class="nt">&lt;/mainClass&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/configuration&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/plugin&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/plugins&gt;</span>
+</span><span class='line'><span class="nt">&lt;/build&gt;</span>
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu untuk menjalankan nya, kita dapat menggunakan command</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'>mvn exec:java
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-22T04:24:00-04:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/22/install-rabbitmq-di-crunchbang/">Install RabbitMQ Di #CrunchBang</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Ntah kenapa, isi kepala ini ingin mempelajari Message Broker, karena saya fans berat Spring, saya coba memilih RabbitMQ.</p>
+
+<p>Berikut cara install RabbitMQ di #CrunchBang:</p>
+
+<p>1) Tambahkan baris berikut ke dalam <code>/etc/apt/sources.list</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>deb http://www.rabbitmq.com/debian/ testing main</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2) Untuk menghilangkan peringatan karena <code>unsigned package</code>, jalankan command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
+</span><span class='line'>$ sudo apt-key add rabbitmq-signing-key-public.asc</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3) jalankan <code>sudo apt-get update</code>
+4) jalankan command berikut untuk meng-install rabbitmq</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo apt-get install rabbitmq-server</span></code></pre></td></tr></table></div></figure>
+
+
+<p>5) Tunggu sampai proses installation selesai, jika sudah selesai, jalankan command <code>rabbitmqctl status</code> untuk mengecek apakah rabbitmq sudah berjalan dengan normal atau belum.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-17T11:58:00-04:00" pubdate data-updated="true">Sep 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/17/a-remote-host-refused-an-attempted-connect-operation-dsra0010e-sql-state-equals-08001-error-code-equals-99-dot-999/">A Remote Host Refused an Attempted Connect Operation. DSRA0010E: SQL State = 08001-Error Code = -99.999</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Bulan kemaren (Agustus &ndash; 2013), gw dapat laporan dari client, bahwa server aplikasi tidak dapat connect ke core banking, ketika di lakukan test connection dari ibm console (websphere) muncul error seperti di bawah ini</p>
+
+<blockquote><p>The application requester cannot establish the connection. (A remote host refused an attempted connect operation.) DSRA0010E: SQL State = 08001, Error Code = -99.999</p></blockquote>
+
+
+<p>Setelah google, di dapatkan 2 link berikut</p>
+
+<ol>
+<li><a href="http://madhutomy.blogspot.com/2013/03/javasqlsqlexception-invalid-arguments.html">link 1</a>, dia mengalami hal serupa, karena dia lupa memilih &ldquo;Component-managed authentication alias&rdquo;</li>
+<li><a href="http://www-01.ibm.com/support/docview.wss?uid=swg21235300">link 2</a>, langsung dari support websphere, menyarankan untuk me-restart websphere.</li>
+</ol>
+
+
+<p>Solusi 1, jelas tidak mungkin, karena aplikasi sebelumnya dapat berjalan dengan lancar. Solusi 2, masih boleh di coba, dan ternyata setelah di lakukan restart websphere, tetap tidak dapat lakukan test connection, dengan message error masih sama seperti di atas.</p>
+
+<p>hmmm, akhirnya gw curiga sama firewall, gw minta ijin sama client, untuk dapat melakukan koneksi melalui laptop saya, dimana, jaringan yang saya gunakan tidak di block oleh firewall. Saya develop aplikasi java mini (mendadak :( )), untuk melakukan test connection ke core banking (AS/400). Source code untuk aplikasi java tersebut dapat di lihat <a href="https://github.com/hendrysuwanda/test-connection-as-400">di sini</a>. Dan alhamdullilah, ternyata saya dapat melakukan koneksi ke core banking.</p>
+
+<p>Setelah vendor firewall di panggil, akhirnya di ketahui, untuk dapat melakukan koneksi ke AS/400, kita mesti membuka 3 port berikut, yaitu (449, 8476, 8471)</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-13T08:55:00-04:00" pubdate data-updated="true">Sep 13<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/13/lupa-password-websphere-application-server-administrative-console/">Lupa Password WebSphere Application Server Administrative Console</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Di laptop gw, sudah terinstall WebSphere Application Server 8.5, tapi sudah lama nggak pakai, dan sialnya hari ini (12/09/2013) gw berkeinginan mau memakainya.</p>
+
+<p>Ketika di jalanakan &amp; ingin masuk ke Administrative console (ibm/console), s**l, gw lupa passwordnya :(</p>
+
+<p>Setelah google, ternyata kita bisa non-aktifkan security mode dari websphere dengan cara.</p>
+
+<p>1) Matikan dulu websphere (jika masih jalan)
+2) Buka file <code>security.xml</code> yang ada fi folder <code>&lt;HOME_WEBSPHERE&gt;\AppServer\profiles\&lt;PROFILES NAME&gt;\config\cells\&lt;NODE CELL NAME&gt;</code>, contoh di tempat saya ada di, <code>C:\Program Files (x86)\IBM\WebSphere\AppServer\profiles\AppSrv01\config\cells\JPS-01122Node01Cell</code></p>
+
+<p>3) Lalu edit yang ada di sini</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;security:Security</span>
+</span><span class='line'>  <span class="na">xmi:version=</span><span class="s">&quot;2.0&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:xmi=</span><span class="s">&quot;http://www.omg.org/XMI&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:orb.securityprotocol=</span><span class="s">&quot;http://www.ibm.com/websphere/appserver/schemas/5.0/orb.securityprotocol.xmi&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:security=</span><span class="s">&quot;http://www.ibm.com/websphere/appserver/schemas/5.0/security.xmi&quot;</span>
+</span><span class='line'>  <span class="na">xmi:id=</span><span class="s">&quot;Security_1&quot;</span> <span class="na">useLocalSecurityServer=</span><span class="s">&quot;true&quot;</span>
+</span><span class='line'>  <span class="na">useDomainQualifiedUserNames=</span><span class="s">&quot;false&quot;</span> <span class="na">enabled=</span><span class="s">&quot;true&quot;</span> <span class="na">cacheTimeout=</span><span class="s">&quot;600&quot;</span>
+</span><span class='line'>  <span class="na">issuePermissionWarning=</span><span class="s">&quot;true&quot;</span> <span class="na">activeProtocol=</span><span class="s">&quot;BOTH&quot;</span> <span class="na">enforceJava2Security=</span><span class="s">&quot;false&quot;</span>
+</span><span class='line'>  <span class="na">enforceFineGrainedJCASecurity=</span><span class="s">&quot;false&quot;</span> <span class="na">appEnabled=</span><span class="s">&quot;false&quot;</span>
+</span><span class='line'>  <span class="na">dynamicallyUpdateSSLConfig=</span><span class="s">&quot;true&quot;</span> <span class="na">allowBasicAuth=</span><span class="s">&quot;true&quot;</span>
+</span><span class='line'>  <span class="na">activeAuthMechanism=</span><span class="s">&quot;LTPA_1&quot;</span> <span class="na">activeUserRegistry=</span><span class="s">&quot;WIMUserRegistry_1&quot;</span>
+</span><span class='line'>  <span class="na">defaultSSLSettings=</span><span class="s">&quot;SSLConfig_JPS-01122Node01_1&quot;</span> <span class="na">adminPreferredAuthMech=</span><span class="s">&quot;RSAToken_1&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>nilai dari parameter enabled ubah dari true menjadi false,  kurang lebih jadi seperti di bawah ini.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;security:Security</span>
+</span><span class='line'>  <span class="na">xmi:version=</span><span class="s">&quot;2.0&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:xmi=</span><span class="s">&quot;http://www.omg.org/XMI&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:orb.securityprotocol=</span><span class="s">&quot;http://www.ibm.com/websphere/appserver/schemas/5.0/orb.securityprotocol.xmi&quot;</span>
+</span><span class='line'>  <span class="na">xmlns:security=</span><span class="s">&quot;http://www.ibm.com/websphere/appserver/schemas/5.0/security.xmi&quot;</span>
+</span><span class='line'>  <span class="na">xmi:id=</span><span class="s">&quot;Security_1&quot;</span> <span class="na">useLocalSecurityServer=</span><span class="s">&quot;true&quot;</span>
+</span><span class='line'>  <span class="na">useDomainQualifiedUserNames=</span><span class="s">&quot;false&quot;</span> <span class="na">enabled=</span><span class="s">&quot;false&quot;</span> <span class="na">cacheTimeout=</span><span class="s">&quot;600&quot;</span>
+</span><span class='line'>  <span class="na">issuePermissionWarning=</span><span class="s">&quot;true&quot;</span> <span class="na">activeProtocol=</span><span class="s">&quot;BOTH&quot;</span> <span class="na">enforceJava2Security=</span><span class="s">&quot;false&quot;</span>
+</span><span class='line'>  <span class="na">enforceFineGrainedJCASecurity=</span><span class="s">&quot;false&quot;</span> <span class="na">appEnabled=</span><span class="s">&quot;false&quot;</span>
+</span><span class='line'>  <span class="na">dynamicallyUpdateSSLConfig=</span><span class="s">&quot;true&quot;</span> <span class="na">allowBasicAuth=</span><span class="s">&quot;true&quot;</span>
+</span><span class='line'>  <span class="na">activeAuthMechanism=</span><span class="s">&quot;LTPA_1&quot;</span> <span class="na">activeUserRegistry=</span><span class="s">&quot;WIMUserRegistry_1&quot;</span>
+</span><span class='line'>  <span class="na">defaultSSLSettings=</span><span class="s">&quot;SSLConfig_JPS-01122Node01_1&quot;</span> <span class="na">adminPreferredAuthMech=</span><span class="s">&quot;RSAToken_1&quot;</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>4) Hidupkan kembali websphere. Sekarang anda tidak perlu lagi memasukkan password untuk mengakses Administrative console (ibm/console).</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-31T11:41:00-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/31/sublimetext-how-to-select-same-word-and-replace-it/">SublimeText - How to Select Same Word and Replace It</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><blockquote><p>I know, my english is very bad, but, I believe in the phrase, &#8220;no practice, no learning&#8221;. so, if you feel something is wrong with my post, please do not hesitate to comment.</p></blockquote>
+
+
+<p>Consider, i have the source code as shown below</p>
+
+<p><img src="/images/sublimetext/sample-source-code.png"></p>
+
+<p>I want to change the word <code>AND</code> that is in line 1155 and 1172 became the <code>OR</code>, then I do the following steps:</p>
+
+<p>1) Move the cursor to the line 1155, put in the word <code>AND</code> and press <code>CTRL+D</code>, as shown below.</p>
+
+<p><img src="/images/sublimetext/select-word-n-replace-1.png"></p>
+
+<p>2) If I press <code>CTRL+D</code> again, then that will be selected is the word <code>AND</code> next in line 1158, as shown below.</p>
+
+<p><img src="/images/sublimetext/select-word-n-replace-2.png"></p>
+
+<p>3) Because I want to select the word <code>AND</code> in line 1172, then I move the cursor to line 1172, put in the word <code>AND</code>, the press <code>CTRL+D</code> again, as shown below.</p>
+
+<p><img src="/images/sublimetext/select-word-n-replace-3.png"></p>
+
+<p>4) Then type the word <code>OR</code>, so the word <code>AND</code> that is on the line in 1155 and 1172 will be changed to the word <code>OR</code>, as shown below.</p>
+
+<p><img src="/images/sublimetext/select-word-n-replace-4.png"></p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-31T11:33:00-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/31/angularjs-binding/">AngularJS - Binding</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Binding merupakan fitur utama dari AngularJS. Ia menyediakan mekanisme sederhana untuk meng-integrasi HTML kita dengan Data kita melalui &#8220;.</p>
+
+<p>Data-Binding di Web Aplikasi Angular adalah sinkronisasi otomatis antara komponen <code>model</code> dan <code>view</code>. Cara yang Angular implementasi pada <code>data-binding</code> memungkinkan kita memperlakukan <code>model</code> sebagai satu-satunya sumber kebenaran di aplikasi kita. <code>view</code> adalah gambaran dari <code>model</code> setiap saat. Ketika <code>model</code> berubah, <code>view</code> menggambarkan perubahan, begitu juga sebaliknya.</p>
+
+<p><strong><em> Data-Binding di Sistem template klasik</em></strong></p>
+
+<p><img src="/images/angularjs/One_Way_Data_Binding.png"></p>
+
+<p>Sebagian besar sistem template mengikat data hanya dalam 1 arah: mereka menggabungkan komponen template dan model bersama-sama kedalam sebuah view, seperti di ilustrasikan pada diagram di atas. Setelah penggabungan terjadi, perubahan pada model atau bagian terkati pada view tidak otomatis terceminkan pada view.  Lebih buruk, segala perubahan yang user buat di view tidak di cerminkan pada model. Ini artinya developer harus menulis kode yang selalu sinkron view dengan model anda model dengan view.</p>
+
+<p><strong><em> Data-Binding di template Angular</em></strong></p>
+
+<p><img src="/images/angularjs/Two_Way_Data_Binding.png"></p>
+
+<p>Cara template angular bekerja berbeda, seperti di ilustrasikan pada diagram di atas. Mereka berbeda karena template pertama (yang merupakan HTML uncompiled bersama dengan markup tambahan dan directive) di compile pada browser, dan kedua, langkah kompilasi menghasilkan live view. Kita katakan live karena segala perubahan pada view secara langsung dicerminkan pada model, dan segala perubahan pada model di sebarkan ke view. Ini membuat model selalu satu-satunya-sumber-kebenaran untuk keadaan aplikasi, sangat menyederhanakan model pemrograman untuk developer. Anda dapat menganggap view seperti hanya sebuah proyeksi instan model Anda.</p>
+
+<p><strong><em> Contoh Data-Binding di AngularJS</em></strong></p>
+
+<p>Kita akan memulai dengan menyiapkan <code>div</code> dengan sebuah atribute <a href="http://docs.angularjs.org/api/ng.directive:ngApp"><code>ng-app</code></a>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;title&gt;</span>Belajar AngularJS<span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">ng-app=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>      
+</span><span class='line'>      <span class="nt">&lt;h1&gt;</span><span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;js/angular.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>jika kita menjalankan script di atas, maka akan muncul angka 2. Jika kita ganti &#8220; dengan hello world, maka akan muncul Hello world di browser kita.</p>
+
+<p>Sekarang, kita ingin melakukan binding, dari sebuah text box, ketika user mengetikkan sesuatu, secara realtime apa yg di ketikkan user akan tampil di bawahnya, seperti gambar di bawah ini.</p>
+
+<p><img src="/images/angularjs/binding-model.png"></p>
+
+<p>maka, kita akan ubah, script kita diatas menjadi seperti di bawah ini.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;title&gt;</span>Belajar AngularJS<span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">ng-app=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">ng-model=</span><span class="s">&quot;data.message&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h1&gt;</span><span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;js/angular.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>data.message</code> merupakan model, seperti penjelasan sebelumnya, jadi segala perubahan yang di lakukan oleh user terhadap input text box, maka akan mengikat ke model, dan segala perubahan di model akan mengikat ke dalam tag <code>&lt;h1&gt;&lt;/h1&gt;</code>.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-08-31T11:25:00-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/08/31/angularjs-pengenalan/">AngularJS - Pengenalan</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>AngularJS merupakan teknologi client-side murni, ditulis selurunya dalam JavaScript. Ia bekerja dengan teknologi web yang sudah lama terbentuk (HTML, CSS dan JavaScript) untuk membuat pengembangan Web Aplikasi lebih mudah dan cepat dari sebelumnya.</p>
+
+<p>Di kembangkan pada 2009 oleh Miško Hevery dan Adam Abrons &ndash; keduanya karyawan google pada waktu itu. AngularJS merupakan project open source dengan lisensi MIT. Kita bahkan bisa menggunakan logo nya, dimana tersedia dibawah lisensi <em>Creative Attribution-ShareAlike 3.0 Unported</em>.</p>
+
+<p>Untuk mengetahu lebih lanjut mengenai AngularJS, silahkan kunjungi <a href="http://docs.angularjs.org/guide/introduction">alamat ini</a></p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2013-07-21T21:59:00-04:00" pubdate data-updated="true">Jul 21<span>st</span>, 2013</time>
         
       </p>
@@ -136,654 +774,6 @@ mvn clean install maven melakukan &hellip;">
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-21T21:19:00-04:00" pubdate data-updated="true">Jul 21<span>st</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/07/21/cara-deploy-octopress-di-github/">Cara Deploy Octopress Di Github</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Blog ini menggunakan engine <a href="http://octopress.org/">Octopress</a>, dimana merupakan static site generator, yang mana kita bisa deploy content blog kita ke github.</p>
-
-<p>Berikut cara deploy Octopress di github.</p>
-
-<h3>Buat repository baru di github</h3>
-
-<p>Jika kita ingin memiliki blog dengan url, blogsaya.github.io, maka kita harus <a href="https://github.com/new">membuat repository</a> dengan repository name <code>blogsaya.github.io</code>.</p>
-
-<h3>Setup Github Page</h3>
-
-<p>Anggap, direktori octopress saya, ada di <code>/home/hendrysuwanda/blogsaya.github.io</code>, maka</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$cd /home/hendrysuwanda/blogsaya.github.io
-</span><span class='line'>
-</span><span class='line'>$ rake setup_github_pages</span></code></pre></td></tr></table></div></figure>
-
-
-<p>akan muncul log seperti di bawah ini</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Enter the read/write url for your repository
-</span><span class='line'>(For example, 'git@github.com:your_username/your_username.github.io)
-</span><span class='line'>           or 'https://github.com/your_username/your_username.github.io')
-</span><span class='line'>Repository url: </span></code></pre></td></tr></table></div></figure>
-
-
-<p>kita mesti memasukkan url dari repository yang kita buat di langkah 1, contoh, saya memasukkan <code>https://github.com/hendrysuwanda/blogsaya.github.io</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Enter the read/write url for your repository
-</span><span class='line'>(For example, 'git@github.com:your_username/your_username.github.io)
-</span><span class='line'>           or 'https://github.com/your_username/your_username.github.io')
-</span><span class='line'>Repository url: https://github.com/hendrysuwanda/blogsaya.github.io
-</span><span class='line'>rm -rf _deploy
-</span><span class='line'>mkdir _deploy
-</span><span class='line'>cd _deploy
-</span><span class='line'>Initialized empty Git repository in /windows/blogsaya.github.io/_deploy/.git/
-</span><span class='line'>[master (root-commit) 9f45a14] Octopress init
-</span><span class='line'> 1 files changed, 1 insertions(+), 0 deletions(-)
-</span><span class='line'> create mode 100644 index.html
-</span><span class='line'>cd -
-</span><span class='line'>
-</span><span class='line'>---
-</span><span class='line'>## Now you can deploy to http://blogsaya.github.io with `rake deploy` ##</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Deploy ke github</h3>
-
-<p>Sebelum melakukan deploy ke github, terlebih dahulu, jalankan command berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate</span></code></pre></td></tr></table></div></figure>
-
-
-<p>command di atas, berguna untuk meng-generate content blog kita, dan meletakkan ke dalam folder <code>_deploy/</code>. Setelah itu, jalankan command berikut untuk deploy ke github.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Tunggu beberapa menit, sekarang kita sudah punya blog, yang bisa di akses di <code>blogsaya.github.io</code>.</p>
-
-<h3>Note</h3>
-
-<p>Jangan lupa untuk melakukan commit source dari blog kita, dengan menjalankan command berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git add .
-</span><span class='line'>git commit -m 'your message'
-</span><span class='line'>git push origin source</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-11T07:17:00-04:00" pubdate data-updated="true">May 11<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/11/delete-database-di-mongodb/">Delete Database Di mongoDB</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Berikut list database yang saya miliki:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; show dbs
-</span><span class='line'>local 0.078125GB
-</span><span class='line'>pcat  0.453125GB
-</span><span class='line'>test  0.203125GB
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>anggap, saya ingin menghapus database test, ada 3 cara untuk melakukannya:</p>
-
-<h4>1. menggunakan script</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mongo test --eval "db.dropDatabase()"</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>2. Login &amp; use database yg mau di delete</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; use test
-</span><span class='line'>&gt; db.dropDatabase()</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>3. Stop service &amp; delete manual file database</h4>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-11T07:09:00-04:00" pubdate data-updated="true">May 11<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/11/find-data-yang-memiliki-field-tertentu-di-mongodb/">Find Data Yang Memiliki Field Tertentu Di mongoDB</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Karena MongoDB memiliki sifat yang flexible untuk strukture collections, maka ada kemungkinan kita mau mencari documents tertentu di dalam collection yang memiliki field tertentu.</p>
-
-<p>Contoh, saya punya collection dengan documents seperti di bawah ini:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; db.test2.find()
-</span><span class='line'>{ "_id" : ObjectId("518ded066186c4ef4300a7cd"), "x" : "hello", "y" : 400 }
-</span><span class='line'>{ "_id" : ObjectId("518ded106186c4ef4300a7ce"), "x" : "hello", "z" : 1 }
-</span><span class='line'>{ "_id" : ObjectId("518ded136186c4ef4300a7cf"), "x" : "hello", "zz" : 1 }
-</span><span class='line'>{ "_id" : 101, "arr" : [ "hi", "hi", "hi", "hi", "hi", "hi", "bye" ], "x" : "hello", "y" : 101 }</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Saya ingin mencari document yang memiliki field &ldquo;arr&rdquo;, maka cara yang saya lakukan:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; db.test2.find({arr: {$exists: true}})
-</span><span class='line'>{ "_id" : 101, "arr" : [ "hi", "hi", "hi", "hi", "hi", "hi", "bye" ], "x" : "hello", "y" : 101 }</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-11T05:53:00-04:00" pubdate data-updated="true">May 11<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/05/11/perkenalan-dengan-cloudfoundry/">Perkenalan Dengan CloudFoundry</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Cloud Foundry merupakan Open Platform as a Service (PaaS). Dengan menggunakan cloud foundry kita bisa melakukan deploy aplikasi kita secara gratis. CloudFoundry mendukung beberapa bahasa pemrograman sebagai berikut:</p>
-
-<ul>
-<li>JVM Based (Java, Scala)</li>
-<li>Ruby</li>
-<li>Javascript (Node.js)</li>
-</ul>
-
-
-<p>Dan beberapa database:
-* PostgreSQL
-* redis
-* mongoDB
-* MySQL</p>
-
-<p>dan messaging service, RabbitMQ.</p>
-
-<p>CloudFoundry menyediakan console untuk memanage aplikasi kita di cloudfoundry, untuk versi 1, namanya <strong>VMC</strong> &amp; untuk versi 2 berubah menjadi <strong>CF</strong>.</p>
-
-<h2>Install CF</h2>
-
-<p>Berhubung CF di buat menggunakan Ruby, jadi sebelum melakukan install CF,  pastikan Ruby sudah terinstall di environment kita. Untuk melakukan install CF, ketikkan perintah berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ gem install cf</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Login ke CloudFoundry</h2>
-
-<p>Untuk dapat menggunakan CF, terlebih dahulu kita mesti login ke cloudfoundry. Open terminal, dan lakukan langkah berikut</p>
-
-<h4>Menentukan target</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; cf target api.cloudfoundry.com</span></code></pre></td></tr></table></div></figure>
-
-
-<h4>login</h4>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>&gt; cf login
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-16T12:37:00-04:00" pubdate data-updated="true">Apr 16<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/04/16/install-jdk-1-dot-6-di-ubuntu-12-dot-04-server/">Install Jdk 1.6 Di Ubuntu 12.04 Server</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Berikut cara install jdk 1.6 di ubuntu 12.04 (sebenarnya bisa di lakukan di semua ubuntu :D).</p>
-
-<ol>
-<li><p>Download jdk sesuai dengan bit pada ubuntu (kebetulan ubuntu ku versi 64 bit, jadi aku download jdk-6u43-linux-x64.bin)</p></li>
-<li><p>Buat folder <code>jvm</code> di <code>/usr/lib</code> dengan command berikut</p>
-
-<p> <code>
- sudo mkdir -p /usr/lib/jvm
-</code></p></li>
-<li><p>Lalu pindahkan jdk yang telah di download ke folder &lsquo;/usr/lib/jvm&rsquo; menggunakan perintah berikut</p>
-
-<p> <code>
- sudo mv jdk-6u43-linux-x64.bin /usr/lib/jvm/
-</code></p></li>
-<li><p>Lalu ubah file menjadi executable dengan perintah berikut</p>
-
-<p> <code>
- sudo chmod u+x jdk-6u43-linux-x64.bin
-</code></p></li>
-<li><p>Lalu jalankan file tersebut</p>
-
-<p> <code>
- sudo ./jdk-6u43-linux-x64.bin
-</code></p></li>
-<li><p>Tunggu sampai selesai, proses akan melakukan extract file tersebut ke dalam folder jdk1.6.0_43</p></li>
-<li><p>Lalu jalankan perintah berikut, utk mengaktifkan java yg baru kita install.</p>
-
-<p> &#8220;`
- sudo update-alternatives &mdash;install &ldquo;/usr/bin/java&rdquo; &ldquo;java&rdquo; &ldquo;/usr/lib/jvm/jdk1.6.0_43/bin/java&rdquo; 1</p>
-
-<p> sudo update-alternatives &mdash;install &ldquo;/usr/bin/javac&rdquo; &ldquo;javac&rdquo; &ldquo;/usr/lib/jvm/jdk1.6.0_43/bin/javac&rdquo; 1
- &#8220;`</p></li>
-</ol>
-
-
-<p>Done.</p>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-30T05:36:00-04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/30/duit-di-mata-entrepreneur-sukses/">Duit Di Mata Entrepreneur Sukses</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Kalau saya ambilkan cuplikan dari Steve Jobs (atau entrepreneur
-lain yang sukses):</p>
-
-<p>Dulu awal-awal mulainya gak mikirin duit, karena emang gak punya
-Setelah sukses, juga gak mikirin duit karena ada banyak dan gak masalah</p>
-
-<p>Jadi seumur hidup mereka gak pernah diperbudak oleh duit,
-karena sekedar untuk memikirkannya pun tidak. he he he.</p>
-
-<p>Dapat dilihat perbedaan cara pandangnya.
-Sama kondisinya, tapi cara pandang terhadap situasinya beda.</p>
-
-<p>&mdash; budi</p>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-30T05:33:00-04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/30/kutipan-number-1/">Kutipan #1</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Di sekolah anda belajar untuk tahu,
-Di jalanan anda belajar untuk bisa :)</p>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-30T05:19:00-04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/30/proses-belajar-dengan-cara-mengikuti-seringkali-tidak-benar/">Proses Belajar Dengan Cara Mengikuti Seringkali Tidak Benar</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><blockquote><p>Artikel ini merupakan artikel pertama di kategori kehidupan, begitu juga dengan kategori `Budi Rahardjo&#8217; :D, Jujur saya sangat nge-fans dengan bapak yg satu ini, apalagi dengan tulisannya, jadi saya mulai terpikiran utk menulis semua tulisan(email) pak budi di milis startuplokal di blog saya ini.</p></blockquote>
-
-<p>Proses belajar dengan cara mengikuti seringkali tidak benar.</p>
-
-<p>Yang benar itu adalah mencari panduan/dokumentasi yang
-benar seperti apa kemudian dilakukan seperti itu.</p>
-
-<p>Saya ambil beberapa contoh ya.</p>
-
-<h1>1</h1>
-
-<p>Suatu ketika saya menguji mahasiswa. Pertanyaan (klasik) saya:
-&ldquo;Mengapa Anda menuliskan dan mengurutkan daftar pustaka
-seperti itu?&rdquo;
-Jawaban mahasiswa adalah melihat kakak kelasnya.
-Dan kebetulan yang dia contoh &hellip; SALAH BESAR. he he he.
-Jadi kelihatan banget salahnya.
-Saya tanya, tahu aturan sebenarnya? Dia tidak tahu. hi hi hi.</p>
-
-<h1>2</h1>
-
-<p>Suatu ketika saya ditanya, kenapa sholat kamu seperti itu.
-Saya jawab karena saya lihat orang-orang di sekitar saya
-sholatnya seperti itu. hi hi hi.
-Kata kawan saya, jadi kamu sholatnya seperti ketika kamu
-sholat waktu kecil dan ikut2an orang di sekitar kamu?
-Saya jawab, iya &hellip; he he he.
-Dia tanya, pernah baca buku tata cara sholat.
-<em>Plak</em> &hellip; bagai tamparan di pipi. Malu. Bener juga dia ya.</p>
-
-<h1>3</h1>
-
-<p>Suatu ketika saya lihat ada orang merokok di dalam lift.
-Saya bilang mas gak boleh merokok di lift.
-Dia bilang, ah yang lain juga kayak gitu.
-Nah &hellip; pingsan deh saya.</p>
-
-<p>Jadi kita-kita yang sudah tua-tua ini <em>jangan ditiru</em> mentah2.
-Cari ilmunya yang benar kemudian itu yang dijalankan.
-Dengan demikian generasi kita akan menjadi semakin baik,
-bukan semakin kaco :)</p>
-
-<p>Semangat!</p>
-
-<p>&mdash; budi</p>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-03-30T04:45:00-04:00" pubdate data-updated="true">Mar 30<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/03/30/cara-menampilkan-hasil-dari-dbms-output-dot-put-line-message/">Cara Menampilkan Hasil Dari dbms_output.put_line(message)</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Belakangan ini saya lagi belajar PL/SQL dari situs <a href="http://www.tutorialspoint.com/plsql/index.htm">ini</a>.</p>
-
-<p>Tapi sialnya, ketika masih menulis script helloworld tidak mendapatkan hasilnya, scriptnya sebagai berikut:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">DECLARE</span>
-</span><span class='line'>   <span class="n">message</span>  <span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span><span class="o">=</span> <span class="s1">&#39;Hello, World!&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="k">BEGIN</span>
-</span><span class='line'>   <span class="n">dbms_output</span><span class="p">.</span><span class="n">put_line</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
-</span><span class='line'><span class="k">END</span><span class="p">;</span>
-</span><span class='line'><span class="o">/</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Masih helloworld aja sudah gagal :D. tapi tenang dulu, dari hasil google yg nggak sengaja, ternyata secara default, oracle mematikan hasil dari perintah ini <code>dbms_output.put_line(message);</code>, untuk mengaktifkannya, tambahkan script berikut di awal script PL/SQL</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">set</span> <span class="n">serveroutput</span> <span class="k">on</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>kurang lebih, script helloworld saya diatas menjadi seperti di bawah ini:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">set</span> <span class="n">serveroutput</span> <span class="k">on</span><span class="p">;</span>
-</span><span class='line'><span class="k">DECLARE</span>
-</span><span class='line'>   <span class="n">message</span>  <span class="n">varchar2</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span><span class="o">=</span> <span class="s1">&#39;Hello, World!&#39;</span><span class="p">;</span>
-</span><span class='line'><span class="k">BEGIN</span>
-</span><span class='line'>   <span class="n">dbms_output</span><span class="p">.</span><span class="n">put_line</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
-</span><span class='line'><span class="k">END</span><span class="p">;</span>
-</span><span class='line'><span class="o">/</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Akhirnya saya lulus pelajaran helloworld PL/SQL :D</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -807,15 +797,15 @@ bukan semakin kaco :)</p>
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace/">Oracle Concepts - Menemukan Table Dan Index Lokasi Tablespace</a>
+    <a class="list-group-item " href="/blog/2013/11/05/upgrade-nodejs-menggunakan-n/">Upgrade NodeJS Menggunakan N</a>
     
-    <a class="list-group-item " href="/blog/2013/10/26/intellij-shortcuts-vs-eclipse-shortcuts/">IntelliJ Shortcuts vs Eclipse Shortcuts</a>
+    <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-npm/">Semua Tentang Npm</a>
     
-    <a class="list-group-item " href="/blog/2013/10/26/intellij-idea-and-eclipse-shortcuts/">IntelliJ IDEA and Eclipse Shortcuts</a>
+    <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-n/">Semua Tentang N</a>
     
-    <a class="list-group-item " href="/blog/2013/10/20/fungsi-replace-di-excel/">Fungsi Replace Di Excel</a>
+    <a class="list-group-item " href="/blog/2013/11/04/lebih-lanjut-tentang-judul-heading/">Lebih Lanjut Tentang Judul (Heading)</a>
     
-    <a class="list-group-item " href="/blog/2013/10/19/merubah-versi-scala-di-sbt-console-secara-permanent/">Merubah Versi Scala Di Sbt Console Secara Permanent</a>
+    <a class="list-group-item " href="/blog/2013/11/04/paragraf-dan-judul-heading/">Paragraf Dan Judul (Heading)</a>
     
   </div>
 </section>

@@ -8,7 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Jan 26th, 2013 Membuat Project Menggunakan Maven - Artifact Secara Langsung Ketika pertama kali membuat project menggunakan Maven, aku biasanya &hellip;">
+  <meta name="description" content="Mar 27th, 2013 Download Sourcecode Dan Javadocs Menggunakan Maven Terkadang kita membutuhkan source code dan javadocs dari dependency yang kita &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -105,6 +105,712 @@
   
 
 
+<time datetime="2013-03-27T11:32:00-04:00" pubdate data-updated="true">Mar 27<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/27/download-sourcecode-dan-javadocs-menggunakan-maven/">Download Sourcecode Dan Javadocs Menggunakan Maven</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Terkadang kita membutuhkan source code dan javadocs dari dependency yang kita gunakan di project kita. Untuk mendownload source code, lakukan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn dependency:sources</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk mendownload javadocs, lakukan perintah berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn dependency:resolve -Dclassifier=javadoc</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-19T12:01:00-04:00" pubdate data-updated="true">Mar 19<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/19/membuat-anchor-link-di-markdown-dan-octopress/">Membuat Anchor Link Di Markdown Dan Octopress</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Untuk membuat Anchor Link, pertama, kita tentukan terlebih dahulu tujuan nya. Di sini, saya ingin membuat 1 link yang ketika di klik, akan menuju ke SubTitle tertentu di halaman yg sama.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>### Resources&lt;a id="#resources"&gt;&lt;/a&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu, anggap, saya ingin membuat kata <code>Resources</code>, ketika di klik akan menuju ke SubTitle Resources.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[Resources](#resources)</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-18T14:03:00-04:00" pubdate data-updated="true">Mar 18<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/18/install-pymongo-menggunakan-pip/">Install Pymongo Menggunakan PIP</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>pymongo adalah driver yang digunakan python untuk melakukan koneksi ke mongodb.</p>
+
+<p>Berikut cara install pymongo menggunakan PIP</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>pip install pymongo</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-18T13:58:00-04:00" pubdate data-updated="true">Mar 18<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/18/install-pip-di-crunchbang/">Install PIP Di CrunchBang</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>PIP adalah sebuah tools yang berguna utk install dan manage semua package yang ada di python.</p>
+
+<p>Berikut cara untuk install PIP di CrunchBang</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install python-pip
+</span><span class='line'>
+</span><span class='line'>sudo apt-get install build-essential python-dev</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-17T06:04:00-04:00" pubdate data-updated="true">Mar 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/17/cara-menampilkan-versi-package-kernel-debian-dan-crunchbang/">Cara Menampilkan Versi Package, Kernel, Debian Dan Crunchbang</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Berikut cara menampilkan versi dari package, kernel, debian, maupun crunchbang yang terinstall di environment kita.</p>
+
+<h3>Package</h3>
+
+<blockquote><blockquote><p>Cara ini hanya berjalan di linux turunan debian</p></blockquote></blockquote>
+
+<p>Ketikkan perintah berikut, untuk mengetahui versi dari package yang sudah terinstall di environment kita, ganti <code>&lt;package_name&gt;</code> dengan package yang di inginkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dpkg -l | grep &lt;package_name&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>contoh</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dpkg -l | grep libc6</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di environment saya akan menampilkan hasil seperti di bawah ini</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ii  libc6                    2.11.3-4           Embedded GNU C Library: Shared libraries
+</span><span class='line'>ii  libc6-dev                2.11.3-4           Embedded GNU C Library: Development Libraries and Header Files</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Kernel</h3>
+
+<p>Ada 2 cara untuk mengetahui versi kernel yang kita gunakan. Pertama, dengan mengetikkan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>uname -a</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Perintah di atas, akan mencetak semua informasi dari kernel yang kita gunakan, di environment saya, menampilkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Linux marjinal 2.6.32-5-amd64 #1 SMP Mon Jan 16 16:22:28 UTC 2012 x86_64 GNU/Linux</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Kedua, dengan mengetikkan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>uname -r</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Perintah diatas, hanya akan mencetak versi dari kernel, di environment saya, menampilkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>2.6.32-5-amd64</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Cara kedua, sangat bermanfaat, jika kita ingin mengintall package yang membutuhkan versi kernel, contoh, <code>kernel header</code>, sehingga kita dapat mengetikkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install linux-headers-$(uname -r)</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Debian</h3>
+
+<p>Untuk mengetahui versi debian, ketikkan perintah berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cat /etc/debian_version</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di environment saya menampilkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>6.0.4</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Crunchbang</h3>
+
+<p>Untuk mengetahui versi Crunchbang, ketikkan perintah berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cat /etc/lsb-release-crunchbang</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di environment saya menampilkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>DISTRIB_ID=CrunchBang
+</span><span class='line'>DISTRIB_RELEASE=10
+</span><span class='line'>DISTRIB_CODENAME=statler
+</span><span class='line'>DISTRIB_DESCRIPTION="CrunchBang 10 statler"</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-17T05:33:00-04:00" pubdate data-updated="true">Mar 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/17/install-mongodb-di-linux/">Install MongoDB Di Linux</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><h3>Persiapan</h3>
+
+<p>Sebelum mengikuti tutorial ini, berikut struktur direktori yang saya gunakan di environment yang saya gunakan:</p>
+
+<ol>
+<li>Application Directory: /home/marjinal/TOOLS/mongodb</li>
+<li>Data directory: /home/marjinal/TOOLS/mongodb/data/db</li>
+</ol>
+
+
+<p>Linux yang saya gunakan CrunchBang 10 statler (64 bit), dan MongoDB yang akan saya install versi 2.4.1</p>
+
+<h3>Download</h3>
+
+<p>Untuk mendownload mongodb dengan mengetikkan command berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd /home/marjinal/TOOLS/mongodb</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>64 bit</strong></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget -c http://downloads.mongodb.org/linux/mongodb-linux-x86_64-2.4.1.tgz</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>32 bit</strong></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget -c http://downloads.mongodb.org/linux/mongodb-linux-i686-2.4.1.tgz</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-10T10:20:00-04:00" pubdate data-updated="true">Mar 10<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/10/membuat-ssl-certificate-di-apache-slash-crunchbang-linux/">Membuat SSL Certificate Di Apache/Crunchbang Linux</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><h2>Tentang SSL Certificate</h2>
+
+<p>SSL Certificate adalah cara untuk mengenkripsi informasi situs dan membuat koneksi yang lebih aman. Selain itu, sertifikat dapan menunjukkan informasi identifikasi <em>virtual private server</em> untuk pengunjung situs.</p>
+
+<h2>Langkah 1 &ndash; Mengaktifkan SSL Module</h2>
+
+<p>Untuk mengaktifkan <em>SSL Module</em> ketikkan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo a2enmod ssl</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Setelah itu, restart apache:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo /etc/init.d/apache2 restart</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Langkah 2 &ndash; Buat direktori baru</h2>
+
+<p>Kita butuh membuat direktory baru untuk menyimpan key dan cerfiticate server.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo mkdir /etc/apache2/ssl</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Langkah 3 &ndash; Membuat Self Signed SSL Certificate</h2>
+
+<p>Untuk membuat sertifikat yang baru, ketikkan perintah di bawah ini. Kita dapat menentukan berapa lama sertifikat tersebut seharusnya tetap berlaku dengan mengubah 365 dengan jumlah hari yang kita inginkan.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Perintah di atas akan membuat key &amp; sertifikat ke dalam direktori yang baru kita buat di langkah 2.</p>
+
+<p>Perintah ini akan menampilkan field2 yang harus kita isikan, seperti di bawah ini (isi sesuai dengan keinginan kita):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>You are about to be asked to enter information that will be incorporated
+</span><span class='line'>into your certificate request.
+</span><span class='line'>What you are about to enter is what is called a Distinguished Name or a DN.
+</span><span class='line'>There are quite a few fields but you can leave some blank
+</span><span class='line'>For some fields there will be a default value,
+</span><span class='line'>If you enter '.', the field will be left blank.
+</span><span class='line'>-----
+</span><span class='line'>Country Name (2 letter code) [AU]:ID
+</span><span class='line'>State or Province Name (full name) [Some-State]:Jakarta
+</span><span class='line'>Locality Name (eg, city) []:Jakarta Selatan
+</span><span class='line'>Organization Name (eg, company) [Internet Widgits Pty Ltd]:Hendry Suwanda
+</span><span class='line'>Organizational Unit Name (eg, section) []:-
+</span><span class='line'>Common Name (e.g. server FQDN or YOUR name) []:www.hendrysuwanda.com
+</span><span class='line'>Email Address []:suwanda.hendry@gmail.com
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Langkah 4 &ndash; Setup Sertifikat</h3>
+
+<p>Buka file SSL config dengan mengetikan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo vi /etc/apache2/sites-available/default</span></code></pre></td></tr></table></div></figure>
+
+
+<p>tambahkan settingan seperti di bawah ini:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;VirtualHost *:443&gt;
+</span><span class='line'>  ServerName www.hendrysuwanda.com:443
+</span><span class='line'>
+</span><span class='line'>  SSLEngine on
+</span><span class='line'>  SSLCertificateFile /etc/apache2/ssl/apache.crt
+</span><span class='line'>  SSLCertificateKeyFile /etc/apache2/ssl/apache.key
+</span><span class='line'>&lt;/VirtualHost&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Langkah 5 &ndash; Mengaktifkan VirtualHost baru</h3>
+
+<p>Untuk mengaktifkan VirtualHost yang baru kita buat, ketikkan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo a2ensite default</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu restart service apache, dengan mengetikkan perintah:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo /etc/init.d/apache2 restart</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Selesai, SSL Certificate sudah terpasang, untuk mencoba nya silahkan buka link <a href="https://localhost">https://localhost</a> (address)</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-10T06:15:00-04:00" pubdate data-updated="true">Mar 10<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/10/install-maven-di-linux/">Install Maven Di Linux</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><h3>Perlengkapan</h3>
+
+<p>Berikut daftar tools/files yang di perlukan:</p>
+
+<ul>
+<li>apache-maven-3.0.5</li>
+<li>Terminal</li>
+<li>wget</li>
+<li>vi/vim</li>
+</ul>
+
+
+<h3>Langkah 1</h3>
+
+<p>Buka terminal dan ketikkan perintah berikut untuk melakukan download maven versi 3.0.5</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget -c http://apache.mesi.com.ar/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.zip</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Langkah 2</h3>
+
+<p>Extract file maven hasil download dengan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>unzip apache-maven-3.0.5-bin.zip</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Langkah 3</h3>
+
+<p>Selanjutnya, tambahkan direktori maven di letakkan ke system path. Ini gunanya, agar kita bisa gunakan perintah maven di direktori mana pun. Buka .bashrc menggunakan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vi ~/.bashrc</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Langkah 4</h3>
+
+<p>Tambahkan perintah di bawah ini, di akhir file tersebut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>export M2_HOME=/usr/local/maven
+</span><span class='line'>
+</span><span class='line'>export PATH=${M2_HOME}/bin:${PATH}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu simpan dengan tekan tombol escape, lalu <code>:wq!</code></p>
+
+<h3>Langkah 5</h3>
+
+<p>Selesai, utk mengetesnya, ketikkan perintah berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn -version</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di environment saya, muncul log berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Apache Maven 3.0.5 (r01de14724cdef164cd33c7c8c2fe155faf9602da; 2013-02-19 08:51:28-0500)
+</span><span class='line'>Maven home: /home/marjinal/TOOLS/apache-maven-3.0.5
+</span><span class='line'>Java version: 1.7.0_10, vendor: Oracle Corporation
+</span><span class='line'>Java home: /usr/local/java/jdk1.7.0_10/jre
+</span><span class='line'>Default locale: en_US, platform encoding: UTF-8
+</span><span class='line'>OS name: "linux", version: "2.6.32-5-amd64", arch: "amd64", family: "unix"</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-26T03:39:00-05:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/26/membuat-project-menggunakan-maven-archetype-local/">Membuat Project Menggunakan Maven - Archetype Local</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Jika kita telah membuat archetype, kita dapat menggunakan archetype tersebut utk membuat project, dengan mengetikkan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn archetype:generate -DarchetypeCatalog=local</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Maka, maven akan memberikan daftar archetype yang ada di local repository kita, seperti di bawah ini:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[INFO] Scanning for projects...
+</span><span class='line'>[INFO]
+</span><span class='line'>[INFO] ------------------------------------------------------------------------
+</span><span class='line'>[INFO] Building Maven Stub Project (No POM) 1
+</span><span class='line'>[INFO] ------------------------------------------------------------------------
+</span><span class='line'>[INFO]
+</span><span class='line'>[INFO] &gt;&gt;&gt; maven-archetype-plugin:2.0:generate (default-cli) @ standalone-pom &gt;&gt;&gt;
+</span><span class='line'>[INFO]
+</span><span class='line'>[INFO] &lt;&lt;&lt; maven-archetype-plugin:2.0:generate (default-cli) @ standalone-pom &lt;&lt;&lt;
+</span><span class='line'>[INFO]
+</span><span class='line'>[INFO] --- maven-archetype-plugin:2.0:generate (default-cli) @ standalone-pom ---
+</span><span class='line'>[INFO] Generating project in Interactive mode
+</span><span class='line'>[INFO] No archetype defined. Using maven-archetype-quickstart (org.apache.maven.archetypes:maven-archetype-quickstart:1.0)
+</span><span class='line'>Choose archetype:
+</span><span class='line'>1: local -&gt; project.zkoss.example-archetype (project.zkoss.example-archetype)
+</span><span class='line'>Choose a number: :</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Kebetulan di local repo saya, masih memiliki 1 archetype. Selanjutnya, kita bisa memilih untuk menggunakan archetype yg kita inginkan.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2013-01-26T03:38:00-05:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
         
       </p>
@@ -133,182 +839,11 @@
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-24T05:23:00-05:00" pubdate data-updated="true">Jan 24<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/24/koneksi-ke-github-menggunakan-ssh/">Koneksi Ke Github Menggunakan SSH</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Kita dapat menggunakan Kunci SSH untuk melakukan koneksi yang aman antara komputer kita dengan github. Tutorial ini akan menunjukkan cara generate Kunci SSH dan menambahkan Kunci Public ke akun Github kita.</p>
-
-<h2>Langkah 1 &ndash; Pengecekkan kunci SSH</h2>
-
-<p><em>Jika anda sudah memiliki <code>keypair</code> yang ingin anda gunakan, anda dapat melompat ke <strong>langkah 4</strong></em>.</p>
-
-<p>Untuk melakukan pengecekkan, apakah anda sudah memiliki Kunci SSH, lakukan langkah berikut (melalui terminal):</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/.ssh
-</span><span class='line'># melakukan pengecekkan, apakah terdapat folder `.ssh` di direktory user yang anda pakai</span></code></pre></td></tr></table></div></figure>
-
-
-<p>jika perintah di atas, mengembalikan &ldquo;No such file or directory&rdquo;, silahkan lompat ke <strong>langkah 3</strong>.</p>
-
-<h2>Langkah 2 &ndash; Backup dan hapus kunci SSH</h2>
-
-<p>Jika langkah 1, menunjukkan bahwa anda sudah memiliki kunci SSH sebelumnya, jika ke depanya anda tetap ingin menggunakan kunci tersebut utk hal yang lain, lakukan backup &amp; hapus, dgn langkah-langkah berikut ini:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ ls
-</span><span class='line'>config  id_rsa  id_rsa.pub  known_hosts
-</span><span class='line'>
-</span><span class='line'>$ mkdir key_backup
-</span><span class='line'>
-</span><span class='line'>$ cp id_rsa* key_backup
-</span><span class='line'>
-</span><span class='line'>$ rm id_rsa*
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Langkah 3 &ndash; Generate kunci SSH yang baru</h2>
-
-<p>Untuk melakukan generate kunci SSH yang baru, lakukan langkah-langkah berikut ini:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ ssh-keygen -t rsa -C "suwanda.hendry@gmail.com"
-</span><span class='line'>
-</span><span class='line'>Generating public/private rsa key pair.
-</span><span class='line'>Enter file in which to save the key (/home/marjinal/.ssh/id_rsa): 
-</span><span class='line'>Enter passphrase (empty for no passphrase): 
-</span><span class='line'>Enter same passphrase again: 
-</span><span class='line'>Your identification has been saved in /home/marjinal/.ssh/id_rsa.
-</span><span class='line'>Your public key has been saved in /home/marjinal/.ssh/id_rsa.pub.
-</span><span class='line'>The key fingerprint is:
-</span><span class='line'>04:76:d4:10:e6:08:92:06:00:28:a8:d6:28:f8:32:23 suwanda.hendry@gmail.com
-</span><span class='line'>The key's randomart image is:
-</span><span class='line'>+--[ RSA 2048]----+
-</span><span class='line'>|O.... o.*+       |
-</span><span class='line'>|+ o. o *  .      |
-</span><span class='line'>|+.o   . o        |
-</span><span class='line'>|+o .   .         |
-</span><span class='line'>|o.      S        |
-</span><span class='line'>|E .              |
-</span><span class='line'>|.+               |
-</span><span class='line'>|                 |
-</span><span class='line'>|                 |
-</span><span class='line'>+-----------------+
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Langkah 4: Menambahkan kunci SSH ke GitHub</h2>
-
-<p>Jalankan perintah berikut untuk melakukan copy kuncu ke clipboard kita</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cat .ssh/id_rsa.pub | xclip -sel clip</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu  lakukan langkah-langkah berikut ini, utk menambahkan key ssh ke account github kita:</p>
-
-<ol>
-<li><p>Masuk ke halaman <code>Account Settings</code></p>
-
-<p> <img src="/images/github/account_settings.png"></p></li>
-<li><p>Klik <code>SSH Keys</code> pada sisi kiri layar</p>
-
-<p> <img src="/images/github/account_settings_ssh_keys.png"></p></li>
-<li><p>Klik <code>Add SSH Key</code></p>
-
-<p> <img src="/images/github/account_settings_ssh_keys_add_ssh_keys.png"></p></li>
-<li><p>Lalu isikan <code>title</code> sesuai keinginan anda, dan paste kan key ssh di <code>key</code>, lalu klik <code>Add key</code></p>
-
-<p> <img src="/images/github/account_settings_ssh_keys_add_ssh_keys_submit.png"></p></li>
-<li><p>Lalu GitHub akan meminta anda memasukkan password account github anda.</p>
-
-<p> <img src="/images/github/account_settings_ssh_keys_add_ssh_keys_password_confirm.png"></p></li>
-</ol>
-
-
-<h2>Langkah 5 &ndash; Test Key SSH</h2>
-
-<p>Ketikkan perintah berikut untuk memastikan key ssh anda telah terpasang dengan benar:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ ssh -T git@github.com</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Jika anda mendapatkan output sebagai berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Hi hendrysuwanda! You've successfully authenticated, but GitHub does not
-</span><span class='line'># provide shell access.</span></code></pre></td></tr></table></div></figure>
-
-
-<p>maka key ssh anda sudah dapat digunakan.</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
       
-        <li class="previous disabled"><a href="#">&larr;&nbsp;Older</a></li>
+        <li class="previous"><a href="/blog/page/7/">&larr;&nbsp;Older</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
       
@@ -327,15 +862,15 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace/">Oracle Concepts - Menemukan Table Dan Index Lokasi Tablespace</a>
+    <a class="list-group-item " href="/blog/2013/11/05/upgrade-nodejs-menggunakan-n/">Upgrade NodeJS Menggunakan N</a>
     
-    <a class="list-group-item " href="/blog/2013/10/26/intellij-shortcuts-vs-eclipse-shortcuts/">IntelliJ Shortcuts vs Eclipse Shortcuts</a>
+    <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-npm/">Semua Tentang Npm</a>
     
-    <a class="list-group-item " href="/blog/2013/10/26/intellij-idea-and-eclipse-shortcuts/">IntelliJ IDEA and Eclipse Shortcuts</a>
+    <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-n/">Semua Tentang N</a>
     
-    <a class="list-group-item " href="/blog/2013/10/20/fungsi-replace-di-excel/">Fungsi Replace Di Excel</a>
+    <a class="list-group-item " href="/blog/2013/11/04/lebih-lanjut-tentang-judul-heading/">Lebih Lanjut Tentang Judul (Heading)</a>
     
-    <a class="list-group-item " href="/blog/2013/10/19/merubah-versi-scala-di-sbt-console-secara-permanent/">Merubah Versi Scala Di Sbt Console Secara Permanent</a>
+    <a class="list-group-item " href="/blog/2013/11/04/paragraf-dan-judul-heading/">Paragraf Dan Judul (Heading)</a>
     
   </div>
 </section>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: translate | Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/blog/categories/translate/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-10-26T15:01:28-04:00</updated>
+  <updated>2013-11-05T08:45:20-05:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -14,286 +14,344 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Oracle Concepts - Menemukan table dan index lokasi tablespace]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace/"/>
-    <updated>2013-10-26T14:42:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace</id>
+    <title type="html"><![CDATA[Lebih lanjut tentang Judul (heading)]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/04/lebih-lanjut-tentang-judul-heading/"/>
+    <updated>2013-11-04T10:29:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/04/lebih-lanjut-tentang-judul-heading</id>
     <content type="html"><![CDATA[<div class="alert alert-danger">
-Artikel ini saya translate dari <a href="http://www.dba-oracle.com/concepts/table_tablespace_location.htm"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
 
-Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
 </div>
 
 
-<p>Mencari tahu yang memiliki <code>table</code> dan apa <code>tablespace</code> nya adalah kebutuhan yang cukup umum dari <code>DBA</code>. Dalam query ini, kita menggunakan <code>dba_tables view</code> untuk menemukan pemilik dan nama <code>tablespace</code> dari tabel <code>EMP</code>.</p>
+<p>HTML sebenarnya memungkinkan kita memiliki lebih dari satu ukuran heading. Terdapat 6 ukurang heading, dimana <code>&lt;h1&gt;</code> adalah bos dan <code>&lt;h6&gt;</code> adalah  lemah.</p>
 
-<p>```sql
- SQL>  select owner, table_name, tablespace_name
-  2   from dba_tables
-  3  where table_name=&lsquo;EMP&rsquo;;</p>
+<ol>
+<li><code>&lt;h1&gt;</code> &ndash; CEO</li>
+<li><code>&lt;h2&gt;</code> &ndash; VP Fancy Towne</li>
+<li><code>&lt;h3&gt;</code> &ndash; Direktur beberapa stuff</li>
+<li><code>&lt;h4&gt;</code> &ndash; middle management</li>
+<li><code>&lt;h5&gt;</code> &ndash; Asisten rendahan</li>
+<li><code>&lt;h6&gt;</code> &ndash; Mendapatkan kopi untuk orang lain.</li>
+</ol>
 
-<p>OWNER                TABLE_NAME           TABLESPACE_NAME</p>
 
-<hr />
+<p>Dibawah ini kami akan meminta anda untuk menambahkan heading dengan berbagai ukuran. Jangan ragu untuk menulis apapun yang anda sukan untuk heading.</p>
 
-<p>SCOTT                EMP                  USERS
-POLL                 EMP                  USERS
+<h3>Latihan</h3>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html></p>
+
+<pre><code>&lt;head&gt;
+    &lt;title&gt;
+        Headings &amp; Paragraphs
+    &lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Ini Judul h1&lt;/h1&gt;
+    &lt;p&gt;ini paragraf1&lt;/p&gt;
+    &lt;p&gt;ini paragraf2&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p></html>
 ```</p>
 
-<p>Seperti yang dapat kita lihat dari query ini, kita memiliki 2 table yang disebut <code>EMP</code>, dimiliki oleh 2 <code>user</code> yang berbeda (SCOTT dan POLL). Kedua table terdapat dalam <code>tablespace</code> USERS.</p>
+<ol>
+<li>Kode anda sekarang memiliki satu heading <code>&lt;h1&gt;</code> dan 2 paragraf.</li>
+<li>Tambahkan sebuah heading <code>&lt;h3&gt;</code> sebelum paragraf kedua.</li>
+<li>Tambahkan sebuah heading <code>&lt;h5&gt;</code> setelah paragraf ke dua, dan kemudian tambahkan paragraf ketiga setelah heading ini.</li>
+</ol>
 
-<p>Sebuah latihan yang bagus untuk anda mungkin mencoba menggabungkan query ini dengan sebuah <code>view</code> seperti <code>dba_extents</code> dan mencari tahu seberapa besar tabel ini dialokasikan.</p>
+
+<h3>Jawaban</h3>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html></p>
+
+<pre><code>&lt;head&gt;
+    &lt;title&gt;
+        Headings &amp; Paragraphs
+    &lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Ini Judul h1&lt;/h1&gt;
+    &lt;p&gt;ini paragraf1&lt;/p&gt;
+    &lt;h3&gt;Ini judul h3&lt;/h3&gt;
+    &lt;p&gt;ini paragraf2&lt;/p&gt;
+    &lt;h5&gt;Ini judul h5&lt;/h5&gt;
+    &lt;p&gt;ini paragraf3&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p></html>
+```</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[IntelliJ shortcuts vs Eclipse shortcuts ]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/26/intellij-shortcuts-vs-eclipse-shortcuts/"/>
-    <updated>2013-10-26T14:14:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/26/intellij-shortcuts-vs-eclipse-shortcuts</id>
+    <title type="html"><![CDATA[Paragraf dan Judul (heading)]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/04/paragraf-dan-judul-heading/"/>
+    <updated>2013-11-04T10:01:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/04/paragraf-dan-judul-heading</id>
     <content type="html"><![CDATA[<div class="alert alert-danger">
-Artikel ini saya translate dari <a href="http://javacolors.blogspot.com/2008/10/intellij-shortcuts-vs-eclipse-shortcuts.html"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
 
-Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
 </div>
 
 
-<p>Baru-baru ini, saya mulai bekerja dengan IntelliJ. Tapi, jujur, setelah beberapa tahun dengan Eclipse, sulit untuk menjadi efektif karena tombol shortcut yang berbeda antara dua IDE tersebut. Permintaan kecil di Google dan saya mendapatkan ini:</p>
+<p>Kami pasti membuat kemajuan yang baik! Kami telah belajar kapan dan mengapa kita menggunakan HTML. Kita juga telah belajar bagaimana untuk:</p>
 
-<table class="table table-bordered">
-<tr>
-    <th>Description</th>
-    <th>Eclipse shortcut</th>
-    <th>IntelliJ shortcut</th>
-</tr>
-<tr>
-    <td>Navigasi sebuah tipe java</td>
-    <td>CTRL + ALT + T</td>
-    <td>CTRL + N</td>
-</tr>
-<tr>
-    <td>Navigasi sebuah <code>Resource</code></td>
-    <td>CTRL + ALT + R</td>
-    <td>CTRL + SHIFT + N</td>
-</tr>
-<tr>
-    <td>Sumber terakhir perbaikan</td>
-    <td>ALT + LEFT ARROW</td>
-    <td>CTRL + ALT + LEFT ARROW</td>
-</tr>
-<tr>
-    <td>Debug</td>
-    <td>F11</td>
-    <td>SHIFT + F9</td>
-</tr>
-<tr>
-    <td>Membuka Deklarasi</td>
-    <td>F3</td>
-    <td>CTRL + SHIFT + B</td>
-</tr>
-<tr>
-    <td>Membuka <code>Hierarchy</code></td>
-    <td>F4</td>
-    <td>CTRL + H</td>
-</tr>
-<tr>
-    <td>Mengatur <code>import</code></td>
-    <td>CTRL + SHIFT + O</td>
-    <td>CTRL + ALT + O</td>
-</tr>
-<tr>
-    <td><code>Find</code></td>
-    <td>CTRL + F</td>
-    <td>CTRL + F</td>
-</tr>
-<tr>
-    <td><code>Find Again/previous</code></td>
-    <td>F3 atau SHIFT + F3</td>
-    <td>F3 atau SHIFT + F3</td>
-</tr>
-<tr>
-    <td>(DEBUG) Step Into</td>
-    <td>F5</td>
-    <td>F7</td>
-</tr>
-<tr>
-    <td>(DEBUG) Step Over</td>
-    <td>F6</td>
-    <td>F8</td>
-</tr>
-<tr>
-    <td>(DEBUG) Step Out</td>
-    <td>F7</td>
-    <td>SHIFT + F8</td>
-</tr>
+<ol>
+<li>Membentuk file HTML dengan tag</li>
+<li>Judul halaman web (di dalam <code>&lt;head&gt;</code>)</li>
+<li>Membuat paragraf (di dalam <code>&lt;body&gt;</code> dengan tag <code>&lt;p&gt;</code>)</li>
+</ol>
 
-<tr>
-    <td>(DEBUG) Resume</td>
-    <td>F8</td>
-    <td>F9</td>
-</tr>
 
-<tr>
-    <td>Untuk menemukan <code>implement</code> dari sebuah abstrak <code>method</code></td>
-    <td></td>
-    <td>CTRL + ALT + B</td>
-</tr>
-<tr>
-    <td>Menemukan penggunaan</td>
-    <td>CTRL + SHIFT + G</td>
-    <td>ALT + F7</td>
-</tr>
-</table>
+<p>Langkah selanjutnya adalah memberikan paragraf kita judul menggunakan tag judul (<code>&lt;head&gt;</code>). Mari mulai dengan tag <code>&lt;h1&gt;</code>, yang menandai sesuatu sebagai yang paling penting. (Semua orang tau font yang paling penting adalah yang paling besar!)</p>
 
+<h3>Latihan</h3>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html></p>
+
+<pre><code>&lt;head&gt;
+    &lt;title&gt;
+        Headings &amp; Paragraphs
+    &lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+
+
+
+&lt;/body&gt;
+</code></pre>
+
+<p></html>
+```</p>
+
+<ol>
+<li>Tanya diri sendiri: Apa judul halaman ini?</li>
+<li>Di bagian body, buat sebuah judul (heading). Untuk melakukan hal ini, buat sebuah tag <code>&lt;h1&gt;</code></li>
+<li>Berikan konten anda sebuah judul. Ini bisa apapun</li>
+<li>Tutup elemen dengan tag penutup <code>&lt;/h1&gt;</code>. (Judul anda sekarang harus antara <code>&lt;h1&gt;</code> dan <code>&lt;/h1&gt;</code>)</li>
+<li>Dibawah judul, buat 2 paragraf menggunakan tag <code>&lt;p&gt;</code> dengan konten apapun yang anda suka.</li>
+</ol>
+
+
+<h3>Jawaban</h3>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html></p>
+
+<pre><code>&lt;head&gt;
+    &lt;title&gt;
+        Headings &amp; Paragraphs
+    &lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;Ini judul&lt;/h1&gt;
+    &lt;p&gt;ini paragraf 1&lt;/p&gt;
+    &lt;p&gt;ini paragraf 2&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p></html>
+```</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[IntelliJ IDEA and Eclipse Shortcuts]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/26/intellij-idea-and-eclipse-shortcuts/"/>
-    <updated>2013-10-26T10:57:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/26/intellij-idea-and-eclipse-shortcuts</id>
+    <title type="html"><![CDATA[[HTML] Paragraf dalam body]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/03/html-paragraf-dalam-body/"/>
+    <updated>2013-11-03T13:37:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/03/html-paragraf-dalam-body</id>
     <content type="html"><![CDATA[<div class="alert alert-danger">
-Artikel ini saya translate dari <a href="http://www.catalysts.cc/en/wissenswertes/intellij-idea-and-eclipse-shortcuts/"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
 
-Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
 </div>
 
 
-<p>Setelah sekitar tujuh tahun secara eksklusif menggunakan Eclipse untuk pengembangan Java, saya baru mendapatkan kesempatan untuk bekerja pada proyek dimana <code>IntelliJ IDEA</code> adalah editor standar. Tiba-tiba saya dicoba dan diuji keyboard shortcut eclipse tidak bekerja lagi. Aku masih dalam proses belajar Keyboard Shortcut IntelliJ tapi ini adalah favorit saya sampai sekarang (setara dengan keyboard shortcut eclipse). Ini mungkin membantu orang lain yang beralih dari Eclipse ke IntelliJ. Tentu saja, ada plugin IntelliJ yang tersedia yang mana membuat IntelliJ IDEA berperilaku seperti Eclipse (shortcut dan perilaku compiler yang sama) tapi mengapa melakukan itu?</p>
+<p>Kami telah menyiapkan banyak hal-hal dasar untuk file HTML untuk Anda. Hal ini sehingga anda tidak akan marah pada kami untuk terlalu banyak pengulangan, silahkan belajar dengan baik.</p>
 
-<p>Pada tabel di bawah, dalam beberapa kasus, shortcut tidak memetakan 1:1, tapi mereka mencapai efek yang sama.</p>
+<p>kita telah belajar tentang tag pembuka dan penutup. Ketika kita meletakkan konten diantara tag, seluruh bit disebut elemen.</p>
 
-<table class="table table-bordered">
-<tr>
-    <th>Eclipse</th>
-    <th>IntelliJ IDEA</th>
-    <th>Description</th>
-</tr>
-<tr>
-    <td>F4</td>
-    <td>CTRL + H</td>
-    <td>Menampilkan <code>type hierarchy</code></td>
-</tr>
-<tr>
-    <td>CTRL + ALT + G</td>
-    <td>CTRL + ALT + F7</td>
-    <td>Menemukan Penggunaan</td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + U</td>
-    <td>CTRL + F7</td>
-    <td>Menemukan Penggunaan di file yang sama</td>
-</tr>
-<tr>
-    <td>ALT + SHIFT + R</td>
-    <td>SHIFT + F6</td>
-    <td>Rename</td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + R</td>
-    <td>CTRL + SHIFT + N</td>
-    <td>Membuka <code>file</code> / membuka <code>resource</code></td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + X,J</td>
-    <td>CTRL + SHIFT + F10</td>
-    <td>Menjalankan (program java)</td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + O</td>
-    <td>CTRL + ALT + O</td>
-    <td>Mengatur <code>import</code></td>
-</tr>
-<tr>
-    <td>CTRL + O</td>
-    <td>CTRL + F12</td>
-    <td>Menampilkan <code>file structure / outline</code> saat ini</td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + M</td>
-    <td>CTRL + ALT + V</td>
-    <td>Membuat <code>refactoring</code>variable lokal </td>
-</tr>
-<tr>
-    <td>syso + CTRL + SPACE</td>
-    <td>sout + CTRL + J</td>
-    <td><code>System.out.println("")</code></td>
-</tr>
-<tr>
-    <td>ALT + UP/DOWN</td>
-    <td>CTRL + SHIFT + UP/DOWN</td>
-    <td>Memindahkan baris</td>
-</tr>
-<tr>
-    <td>CTRL + D</td>
-    <td>CTRL + Y</td>
-    <td>Hapus baris saat ini</td>
-</tr>
-<tr>
-    <td></td>
-    <td>ALT + H</td>
-    <td>Menampilkan riwayat <code>subversion</code></td>
-</tr>
-<tr>
-    <td>CTRL + H</td>
-    <td>CTRL + SHIFT + F</td>
-    <td>Mencari (Menemukan di dalam <code>path</code>)</td>
-</tr>
-<tr>
-    <td>"semi" mengaturnya <code>window -> preferences </code> </td>
-    <td>CTRL + SHIFT + ENTER</td>
-    <td>Jika saya ingin menambahkan titk koma <code>;</code> pada akhir <code>statement</code></td>
-</tr>
-<tr>
-    <td>CTRL + 1 atau CTRL + SHIFT + L</td>
-    <td>CTRL + ALT + V</td>
-    <td>Memperkenalkan variable lokal</td>
-</tr>
-<tr>
-    <td>ALT + SHIFT + S</td>
-    <td>ALT + INSERT</td>
-    <td>generate <code>getters/setters</code></td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + F</td>
-    <td>CTRL + ALT + L</td>
-    <td>format kode</td>
-</tr>
-<tr>
-    <td>CTRL + Y</td>
-    <td>CTRL + SHIFT + Z</td>
-    <td>redo</td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + C</td>
-    <td>CTRL + /</td>
-    <td>comment out lines</td>
-</tr>
-<tr>
-    <td>CTRL + ALT + H</td>
-    <td>CTRL + ALT + H</td>
-    <td>Menampilkan <code>call hierarchy</code></td>
-</tr>
-<tr>
-    <td></td>
-    <td>CTRL + ALT + F7</td>
-    <td>Untuk melompat ke salah satu pemanggil dari <code>method</code></td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + I</td>
-    <td>ALT + F8</td>
-    <td>Mengevaluasi ekspresi (dalam <code>debugger</code>)</td>
-</tr>
-<tr>
-    <td>F3</td>
-    <td>CTRL + B</td>
-    <td>Menuju deklarasi (contoh. menuju deklarasi <code>method</code>)</td>
-</tr>
-</table>
+<p><code>html
+element = &lt;opening tag&gt; + content + &lt;closing tag&gt;
+</code></p>
+
+<p>Perhatikan kita memiliki tag <code>&lt;title&gt;</code> sekarang, tapi kita butuh tag <code>&lt;body&gt;</code>. Konten dalam <code>&lt;body&gt;</code> adalah apa yang akan terlihat pada halaman yang sebenarnya. <code>&lt;body&gt;</code> masuk kedalam tag html, tapi tidak didalam tag <code>&lt;head&gt;</code>, seperti ini:</p>
+
+<p>```html
+<html></p>
+
+<pre><code>&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;&lt;/body&gt;
+</code></pre>
+
+<p></html>
+```</p>
+
+<h3>Latihan</h3>
+
+<p>Anggap kita memiliki file HTML seperti di bawah ini</p>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html></p>
+
+<pre><code>&lt;head&gt;
+    &lt;title&gt;
+
+    &lt;/title&gt;
+
+&lt;/head&gt;
+</code></pre>
+
+<p></html>
+```</p>
+
+<ol>
+<li>Antara tag <code>&lt;title&gt;</code>, berikan nama halaman anda. Ini dapat apapun.</li>
+<li>Dibawah tag <code>&lt;/head&gt;</code> penutup, letakkan tag <code>&lt;body&gt;</code> pembuka dan penutup</li>
+<li>Didalam <code>&lt;body&gt;</code>, mari buat paragraf! masing-masing paragraf membutuhkan tag pembuka dan penutup: <code>&lt;p&gt;</code> dan <code>&lt;/p&gt;</code>. Kita meletakkan konten di antara tag tersebut.</li>
+<li>Antara tag <code>&lt;body&gt;</code>, buat 2 paragraf dan tulis konten di masing paragraf. (Ini akan membutuhkan 2 pasang tag <code>&lt;p&gt;</code>)</li>
+</ol>
 
 
-<p>Satu hal yang saya tidak menyadari pada awalnya adalah bahwa tombol <code>Scroll to Source</code> di IntelliJ IDEA pada dasarnya sama dengan tombol <code>Link with Editor</code> di eclipse.</p>
+<h3>Jawaban</h3>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html></p>
+
+<pre><code>&lt;head&gt;
+    &lt;title&gt;
+    Belajar Paragraf
+    &lt;/title&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;p&gt;Paragraf 1&lt;/p&gt;
+    &lt;p&gt;Paragraf 2&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p></html>
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[HTML] Membuat bagian kepala(head)]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/03/membuat-bagian-kepala-head/"/>
+    <updated>2013-11-03T13:20:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/03/membuat-bagian-kepala-head</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Segala sesuatu di file HTML kita akan pergi antara tag <code>&lt;html&gt;</code> pembuka dan <code>&lt;/html&gt;</code> penutup.</p>
+
+<p>selalu ada dua bagian di file ini: head dan body. Mari fokus pada head</p>
+
+<ol>
+<li>Ia memiliki tag pembuka dan penutup.</li>
+<li>head berisi informasi penting tentang halaman web, seperti judul-nya.</li>
+<li>judul adalah kata-kata yang kita lihat pada tab (sebagai contoh, judul dari halaman ini adalah &ldquo;Introduction to HTML&rdquo;)</li>
+</ol>
+
+
+<h3>Latihan</h3>
+
+<p>Anggap kita memiliki file HTML seperti di bawah ini</p>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html></p>
+
+<p></html>
+```</p>
+
+<ol>
+<li>Tambahkan sebuah tag <code>&lt;head&gt;</code> pembuka dan <code>&lt;/head&gt;</code> penutup.</li>
+<li>Antara tag <code>&lt;head&gt;</code>, tambahkan didalamnya tag <code>&lt;title&gt;</code> pembuka dan <code>&lt;/title&gt;</code> penutup.</li>
+<li>Diantara tag <code>&lt;title&gt;</code>, tulis judul dari halaman web anda: <strong>Saya lagi belajar HTML</strong>.</li>
+</ol>
+
+
+<h3>Jawaban</h3>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html>
+<head></p>
+
+<pre><code>&lt;title&gt;Saya lagi belajar HTML&lt;/title&gt;
+</code></pre>
+
+<p></head></p>
+
+<p></html>
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[HTML] Terminologi Dasar]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/03/html-terminologi-dasar/"/>
+    <updated>2013-11-03T13:01:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/03/html-terminologi-dasar</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Untuk memperlajari lebih lanjut HTML, kita harus belajar bagaimana berbicara tentang HTML. Anda telah melihat kita banyak menggunakan <code>&lt;&gt;</code>.</p>
+
+<ol>
+<li>Hal-hal didalam <code>&lt;&gt;</code> disebut <strong>tags</strong></li>
+<li>Tags hampir selalu datang dalam berpasangan: tag pembuka dan tag penutup.</li>
+<li>Contoh tag pembuka: <code>&lt;html&gt;</code></li>
+<li>Contoh tag penutup: <code>&lt;html&gt;</code></li>
+</ol>
+
+
+<p>Anda dapat menganggap tag seperti tanda kurung: setiap kali anda membuka satu, anda harus menutupnya. Tag juga bersarang, sehingga anda harus menutup mereka dalam urutan yang benar: tag yang paling baru dibuka harus ditutup pertama kali, seperti pada contoh dibawah.</p>
+
+<p>```html
+<first tag></p>
+
+<pre><code>&lt;second tag&gt;Some text!&lt;/second tag&gt;
+</code></pre>
+
+<p></first tag>
+```</p>
+
+<p>Latihan terakhir mengajarkan kita bagaimana untuk mengatur file HTML kita. Segala sesuatu yang kita lakukan sekarang akan pergi antara <code>&lt;html</code> dan `</html>.</p>
+
+<p>Praktek membuat sempurna! sekali lagi.</p>
 ]]></content>
   </entry>
   

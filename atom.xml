@@ -4,7 +4,7 @@
   <title><![CDATA[Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-10-26T15:01:28-04:00</updated>
+  <updated>2013-11-05T08:45:20-05:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,712 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Upgrade NodeJS menggunakan n]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/05/upgrade-nodejs-menggunakan-n/"/>
+    <updated>2013-11-05T08:40:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/05/upgrade-nodejs-menggunakan-n</id>
+    <content type="html"><![CDATA[<p>Dengan menggunakan <code>n</code>, kita dapat melakukan upgrade/downgrade versi nodejs dengan mudah.</p>
+
+<p>Untuk melihat daftar versi nodejs, ketikkan command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>n ls</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/usr/local/bin/node
+</span><span class='line'>
+</span><span class='line'>    0.8.6
+</span><span class='line'>    0.8.7
+</span><span class='line'>    0.8.8
+</span><span class='line'>    0.8.9
+</span><span class='line'>    0.8.10
+</span><span class='line'>    0.8.11
+</span><span class='line'>    0.8.12
+</span><span class='line'>    0.8.13
+</span><span class='line'>    0.8.14
+</span><span class='line'>    0.8.15
+</span><span class='line'>  ο 0.8.16 
+</span><span class='line'>    0.8.17
+</span><span class='line'>    0.8.18
+</span><span class='line'>    0.8.19
+</span><span class='line'>    0.8.20
+</span><span class='line'>    0.8.21
+</span><span class='line'>    0.8.22
+</span><span class='line'>    0.8.23
+</span><span class='line'>    0.8.24
+</span><span class='line'>    0.8.25
+</span><span class='line'>    0.8.26
+</span><span class='line'>    0.9.0
+</span><span class='line'>    0.9.1
+</span><span class='line'>    0.9.2
+</span><span class='line'>    0.9.3
+</span><span class='line'>    0.9.4
+</span><span class='line'>    0.9.5
+</span><span class='line'>    0.9.6
+</span><span class='line'>    0.9.7
+</span><span class='line'>    0.9.8
+</span><span class='line'>    0.9.9
+</span><span class='line'>    0.9.10
+</span><span class='line'>    0.9.11
+</span><span class='line'>    0.9.12
+</span><span class='line'>    0.10.0
+</span><span class='line'>    0.10.1
+</span><span class='line'>    0.10.2
+</span><span class='line'>    0.10.3
+</span><span class='line'>    0.10.4
+</span><span class='line'>    0.10.5
+</span><span class='line'>    0.10.6
+</span><span class='line'>    0.10.7
+</span><span class='line'>    0.10.8
+</span><span class='line'>    0.10.9
+</span><span class='line'>    0.10.10
+</span><span class='line'>    0.10.11
+</span><span class='line'>    0.10.12
+</span><span class='line'>    0.10.13
+</span><span class='line'>    0.10.14
+</span><span class='line'>    0.10.15
+</span><span class='line'>    0.10.16
+</span><span class='line'>    0.10.17
+</span><span class='line'>    0.10.18
+</span><span class='line'>    0.10.19
+</span><span class='line'>    0.10.20
+</span><span class='line'>    0.10.21 
+</span><span class='line'>    0.11.0
+</span><span class='line'>    0.11.1
+</span><span class='line'>    0.11.2
+</span><span class='line'>    0.11.3
+</span><span class='line'>    0.11.4
+</span><span class='line'>    0.11.5
+</span><span class='line'>    0.11.6
+</span><span class='line'>    0.11.7
+</span><span class='line'>    0.11.8</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Simbol <code>ο</code>, menandakan versi nodejs yang sedang saya gunakan. Saya ingin menggunakan versi 0.10.21, maka saya akan mengetikkan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo n 0.10.21</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> install : 0.10.21
+</span><span class='line'>   mkdir : /usr/local/n/versions/0.10.21
+</span><span class='line'>   fetch : http://nodejs.org/dist/v0.10.21/node-v0.10.21-linux-x64.tar.gz
+</span><span class='line'>/usr/local/bin/node
+</span><span class='line'>   installed : v0.10.21
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Jika ingin menginstall versi stable, kita bisa menggunakan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo n stable</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Semua tentang npm]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/05/semua-tentang-npm/"/>
+    <updated>2013-11-05T08:27:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/05/semua-tentang-npm</id>
+    <content type="html"><![CDATA[<h3>Apa itu npm?</h3>
+
+<p><code>npm</code> adalah manajer paket <code>NodeJS</code>. Sesuai dengan namanya, Anda dapat menggunakannya untuk menginstal program <code>node</code>. <code>npm</code> akan mempermudah kita saat development dalam menentukan dan menghubungkan dependensi.</p>
+
+<h3>Install</h3>
+
+<p>Untuk menginstal <code>npm</code>, kita hanya cukup menjalankan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl http://npmjs.org/install.sh | sh</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Semua tentang n]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/05/semua-tentang-n/"/>
+    <updated>2013-11-05T08:02:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/05/semua-tentang-n</id>
+    <content type="html"><![CDATA[<h3>Apa itu n?</h3>
+
+<p><code>n</code>  adalah Node version management. Dengan menggunakan n, kita bisa melakukan:</p>
+
+<ol>
+<li>Install/upgrade nodejs ke versi berapapun</li>
+<li>Kita bisa pindah-pindah versi nodejs. dari versi lama ke yg baru, maupun sebaliknya.</li>
+</ol>
+
+
+<h3>Install</h3>
+
+<p>Untuk menginstall <code>n</code>, terlebih dahulu kita mesti sudah menginstall <code>npm</code> (jika anda belum menginstall <code>npm</code>, silahkan baca <a href="http://hendrysuwanda.github.io/blog/2013/11/05/semua-tentang-npm/">artikel ini</a>).</p>
+
+<p>Ketikkan perintah berikut, untuk menginstall <code>n</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>npm install -g n</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Lebih lanjut tentang Judul (heading)]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/04/lebih-lanjut-tentang-judul-heading/"/>
+    <updated>2013-11-04T10:29:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/04/lebih-lanjut-tentang-judul-heading</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>HTML sebenarnya memungkinkan kita memiliki lebih dari satu ukuran heading. Terdapat 6 ukurang heading, dimana <code>&lt;h1&gt;</code> adalah bos dan <code>&lt;h6&gt;</code> adalah  lemah.</p>
+
+<ol>
+<li><code>&lt;h1&gt;</code> &ndash; CEO</li>
+<li><code>&lt;h2&gt;</code> &ndash; VP Fancy Towne</li>
+<li><code>&lt;h3&gt;</code> &ndash; Direktur beberapa stuff</li>
+<li><code>&lt;h4&gt;</code> &ndash; middle management</li>
+<li><code>&lt;h5&gt;</code> &ndash; Asisten rendahan</li>
+<li><code>&lt;h6&gt;</code> &ndash; Mendapatkan kopi untuk orang lain.</li>
+</ol>
+
+
+<p>Dibawah ini kami akan meminta anda untuk menambahkan heading dengan berbagai ukuran. Jangan ragu untuk menulis apapun yang anda sukan untuk heading.</p>
+
+<h3>Latihan</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
+</span><span class='line'>          Headings <span class="err">&amp;</span> Paragraphs
+</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;h1&gt;</span>Ini Judul h1<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf1<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf2<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>Kode anda sekarang memiliki satu heading <code>&lt;h1&gt;</code> dan 2 paragraf.</li>
+<li>Tambahkan sebuah heading <code>&lt;h3&gt;</code> sebelum paragraf kedua.</li>
+<li>Tambahkan sebuah heading <code>&lt;h5&gt;</code> setelah paragraf ke dua, dan kemudian tambahkan paragraf ketiga setelah heading ini.</li>
+</ol>
+
+
+<h3>Jawaban</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
+</span><span class='line'>          Headings <span class="err">&amp;</span> Paragraphs
+</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;h1&gt;</span>Ini Judul h1<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf1<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h3&gt;</span>Ini judul h3<span class="nt">&lt;/h3&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf2<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h5&gt;</span>Ini judul h5<span class="nt">&lt;/h5&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf3<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Paragraf dan Judul (heading)]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/04/paragraf-dan-judul-heading/"/>
+    <updated>2013-11-04T10:01:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/04/paragraf-dan-judul-heading</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Kami pasti membuat kemajuan yang baik! Kami telah belajar kapan dan mengapa kita menggunakan HTML. Kita juga telah belajar bagaimana untuk:</p>
+
+<ol>
+<li>Membentuk file HTML dengan tag</li>
+<li>Judul halaman web (di dalam <code>&lt;head&gt;</code>)</li>
+<li>Membuat paragraf (di dalam <code>&lt;body&gt;</code> dengan tag <code>&lt;p&gt;</code>)</li>
+</ol>
+
+
+<p>Langkah selanjutnya adalah memberikan paragraf kita judul menggunakan tag judul (<code>&lt;head&gt;</code>). Mari mulai dengan tag <code>&lt;h1&gt;</code>, yang menandai sesuatu sebagai yang paling penting. (Semua orang tau font yang paling penting adalah yang paling besar!)</p>
+
+<h3>Latihan</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
+</span><span class='line'>          Headings <span class="err">&amp;</span> Paragraphs
+</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>      
+</span><span class='line'>      
+</span><span class='line'>      
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>Tanya diri sendiri: Apa judul halaman ini?</li>
+<li>Di bagian body, buat sebuah judul (heading). Untuk melakukan hal ini, buat sebuah tag <code>&lt;h1&gt;</code></li>
+<li>Berikan konten anda sebuah judul. Ini bisa apapun</li>
+<li>Tutup elemen dengan tag penutup <code>&lt;/h1&gt;</code>. (Judul anda sekarang harus antara <code>&lt;h1&gt;</code> dan <code>&lt;/h1&gt;</code>)</li>
+<li>Dibawah judul, buat 2 paragraf menggunakan tag <code>&lt;p&gt;</code> dengan konten apapun yang anda suka.</li>
+</ol>
+
+
+<h3>Jawaban</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
+</span><span class='line'>          Headings <span class="err">&amp;</span> Paragraphs
+</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="nt">&lt;h1&gt;</span>Ini judul<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf 1<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf 2<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[HTML] Paragraf dalam body]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/03/html-paragraf-dalam-body/"/>
+    <updated>2013-11-03T13:37:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/03/html-paragraf-dalam-body</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Kami telah menyiapkan banyak hal-hal dasar untuk file HTML untuk Anda. Hal ini sehingga anda tidak akan marah pada kami untuk terlalu banyak pengulangan, silahkan belajar dengan baik.</p>
+
+<p>kita telah belajar tentang tag pembuka dan penutup. Ketika kita meletakkan konten diantara tag, seluruh bit disebut elemen.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>element = <span class="nt">&lt;opening</span> <span class="na">tag</span><span class="nt">&gt;</span> + content + <span class="nt">&lt;closing</span> <span class="na">tag</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Perhatikan kita memiliki tag <code>&lt;title&gt;</code> sekarang, tapi kita butuh tag <code>&lt;body&gt;</code>. Konten dalam <code>&lt;body&gt;</code> adalah apa yang akan terlihat pada halaman yang sebenarnya. <code>&lt;body&gt;</code> masuk kedalam tag html, tapi tidak didalam tag <code>&lt;head&gt;</code>, seperti ini:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;head&gt;&lt;/head&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Latihan</h3>
+
+<p>Anggap kita memiliki file HTML seperti di bawah ini</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
+</span><span class='line'>          
+</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>Antara tag <code>&lt;title&gt;</code>, berikan nama halaman anda. Ini dapat apapun.</li>
+<li>Dibawah tag <code>&lt;/head&gt;</code> penutup, letakkan tag <code>&lt;body&gt;</code> pembuka dan penutup</li>
+<li>Didalam <code>&lt;body&gt;</code>, mari buat paragraf! masing-masing paragraf membutuhkan tag pembuka dan penutup: <code>&lt;p&gt;</code> dan <code>&lt;/p&gt;</code>. Kita meletakkan konten di antara tag tersebut.</li>
+<li>Antara tag <code>&lt;body&gt;</code>, buat 2 paragraf dan tulis konten di masing paragraf. (Ini akan membutuhkan 2 pasang tag <code>&lt;p&gt;</code>)</li>
+</ol>
+
+
+<h3>Jawaban</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
+</span><span class='line'>      Belajar Paragraf
+</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>Paragraf 1<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>Paragraf 2<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'>  
+</span><span class='line'>  
+</span><span class='line'>  
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[HTML] Membuat bagian kepala(head)]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/03/membuat-bagian-kepala-head/"/>
+    <updated>2013-11-03T13:20:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/03/membuat-bagian-kepala-head</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Segala sesuatu di file HTML kita akan pergi antara tag <code>&lt;html&gt;</code> pembuka dan <code>&lt;/html&gt;</code> penutup.</p>
+
+<p>selalu ada dua bagian di file ini: head dan body. Mari fokus pada head</p>
+
+<ol>
+<li>Ia memiliki tag pembuka dan penutup.</li>
+<li>head berisi informasi penting tentang halaman web, seperti judul-nya.</li>
+<li>judul adalah kata-kata yang kita lihat pada tab (sebagai contoh, judul dari halaman ini adalah &ldquo;Introduction to HTML&rdquo;)</li>
+</ol>
+
+
+<h3>Latihan</h3>
+
+<p>Anggap kita memiliki file HTML seperti di bawah ini</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>Tambahkan sebuah tag <code>&lt;head&gt;</code> pembuka dan <code>&lt;/head&gt;</code> penutup.</li>
+<li>Antara tag <code>&lt;head&gt;</code>, tambahkan didalamnya tag <code>&lt;title&gt;</code> pembuka dan <code>&lt;/title&gt;</code> penutup.</li>
+<li>Diantara tag <code>&lt;title&gt;</code>, tulis judul dari halaman web anda: <strong>Saya lagi belajar HTML</strong>.</li>
+</ol>
+
+
+<h3>Jawaban</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'><span class="nt">&lt;head&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;title&gt;</span>Saya lagi belajar HTML<span class="nt">&lt;/title&gt;</span>
+</span><span class='line'><span class="nt">&lt;/head&gt;</span> 
+</span><span class='line'>  
+</span><span class='line'>  
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[HTML] Terminologi Dasar]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/03/html-terminologi-dasar/"/>
+    <updated>2013-11-03T13:01:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/03/html-terminologi-dasar</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Untuk memperlajari lebih lanjut HTML, kita harus belajar bagaimana berbicara tentang HTML. Anda telah melihat kita banyak menggunakan <code>&lt;&gt;</code>.</p>
+
+<ol>
+<li>Hal-hal didalam <code>&lt;&gt;</code> disebut <strong>tags</strong></li>
+<li>Tags hampir selalu datang dalam berpasangan: tag pembuka dan tag penutup.</li>
+<li>Contoh tag pembuka: <code>&lt;html&gt;</code></li>
+<li>Contoh tag penutup: <code>&lt;html&gt;</code></li>
+</ol>
+
+
+<p>Anda dapat menganggap tag seperti tanda kurung: setiap kali anda membuka satu, anda harus menutupnya. Tag juga bersarang, sehingga anda harus menutup mereka dalam urutan yang benar: tag yang paling baru dibuka harus ditutup pertama kali, seperti pada contoh dibawah.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;first</span> <span class="na">tag</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;second</span> <span class="na">tag</span><span class="nt">&gt;</span>Some text!<span class="err">&lt;</span>/second tag&gt;
+</span><span class='line'><span class="err">&lt;</span>/first tag&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Latihan terakhir mengajarkan kita bagaimana untuk mengatur file HTML kita. Segala sesuatu yang kita lakukan sekarang akan pergi antara <code>&lt;html</code> dan `</html>.</p>
+
+<p>Praktek membuat sempurna! sekali lagi.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[HTML dan CSS]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/03/html-dan-css/"/>
+    <updated>2013-11-03T07:47:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/03/html-dan-css</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Setiap halaman web yang Anda lihat ditulis dalam bahasa yang disebut HTML. Anda dapat menganggap HTML sebagai kerangka yang memberikan setiap struktur halaman web.</p>
+
+<p>HTML singkatan dari <strong>HiperText Markup Language</strong>. <strong>Hipertext</strong> berarti <code>teks dengan link di dalamnya</code>. Setiap kali anda mengklik kata yang membawa anda ke halaman web baru, Anda klik hipertext. <strong>Markup language</strong> adalah sebuah bahasa pemrograman yang digunakan untuk membuat teks melakukan lebih dari sekedar duduk di halaman: dia dapat mengubah teks menjadi gambar, link, tabel, daftar dan banyak lagi. HTML adalah markup language yang akan kita pelajari.</p>
+
+<p>Apa yang membuat halaman web cantik? Itulah CSS &ndash; <strong>Cascading Style Sheets</strong>. Anggap saja seperti kulit dan makeup yang menutupi tulang HTML.  Kita akan belajar HTML dulu,  barulah kemudian tentang CSS dalam pelatihan selanjutnya.</p>
+
+<p>Hal pertama yang harus kita lakukan adalah menyiapkan kerangka halaman.</p>
+
+<ol>
+<li>Selalu letakkan <code>&lt;!DOCTYPE html&gt;</code> pada baris pertama. Ini memberitahu browser bahasa apa yang dia baca (pada kasus ini, HTML)</li>
+<li>Selalu letakkan <code>&lt;html&gt;</code> pada baris selanjutnya. Ini awal dokumen HTML.</li>
+<li>Selalu letakkan <code>&lt;/html&gt;</code> pada baris terakhir. Ini akhir dokumen HTML.</li>
+</ol>
+
+
+<p>Contoh:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Oracle Concepts - Menemukan table dan index lokasi tablespace]]></title>
@@ -925,787 +1631,6 @@ Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :
 
 
 <p>Kita tidak perlu mendefinisikan nilai dari user_id, karena mysql secara otomatis akan melakukannya.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Berkenalan dengan Spring-Batch]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/04/berkenalan-dengan-spring-batch/"/>
-    <updated>2013-10-04T13:30:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/04/berkenalan-dengan-spring-batch</id>
-    <content type="html"><![CDATA[<p>Spring batch adalah framework untuk melakukan proses batch, mengeksekusi serangkaian <code>job</code>. Dimana <code>job</code> terdiri dari banyak <code>step</code> dan setiap <code>step</code> terdiri dari proses <code>READ-PROCESS-WRITE</code> atau <code>SINGLE-OPERATION</code> (<code>tasklet</code>).</p>
-
-<p>Berikut beberapa istilah yang sering di gunakan di Spring Batch:</p>
-
-<ul>
-<li><strong>Job</strong> &ndash; Menggambarkan suatu pekerjaan. Misal, membaca file DPK (Dana Pihak Ketiga), lalu menyimpannya ke dalam database. Setelah itu menampilkannya ke dalam laporan <code>Combined-Statement</code>.</li>
-<li><strong>Step</strong> &ndash; Sebuah <strong>job</strong> terdiri dari satu atau dua <strong>step</strong>. Dalam contoh di atas, misalnya:
-
-<ul>
-<li>Step 1: Membaca File DPK &amp; Meyimpan ke dalam database</li>
-<li>Step 2: Menampilkan data DPK ke dalam laporan <code>Combined-Statement</code></li>
-</ul>
-</li>
-<li><strong>JobInstance</strong> &ndash; Sebuah instance yang sedang berjalan dari sebuah <code>job</code> yang telah di tetapkan. Anggap, <code>job</code> adalah sebuah class dan <code>jobinstance</code> adalah sebuah object dari class <code>job</code>. Contoh, <code>job</code> membaca file DPK jalan setiap awal bulan, berarti kita memiliki 1 JobInstance setiap bulannya. 1 <code>job</code> yang berjalan sama dengan 1 <code>jobinstance</code>.</li>
-<li><strong>JobParameters</strong> &ndash; Parameter-parameter yang digunakan oleh <code>JobInstance</code>. Contoh, secara default, laporan <code>Combined-Statement</code> yang di generate adalah untuk periode T-1, tapi kita ingin membuatnya lebih dinamis, jadi kita bisa generatekan laporan untuk periode T-N, jadi, kita mesti melemparkan nilai <code>N</code> ke dalam <code>JobParameters</code>, dimana <code>JobParameters</code> nanti akan di lemparkan sebagai baris perintah argumen.</li>
-<li><strong>JobExecution</strong> &ndash; Setiap menjalankan <code>JobInstance</code> akan menghasilkan <code>JobExecution</code>. Contoh, ketika job membaca file DPK gagal, lalu job di jalankan lagi dan berhasil. Maka kita akan memiliki 1 <code>JobInstance</code> dan memiliki 2 <code>JobExecution</code>, 1 yang berhasil &amp; 1 lagi yang gagal.</li>
-<li><strong>StepExecution</strong> &ndash; Sama seperti <code>JobExecution</code>, tapi ini untuk menggambarkan hasil dari <code>Step</code>.</li>
-<li><strong>JobRepository</strong> &ndash; Sebuah <a href="http://www.relationaldbdesign.com/oracle8i-pl-sql-programming/oracle-pl-sql-programming-glossary.php">persistent store</a> untuk menyimpan semua informasi meta-data <code>job</code>. Menyimpan informasi <code>JobInstance</code>,<code>JobExecution</code> dan <code>StepExecution</code>. Repositori dibutuhkan untuk mengetahui apakah sebelumnya <code>job</code> gagal atau tidak, jika gagal maka bisa di jalankan kembali. Secara default informasi ini di simpan di memory, tapi kita bisa setting untuk menyimpannya di database.</li>
-<li><strong>JobLauncher</strong> &ndash; Seperti namanya, object ini memungkinkan kita untuk memulai sebuah <code>job</code>. Ia menggunakan <code>JobRepository</code> untuk mendapakan <code>JobExecution</code> yang valid.</li>
-</ul>
-
-
-<h3>SINGLE-OPERATION</h3>
-
-<ul>
-<li><strong>TaskLet</strong> &ndash; Situasi dimana kita tidak memiliki input and pengolahan keluaran (<code>SINGLE-OPERATION</code>). Misalnya, kita ingin memanggil/menjalankan sebuah store procedure.</li>
-</ul>
-
-
-<h3>READ-PROCESS-WRITE</h3>
-
-<ul>
-<li><strong>ItemReader</strong> &ndash; Sebuah abstract class yang digunakan untuk menggambarkan sebuah object yang memungkinkan kita untuk membaca sebuah object yang ingin kita proses. Misal, kita ingin membaca file DPK, atau kita ingin membaca data dari database.</li>
-<li><strong>ItemWritter</strong> &ndash; Sebuah abstract class yang digunakan untuk menulis hasil akhir dari proses batch. Misal, kita ingin meng-generate laporan <code>Combined-Statement</code>.</li>
-<li><strong>ItemProcessor</strong> &ndash; Sebuah abstract class yang digunakan untuk melakukan <code>business logic</code> dari data yang di hasilkan oleh <code>ItemReader</code> sebelum di lemparkan ke <code>ItemWritter</code>.</li>
-</ul>
-
-
-<p>Dalam tulisan selanjutnya kita akan melihat contoh dari penggunaan masing-masing item tersebut.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Error 'Unable to open logs' ketika menjalankan httpd]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/"/>
-    <updated>2013-10-04T11:13:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd</id>
-    <content type="html"><![CDATA[<p>Hari ini ada masalah di production. Teman melakukan restart server production, tapi yg sialnya tidak ada yg tau kalau ada proxy/web server sebelum akses user di lanjutkan ke tomcat.</p>
-
-<p>Proxy/web server yg kami gunakan adalah httpd. Tapi ketika di jalankan dengan menggunakan command</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>service httpd start</span></code></pre></td></tr></table></div></figure>
-
-
-<p>muncul error</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Starting httpd: no listening sockets available, shutting down
-</span><span class='line'>
-</span><span class='line'>Unable to open logs</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Ritual pertama yg saya lakukan, check apakah port 80 lagi di pakai oleh service lain dengan menggunakan command</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>netstat -npl | grep 80</span></code></pre></td></tr></table></div></figure>
-
-
-<p>hasilnya</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>tcp        0      0 ::ffff:127.0.0.1:8005       :::*                        LISTEN      2750/java
-</span><span class='line'>tcp        0      0 :::8009                     :::*                        LISTEN      2750/java
-</span><span class='line'>tcp        0      0 :::8080                     :::*                        LISTEN      2750/java
-</span><span class='line'>tcp        0      0 :::80                       :::*                        LISTEN      1502/httpd</span></code></pre></td></tr></table></div></figure>
-
-
-<p>dari hasil diatas, ternyata port 80 lagi digunakan oleh <code>httpd</code>. Ternyata <code>httpd</code> dalam keadaan deadlock, walaupun sudah membuka port 80, tapi kita tetap tidak bisa akses.</p>
-
-<p>Ok, ritual kedua, kita stop httpd dengan menjalankan command</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>service httpd stop</span></code></pre></td></tr></table></div></figure>
-
-
-<p>hasilnya</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>FAILED</span></code></pre></td></tr></table></div></figure>
-
-
-<p>mantap. ternyata <code>httpd</code> benar2 dalam keadaan deadlock/hang. jalan satu2nya kita kill proses <code>httpd</code> tersebut.</p>
-
-<p>Untuk kill proses httpd, sebelumnya kita mesti tahu dulu prosess id nya, dengan menjalankan command</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>ps ax | grep httpd</span></code></pre></td></tr></table></div></figure>
-
-
-<p>hasilnya</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>1501 ?        S      0:00 /bin/bash -c ulimit -S -c 0 &gt;/dev/null 2&gt;&1 ; /usr/sbin/httpd
-</span><span class='line'>1502 ?        S      0:00 /usr/sbin/httpd
-</span><span class='line'>4713 pts/0    S+     0:00 grep httpd</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Bisa kita lihat, ada 3 prosess yang mengandung kata httpd. Sekarang jalankan command berikut untuk melakukan kill prosess tersebut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ kill -9 1501
-</span><span class='line'>$ kill -9 1502</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu jalankan lagi command berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>service httpd start</span></code></pre></td></tr></table></div></figure>
-
-
-<p>untuk menjalankan httpd kembali.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[rename column di oracle]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/04/rename-column-di-oracle/"/>
-    <updated>2013-10-04T11:09:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/04/rename-column-di-oracle</id>
-    <content type="html"><![CDATA[<p>Sintaks untuk rename column di oracle sebagai berikut</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table</span> <span class="n">name</span><span class="o">&gt;</span> <span class="k">rename</span> <span class="k">column</span> <span class="o">&lt;</span><span class="k">column</span> <span class="n">name</span><span class="o">&gt;</span> <span class="k">to</span> <span class="o">&lt;</span><span class="k">new</span> <span class="k">column</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>anggap, kita memiliki table dengan struktur seperti ini</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">CS_EXCHANGE_RATE</span> <span class="p">(</span>
-</span><span class='line'>  <span class="n">EXCHANGE_RATE_DATE</span>   <span class="nb">DATE</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-</span><span class='line'>  <span class="n">CURRENCY_CODE</span>        <span class="nb">CHAR</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-</span><span class='line'>  <span class="n">RATE</span>                 <span class="nb">NUMBER</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
-</span><span class='line'><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu, kita ingin mengubah, nama kolum <code>RATE</code>, menjadi <code>VALUE</code>. Maka jalankan sintaks berikut</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">alter</span> <span class="k">table</span> <span class="n">CS_EXCHANGE_RATE</span> <span class="k">rename</span> <span class="k">column</span> <span class="n">RATE</span> <span class="k">to</span> <span class="n">VALUE</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[List File/Directory dalam bentuk tree di crunchbang]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang/"/>
-    <updated>2013-10-04T10:38:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang</id>
-    <content type="html"><![CDATA[<p>Saya selalu melihat di video tutorial yg menggunakan *nix, mereka selalu list file/directory dalam bentuk seperti ini</p>
-
-<p><img src="http://hendrysuwanda.github.io/images/linux/list-files-in-tree.png"></p>
-
-<p>setelah google, ternyata mereka menggunakan <code>tree</code>.
-Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command berikut</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>sudo apt-get install tree
-</span><span class='line'><span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for </span>marjinal:
-</span><span class='line'>Reading package lists... Done
-</span><span class='line'>Building dependency tree
-</span><span class='line'>Reading state information... Done
-</span><span class='line'>The following NEW packages will be installed:
-</span><span class='line'>  tree
-</span><span class='line'>0 upgraded, 1 newly installed, 0 to remove and 200 not upgraded.
-</span><span class='line'>Need to get 32.4 kB of archives.
-</span><span class='line'>After this operation, 98.3 kB of additional disk space will be used.
-</span><span class='line'>Get:1 http://ftp.debian.org/debian/ squeeze/main tree amd64 1.5.3-1 <span class="o">[</span>32.4 kB<span class="o">]</span>
-</span><span class='line'>Fetched 32.4 kB in 6s <span class="o">(</span>5,168 B/s<span class="o">)</span>
-</span><span class='line'>Selecting previously deselected package tree.
-</span><span class='line'><span class="o">(</span>Reading database ... 112215 files and directories currently installed.<span class="o">)</span>
-</span><span class='line'>Unpacking tree <span class="o">(</span>from .../tree_1.5.3-1_amd64.deb<span class="o">)</span> ...
-</span><span class='line'>Processing triggers <span class="k">for </span>man-db ...
-</span><span class='line'>Setting up tree <span class="o">(</span>1.5.3-1<span class="o">)</span> ...
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Sencha Touch Hello World]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/02/sencha-touch-hello-world/"/>
-    <updated>2013-10-02T11:41:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/02/sencha-touch-hello-world</id>
-    <content type="html"><![CDATA[<blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
-
-
-<p>Sebelum melakukan generate aplikasi yang pertama menggunakan Sencha Cmd, berikut yang mesti kita lakukan.
-* Direktori project saya, biasanya saya letakkan di <code>~/PROJECT/SENCHA_TOUCH</code>
-* Direktori Sencha SDK saya ada di <code>~/TOOLS/sencha/touch-2.2.1</code>
-* Lalu buat direktori sesuai dengan nama projectnya, karena kita mau buat hello world, maka saya buat folder hello world di dalam folder tersebut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/PROJECT/SENCHA_TOUCH
-</span><span class='line'>$ mkdir helloworld</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Generate Project</h3>
-
-<p>Untuk melakukan generate project, lakukan langkah-langkah berikut ini:
-1) Masuk ke dalam direktori <code>~/TOOLS/sencha/touch-2.2.1</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/TOOLS/sencha/touch-2.2.1</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2) Lalu jalankan command berikut ini</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sencha generate app HelloWorld ~/PROJECT/SENCHA_TOUCH/helloworld</span></code></pre></td></tr></table></div></figure>
-
-
-<p>maka akan muncul output</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Sencha Cmd v3.1.2.342
-</span><span class='line'>[WRN] Sencha Cmd update is available (updating is recommended)
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] init-plugin:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] -before-generate-workspace:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] cmd-root-plugin.init-properties:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] init-properties:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] init-sencha-command:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] init:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] generate-workspace-impl:
-</span><span class='line'>[INF]      [echo] generating into /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld from /home/marjinal/bin/Sencha/Cmd/3.1.2.342/templates/workspace
-</span><span class='line'>[INF]     [mkdir] Created dir: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/packages
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] cmd-root-plugin.copy-framework-to-workspace-impl:
-</span><span class='line'>[INF] [propertyfile] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/workspace/sencha.cfg
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] copy-framework-to-workspace-impl:
-</span><span class='line'>[INF]      [copy] Copying 1960 files to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/touch
-</span><span class='line'>[INF]      [copy] Copying 1 file to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/touch
-</span><span class='line'>[INF]      [copy] Copying 1 file to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/touch
-</span><span class='line'>[INF] [propertyfile] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/workspace/sencha.cfg
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] copy-framework-to-workspace:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] generate-workspace:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] -after-generate-workspace:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] init-plugin:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] cmd-root-plugin.init-properties:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] init-properties:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] init-sencha-command:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] init:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] before-upgrade:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] generate-app-impl:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] generate-starter-app:
-</span><span class='line'>[INF]     [mkdir] Created dir: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/app/profile
-</span><span class='line'>[INF]     [mkdir] Created dir: /home/marjinal/TOOLS/sencha/touch-2.2.1/resources/icons
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] copy-sdk:
-</span><span class='line'>[INF]      [copy] Copying 1 file to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/resources/css
-</span><span class='line'>[INF]      [copy] Copying 4 files to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/resources/sass/stylesheets
-</span><span class='line'>[INF] [x-property-file] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/app/sencha.cfg
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] after-upgrade:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] generate-app:
-</span><span class='line'>[INF] 
-</span><span class='line'>[INF] -after-generate-app:
-</span><span class='line'>[INF] [x-property-file] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/app/sencha.cfg
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Running Project</h3>
-
-<p>Untuk menjalankan project menggunakan Sencha Cmd, lakukan langkah berikut:</p>
-
-<p>1) masuk ke dalam directory project</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/PROJECT/SENCHA_TOUCH/</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2) lalu ketikkan</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sencha fs web -port 8000 start -map helloworld</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu akan muncul output</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Sencha Cmd v3.1.2.342
-</span><span class='line'>[INF] Starting shutdown listener socket
-</span><span class='line'>[INF] Listening for stop requests on: 42787
-</span><span class='line'>[INF] Mapping http://localhost:8000/ to helloworld...
-</span><span class='line'>[INF] Starting http://localhost:8000
-</span><span class='line'>[INF] jetty-8.1.7.v20120910
-</span><span class='line'>[INF] NO JSP Support for /, did not find org.apache.jasper.servlet.JspServlet
-</span><span class='line'>[INF] started o.e.j.w.WebAppContext{/,file:/home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/}
-</span><span class='line'>[INF] started o.e.j.w.WebAppContext{/,file:/home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/}
-</span><span class='line'>[INF] Started SelectChannelConnector@0.0.0.0:8000
-</span><span class='line'>[INF] Started http://localhost:8000
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Jika tidak memiliki emulator (android, iphone, dll), kita bisa gunakan google chrome. Jalankan google chrome, lalu  masukkan url <a href="http://localhost:8000.">http://localhost:8000.</a></p>
-
-<p><img src="http://hendrysuwanda.github.io/images/sencha-touch/sencha-touch-helloworld-running.png"></p>
-
-<p>Done.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Install Sencha Touch SDK dan Sencha Cmd]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd/"/>
-    <updated>2013-10-02T11:01:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd</id>
-    <content type="html"><![CDATA[<blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
-
-
-<p>Sebelumnya, silahkan download <a href="http://www.sencha.com/products/touch/download/">Sencha Touch SDK</a> dan <a href="http://www.sencha.com/products/sencha-cmd/download">Sencha Cmd</a>. Untuk Sencha Cmd, saya download yang versi linux (<code>SenchaCmd-3.1.2.342-linux-x64.run.zip</code>).</p>
-
-<h3>Install Sencha Touch SDK</h3>
-
-<p>Untuk meng-install Sencha Touch SDK, cukup hanya dengan melakukan extract file yang anda download.</p>
-
-<h3>Install Sencha Cmd</h3>
-
-<p>1) Extract file <code>SenchaCmd-3.1.2.342-linux-x64.run.zip</code>
-2) Jalankan command berikut, untuk mengubah file menjadi executable</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ chmod +x SenchaCmd-3.1.2.342-linux-x64.run</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3) Jalankan command berikut, untuk memulai instalasi</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ ./SenchaCmd-3.1.2.342-linux-x64.run</span></code></pre></td></tr></table></div></figure>
-
-
-<p>4) Lalu akan muncul dialog <strong>Setup &ndash; Sencha Cmd</strong>. Klik <strong>Next</strong>.</p>
-
-<p><img src="http://hendrysuwanda.github.io/images/sencha-touch/1-setup-sencha-touch-welcome.png"></p>
-
-<p>5) Lalu akan muncul dialog <strong>License Agreement</strong>. Klik <strong>I accept the agreement</strong>, lalu klik <strong>Next</strong>.</p>
-
-<p><img src="http://hendrysuwanda.github.io/images/sencha-touch/2-setup-sencha-touch-license-agreement.png"></p>
-
-<p>6) Lalu akan muncul dialog <strong>Installation Directory</strong>. Pada <strong>Installation Directory</strong> biarkan terisi default, lalu klik <strong>Next</strong>.</p>
-
-<p><img src="http://hendrysuwanda.github.io/images/sencha-touch/3-setup-sencha-touch-installation-directory.png"></p>
-
-<p>7) Lalu akan muncul dialog <strong>Ready to Install</strong>. Klik <strong>Next</strong>.</p>
-
-<p><img src="http://hendrysuwanda.github.io/images/sencha-touch/4-setup-sencha-touch-ready-to-install.png"></p>
-
-<p>8) Lalu akan muncul dialog <strong>Installing</strong>. Proses install sedang berjalan</p>
-
-<p><img src="http://hendrysuwanda.github.io/images/sencha-touch/5-setup-sencha-touch-installing.png"></p>
-
-<p>9) Setelah proses install selesai, akan muncul dialog <strong>Completing the Sencha Cmd Setup Wizard</strong>. Klik <strong>Finish</strong></p>
-
-<p><img src="http://hendrysuwanda.github.io/images/sencha-touch/6-setup-sencha-touch-finish.png"></p>
-
-<p>10) Untuk menguji, apakah proses instal Sencha Cmd telah berhasil atau belum, buka terminal lalu jalankan command berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sencha</span></code></pre></td></tr></table></div></figure>
-
-
-<p>jika muncul output sebagai berikut, berarti proses instal telah berhasil</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Sencha Cmd v3.1.2.342
-</span><span class='line'>Sencha Cmd provides several categories of commands and some global switches. In
-</span><span class='line'>most cases, the first step is to generate an application based on a Sencha SDK
-</span><span class='line'>such as Ext JS or Sencha Touch:
-</span><span class='line'>
-</span><span class='line'>    sencha -sdk /path/to/sdk generate app MyApp /path/to/myapp
-</span><span class='line'>
-</span><span class='line'>Sencha Cmd supports Ext JS 4.1.1a and higher and Sencha Touch 2.1 and higher.
-</span><span class='line'>
-</span><span class='line'>To get help on commands use the help command:
-</span><span class='line'>
-</span><span class='line'>    sencha help generate app
-</span><span class='line'>
-</span><span class='line'>For more information on using Sencha Cmd, consult the guides found here:
-</span><span class='line'>
-</span><span class='line'>http://docs.sencha.com/ext-js/4-2/#!/guide/command
-</span><span class='line'>http://docs.sencha.com/ext-js/4-1/#!/guide/command
-</span><span class='line'>
-</span><span class='line'>http://docs.sencha.com/touch/2-2/#!/guide/command
-</span><span class='line'>http://docs.sencha.com/touch/2-1/#!/guide/command
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'>Options
-</span><span class='line'>  * --cwd, -cw - Sets the directory from which commands should execute
-</span><span class='line'>  * --debug, -d - Sets log level to higher verbosity
-</span><span class='line'>  * --nologo, -n - Suppress the initial Sencha Cmd version display
-</span><span class='line'>  * --plain, -pl - enables plain logging output (no highlighting)
-</span><span class='line'>  * --quiet, -q - Sets log level to warnings and errors only
-</span><span class='line'>  * --sdk-path, -s - The location of the SDK to use for non-app commands
-</span><span class='line'>  * --time, -ti - Display the execution time after executing all commands
-</span><span class='line'>
-</span><span class='line'>Categories
-</span><span class='line'>  * app - Perform various application build processes
-</span><span class='line'>  * compass - Wraps execution of compass for sass compilation
-</span><span class='line'>  * compile - Compile sources to produce concatenated output and metadata
-</span><span class='line'>  * fs - Utility commands to work with files
-</span><span class='line'>  * generate - Generates models, controllers, etc. or an entire application
-</span><span class='line'>  * io - Create, deploy and manage applications on the Sencha.io cloud platform
-</span><span class='line'>  * iofs - Manage Files stored in the Sencha.io cloud platform
-</span><span class='line'>  * manifest - Extract class metadata
-</span><span class='line'>  * package - Manages local and remote packages
-</span><span class='line'>  * repository - Manage local repository and remote repository connections
-</span><span class='line'>  * theme - Commands for low-level operations on themes
-</span><span class='line'>
-</span><span class='line'>Commands
-</span><span class='line'>  * ant - Invoke Ant with helpful properties back to Sencha Cmd
-</span><span class='line'>  * build - Builds a project from a legacy JSB3 file.
-</span><span class='line'>  * config - Load a properties file or sets a configuration property
-</span><span class='line'>  * help - Displays help for commands
-</span><span class='line'>  * js - Executes arbitrary JavaScript file(s)
-</span><span class='line'>  * upgrade - Upgrades Sencha Cmd
-</span><span class='line'>  * which - Displays the path to the current version of Sencha Cmd
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Mendapatkan tanggal awal dan akhir Bulan di Oracle]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle/"/>
-    <updated>2013-10-02T06:06:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle</id>
-    <content type="html"><![CDATA[<blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
-
-
-<p>Anggap, sekarang tanggal 15 oktober 2013. Untuk menambahkan/mengurangi bulan, kita bisa menggunakan sintaks</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">add_months</span><span class="p">(</span><span class="nb">date</span><span class="p">,</span> <span class="n">inc</span><span class="o">/</span><span class="nb">dec</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>dimana:</p>
-
-<ul>
-<li><code>date</code> adalah data tipe date yang di jadikan patokan</li>
-<li><code>inc</code> adalah total penambahan bulan, dalam positif. Contoh, <code>select add_months(sysdate, 5) from dual</code>, akan menghasilkan tanggal sekarang + 5 bulan
-, <code>dec</code> adalah total pengurangan bulan, dalam negatif. Contoh <code>select add_months(sysdate, -5) from dual</code>, akan menghasilkan tanggal sekarang &ndash; 5 bulan</li>
-</ul>
-
-
-<h3>Bulan Sebelumnya</h3>
-
-<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan september-2013, gunakan script berikut:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
-</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
-</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
-</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan agustus-2013, gunakan script berikut:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
-</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span>
-</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
-</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan juli-2013, gunakan script berikut:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
-</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mi">3</span><span class="p">),</span>
-</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
-</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Dan seterusnya</p>
-
-<h3>Bulan Sekarang</h3>
-
-<p>untuk mendapatkan tanggal awal &amp; akhir untuk bulan oktober, gunakan script berikut:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
-</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span>
-</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
-</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Bulan Selanjutnya</h3>
-
-<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan november-2013, gunakan script berikut:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
-</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span>
-</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
-</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan desember-2013, gunakan script berikut:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
-</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span>
-</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
-</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan januari-2014, gunakan script berikut:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
-</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
-</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
-</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Dan seterusnya.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[URL belajar Wicket]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/09/29/url-belajar-wicket/"/>
-    <updated>2013-09-29T03:35:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/09/29/url-belajar-wicket</id>
-    <content type="html"><![CDATA[<p><a href="http://www.rent-a-hero.de/cms/node/10">Apache Wicket with Twitter Bootstrap and Impromptu JQuery Overlay</a></p>
-
-<p><a href="http://tomaszdziurko.pl/2012/03/wicket-and-twitter-bootstrap-navbar/">Using Twitter Bootstrap Navbar as a Wicket component</a></p>
-
-<p><a href="http://www.mkyong.com/tutorials/wicket-tutorials">mkyong &ndash; Wicket Tutorial</a></p>
-
-<p><a href="http://blog.bosch-si.com/apache-wicket-lessons-learned/">Apache Wicket – three years of lessons learned</a></p>
-
-<p><a href="https://github.com/bitstorm/Wicket-tutorial-examples">Wicket-tutorial-examples</a></p>
-
-<p><a href="http://wicketguide.comsysto.com/">wicket guide</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[URL belajar Spring-Batch]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/09/28/url-belajar-spring-batch/"/>
-    <updated>2013-09-28T08:02:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/09/28/url-belajar-spring-batch</id>
-    <content type="html"><![CDATA[<h2><a href="http://www.mkyong.com">mkyong</a></h2>
-
-<ol>
-<li><a href="http://www.mkyong.com/tutorials/spring-batch-tutorial/">Spring Batch Tutorial</a></li>
-<li><a href="http://www.mkyong.com/spring-batch/spring-batch-hello-world-example/">Spring Batch Hello World Example</a></li>
-</ol>
-
-
-<h2><a href="http://blogs.justenougharchitecture.com">Mathew&rsquo;s Thoughts!</a></h2>
-
-<ol>
-<li><a href="http://blogs.justenougharchitecture.com/?p=124">Spring Batch 2.0 – Part I – Simple Tasklet</a></li>
-</ol>
-
 ]]></content>
   </entry>
   

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: css | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/css/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2013-11-05T08:45:20-05:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    <email><![CDATA[suwanda.hendry@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[HTML dan CSS]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/03/html-dan-css/"/>
+    <updated>2013-11-03T07:47:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/03/html-dan-css</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Setiap halaman web yang Anda lihat ditulis dalam bahasa yang disebut HTML. Anda dapat menganggap HTML sebagai kerangka yang memberikan setiap struktur halaman web.</p>
+
+<p>HTML singkatan dari <strong>HiperText Markup Language</strong>. <strong>Hipertext</strong> berarti <code>teks dengan link di dalamnya</code>. Setiap kali anda mengklik kata yang membawa anda ke halaman web baru, Anda klik hipertext. <strong>Markup language</strong> adalah sebuah bahasa pemrograman yang digunakan untuk membuat teks melakukan lebih dari sekedar duduk di halaman: dia dapat mengubah teks menjadi gambar, link, tabel, daftar dan banyak lagi. HTML adalah markup language yang akan kita pelajari.</p>
+
+<p>Apa yang membuat halaman web cantik? Itulah CSS &ndash; <strong>Cascading Style Sheets</strong>. Anggap saja seperti kulit dan makeup yang menutupi tulang HTML.  Kita akan belajar HTML dulu,  barulah kemudian tentang CSS dalam pelatihan selanjutnya.</p>
+
+<p>Hal pertama yang harus kita lakukan adalah menyiapkan kerangka halaman.</p>
+
+<ol>
+<li>Selalu letakkan <code>&lt;!DOCTYPE html&gt;</code> pada baris pertama. Ini memberitahu browser bahasa apa yang dia baca (pada kasus ini, HTML)</li>
+<li>Selalu letakkan <code>&lt;html&gt;</code> pada baris selanjutnya. Ini awal dokumen HTML.</li>
+<li>Selalu letakkan <code>&lt;/html&gt;</code> pada baris terakhir. Ini akhir dokumen HTML.</li>
+</ol>
+
+
+<p>Contoh:</p>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html></p>
+
+<p></html>
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
