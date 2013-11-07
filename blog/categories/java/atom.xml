@@ -4,7 +4,7 @@
   <title><![CDATA[Category: java | Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-11-05T08:45:20-05:00</updated>
+  <updated>2013-11-07T10:05:31-05:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,93 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Simple If Statement in Java]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/07/simple-if-statement-in-java/"/>
+    <updated>2013-11-07T09:54:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/07/simple-if-statement-in-java</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+gw menulis artikel ini, karena terkadang gw lupa dengan nama nya :D
+</div>
+
+
+<p>Anggap, kita kita harus menentukan, apakah variable <code>x</code> berisi data genap atau ganjil, yang biasa kita lakukan di java seperti ini</p>
+
+<p><code>java cara1
+if(x % 2 == 0) return "genap";
+else return "ganjil";
+</code></p>
+
+<p>Tapi ada 1 statement di java, yang dapat mempersingkat statement di atas, namanya <code>ternary operator</code>, sintaks nya seperti ini</p>
+
+<p><code>
+(condition)? &lt;if true&gt; : &lt;if false&gt;
+</code></p>
+
+<p>contoh, <code>cara1</code> diatas, jika menggunakan <code>ternary operator</code>, akan menjadi</p>
+
+<p><code>java
+(x % 2 == 0) ? "genap" : "ganjil";
+</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[Algorithm] Cara simple memilih 2 object di java]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/07/algorithm-cara-simple-memilih-2-object-di-java/"/>
+    <updated>2013-11-07T09:27:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/07/algorithm-cara-simple-memilih-2-object-di-java</id>
+    <content type="html"><![CDATA[<h3>Masalah</h3>
+
+<p>Anggap, kita memiliki sebuah list (<code>listPeople</code>) yang menyimpan object <code>people</code>, dengan struktur <code>class</code> seperti di bawah ini</p>
+
+<p>```java people.java
+public class people{</p>
+
+<pre><code>public String name;
+public int age;
+</code></pre>
+
+<p>}
+```</p>
+
+<p>Lalu kita memiliki 2 object list, <code>listMinor</code> untuk menyimpan data people yang belum dewasa (age &lt; 18), dan <code>listAdult</code> untuk menyimpan data people yang sudah dewasa (age >= 18).</p>
+
+<p><code>java
+List&lt;People&gt; listPeople = new ArrayList&lt;People&gt;();
+List&lt;People&gt; listMinor = new ArrayList&lt;People&gt;();
+List&lt;People&gt; listAdult = new ArrayList&lt;People&gt;();
+</code></p>
+
+<p>Coba buat aplikasi untuk memfilter semua people yang ada di listPeople, dan pindahkan ke listMinor &amp; listAdult sesuai dengan nilai age dari masing2 object tersebut.</p>
+
+<h3>Jawaban</h3>
+
+<p>Cara yang paling gampang, tapi cukup bertele2 adalah seperti ini:</p>
+
+<p>```java
+for(People people : listPeople){</p>
+
+<pre><code>if(people.age &lt; 18) listMinor.add(people)
+else listAdult.add(people)
+</code></pre>
+
+<p>}
+```</p>
+
+<p>tapi kita bisa menggunakan <code>ternary-operator</code></p>
+
+<p>```java
+for(People people : listPeople){</p>
+
+<pre><code>(people.age &lt; 18 ? listMinor : listAdult).add(people)
+</code></pre>
+
+<p>}
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Install jdk 1.6 di ubuntu 12.04 server]]></title>

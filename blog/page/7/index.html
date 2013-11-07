@@ -8,7 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Jan 24th, 2013 Koneksi Ke Github Menggunakan SSH Kita dapat menggunakan Kunci SSH untuk melakukan koneksi yang aman antara komputer kita dengan &hellip;">
+  <meta name="description" content="Jan 26th, 2013 Membuat Project Menggunakan Maven - Archetype Local Jika kita telah membuat archetype, kita dapat menggunakan archetype tersebut utk &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +86,130 @@
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-26T03:39:00-05:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/26/membuat-project-menggunakan-maven-archetype-local/">Membuat Project Menggunakan Maven - Archetype Local</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Jika kita telah membuat archetype, kita dapat menggunakan archetype tersebut utk membuat project, dengan mengetikkan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn archetype:generate -DarchetypeCatalog=local</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Maka, maven akan memberikan daftar archetype yang ada di local repository kita, seperti di bawah ini:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[INFO] Scanning for projects...
+</span><span class='line'>[INFO]
+</span><span class='line'>[INFO] ------------------------------------------------------------------------
+</span><span class='line'>[INFO] Building Maven Stub Project (No POM) 1
+</span><span class='line'>[INFO] ------------------------------------------------------------------------
+</span><span class='line'>[INFO]
+</span><span class='line'>[INFO] &gt;&gt;&gt; maven-archetype-plugin:2.0:generate (default-cli) @ standalone-pom &gt;&gt;&gt;
+</span><span class='line'>[INFO]
+</span><span class='line'>[INFO] &lt;&lt;&lt; maven-archetype-plugin:2.0:generate (default-cli) @ standalone-pom &lt;&lt;&lt;
+</span><span class='line'>[INFO]
+</span><span class='line'>[INFO] --- maven-archetype-plugin:2.0:generate (default-cli) @ standalone-pom ---
+</span><span class='line'>[INFO] Generating project in Interactive mode
+</span><span class='line'>[INFO] No archetype defined. Using maven-archetype-quickstart (org.apache.maven.archetypes:maven-archetype-quickstart:1.0)
+</span><span class='line'>Choose archetype:
+</span><span class='line'>1: local -&gt; project.zkoss.example-archetype (project.zkoss.example-archetype)
+</span><span class='line'>Choose a number: :</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Kebetulan di local repo saya, masih memiliki 1 archetype. Selanjutnya, kita bisa memilih untuk menggunakan archetype yg kita inginkan.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-26T03:38:00-05:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/26/membuat-project-menggunakan-maven-artifact-secara-langsung/">Membuat Project Menggunakan Maven - Artifact Secara Langsung</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Ketika pertama kali membuat project menggunakan Maven, aku biasanya mengetikkan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn archetype:generate</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu maven, akan melakukan sync utk mengambil semua list archetype yang terdaftar di repo maven, dan biasanya ini akan membutuhkan waktu yg sangat lama, sementara archetype yang mau kita gunakan biasanya hanya standar (mis: maven-archetype-quickstart). Setelah google, akhirnya aku menemukan cara pintas utk membuat project dengan mendefinisikan secara langsung archetype yang aku gunakan seperti di bawah ini:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn archetype:generate -DgroupId=com.hendrysuwanda.project.spring -DartifactId=project.spring.example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -281,15 +405,15 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2013/11/07/simple-if-statement-in-java/">Simple if Statement in Java</a>
+    
+    <a class="list-group-item " href="/blog/2013/11/07/algorithm-cara-simple-memilih-2-object-di-java/">[Algorithm] Cara Simple Memilih 2 Object Di Java</a>
+    
     <a class="list-group-item " href="/blog/2013/11/05/upgrade-nodejs-menggunakan-n/">Upgrade NodeJS Menggunakan N</a>
     
     <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-npm/">Semua Tentang Npm</a>
     
     <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-n/">Semua Tentang N</a>
-    
-    <a class="list-group-item " href="/blog/2013/11/04/lebih-lanjut-tentang-judul-heading/">Lebih Lanjut Tentang Judul (Heading)</a>
-    
-    <a class="list-group-item " href="/blog/2013/11/04/paragraf-dan-judul-heading/">Paragraf Dan Judul (Heading)</a>
     
   </div>
 </section>

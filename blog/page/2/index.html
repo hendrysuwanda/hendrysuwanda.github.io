@@ -8,7 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Oct 26th, 2013 IntelliJ Shortcuts vs Eclipse Shortcuts Artikel ini saya translate dari sini. Tujuan saya translate artikel ini sebagai latihan saya &hellip;">
+  <meta name="description" content="Nov 3rd, 2013 HTML Dan CSS Artikel ini saya translate dari sini. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +86,141 @@
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-03T07:47:00-05:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/03/html-dan-css/">HTML Dan CSS</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Setiap halaman web yang Anda lihat ditulis dalam bahasa yang disebut HTML. Anda dapat menganggap HTML sebagai kerangka yang memberikan setiap struktur halaman web.</p>
+
+<p>HTML singkatan dari <strong>HiperText Markup Language</strong>. <strong>Hipertext</strong> berarti <code>teks dengan link di dalamnya</code>. Setiap kali anda mengklik kata yang membawa anda ke halaman web baru, Anda klik hipertext. <strong>Markup language</strong> adalah sebuah bahasa pemrograman yang digunakan untuk membuat teks melakukan lebih dari sekedar duduk di halaman: dia dapat mengubah teks menjadi gambar, link, tabel, daftar dan banyak lagi. HTML adalah markup language yang akan kita pelajari.</p>
+
+<p>Apa yang membuat halaman web cantik? Itulah CSS &ndash; <strong>Cascading Style Sheets</strong>. Anggap saja seperti kulit dan makeup yang menutupi tulang HTML.  Kita akan belajar HTML dulu,  barulah kemudian tentang CSS dalam pelatihan selanjutnya.</p>
+
+<p>Hal pertama yang harus kita lakukan adalah menyiapkan kerangka halaman.</p>
+
+<ol>
+<li>Selalu letakkan <code>&lt;!DOCTYPE html&gt;</code> pada baris pertama. Ini memberitahu browser bahasa apa yang dia baca (pada kasus ini, HTML)</li>
+<li>Selalu letakkan <code>&lt;html&gt;</code> pada baris selanjutnya. Ini awal dokumen HTML.</li>
+<li>Selalu letakkan <code>&lt;/html&gt;</code> pada baris terakhir. Ini akhir dokumen HTML.</li>
+</ol>
+
+
+<p>Contoh:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-26T14:42:00-04:00" pubdate data-updated="true">Oct 26<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace/">Oracle Concepts - Menemukan Table Dan Index Lokasi Tablespace</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.dba-oracle.com/concepts/table_tablespace_location.htm"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
+</div>
+
+
+<p>Mencari tahu yang memiliki <code>table</code> dan apa <code>tablespace</code> nya adalah kebutuhan yang cukup umum dari <code>DBA</code>. Dalam query ini, kita menggunakan <code>dba_tables view</code> untuk menemukan pemilik dan nama <code>tablespace</code> dari tabel <code>EMP</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'> <span class="k">SQL</span><span class="o">&gt;</span>  <span class="k">select</span> <span class="k">owner</span><span class="p">,</span> <span class="k">table_name</span><span class="p">,</span> <span class="n">tablespace_name</span>
+</span><span class='line'>  <span class="mi">2</span>   <span class="k">from</span> <span class="n">dba_tables</span>
+</span><span class='line'>  <span class="mi">3</span>  <span class="k">where</span> <span class="k">table_name</span><span class="o">=</span><span class="s1">&#39;EMP&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">OWNER</span>                <span class="k">TABLE_NAME</span>           <span class="n">TABLESPACE_NAME</span>
+</span><span class='line'><span class="c1">-------------------- -------------------- -------------</span>
+</span><span class='line'><span class="n">SCOTT</span>                <span class="n">EMP</span>                  <span class="n">USERS</span>
+</span><span class='line'><span class="n">POLL</span>                 <span class="n">EMP</span>                  <span class="n">USERS</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Seperti yang dapat kita lihat dari query ini, kita memiliki 2 table yang disebut <code>EMP</code>, dimiliki oleh 2 <code>user</code> yang berbeda (SCOTT dan POLL). Kedua table terdapat dalam <code>tablespace</code> USERS.</p>
+
+<p>Sebuah latihan yang bagus untuk anda mungkin mencoba menggabungkan query ini dengan sebuah <code>view</code> seperti <code>dba_extents</code> dan mencari tahu seberapa besar tabel ini dialokasikan.</p>
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -1047,192 +1182,6 @@ Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-11T12:11:00-04:00" pubdate data-updated="true">Oct 11<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/11/while-loop-di-oracle-slash-plsql/">While Loop Di Oracle/PLSQL</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Sintaks untuk <code>while loop</code> di oracle seperti ini:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">WHILE</span> <span class="n">condition</span>
-</span><span class='line'><span class="n">LOOP</span>
-</span><span class='line'>   <span class="err">{</span><span class="p">.</span><span class="n">statements</span><span class="p">.</span><span class="err">}</span>
-</span><span class='line'><span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Kita menggunakan <code>while loop</code> ketika kita tidak yakin berapa kali kita akan meng-eksekusi <code>loop body</code>. Karena <code>while condition</code> di evaluasi sebelum masuk ke dalam <code>loop</code>, ini memungkinkan <code>loop body</code> tidak akan di eksekusi sama sekali.</p>
-
-<p>Contoh: kita akan membuat function yang berfungsi untuk mencari posisi terakhir dari karakter <code>x</code> dari suatu <code>String</code>.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="k">OR</span> <span class="k">REPLACE</span> <span class="k">FUNCTION</span> <span class="n">LAST_INDEX</span><span class="p">(</span><span class="n">P_STRING</span> <span class="k">IN</span> <span class="n">VARCHAR2</span><span class="p">,</span> <span class="n">P_CHAR</span> <span class="k">IN</span> <span class="n">VARCHAR2</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">RETURN</span> <span class="nb">NUMBER</span> <span class="k">DETERMINISTIC</span>
-</span><span class='line'>  <span class="k">AS</span>
-</span><span class='line'>    <span class="n">V_INDEX</span>         <span class="nb">NUMBER</span><span class="p">;</span>
-</span><span class='line'>    <span class="n">V_START</span>         <span class="nb">NUMBER</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">BEGIN</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">V_START</span> <span class="p">:</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">SELECT</span> <span class="n">INSTR</span><span class="p">(</span><span class="n">P_STRING</span><span class="p">,</span> <span class="n">P_CHAR</span><span class="p">,</span> <span class="n">V_START</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">INTO</span> <span class="n">V_INDEX</span>
-</span><span class='line'>    <span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">WHILE</span> <span class="n">V_INDEX</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span>
-</span><span class='line'>    <span class="n">LOOP</span>
-</span><span class='line'>      <span class="n">V_START</span> <span class="p">:</span><span class="o">=</span> <span class="n">V_INDEX</span><span class="p">;</span>
-</span><span class='line'>      <span class="k">SELECT</span> <span class="n">INSTR</span><span class="p">(</span><span class="n">P_STRING</span><span class="p">,</span> <span class="n">P_CHAR</span><span class="p">,</span> <span class="n">V_START</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">INTO</span> <span class="n">V_INDEX</span>
-</span><span class='line'>      <span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">END</span> <span class="n">LOOP</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">RETURN</span> <span class="n">V_START</span><span class="p">;</span>
-</span><span class='line'>  <span class="k">END</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>test:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span> <span class="n">LAST_INDEX</span><span class="p">(</span><span class="s1">&#39;123X567X89X123&#39;</span><span class="p">,</span><span class="s1">&#39;X&#39;</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>result:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="mi">11</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-06T01:41:00-04:00" pubdate data-updated="true">Oct 6<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/06/membuat-auto-increment-di-mysql/">Membuat AUTO_INCREMENT Di Mysql</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p><code>AUTO_INCREMENT</code> memungkinkan kita untuk mendapatkan angka/nomor yang unik ketika sebuah record di <code>insert</code> ke dalam <code>table</code>. Angka/nomor hasil dari <code>AUTO_INCREMENT</code> biasanya di pakai sebagai nilai dari primary key suatu table.</p>
-
-<p>MySQL database telah menyediakan fitur ini. Kita tinggal menetapkan sebuah field sebagai <code>AUTO_INCREMENT</code>, lalu mysql yang akan meng-handle untuk menggenerate nilai yang unik ketika sebuah record di <code>insert</code>.</p>
-
-<p>Anggap, kita ingin membuat table seperti di bawah ini di mysql.</p>
-
-<p><img src="/images/mysql/tbl_user.png"></p>
-
-<p>Dan kita ingin, agar user_id nilai nya selalu unik ketika ada penambahan data user baru. Maka DDL yang di butuhkan sebagai berikut:</p>
-
-<figure class='code'><figcaption><span>user.sql</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="k">USER</span><span class="p">(</span>
-</span><span class='line'>  <span class="n">USER_ID</span> <span class="nb">INT</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
-</span><span class='line'>  <span class="n">USERNAME</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-</span><span class='line'>  <span class="n">PASSWORD</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-</span><span class='line'>  <span class="k">CONSTRAINT</span> <span class="n">P_USER_ID</span> <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">USER_ID</span><span class="p">)</span>
-</span><span class='line'><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Coba jalankan script berikut untuk insert data ke table</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">USER</span> <span class="p">(</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;user1&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">(</span><span class="s1">&#39;123456789&#39;</span><span class="p">));</span>
-</span><span class='line'><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">USER</span> <span class="p">(</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;user2&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">(</span><span class="s1">&#39;123456789&#39;</span><span class="p">));</span>
-</span><span class='line'><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">USER</span> <span class="p">(</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;user3&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">(</span><span class="s1">&#39;123456789&#39;</span><span class="p">));</span>
-</span><span class='line'><span class="k">INSERT</span> <span class="k">INTO</span> <span class="k">USER</span> <span class="p">(</span><span class="n">USERNAME</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;user4&#39;</span><span class="p">,</span> <span class="n">password</span><span class="p">(</span><span class="s1">&#39;123456789&#39;</span><span class="p">));</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Kita tidak perlu mendefinisikan nilai dari user_id, karena mysql secara otomatis akan melakukannya.</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1256,15 +1205,15 @@ Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2013/11/07/simple-if-statement-in-java/">Simple if Statement in Java</a>
+    
+    <a class="list-group-item " href="/blog/2013/11/07/algorithm-cara-simple-memilih-2-object-di-java/">[Algorithm] Cara Simple Memilih 2 Object Di Java</a>
+    
     <a class="list-group-item " href="/blog/2013/11/05/upgrade-nodejs-menggunakan-n/">Upgrade NodeJS Menggunakan N</a>
     
     <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-npm/">Semua Tentang Npm</a>
     
     <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-n/">Semua Tentang N</a>
-    
-    <a class="list-group-item " href="/blog/2013/11/04/lebih-lanjut-tentang-judul-heading/">Lebih Lanjut Tentang Judul (Heading)</a>
-    
-    <a class="list-group-item " href="/blog/2013/11/04/paragraf-dan-judul-heading/">Paragraf Dan Judul (Heading)</a>
     
   </div>
 </section>
