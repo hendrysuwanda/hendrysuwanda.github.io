@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Install google-chrome di crunchbang - Hendry Suwanda</title>
+  <meta name="author" content="Hendry Suwanda">
+
+  
+  <meta name="description" content="Nov 9th, 2013 Install Google-chrome Di Crunchbang Sebelum melakukan install, terlebih dahulu kita download google-chrome (saya menggunakan 64 bit), &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://hendrysuwanda.github.io/blog/2013/11/09/install-google-chrome-di-crunchbang">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="Hendry Suwanda" type="application/atom+xml">
+
+  <link href="/javascripts/libs/bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<!-- <link href="/javascripts/libs/bootstrap-3.0.0/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"> -->
+<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+  
+
+</head>
+
+  <body   >
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Hendry Suwanda</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+                <li >
+                    <a href="/about">About</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+            
+                <form class="search navbar-form navbar-right" action="http://google.com/search" method="GET">
+                    <input type="hidden" name="q" value="site:hendrysuwanda.github.io">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search">
+                    </div>
+                </form>
+            
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9">
+    <article class="hentry" role="article">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-09T15:06:00-05:00" pubdate data-updated="true">Nov 9<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title">
+        Install Google-chrome Di Crunchbang
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix"><p>Sebelum melakukan install, terlebih dahulu kita download google-chrome (saya menggunakan 64 bit), dengan mengetikkan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>--2013-11-09 15:00:20--  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+</span><span class='line'>Resolving dl.google.com... 74.125.200.136, 74.125.200.190, 74.125.200.91, ...
+</span><span class='line'>Connecting to dl.google.com|74.125.200.136|:443... connected.
+</span><span class='line'>HTTP request sent, awaiting response... 206 Partial Content
+</span><span class='line'>Length: 44536710 (42M), 35009504 (33M) remaining [application/x-debian-package]
+</span><span class='line'>Saving to: “google-chrome-stable_current_amd64.deb”
+</span><span class='line'>
+</span><span class='line'>100%[++++++++++++++++++++++++++++++++========================================================================================================================&gt;] 44,536,710   384K/s   in 95s     
+</span><span class='line'>
+</span><span class='line'>2013-11-09 15:01:56 (360 KB/s) - “google-chrome-stable_current_amd64.deb” saved [44536710/44536710]
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Setelah itu, jalankan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo dpkg -i google-chrome-stable_current_amd64.deb</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[sudo] password for user: 
+</span><span class='line'>Selecting previously deselected package google-chrome-stable.
+</span><span class='line'>(Reading database ... 112111 files and directories currently installed.)
+</span><span class='line'>Unpacking google-chrome-stable (from google-chrome-stable_current_amd64.deb) ...
+</span><span class='line'>dpkg: dependency problems prevent configuration of google-chrome-stable:
+</span><span class='line'> google-chrome-stable depends on gconf-service; however:
+</span><span class='line'>  Package gconf-service is not installed.
+</span><span class='line'> google-chrome-stable depends on libgconf-2-4 (&gt;= 2.31.1); however:
+</span><span class='line'>  Package libgconf-2-4 is not installed.
+</span><span class='line'> google-chrome-stable depends on libgdk-pixbuf2.0-0 (&gt;= 2.22.0); however:
+</span><span class='line'>  Package libgdk-pixbuf2.0-0 is not installed.
+</span><span class='line'> google-chrome-stable depends on libgtk2.0-0 (&gt;= 2.24.0); however:
+</span><span class='line'>  Version of libgtk2.0-0 on system is 2.20.1-2.
+</span><span class='line'> google-chrome-stable depends on libnspr4 (&gt;= 1.8.0.10); however:
+</span><span class='line'>  Package libnspr4 is not installed.
+</span><span class='line'> google-chrome-stable depends on libnss3 (&gt;= 3.14.3); however:
+</span><span class='line'>  Package libnss3 is not installed.
+</span><span class='line'> google-chrome-stable depends on libstdc++6 (&gt;= 4.6); however:
+</span><span class='line'>  Version of libstdc++6 on system is 4.4.5-8.
+</span><span class='line'> google-chrome-stable depends on libx11-6 (&gt;= 2:1.4.99.1); however:
+</span><span class='line'>  Version of libx11-6 on system is 2:1.3.3-4.
+</span><span class='line'> google-chrome-stable depends on libxss1; however:
+</span><span class='line'>  Package libxss1 is not installed.
+</span><span class='line'>dpkg: error processing google-chrome-stable (--install):
+</span><span class='line'> dependency problems - leaving unconfigured
+</span><span class='line'>Processing triggers for man-db ...
+</span><span class='line'>Processing triggers for desktop-file-utils ...
+</span><span class='line'>Processing triggers for menu ...
+</span><span class='line'>Errors were encountered while processing:
+</span><span class='line'> google-chrome-stable</span></code></pre></td></tr></table></div></figure>
+
+
+<p>hmmm, ternyata banyak dependensi yang belum terinstall, setelah google, kita dapat menginstall *.deb, tanpa menghiraukan apakan dependensi nya sudah terinstall atau belom dengan menggunakan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo gdebi google-chrome-stable_current_amd64.deb</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Reading package lists... Done
+</span><span class='line'>Building dependency tree        
+</span><span class='line'>Reading state information... Done
+</span><span class='line'>Building data structures... Done 
+</span><span class='line'>Building data structures... Done 
+</span><span class='line'>This package is uninstallable</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Setelah itu, kita install dependensi yang diperlukan, dengan mengetikkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$sudo apt-get -f install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Reading package lists... Done
+</span><span class='line'>Building dependency tree       
+</span><span class='line'>Reading state information... Done
+</span><span class='line'>Correcting dependencies... Done
+</span><span class='line'>The following package was automatically installed and is no longer required:
+</span><span class='line'>  libvpx0
+</span><span class='line'>Use 'apt-get autoremove' to remove them.
+</span><span class='line'>The following extra packages will be installed:
+</span><span class='line'>  libmozjs10d libnss3 libnss3-1d libvpx1 libxss1 xulrunner-10.0
+</span><span class='line'>Suggested packages:
+</span><span class='line'>  libcanberra0
+</span><span class='line'>The following packages will be REMOVED:
+</span><span class='line'>  google-chrome-stable
+</span><span class='line'>The following NEW packages will be installed:
+</span><span class='line'>  libnss3 libvpx1 libxss1
+</span><span class='line'>The following packages will be upgraded:
+</span><span class='line'>  libmozjs10d libnss3-1d xulrunner-10.0
+</span><span class='line'>3 upgraded, 3 newly installed, 1 to remove and 196 not upgraded.
+</span><span class='line'>1 not fully installed or removed.
+</span><span class='line'>Need to get 14.8 MB/14.8 MB of archives.
+</span><span class='line'>After this operation, 166 MB disk space will be freed.
+</span><span class='line'>Do you want to continue [Y/n]? y
+</span><span class='line'>WARNING: The following packages cannot be authenticated!
+</span><span class='line'>  libvpx1 xulrunner-10.0 libmozjs10d
+</span><span class='line'>Install these packages without verification [y/N]? Y
+</span><span class='line'>Get:1 http://backports.debian.org/debian-backports/ squeeze-backports/main libnss3-1d amd64 2:3.14.3-1~bpo60+1 [20.0 kB]
+</span><span class='line'>Get:2 http://backports.debian.org/debian-backports/ squeeze-backports/main libnss3 amd64 2:3.14.3-1~bpo60+1 [1,049 kB]
+</span><span class='line'>Get:3 http://packages.crunchbang.org/statler-mozilla/ squeeze-backports/iceweasel-release libvpx1 amd64 1.0.0-1~bpo60+1 [286 kB]
+</span><span class='line'>Get:4 http://packages.crunchbang.org/statler-mozilla/ squeeze-backports/iceweasel-release xulrunner-10.0 amd64 10.0.2-1~bpo60+1 [11.9 MB]
+</span><span class='line'>Get:5 http://packages.crunchbang.org/statler-mozilla/ squeeze-backports/iceweasel-release libmozjs10d amd64 10.0.2-1~bpo60+1 [1,485 kB]                                                          
+</span><span class='line'>Fetched 14.8 MB in 44s (330 kB/s)                                                                                                                                                                
+</span><span class='line'>(Reading database ... 112217 files and directories currently installed.)
+</span><span class='line'>Removing google-chrome-stable ...
+</span><span class='line'>Processing triggers for menu ...
+</span><span class='line'>Processing triggers for desktop-file-utils ...
+</span><span class='line'>Processing triggers for man-db ...
+</span><span class='line'>(Reading database ... 112111 files and directories currently installed.)
+</span><span class='line'>Preparing to replace libnss3-1d 3.13.1.with.ckbi.1.88-1~bpo60+1 (using .../libnss3-1d_2%3a3.14.3-1~bpo60+1_amd64.deb) ...
+</span><span class='line'>Unpacking replacement libnss3-1d ...
+</span><span class='line'>Selecting previously deselected package libnss3.
+</span><span class='line'>Unpacking libnss3 (from .../libnss3_2%3a3.14.3-1~bpo60+1_amd64.deb) ...
+</span><span class='line'>Selecting previously deselected package libvpx1.
+</span><span class='line'>Unpacking libvpx1 (from .../libvpx1_1.0.0-1~bpo60+1_amd64.deb) ...
+</span><span class='line'>Preparing to replace xulrunner-10.0 10.0-1~bpo60+1 (using .../xulrunner-10.0_10.0.2-1~bpo60+1_amd64.deb) ...
+</span><span class='line'>Unpacking replacement xulrunner-10.0 ...
+</span><span class='line'>Preparing to replace libmozjs10d 10.0-1~bpo60+1 (using .../libmozjs10d_10.0.2-1~bpo60+1_amd64.deb) ...
+</span><span class='line'>Unpacking replacement libmozjs10d ...
+</span><span class='line'>Selecting previously deselected package libxss1.
+</span><span class='line'>Unpacking libxss1 (from .../libxss1_1%3a1.2.0-2_amd64.deb) ...
+</span><span class='line'>Processing triggers for man-db ...
+</span><span class='line'>Setting up libnss3 (2:3.14.3-1~bpo60+1) ...
+</span><span class='line'>Setting up libnss3-1d (2:3.14.3-1~bpo60+1) ...
+</span><span class='line'>Setting up libvpx1 (1.0.0-1~bpo60+1) ...
+</span><span class='line'>Setting up libmozjs10d (10.0.2-1~bpo60+1) ...
+</span><span class='line'>Setting up xulrunner-10.0 (10.0.2-1~bpo60+1) ...
+</span><span class='line'>Setting up libxss1 (1:1.2.0-2) ...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Seperti kita lihat, ternyata google-chrome-stable di hapus, jadi kita jalankan lagi</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo dpkg -i google-chrome-stable_current_amd64.deb</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Hendry Suwanda</span></span>
+
+          
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-09T15:06:00-05:00" pubdate data-updated="true">Nov 9<span>th</span>, 2013</time>
+          
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/crunchbang/'>crunchbang</a>, <a class='category' href='/blog/categories/debian/'>debian</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://hendrysuwanda.github.io/blog/2013/11/09/install-google-chrome-di-crunchbang/" data-via="" data-counturl="http://hendrysuwanda.github.io/blog/2013/11/09/install-google-chrome-di-crunchbang/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2013/11/09/uninstall-google-chrome-di-crunchbang/" title="Previous Post: Uninstall google-chrome di crunchbang">&laquo; Uninstall google-chrome di crunchbang</a></li>
+            
+            
+            <li class="next"><a href="/blog/2013/11/17/memahami-dependency-injection/" title="Next Post: Memahami Dependency Injection">Memahami Dependency Injection &raquo;</a></li>
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+      </section>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item " href="/blog/2013/11/17/membuat-changelog-liquibase/">Membuat Changelog Liquibase</a>
+    
+    <a class="list-group-item " href="/blog/2013/11/17/memahami-dependency-injection/">Memahami Dependency Injection</a>
+    
+    <a class="list-group-item active" href="/blog/2013/11/09/install-google-chrome-di-crunchbang/">Install Google-chrome Di Crunchbang</a>
+    
+    <a class="list-group-item " href="/blog/2013/11/09/uninstall-google-chrome-di-crunchbang/">Uninstall Google-chrome Di Crunchbang</a>
+    
+    <a class="list-group-item " href="/blog/2013/11/09/setting-environment-variable-path-di-windows-7/">Setting Environment Variable (PATH) Di Windows 7</a>
+    
+  </div>
+</section>
+
+
+
+
+
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2014 - Hendry Suwanda<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    <script src="/javascripts/libs/bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'hendrysuwanda';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://hendrysuwanda.github.io/blog/2013/11/09/install-google-chrome-di-crunchbang/';
+        var disqus_url = 'http://hendrysuwanda.github.io/blog/2013/11/09/install-google-chrome-di-crunchbang/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  </body>
+</html>

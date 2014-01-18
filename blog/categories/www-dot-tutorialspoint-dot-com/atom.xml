@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: www.tutorialspoint.com | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/www-dot-tutorialspoint-dot-com/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2014-01-11T08:55:03-05:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    <email><![CDATA[suwanda.hendry@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Fungsi scala call-by-name]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/07/fungsi-scala-call-by-name/"/>
+    <updated>2013-11-07T13:53:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/07/fungsi-scala-call-by-name</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.tutorialspoint.com/scala/functions_call_by_name.htm"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Umumnya, parameter-parameter fungsi adalah parameter-parameter by-value; yakni,nilai dari parameter ditentukan sebelum ia dilewatkan ke fungsi. Tapi bagaimana kalau kita perlu menulis sebuah fungsi yang menerima parameter sebuah ekspresi yang kita tidak ingin mengevaluasi nya sampai ia dipanggil didalam fungsi kita? Untuk situasi seperti ini, scala menawarkan parameter call-by-name.</p>
+
+<p>mekanisme call-by-name melewatkan blok kode ke variable dan setiap saat variable diakses, blok kode akan eksekusi dan nilai akan hitung.</p>
+
+<p>```scala
+object Test {
+   def main(args: Array[String]) {</p>
+
+<pre><code>    delayed(time());
+</code></pre>
+
+<p>   }</p>
+
+<p>   def time() = {</p>
+
+<pre><code>  println("Getting time in nano seconds")
+  System.nanoTime
+</code></pre>
+
+<p>   }
+   def delayed( t: => Long ) = {</p>
+
+<pre><code>  println("In delayed method")
+  println("Param: " + t)
+  t
+</code></pre>
+
+<p>   }
+}
+```</p>
+
+<p>disini, kita mendeklarasikan method <code>delayed</code>, yang mana membutuhkan parameter <code>call-by-name</code> dengan meletakkan simbol <code>=&gt;</code> antara nama variable dengan tipe variable. Ketika kode diatas di kompile dan dieksekusi, menghasilkan hasil sebagai berikut:</p>
+
+<p>```
+C:/>scalac Test.scala
+C:/>scala Test
+In delayed method
+Getting time in nano seconds
+Param: 81303808765843
+Getting time in nano seconds</p>
+
+<p>C:/>
+```</p>
+
+<p>di sini, <code>delayed</code>  mencetak sebuah pesan yang menunjukkan bahwa telah masuk kedalam method. Kemudian, <code>delayed</code> mencetak sebuah pesan dengan nilainya. Terakhir, delayed mengembalikan <code>t</code>.</p>
+]]></content>
+  </entry>
+  
+</feed>

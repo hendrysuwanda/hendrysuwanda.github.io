@@ -8,7 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Nov 7th, 2013 Simple if Statement in Java gw menulis artikel ini, karena terkadang gw lupa dengan nama nya :D Anggap, kita kita harus menentukan, &hellip;">
+  <meta name="description" content="Nov 17th, 2013 Membuat Changelog Liquibase Artikel ini saya ambil dari sini. Tujuan saya meng-copykan artikel ini di sini, saya ingin mempelajari &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +86,1468 @@
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-17T03:32:00-05:00" pubdate data-updated="true">Nov 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/17/membuat-changelog-liquibase/">Membuat Changelog Liquibase</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><div class="alert alert-danger">
+Artikel ini saya ambil dari <a href="http://software.endy.muhardin.com/java/membuat-changelog-liquibase/"> sini</a>. Tujuan saya meng-copykan artikel ini di sini, saya ingin mempelajari tentang Liquibase & dan merubah contoh kasus sesuai dengan yang sedang saya hadapi.
+
+Saya akuin sekali lagi, saya belum mendapatkan ijin untuk melakukan copy artikel ini :)
+</div>
+
+
+<p>Saya akan mulai menggunakan tools bernama <a href="http://www.liquibase.org">Liquibase</a> untuk mendefinisikan skema database. Dengan Liquibase ini, skema database dapat disimpan dan dikelola versinya dalam SVC (Source Version Control) seperti Git, SVN, dll. Dia juga memiliki fitur untuk melakukan migrasi database pada saat aplikasi kita naik versi. Bila terjadi error di versi baru, Liquibase juga bisa melakukan rollback agar skema database kita kembali ke kondisi sebelum naik versi.</p>
+
+<p>Skema database dalam Liquibase ditulis dalam format XML, disebut dengan istilah <code>changelog</code>. Untuk project baru, ini bisa ditulis tangan manual, tetap untuk aplikasi yang sudah ada, terlalu merepotkan kalau semua table yang sudah ada harus ditulis ulang skemanya.</p>
+
+<p>Untungnya Liquibase memiliki fitur untuk menulis changelog dari skema yang sudah ada. Berikut langkah-langkahnya:</p>
+
+<ol>
+<li>Siapkan jar liquibase dan database</li>
+<li>Siapkan file konfigurasi</li>
+<li>Jalankan liquibase</li>
+<li>Cek hasilnya</li>
+</ol>
+
+
+<h3>Siapkan jar liquibase dan database</h3>
+
+<p>Database yang akan saya import memiliki konfigurasi sebagai berikut:</p>
+
+<ul>
+<li>Jenis Database: Oracle 11g R2</li>
+<li>Nama Database: corebanking_simulator</li>
+<li>Username Database: corebanking</li>
+<li>Password Database: password</li>
+</ul>
+
+
+<p>Untuk itu, saya siapkan dua file jar, yaitu:</p>
+
+<ul>
+<li>ojdbc6.jar (bisa di download <a href="http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-112010-090769.html">disini</a>)</li>
+<li>liquibase.jar (versi 3.0.7) (bisa di download <a href="http://sourceforge.net/projects/liquibase/files/Liquibase%20Core/liquibase-3.0.7-bin.zip/download">disini</a>)</li>
+</ul>
+
+
+<h3>File Konfigurasi</h3>
+
+<p>Sebetulnya semua informasi ini bisa disebutkan dalam command line argument. Tapi saya lebih suka menulis di file supaya mudah diedit. Berikut isinya.</p>
+
+<figure class='code'><figcaption><span>liquibase.properties</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='properties'><span class='line'><span class="c"># liquibase.properties</span>
+</span><span class='line'><span class="na">driver</span><span class="o">:</span> <span class="s">com.mysql.jdbc.Driver</span>
+</span><span class='line'><span class="na">classpath</span><span class="o">:</span> <span class="s">mysql-connector-java-5.1.22.jar</span>
+</span><span class='line'><span class="na">url</span><span class="o">:</span> <span class="s">jdbc:mysql://localhost/merchant-simulator_development</span>
+</span><span class='line'><span class="na">username</span><span class="o">:</span> <span class="s">root</span>
+</span><span class='line'><span class="na">password</span><span class="o">:</span> <span class="s">admin</span>
+</span><span class='line'><span class="na">changeLogFile</span><span class="o">:</span> <span class="s">liquibase-output.xml</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Simpan file ini dengan nama <code>liquibase.properties</code> dan letakkan difolder yang sama dengan kedua file jar tersebut.</p>
+
+<h3>Jalankan Liquibase</h3>
+
+<p>Mari kita jalankan proses import dengan command berikut:</p>
+
+<figure class='code'><figcaption><span>liquibase.properties</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='properties'><span class='line'><span class="err">java</span> <span class="err">-jar</span> <span class="err">liquibase-core-2.0.5.jar</span> <span class="err">generateChangelog</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Cek Hasilnya</h3>
+
+<p>Perintah diatas akan menghasilkan file <code>liquibase-output.xml</code> yang isinya seperti ini:</p>
+
+<figure class='code'><figcaption><span>liquibase-output.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+<span class='line-number'>174</span>
+<span class='line-number'>175</span>
+<span class='line-number'>176</span>
+<span class='line-number'>177</span>
+<span class='line-number'>178</span>
+<span class='line-number'>179</span>
+<span class='line-number'>180</span>
+<span class='line-number'>181</span>
+<span class='line-number'>182</span>
+<span class='line-number'>183</span>
+<span class='line-number'>184</span>
+<span class='line-number'>185</span>
+<span class='line-number'>186</span>
+<span class='line-number'>187</span>
+<span class='line-number'>188</span>
+<span class='line-number'>189</span>
+<span class='line-number'>190</span>
+<span class='line-number'>191</span>
+<span class='line-number'>192</span>
+<span class='line-number'>193</span>
+<span class='line-number'>194</span>
+<span class='line-number'>195</span>
+<span class='line-number'>196</span>
+<span class='line-number'>197</span>
+<span class='line-number'>198</span>
+<span class='line-number'>199</span>
+<span class='line-number'>200</span>
+<span class='line-number'>201</span>
+<span class='line-number'>202</span>
+<span class='line-number'>203</span>
+<span class='line-number'>204</span>
+<span class='line-number'>205</span>
+<span class='line-number'>206</span>
+<span class='line-number'>207</span>
+<span class='line-number'>208</span>
+<span class='line-number'>209</span>
+<span class='line-number'>210</span>
+<span class='line-number'>211</span>
+<span class='line-number'>212</span>
+<span class='line-number'>213</span>
+<span class='line-number'>214</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;databaseChangeLog</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.liquibase.org/xml/ns/dbchangelog&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-1&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;c_application_config&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span> <span class="na">primaryKey=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;label&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;value&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-2&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;c_security_menu&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span> <span class="na">primaryKey=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;label&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;menu_action&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;menu_level&quot;</span> <span class="na">type=</span><span class="s">&quot;INT&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;menu_order&quot;</span> <span class="na">type=</span><span class="s">&quot;INT&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;menu_options&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id_parent&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-3&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;c_security_permission&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span> <span class="na">primaryKey=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;permission_label&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;permission_value&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-4&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;c_security_role&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span> <span class="na">primaryKey=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;description&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-5&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;c_security_role_menu&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id_role&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id_menu&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-6&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;c_security_role_permission&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id_role&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id_permission&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-7&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;c_security_user&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span> <span class="na">primaryKey=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;username&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;password&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;fullname&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;active&quot;</span> <span class="na">type=</span><span class="s">&quot;BIT&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id_role&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-8&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;t_tagihan_listrik&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span> <span class="na">primaryKey=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;admin&quot;</span> <span class="na">type=</span><span class="s">&quot;DECIMAL(19,2)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;bulan_tagihan&quot;</span> <span class="na">type=</span><span class="s">&quot;DATE&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;current_meter_reading_1&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;current_meter_reading_2&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;current_meter_reading_3&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;denda&quot;</span> <span class="na">type=</span><span class="s">&quot;DECIMAL(19,2)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id_pelanggan&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;jatuh_tempo&quot;</span> <span class="na">type=</span><span class="s">&quot;DATE&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;lunas&quot;</span> <span class="na">type=</span><span class="s">&quot;BIT&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;meter_read_date&quot;</span> <span class="na">type=</span><span class="s">&quot;DATE&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;mitra_lunas&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;nama_pelanggan&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;nilai&quot;</span> <span class="na">type=</span><span class="s">&quot;DECIMAL(19,2)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;pajak&quot;</span> <span class="na">type=</span><span class="s">&quot;DECIMAL(19,2)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;power_consuming_category&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;previous_meter_reading_1&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;previous_meter_reading_2&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;previous_meter_reading_3&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;referensi_lunas&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;service_unit&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;service_unit_hone&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;subscriber_segmentation&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;waktu_lunas&quot;</span> <span class="na">type=</span><span class="s">&quot;DATETIME&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-9&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addPrimaryKey</span> <span class="na">columnNames=</span><span class="s">&quot;id_role, id_menu&quot;</span> <span class="na">tableName=</span><span class="s">&quot;c_security_role_menu&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-10&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addPrimaryKey</span> <span class="na">columnNames=</span><span class="s">&quot;id_role, id_permission&quot;</span> <span class="na">tableName=</span><span class="s">&quot;c_security_role_permission&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-11&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addForeignKeyConstraint</span> <span class="na">baseColumnNames=</span><span class="s">&quot;id_parent&quot;</span> <span class="na">baseTableName=</span><span class="s">&quot;c_security_menu&quot;</span> <span class="na">baseTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">constraintName=</span><span class="s">&quot;fk_menu_parent&quot;</span> <span class="na">deferrable=</span><span class="s">&quot;false&quot;</span> <span class="na">initiallyDeferred=</span><span class="s">&quot;false&quot;</span> <span class="na">onDelete=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">onUpdate=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">referencedColumnNames=</span><span class="s">&quot;id&quot;</span> <span class="na">referencedTableName=</span><span class="s">&quot;c_security_menu&quot;</span> <span class="na">referencedTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">referencesUniqueColumn=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-12&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addForeignKeyConstraint</span> <span class="na">baseColumnNames=</span><span class="s">&quot;id_menu&quot;</span> <span class="na">baseTableName=</span><span class="s">&quot;c_security_role_menu&quot;</span> <span class="na">baseTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">constraintName=</span><span class="s">&quot;fk_role_menu_menu&quot;</span> <span class="na">deferrable=</span><span class="s">&quot;false&quot;</span> <span class="na">initiallyDeferred=</span><span class="s">&quot;false&quot;</span> <span class="na">onDelete=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">onUpdate=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">referencedColumnNames=</span><span class="s">&quot;id&quot;</span> <span class="na">referencedTableName=</span><span class="s">&quot;c_security_menu&quot;</span> <span class="na">referencedTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">referencesUniqueColumn=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-13&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addForeignKeyConstraint</span> <span class="na">baseColumnNames=</span><span class="s">&quot;id_role&quot;</span> <span class="na">baseTableName=</span><span class="s">&quot;c_security_role_menu&quot;</span> <span class="na">baseTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">constraintName=</span><span class="s">&quot;fk_role_menu_role&quot;</span> <span class="na">deferrable=</span><span class="s">&quot;false&quot;</span> <span class="na">initiallyDeferred=</span><span class="s">&quot;false&quot;</span> <span class="na">onDelete=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">onUpdate=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">referencedColumnNames=</span><span class="s">&quot;id&quot;</span> <span class="na">referencedTableName=</span><span class="s">&quot;c_security_role&quot;</span> <span class="na">referencedTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">referencesUniqueColumn=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-14&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addForeignKeyConstraint</span> <span class="na">baseColumnNames=</span><span class="s">&quot;id_permission&quot;</span> <span class="na">baseTableName=</span><span class="s">&quot;c_security_role_permission&quot;</span> <span class="na">baseTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">constraintName=</span><span class="s">&quot;fk_role_permission_permission&quot;</span> <span class="na">deferrable=</span><span class="s">&quot;false&quot;</span> <span class="na">initiallyDeferred=</span><span class="s">&quot;false&quot;</span> <span class="na">onDelete=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">onUpdate=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">referencedColumnNames=</span><span class="s">&quot;id&quot;</span> <span class="na">referencedTableName=</span><span class="s">&quot;c_security_permission&quot;</span> <span class="na">referencedTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">referencesUniqueColumn=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-15&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addForeignKeyConstraint</span> <span class="na">baseColumnNames=</span><span class="s">&quot;id_role&quot;</span> <span class="na">baseTableName=</span><span class="s">&quot;c_security_role_permission&quot;</span> <span class="na">baseTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">constraintName=</span><span class="s">&quot;fk_role_permission_role&quot;</span> <span class="na">deferrable=</span><span class="s">&quot;false&quot;</span> <span class="na">initiallyDeferred=</span><span class="s">&quot;false&quot;</span> <span class="na">onDelete=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">onUpdate=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">referencedColumnNames=</span><span class="s">&quot;id&quot;</span> <span class="na">referencedTableName=</span><span class="s">&quot;c_security_role&quot;</span> <span class="na">referencedTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">referencesUniqueColumn=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-16&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addForeignKeyConstraint</span> <span class="na">baseColumnNames=</span><span class="s">&quot;id_role&quot;</span> <span class="na">baseTableName=</span><span class="s">&quot;c_security_user&quot;</span> <span class="na">baseTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">constraintName=</span><span class="s">&quot;fk_user_role&quot;</span> <span class="na">deferrable=</span><span class="s">&quot;false&quot;</span> <span class="na">initiallyDeferred=</span><span class="s">&quot;false&quot;</span> <span class="na">onDelete=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">onUpdate=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">referencedColumnNames=</span><span class="s">&quot;id&quot;</span> <span class="na">referencedTableName=</span><span class="s">&quot;c_security_role&quot;</span> <span class="na">referencedTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">referencesUniqueColumn=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-17&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createIndex</span> <span class="na">indexName=</span><span class="s">&quot;name&quot;</span> <span class="na">tableName=</span><span class="s">&quot;c_application_config&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createIndex&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-18&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createIndex</span> <span class="na">indexName=</span><span class="s">&quot;unique_permission_value&quot;</span> <span class="na">tableName=</span><span class="s">&quot;c_security_permission&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;permission_value&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createIndex&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-19&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createIndex</span> <span class="na">indexName=</span><span class="s">&quot;unique_role_name&quot;</span> <span class="na">tableName=</span><span class="s">&quot;c_security_role&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createIndex&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-20&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createIndex</span> <span class="na">indexName=</span><span class="s">&quot;unique_user_username&quot;</span> <span class="na">tableName=</span><span class="s">&quot;c_security_user&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;username&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createIndex&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'><span class="nt">&lt;/databaseChangeLog&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>File diatas siap diedit dan disimpan direpository version control. Biasanya, edit yang saya lakukan:</p>
+
+<ul>
+<li>menggabungkan semua <code>createTable</code> menjadi satu changeset</li>
+<li>menggabungkan semua <code>addForeignKeyConstraint</code> dan <code>createIndex</code> menjadi satu changeset.</li>
+<li>menambahkan loader untuk file csv sebagai data awal</li>
+<li>mengganti nama file</li>
+</ul>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-17T03:24:00-05:00" pubdate data-updated="true">Nov 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/17/memahami-dependency-injection/">Memahami Dependency Injection</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix">
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-09T15:06:00-05:00" pubdate data-updated="true">Nov 9<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/09/install-google-chrome-di-crunchbang/">Install Google-chrome Di Crunchbang</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Sebelum melakukan install, terlebih dahulu kita download google-chrome (saya menggunakan 64 bit), dengan mengetikkan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>--2013-11-09 15:00:20--  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+</span><span class='line'>Resolving dl.google.com... 74.125.200.136, 74.125.200.190, 74.125.200.91, ...
+</span><span class='line'>Connecting to dl.google.com|74.125.200.136|:443... connected.
+</span><span class='line'>HTTP request sent, awaiting response... 206 Partial Content
+</span><span class='line'>Length: 44536710 (42M), 35009504 (33M) remaining [application/x-debian-package]
+</span><span class='line'>Saving to: “google-chrome-stable_current_amd64.deb”
+</span><span class='line'>
+</span><span class='line'>100%[++++++++++++++++++++++++++++++++========================================================================================================================&gt;] 44,536,710   384K/s   in 95s     
+</span><span class='line'>
+</span><span class='line'>2013-11-09 15:01:56 (360 KB/s) - “google-chrome-stable_current_amd64.deb” saved [44536710/44536710]
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Setelah itu, jalankan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo dpkg -i google-chrome-stable_current_amd64.deb</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[sudo] password for user: 
+</span><span class='line'>Selecting previously deselected package google-chrome-stable.
+</span><span class='line'>(Reading database ... 112111 files and directories currently installed.)
+</span><span class='line'>Unpacking google-chrome-stable (from google-chrome-stable_current_amd64.deb) ...
+</span><span class='line'>dpkg: dependency problems prevent configuration of google-chrome-stable:
+</span><span class='line'> google-chrome-stable depends on gconf-service; however:
+</span><span class='line'>  Package gconf-service is not installed.
+</span><span class='line'> google-chrome-stable depends on libgconf-2-4 (&gt;= 2.31.1); however:
+</span><span class='line'>  Package libgconf-2-4 is not installed.
+</span><span class='line'> google-chrome-stable depends on libgdk-pixbuf2.0-0 (&gt;= 2.22.0); however:
+</span><span class='line'>  Package libgdk-pixbuf2.0-0 is not installed.
+</span><span class='line'> google-chrome-stable depends on libgtk2.0-0 (&gt;= 2.24.0); however:
+</span><span class='line'>  Version of libgtk2.0-0 on system is 2.20.1-2.
+</span><span class='line'> google-chrome-stable depends on libnspr4 (&gt;= 1.8.0.10); however:
+</span><span class='line'>  Package libnspr4 is not installed.
+</span><span class='line'> google-chrome-stable depends on libnss3 (&gt;= 3.14.3); however:
+</span><span class='line'>  Package libnss3 is not installed.
+</span><span class='line'> google-chrome-stable depends on libstdc++6 (&gt;= 4.6); however:
+</span><span class='line'>  Version of libstdc++6 on system is 4.4.5-8.
+</span><span class='line'> google-chrome-stable depends on libx11-6 (&gt;= 2:1.4.99.1); however:
+</span><span class='line'>  Version of libx11-6 on system is 2:1.3.3-4.
+</span><span class='line'> google-chrome-stable depends on libxss1; however:
+</span><span class='line'>  Package libxss1 is not installed.
+</span><span class='line'>dpkg: error processing google-chrome-stable (--install):
+</span><span class='line'> dependency problems - leaving unconfigured
+</span><span class='line'>Processing triggers for man-db ...
+</span><span class='line'>Processing triggers for desktop-file-utils ...
+</span><span class='line'>Processing triggers for menu ...
+</span><span class='line'>Errors were encountered while processing:
+</span><span class='line'> google-chrome-stable</span></code></pre></td></tr></table></div></figure>
+
+
+<p>hmmm, ternyata banyak dependensi yang belum terinstall, setelah google, kita dapat menginstall *.deb, tanpa menghiraukan apakan dependensi nya sudah terinstall atau belom dengan menggunakan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo gdebi google-chrome-stable_current_amd64.deb</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Reading package lists... Done
+</span><span class='line'>Building dependency tree        
+</span><span class='line'>Reading state information... Done
+</span><span class='line'>Building data structures... Done 
+</span><span class='line'>Building data structures... Done 
+</span><span class='line'>This package is uninstallable</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Setelah itu, kita install dependensi yang diperlukan, dengan mengetikkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$sudo apt-get -f install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Reading package lists... Done
+</span><span class='line'>Building dependency tree       
+</span><span class='line'>Reading state information... Done
+</span><span class='line'>Correcting dependencies... Done
+</span><span class='line'>The following package was automatically installed and is no longer required:
+</span><span class='line'>  libvpx0
+</span><span class='line'>Use 'apt-get autoremove' to remove them.
+</span><span class='line'>The following extra packages will be installed:
+</span><span class='line'>  libmozjs10d libnss3 libnss3-1d libvpx1 libxss1 xulrunner-10.0
+</span><span class='line'>Suggested packages:
+</span><span class='line'>  libcanberra0
+</span><span class='line'>The following packages will be REMOVED:
+</span><span class='line'>  google-chrome-stable
+</span><span class='line'>The following NEW packages will be installed:
+</span><span class='line'>  libnss3 libvpx1 libxss1
+</span><span class='line'>The following packages will be upgraded:
+</span><span class='line'>  libmozjs10d libnss3-1d xulrunner-10.0
+</span><span class='line'>3 upgraded, 3 newly installed, 1 to remove and 196 not upgraded.
+</span><span class='line'>1 not fully installed or removed.
+</span><span class='line'>Need to get 14.8 MB/14.8 MB of archives.
+</span><span class='line'>After this operation, 166 MB disk space will be freed.
+</span><span class='line'>Do you want to continue [Y/n]? y
+</span><span class='line'>WARNING: The following packages cannot be authenticated!
+</span><span class='line'>  libvpx1 xulrunner-10.0 libmozjs10d
+</span><span class='line'>Install these packages without verification [y/N]? Y
+</span><span class='line'>Get:1 http://backports.debian.org/debian-backports/ squeeze-backports/main libnss3-1d amd64 2:3.14.3-1~bpo60+1 [20.0 kB]
+</span><span class='line'>Get:2 http://backports.debian.org/debian-backports/ squeeze-backports/main libnss3 amd64 2:3.14.3-1~bpo60+1 [1,049 kB]
+</span><span class='line'>Get:3 http://packages.crunchbang.org/statler-mozilla/ squeeze-backports/iceweasel-release libvpx1 amd64 1.0.0-1~bpo60+1 [286 kB]
+</span><span class='line'>Get:4 http://packages.crunchbang.org/statler-mozilla/ squeeze-backports/iceweasel-release xulrunner-10.0 amd64 10.0.2-1~bpo60+1 [11.9 MB]
+</span><span class='line'>Get:5 http://packages.crunchbang.org/statler-mozilla/ squeeze-backports/iceweasel-release libmozjs10d amd64 10.0.2-1~bpo60+1 [1,485 kB]                                                          
+</span><span class='line'>Fetched 14.8 MB in 44s (330 kB/s)                                                                                                                                                                
+</span><span class='line'>(Reading database ... 112217 files and directories currently installed.)
+</span><span class='line'>Removing google-chrome-stable ...
+</span><span class='line'>Processing triggers for menu ...
+</span><span class='line'>Processing triggers for desktop-file-utils ...
+</span><span class='line'>Processing triggers for man-db ...
+</span><span class='line'>(Reading database ... 112111 files and directories currently installed.)
+</span><span class='line'>Preparing to replace libnss3-1d 3.13.1.with.ckbi.1.88-1~bpo60+1 (using .../libnss3-1d_2%3a3.14.3-1~bpo60+1_amd64.deb) ...
+</span><span class='line'>Unpacking replacement libnss3-1d ...
+</span><span class='line'>Selecting previously deselected package libnss3.
+</span><span class='line'>Unpacking libnss3 (from .../libnss3_2%3a3.14.3-1~bpo60+1_amd64.deb) ...
+</span><span class='line'>Selecting previously deselected package libvpx1.
+</span><span class='line'>Unpacking libvpx1 (from .../libvpx1_1.0.0-1~bpo60+1_amd64.deb) ...
+</span><span class='line'>Preparing to replace xulrunner-10.0 10.0-1~bpo60+1 (using .../xulrunner-10.0_10.0.2-1~bpo60+1_amd64.deb) ...
+</span><span class='line'>Unpacking replacement xulrunner-10.0 ...
+</span><span class='line'>Preparing to replace libmozjs10d 10.0-1~bpo60+1 (using .../libmozjs10d_10.0.2-1~bpo60+1_amd64.deb) ...
+</span><span class='line'>Unpacking replacement libmozjs10d ...
+</span><span class='line'>Selecting previously deselected package libxss1.
+</span><span class='line'>Unpacking libxss1 (from .../libxss1_1%3a1.2.0-2_amd64.deb) ...
+</span><span class='line'>Processing triggers for man-db ...
+</span><span class='line'>Setting up libnss3 (2:3.14.3-1~bpo60+1) ...
+</span><span class='line'>Setting up libnss3-1d (2:3.14.3-1~bpo60+1) ...
+</span><span class='line'>Setting up libvpx1 (1.0.0-1~bpo60+1) ...
+</span><span class='line'>Setting up libmozjs10d (10.0.2-1~bpo60+1) ...
+</span><span class='line'>Setting up xulrunner-10.0 (10.0.2-1~bpo60+1) ...
+</span><span class='line'>Setting up libxss1 (1:1.2.0-2) ...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Seperti kita lihat, ternyata google-chrome-stable di hapus, jadi kita jalankan lagi</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo dpkg -i google-chrome-stable_current_amd64.deb</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-09T14:49:00-05:00" pubdate data-updated="true">Nov 9<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/09/uninstall-google-chrome-di-crunchbang/">Uninstall Google-chrome Di Crunchbang</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Untuk menginstall google-chrome di crunchbang/debian, ketikkan command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo apt-get remove google-chrome-stable</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[sudo] password for user: 
+</span><span class='line'>Reading package lists... Done
+</span><span class='line'>Building dependency tree       
+</span><span class='line'>Reading state information... Done
+</span><span class='line'>The following packages will be REMOVED:
+</span><span class='line'>  google-chrome-stable
+</span><span class='line'>0 upgraded, 0 newly installed, 1 to remove and 199 not upgraded.
+</span><span class='line'>After this operation, 163 MB disk space will be freed.
+</span><span class='line'>Do you want to continue [Y/n]? y
+</span><span class='line'>(Reading database ... 112222 files and directories currently installed.)
+</span><span class='line'>Removing google-chrome-stable ...
+</span><span class='line'>update-alternatives: using /usr/bin/iceweasel to provide /usr/bin/x-www-browser (x-www-browser) in auto mode.
+</span><span class='line'>update-alternatives: using /usr/bin/iceweasel to provide /usr/bin/gnome-www-browser (gnome-www-browser) in auto mode.
+</span><span class='line'>Processing triggers for menu ...
+</span><span class='line'>Processing triggers for man-db ...
+</span><span class='line'>Processing triggers for desktop-file-utils ...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu ketikkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo apt-get autoremove</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Reading package lists... Done
+</span><span class='line'>Building dependency tree       
+</span><span class='line'>Reading state information... Done
+</span><span class='line'>The following packages will be REMOVED:
+</span><span class='line'>  libxss1
+</span><span class='line'>0 upgraded, 0 newly installed, 1 to remove and 199 not upgraded.
+</span><span class='line'>After this operation, 69.6 kB disk space will be freed.
+</span><span class='line'>Do you want to continue [Y/n]? y
+</span><span class='line'>(Reading database ... 112117 files and directories currently installed.)
+</span><span class='line'>Removing libxss1 ...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ini untuk memastikan anda tidak memiliki paket yang tidak perlu yang masih tersisa, dan akan menghapus file konfigurasi, menghemat sedikit space dan memastikan tidak akan mengganggu aplikasi lain.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-09T14:45:00-05:00" pubdate data-updated="true">Nov 9<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/09/setting-environment-variable-path-di-windows-7/">Setting Environment Variable (PATH) Di Windows 7</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix">
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-09T14:37:00-05:00" pubdate data-updated="true">Nov 9<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/09/install-livereload-di-crunchbang/">Instal LiveReload Di Crunchbang</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>LiveReload is an application that allows you to refresh automatically your browser whenever any file gets modified, even compiling any Sass / Less / CoffeeScript files. In a nutshell, it avoids you the tedious-to-death Alt+Tab F5.</p>
+
+<p>LiveReload adalah aplikasi yang dapat melakukan refresh browser secara otomatis ketika ada file berubah, bahkan ketika melakukan compile Saas/Less/CoffeScript. Ini sangat bermanfaat ketika kita melakukan pengembangan web (front-end).</p>
+
+<p>Untuk menginstall LiveReload di crunchbang, ketikkan command berikut (kita mesti memiliki ruby):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install guard
+</span><span class='line'>gem install guard-livereload</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-07T13:53:00-05:00" pubdate data-updated="true">Nov 7<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/07/fungsi-scala-call-by-name/">Fungsi Scala Call-by-name</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.tutorialspoint.com/scala/functions_call_by_name.htm"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Umumnya, parameter-parameter fungsi adalah parameter-parameter by-value; yakni,nilai dari parameter ditentukan sebelum ia dilewatkan ke fungsi. Tapi bagaimana kalau kita perlu menulis sebuah fungsi yang menerima parameter sebuah ekspresi yang kita tidak ingin mengevaluasi nya sampai ia dipanggil didalam fungsi kita? Untuk situasi seperti ini, scala menawarkan parameter call-by-name.</p>
+
+<p>mekanisme call-by-name melewatkan blok kode ke variable dan setiap saat variable diakses, blok kode akan eksekusi dan nilai akan hitung.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">object</span> <span class="nc">Test</span> <span class="o">{</span>
+</span><span class='line'>   <span class="k">def</span> <span class="n">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">delayed</span><span class="o">(</span><span class="n">time</span><span class="o">());</span>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">def</span> <span class="n">time</span><span class="o">()</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">println</span><span class="o">(</span><span class="s">&quot;Getting time in nano seconds&quot;</span><span class="o">)</span>
+</span><span class='line'>      <span class="nc">System</span><span class="o">.</span><span class="n">nanoTime</span>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'>   <span class="k">def</span> <span class="n">delayed</span><span class="o">(</span> <span class="n">t</span><span class="k">:</span> <span class="o">=&gt;</span> <span class="nc">Long</span> <span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">println</span><span class="o">(</span><span class="s">&quot;In delayed method&quot;</span><span class="o">)</span>
+</span><span class='line'>      <span class="n">println</span><span class="o">(</span><span class="s">&quot;Param: &quot;</span> <span class="o">+</span> <span class="n">t</span><span class="o">)</span>
+</span><span class='line'>      <span class="n">t</span>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>disini, kita mendeklarasikan method <code>delayed</code>, yang mana membutuhkan parameter <code>call-by-name</code> dengan meletakkan simbol <code>=&gt;</code> antara nama variable dengan tipe variable. Ketika kode diatas di kompile dan dieksekusi, menghasilkan hasil sebagai berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">C</span><span class="o">:/&gt;</span><span class="n">scalac</span> <span class="nc">Test</span><span class="o">.</span><span class="n">scala</span>
+</span><span class='line'><span class="n">C</span><span class="o">:/&gt;</span><span class="n">scala</span> <span class="nc">Test</span>
+</span><span class='line'><span class="nc">In</span> <span class="n">delayed</span> <span class="n">method</span>
+</span><span class='line'><span class="nc">Getting</span> <span class="n">time</span> <span class="n">in</span> <span class="n">nano</span> <span class="n">seconds</span>
+</span><span class='line'><span class="nc">Param</span><span class="k">:</span> <span class="err">81303808765843</span>
+</span><span class='line'><span class="kt">Getting</span> <span class="kt">time</span> <span class="kt">in</span> <span class="kt">nano</span> <span class="kt">seconds</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">C</span><span class="o">:/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di sini, <code>delayed</code>  mencetak sebuah pesan yang menunjukkan bahwa telah masuk kedalam method. Kemudian, <code>delayed</code> mencetak sebuah pesan dengan nilainya. Terakhir, delayed mengembalikan <code>t</code>.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-07T11:19:00-05:00" pubdate data-updated="true">Nov 7<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/07/call-by-name-and-call-by-value-klarifikasi-diperlukan/">Call by Name and Call by Value, Klarifikasi Diperlukan</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://stackoverflow.com/questions/13337338/call-by-name-vs-call-by-value-in-scala-clarification-needed"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<h3>Pertanyaan</h3>
+
+<div class="alert alert-info">
+Pertanyaan ini di ajukan oleh <a href="http://stackoverflow.com/users/359862/jam">Jam</a>
+</div>
+
+
+<p>Seperti yang saya pahami, di Scala,fungsi dapat dipanggil dengan 2 cara:</p>
+
+<ul>
+<li>by-value, atau</li>
+<li>by-name</li>
+</ul>
+
+
+<p>Misalnya, diberi deklarasi berikut, apakah kita tahu bagaimana fungsi akan dipanggil?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">f</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="n">x</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Panggil</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">f</span> <span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">)</span>
+</span><span class='line'><span class="n">f</span> <span class="o">(</span><span class="mi">23</span><span class="o">+</span><span class="mi">55</span><span class="o">,</span><span class="mi">5</span><span class="o">)</span>
+</span><span class='line'><span class="n">f</span> <span class="o">(</span><span class="mi">12</span><span class="o">+</span><span class="mi">3</span><span class="o">,</span> <span class="mi">44</span><span class="o">*</span><span class="mi">11</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Apa ketentuannya?</p>
+
+<h3>Jawaban</h3>
+
+<div class="alert alert-info">
+jawaban dari <a href="http://stackoverflow.com/users/247985/dhg">dhg</a>
+</div>
+
+
+<p>Contoh yang telah anda berikan hanya menggunakan call-by-value, jadi saya akan memberikan yang baru, sederhana, contoh yang menunjukkan perbedaan.</p>
+
+<p>Pertama, mari kita asumsikan kita memiliki fungsi dengan <code>side-effect</code>. Fungsi ini mencetak sesuatu dan kemudian mengembalikan sebuah <code>Int</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">something</span><span class="o">()</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">println</span><span class="o">(</span><span class="s">&quot;calling something&quot;</span><span class="o">)</span>
+</span><span class='line'>  <span class="mi">1</span> <span class="c1">//return value</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sekarang kita akan mendefinisikan dua fungsi yang menerima argumen <code>Int</code> yang persis sama kecuali yang satu membutuhkan argumen dalam gaya call-by-value <code>(x: Int)</code> dan yang lainnya dalam gaya call-by-name <code>(x: =&gt; Int)</code></p>
+
+<figure class='code'><figcaption><span>call-by-value</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">callByValue</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">println</span><span class="o">(</span><span class="s">&quot;x1=&quot;</span> <span class="o">+</span> <span class="n">x</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">println</span><span class="o">(</span><span class="s">&quot;x2=&quot;</span> <span class="o">+</span> <span class="n">x</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>call-by-name</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">callByName</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="o">=&gt;</span> <span class="nc">Int</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">println</span><span class="o">(</span><span class="s">&quot;x1=&quot;</span> <span class="o">+</span> <span class="n">x</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">println</span><span class="o">(</span><span class="s">&quot;x2=&quot;</span> <span class="o">+</span> <span class="n">x</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sekarang apa yang terjadi ketika kita memanggilnya dengan fungsi <code>side-effect</code> kita?</p>
+
+<figure class='code'><figcaption><span>call-by-name</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">scala</span><span class="o">&gt;</span> <span class="n">callByValue</span><span class="o">(</span><span class="n">something</span><span class="o">())</span>
+</span><span class='line'><span class="n">calling</span> <span class="n">something</span>
+</span><span class='line'><span class="n">x1</span><span class="k">=</span><span class="mi">1</span>
+</span><span class='line'><span class="n">x2</span><span class="k">=</span><span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">scala</span><span class="o">&gt;</span> <span class="n">callByName</span><span class="o">(</span><span class="n">something</span><span class="o">())</span>
+</span><span class='line'><span class="n">calling</span> <span class="n">something</span>
+</span><span class='line'><span class="n">x1</span><span class="k">=</span><span class="mi">1</span>
+</span><span class='line'><span class="n">calling</span> <span class="n">something</span>
+</span><span class='line'><span class="n">x2</span><span class="k">=</span><span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sehingga anda dapat melihat bahwa dalam versi call-by-value, <code>side-effect</code> dari  pemanggilan fungsi <code>something()</code> hanya terjadi sekali. Namun, dalam versi call-by-name, <code>side-effect</code> terjadi dua kali.</p>
+
+<p>Hal ini karena fungsi call-by-value menghitung nilai ekspresi yang diberikan sebelum memanggil fungsi, sehingga nilai yang sama setiap kali diakses. Namun, fungsi call-by-name menghitung ulang nilai ekspresi yang diberikan setiap kali ia diakses.</p>
+
+<div class="alert alert-info">
+jawaban dari <a href="http://stackoverflow.com/users/2291699/behrooz-tabesh">Behrooz Tabesh</a>
+</div>
+
+
+<p>Berikut ini adalah contoh dari Martin Odersky (penemu scala)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">test</span> <span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Kita ingin tahu evaluasi mana yang lebih cepat (langkah sedikit) dalam kondisi ini:</p>
+
+<p><strong>test (2, 3)</strong></p>
+
+<figure class='code'><figcaption><span>call-by-value</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+</span><span class='line'><span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span>
+</span><span class='line'><span class="mi">4</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>call-by-name</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+</span><span class='line'><span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span>
+</span><span class='line'><span class="mi">4</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>jadi 2 evaluasi disini sama</p>
+
+<p><strong>test(3+4, 8)</strong></p>
+
+<figure class='code'><figcaption><span>call-by-value</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+</span><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+</span><span class='line'><span class="mi">49</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>call-by-name</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+</span><span class='line'><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="o">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+</span><span class='line'><span class="mi">49</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>disini call-by-value lebih cepat</p>
+
+<p><strong>test(7, 2*4)</strong></p>
+
+<figure class='code'><figcaption><span>call-by-value</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+</span><span class='line'><span class="mi">49</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>call-by-name</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+</span><span class='line'><span class="mi">49</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>disini, call-by-name lebih cepat</p>
+
+<p><strong>test(3+4, 2*4)</strong></p>
+
+<figure class='code'><figcaption><span>call-by-value</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+</span><span class='line'><span class="mi">49</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>call-by-name</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+</span><span class='line'><span class="mi">49</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>lagi, keduanya sama.</p>
+
+<div class="alert alert-info">
+jawaban dari <a href="http://stackoverflow.com/users/660675/kaos12">kaos12</a>
+</div>
+
+
+<p>Dalam kasus conton mu semua parameter akan dievaluasi sebelum fungsi tersebut dipanggil, karena kamu hanya mendefiniskan mereka <code>by-value</code>. Jika kamu ingin mendefinisikan parameter kamu <code>by-name</code>, kamu harus melewatkan kode block:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">f</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="o">=&gt;</span> <span class="nc">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span> <span class="k">=</span><span class="n">x</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Dengan cara ini parameter <code>x</code> akan dievaluasi sampai dipanggil dalam fungsi.</p>
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -239,886 +1701,6 @@ gw menulis artikel ini, karena terkadang gw lupa dengan nama nya :D
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-05T08:40:00-05:00" pubdate data-updated="true">Nov 5<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/05/upgrade-nodejs-menggunakan-n/">Upgrade NodeJS Menggunakan N</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Dengan menggunakan <code>n</code>, kita dapat melakukan upgrade/downgrade versi nodejs dengan mudah.</p>
-
-<p>Untuk melihat daftar versi nodejs, ketikkan command berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>n ls</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Output</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>/usr/local/bin/node
-</span><span class='line'>
-</span><span class='line'>    0.8.6
-</span><span class='line'>    0.8.7
-</span><span class='line'>    0.8.8
-</span><span class='line'>    0.8.9
-</span><span class='line'>    0.8.10
-</span><span class='line'>    0.8.11
-</span><span class='line'>    0.8.12
-</span><span class='line'>    0.8.13
-</span><span class='line'>    0.8.14
-</span><span class='line'>    0.8.15
-</span><span class='line'>  ο 0.8.16 
-</span><span class='line'>    0.8.17
-</span><span class='line'>    0.8.18
-</span><span class='line'>    0.8.19
-</span><span class='line'>    0.8.20
-</span><span class='line'>    0.8.21
-</span><span class='line'>    0.8.22
-</span><span class='line'>    0.8.23
-</span><span class='line'>    0.8.24
-</span><span class='line'>    0.8.25
-</span><span class='line'>    0.8.26
-</span><span class='line'>    0.9.0
-</span><span class='line'>    0.9.1
-</span><span class='line'>    0.9.2
-</span><span class='line'>    0.9.3
-</span><span class='line'>    0.9.4
-</span><span class='line'>    0.9.5
-</span><span class='line'>    0.9.6
-</span><span class='line'>    0.9.7
-</span><span class='line'>    0.9.8
-</span><span class='line'>    0.9.9
-</span><span class='line'>    0.9.10
-</span><span class='line'>    0.9.11
-</span><span class='line'>    0.9.12
-</span><span class='line'>    0.10.0
-</span><span class='line'>    0.10.1
-</span><span class='line'>    0.10.2
-</span><span class='line'>    0.10.3
-</span><span class='line'>    0.10.4
-</span><span class='line'>    0.10.5
-</span><span class='line'>    0.10.6
-</span><span class='line'>    0.10.7
-</span><span class='line'>    0.10.8
-</span><span class='line'>    0.10.9
-</span><span class='line'>    0.10.10
-</span><span class='line'>    0.10.11
-</span><span class='line'>    0.10.12
-</span><span class='line'>    0.10.13
-</span><span class='line'>    0.10.14
-</span><span class='line'>    0.10.15
-</span><span class='line'>    0.10.16
-</span><span class='line'>    0.10.17
-</span><span class='line'>    0.10.18
-</span><span class='line'>    0.10.19
-</span><span class='line'>    0.10.20
-</span><span class='line'>    0.10.21 
-</span><span class='line'>    0.11.0
-</span><span class='line'>    0.11.1
-</span><span class='line'>    0.11.2
-</span><span class='line'>    0.11.3
-</span><span class='line'>    0.11.4
-</span><span class='line'>    0.11.5
-</span><span class='line'>    0.11.6
-</span><span class='line'>    0.11.7
-</span><span class='line'>    0.11.8</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Simbol <code>ο</code>, menandakan versi nodejs yang sedang saya gunakan. Saya ingin menggunakan versi 0.10.21, maka saya akan mengetikkan command</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo n 0.10.21</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Output</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'> install : 0.10.21
-</span><span class='line'>   mkdir : /usr/local/n/versions/0.10.21
-</span><span class='line'>   fetch : http://nodejs.org/dist/v0.10.21/node-v0.10.21-linux-x64.tar.gz
-</span><span class='line'>/usr/local/bin/node
-</span><span class='line'>   installed : v0.10.21
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Jika ingin menginstall versi stable, kita bisa menggunakan command</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>sudo n stable</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-05T08:27:00-05:00" pubdate data-updated="true">Nov 5<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/05/semua-tentang-npm/">Semua Tentang Npm</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><h3>Apa itu npm?</h3>
-
-<p><code>npm</code> adalah manajer paket <code>NodeJS</code>. Sesuai dengan namanya, Anda dapat menggunakannya untuk menginstal program <code>node</code>. <code>npm</code> akan mempermudah kita saat development dalam menentukan dan menghubungkan dependensi.</p>
-
-<h3>Install</h3>
-
-<p>Untuk menginstal <code>npm</code>, kita hanya cukup menjalankan command</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>curl http://npmjs.org/install.sh | sh</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-05T08:02:00-05:00" pubdate data-updated="true">Nov 5<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/05/semua-tentang-n/">Semua Tentang N</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><h3>Apa itu n?</h3>
-
-<p><code>n</code>  adalah Node version management. Dengan menggunakan n, kita bisa melakukan:</p>
-
-<ol>
-<li>Install/upgrade nodejs ke versi berapapun</li>
-<li>Kita bisa pindah-pindah versi nodejs. dari versi lama ke yg baru, maupun sebaliknya.</li>
-</ol>
-
-
-<h3>Install</h3>
-
-<p>Untuk menginstall <code>n</code>, terlebih dahulu kita mesti sudah menginstall <code>npm</code> (jika anda belum menginstall <code>npm</code>, silahkan baca <a href="http://hendrysuwanda.github.io/blog/2013/11/05/semua-tentang-npm/">artikel ini</a>).</p>
-
-<p>Ketikkan perintah berikut, untuk menginstall <code>n</code>:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>npm install -g n</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-04T10:29:00-05:00" pubdate data-updated="true">Nov 4<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/04/lebih-lanjut-tentang-judul-heading/">Lebih Lanjut Tentang Judul (Heading)</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><div class="alert alert-danger">
-Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
-
-Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
-</div>
-
-
-<p>HTML sebenarnya memungkinkan kita memiliki lebih dari satu ukuran heading. Terdapat 6 ukurang heading, dimana <code>&lt;h1&gt;</code> adalah bos dan <code>&lt;h6&gt;</code> adalah  lemah.</p>
-
-<ol>
-<li><code>&lt;h1&gt;</code> &ndash; CEO</li>
-<li><code>&lt;h2&gt;</code> &ndash; VP Fancy Towne</li>
-<li><code>&lt;h3&gt;</code> &ndash; Direktur beberapa stuff</li>
-<li><code>&lt;h4&gt;</code> &ndash; middle management</li>
-<li><code>&lt;h5&gt;</code> &ndash; Asisten rendahan</li>
-<li><code>&lt;h6&gt;</code> &ndash; Mendapatkan kopi untuk orang lain.</li>
-</ol>
-
-
-<p>Dibawah ini kami akan meminta anda untuk menambahkan heading dengan berbagai ukuran. Jangan ragu untuk menulis apapun yang anda sukan untuk heading.</p>
-
-<h3>Latihan</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
-</span><span class='line'>          Headings <span class="err">&amp;</span> Paragraphs
-</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>      
-</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;h1&gt;</span>Ini Judul h1<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf1<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf2<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
-<li>Kode anda sekarang memiliki satu heading <code>&lt;h1&gt;</code> dan 2 paragraf.</li>
-<li>Tambahkan sebuah heading <code>&lt;h3&gt;</code> sebelum paragraf kedua.</li>
-<li>Tambahkan sebuah heading <code>&lt;h5&gt;</code> setelah paragraf ke dua, dan kemudian tambahkan paragraf ketiga setelah heading ini.</li>
-</ol>
-
-
-<h3>Jawaban</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
-</span><span class='line'>          Headings <span class="err">&amp;</span> Paragraphs
-</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>      
-</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;h1&gt;</span>Ini Judul h1<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf1<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;h3&gt;</span>Ini judul h3<span class="nt">&lt;/h3&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf2<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;h5&gt;</span>Ini judul h5<span class="nt">&lt;/h5&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf3<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-04T10:01:00-05:00" pubdate data-updated="true">Nov 4<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/04/paragraf-dan-judul-heading/">Paragraf Dan Judul (Heading)</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><div class="alert alert-danger">
-Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
-
-Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
-</div>
-
-
-<p>Kami pasti membuat kemajuan yang baik! Kami telah belajar kapan dan mengapa kita menggunakan HTML. Kita juga telah belajar bagaimana untuk:</p>
-
-<ol>
-<li>Membentuk file HTML dengan tag</li>
-<li>Judul halaman web (di dalam <code>&lt;head&gt;</code>)</li>
-<li>Membuat paragraf (di dalam <code>&lt;body&gt;</code> dengan tag <code>&lt;p&gt;</code>)</li>
-</ol>
-
-
-<p>Langkah selanjutnya adalah memberikan paragraf kita judul menggunakan tag judul (<code>&lt;head&gt;</code>). Mari mulai dengan tag <code>&lt;h1&gt;</code>, yang menandai sesuatu sebagai yang paling penting. (Semua orang tau font yang paling penting adalah yang paling besar!)</p>
-
-<h3>Latihan</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
-</span><span class='line'>          Headings <span class="err">&amp;</span> Paragraphs
-</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>      
-</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>      
-</span><span class='line'>      
-</span><span class='line'>      
-</span><span class='line'>      
-</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
-<li>Tanya diri sendiri: Apa judul halaman ini?</li>
-<li>Di bagian body, buat sebuah judul (heading). Untuk melakukan hal ini, buat sebuah tag <code>&lt;h1&gt;</code></li>
-<li>Berikan konten anda sebuah judul. Ini bisa apapun</li>
-<li>Tutup elemen dengan tag penutup <code>&lt;/h1&gt;</code>. (Judul anda sekarang harus antara <code>&lt;h1&gt;</code> dan <code>&lt;/h1&gt;</code>)</li>
-<li>Dibawah judul, buat 2 paragraf menggunakan tag <code>&lt;p&gt;</code> dengan konten apapun yang anda suka.</li>
-</ol>
-
-
-<h3>Jawaban</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
-</span><span class='line'>          Headings <span class="err">&amp;</span> Paragraphs
-</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>      
-</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>      
-</span><span class='line'>      <span class="nt">&lt;h1&gt;</span>Ini judul<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf 1<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf 2<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-03T13:37:00-05:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/03/html-paragraf-dalam-body/">[HTML] Paragraf Dalam Body</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><div class="alert alert-danger">
-Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
-
-Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
-</div>
-
-
-<p>Kami telah menyiapkan banyak hal-hal dasar untuk file HTML untuk Anda. Hal ini sehingga anda tidak akan marah pada kami untuk terlalu banyak pengulangan, silahkan belajar dengan baik.</p>
-
-<p>kita telah belajar tentang tag pembuka dan penutup. Ketika kita meletakkan konten diantara tag, seluruh bit disebut elemen.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>element = <span class="nt">&lt;opening</span> <span class="na">tag</span><span class="nt">&gt;</span> + content + <span class="nt">&lt;closing</span> <span class="na">tag</span><span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Perhatikan kita memiliki tag <code>&lt;title&gt;</code> sekarang, tapi kita butuh tag <code>&lt;body&gt;</code>. Konten dalam <code>&lt;body&gt;</code> adalah apa yang akan terlihat pada halaman yang sebenarnya. <code>&lt;body&gt;</code> masuk kedalam tag html, tapi tidak didalam tag <code>&lt;head&gt;</code>, seperti ini:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;head&gt;&lt;/head&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Latihan</h3>
-
-<p>Anggap kita memiliki file HTML seperti di bawah ini</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
-</span><span class='line'>          
-</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>      
-</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
-<li>Antara tag <code>&lt;title&gt;</code>, berikan nama halaman anda. Ini dapat apapun.</li>
-<li>Dibawah tag <code>&lt;/head&gt;</code> penutup, letakkan tag <code>&lt;body&gt;</code> pembuka dan penutup</li>
-<li>Didalam <code>&lt;body&gt;</code>, mari buat paragraf! masing-masing paragraf membutuhkan tag pembuka dan penutup: <code>&lt;p&gt;</code> dan <code>&lt;/p&gt;</code>. Kita meletakkan konten di antara tag tersebut.</li>
-<li>Antara tag <code>&lt;body&gt;</code>, buat 2 paragraf dan tulis konten di masing paragraf. (Ini akan membutuhkan 2 pasang tag <code>&lt;p&gt;</code>)</li>
-</ol>
-
-
-<h3>Jawaban</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
-</span><span class='line'>      Belajar Paragraf
-</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>      
-</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;p&gt;</span>Paragraf 1<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;p&gt;</span>Paragraf 2<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'>  
-</span><span class='line'>  
-</span><span class='line'>  
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-03T13:20:00-05:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/03/membuat-bagian-kepala-head/">[HTML] Membuat Bagian Kepala(head)</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><div class="alert alert-danger">
-Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
-
-Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
-</div>
-
-
-<p>Segala sesuatu di file HTML kita akan pergi antara tag <code>&lt;html&gt;</code> pembuka dan <code>&lt;/html&gt;</code> penutup.</p>
-
-<p>selalu ada dua bagian di file ini: head dan body. Mari fokus pada head</p>
-
-<ol>
-<li>Ia memiliki tag pembuka dan penutup.</li>
-<li>head berisi informasi penting tentang halaman web, seperti judul-nya.</li>
-<li>judul adalah kata-kata yang kita lihat pada tab (sebagai contoh, judul dari halaman ini adalah &ldquo;Introduction to HTML&rdquo;)</li>
-</ol>
-
-
-<h3>Latihan</h3>
-
-<p>Anggap kita memiliki file HTML seperti di bawah ini</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ol>
-<li>Tambahkan sebuah tag <code>&lt;head&gt;</code> pembuka dan <code>&lt;/head&gt;</code> penutup.</li>
-<li>Antara tag <code>&lt;head&gt;</code>, tambahkan didalamnya tag <code>&lt;title&gt;</code> pembuka dan <code>&lt;/title&gt;</code> penutup.</li>
-<li>Diantara tag <code>&lt;title&gt;</code>, tulis judul dari halaman web anda: <strong>Saya lagi belajar HTML</strong>.</li>
-</ol>
-
-
-<h3>Jawaban</h3>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;title&gt;</span>Saya lagi belajar HTML<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span> 
-</span><span class='line'>  
-</span><span class='line'>  
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-03T13:01:00-05:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/03/html-terminologi-dasar/">[HTML] Terminologi Dasar</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><div class="alert alert-danger">
-Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
-
-Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
-</div>
-
-
-<p>Untuk memperlajari lebih lanjut HTML, kita harus belajar bagaimana berbicara tentang HTML. Anda telah melihat kita banyak menggunakan <code>&lt;&gt;</code>.</p>
-
-<ol>
-<li>Hal-hal didalam <code>&lt;&gt;</code> disebut <strong>tags</strong></li>
-<li>Tags hampir selalu datang dalam berpasangan: tag pembuka dan tag penutup.</li>
-<li>Contoh tag pembuka: <code>&lt;html&gt;</code></li>
-<li>Contoh tag penutup: <code>&lt;html&gt;</code></li>
-</ol>
-
-
-<p>Anda dapat menganggap tag seperti tanda kurung: setiap kali anda membuka satu, anda harus menutupnya. Tag juga bersarang, sehingga anda harus menutup mereka dalam urutan yang benar: tag yang paling baru dibuka harus ditutup pertama kali, seperti pada contoh dibawah.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;first</span> <span class="na">tag</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;second</span> <span class="na">tag</span><span class="nt">&gt;</span>Some text!<span class="err">&lt;</span>/second tag&gt;
-</span><span class='line'><span class="err">&lt;</span>/first tag&gt;
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Latihan terakhir mengajarkan kita bagaimana untuk mengatur file HTML kita. Segala sesuatu yang kita lakukan sekarang akan pergi antara <code>&lt;html</code> dan `</html>.</p>
-
-<p>Praktek membuat sempurna! sekali lagi.</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1142,15 +1724,15 @@ Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2013/11/07/simple-if-statement-in-java/">Simple if Statement in Java</a>
+    <a class="list-group-item " href="/blog/2013/11/17/membuat-changelog-liquibase/">Membuat Changelog Liquibase</a>
     
-    <a class="list-group-item " href="/blog/2013/11/07/algorithm-cara-simple-memilih-2-object-di-java/">[Algorithm] Cara Simple Memilih 2 Object Di Java</a>
+    <a class="list-group-item " href="/blog/2013/11/17/memahami-dependency-injection/">Memahami Dependency Injection</a>
     
-    <a class="list-group-item " href="/blog/2013/11/05/upgrade-nodejs-menggunakan-n/">Upgrade NodeJS Menggunakan N</a>
+    <a class="list-group-item " href="/blog/2013/11/09/install-google-chrome-di-crunchbang/">Install Google-chrome Di Crunchbang</a>
     
-    <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-npm/">Semua Tentang Npm</a>
+    <a class="list-group-item " href="/blog/2013/11/09/uninstall-google-chrome-di-crunchbang/">Uninstall Google-chrome Di Crunchbang</a>
     
-    <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-n/">Semua Tentang N</a>
+    <a class="list-group-item " href="/blog/2013/11/09/setting-environment-variable-path-di-windows-7/">Setting Environment Variable (PATH) Di Windows 7</a>
     
   </div>
 </section>
@@ -1170,7 +1752,7 @@ Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2013 - Hendry Suwanda<br>
+  Copyright &copy; 2014 - Hendry Suwanda<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.

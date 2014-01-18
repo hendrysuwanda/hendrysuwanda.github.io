@@ -8,8 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Sep 28th, 2013 URL Belajar Spring-Batch mkyong Spring Batch Tutorial
-Spring Batch Hello World Example Mathew&rsquo;s Thoughts! Spring Batch 2.0 – &hellip;">
+  <meta name="description" content="Oct 4th, 2013 Berkenalan Dengan Spring-Batch Spring batch adalah framework untuk melakukan proses batch, mengeksekusi serangkaian job. Dimana job &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,6 +86,981 @@ Spring Batch Hello World Example Mathew&rsquo;s Thoughts! Spring Batch 2.0 – &
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-04T13:30:00-04:00" pubdate data-updated="true">Oct 4<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/04/berkenalan-dengan-spring-batch/">Berkenalan Dengan Spring-Batch</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Spring batch adalah framework untuk melakukan proses batch, mengeksekusi serangkaian <code>job</code>. Dimana <code>job</code> terdiri dari banyak <code>step</code> dan setiap <code>step</code> terdiri dari proses <code>READ-PROCESS-WRITE</code> atau <code>SINGLE-OPERATION</code> (<code>tasklet</code>).</p>
+
+<p>Berikut beberapa istilah yang sering di gunakan di Spring Batch:</p>
+
+<ul>
+<li><strong>Job</strong> &ndash; Menggambarkan suatu pekerjaan. Misal, membaca file DPK (Dana Pihak Ketiga), lalu menyimpannya ke dalam database. Setelah itu menampilkannya ke dalam laporan <code>Combined-Statement</code>.</li>
+<li><strong>Step</strong> &ndash; Sebuah <strong>job</strong> terdiri dari satu atau dua <strong>step</strong>. Dalam contoh di atas, misalnya:
+
+<ul>
+<li>Step 1: Membaca File DPK &amp; Meyimpan ke dalam database</li>
+<li>Step 2: Menampilkan data DPK ke dalam laporan <code>Combined-Statement</code></li>
+</ul>
+</li>
+<li><strong>JobInstance</strong> &ndash; Sebuah instance yang sedang berjalan dari sebuah <code>job</code> yang telah di tetapkan. Anggap, <code>job</code> adalah sebuah class dan <code>jobinstance</code> adalah sebuah object dari class <code>job</code>. Contoh, <code>job</code> membaca file DPK jalan setiap awal bulan, berarti kita memiliki 1 JobInstance setiap bulannya. 1 <code>job</code> yang berjalan sama dengan 1 <code>jobinstance</code>.</li>
+<li><strong>JobParameters</strong> &ndash; Parameter-parameter yang digunakan oleh <code>JobInstance</code>. Contoh, secara default, laporan <code>Combined-Statement</code> yang di generate adalah untuk periode T-1, tapi kita ingin membuatnya lebih dinamis, jadi kita bisa generatekan laporan untuk periode T-N, jadi, kita mesti melemparkan nilai <code>N</code> ke dalam <code>JobParameters</code>, dimana <code>JobParameters</code> nanti akan di lemparkan sebagai baris perintah argumen.</li>
+<li><strong>JobExecution</strong> &ndash; Setiap menjalankan <code>JobInstance</code> akan menghasilkan <code>JobExecution</code>. Contoh, ketika job membaca file DPK gagal, lalu job di jalankan lagi dan berhasil. Maka kita akan memiliki 1 <code>JobInstance</code> dan memiliki 2 <code>JobExecution</code>, 1 yang berhasil &amp; 1 lagi yang gagal.</li>
+<li><strong>StepExecution</strong> &ndash; Sama seperti <code>JobExecution</code>, tapi ini untuk menggambarkan hasil dari <code>Step</code>.</li>
+<li><strong>JobRepository</strong> &ndash; Sebuah <a href="http://www.relationaldbdesign.com/oracle8i-pl-sql-programming/oracle-pl-sql-programming-glossary.php">persistent store</a> untuk menyimpan semua informasi meta-data <code>job</code>. Menyimpan informasi <code>JobInstance</code>,<code>JobExecution</code> dan <code>StepExecution</code>. Repositori dibutuhkan untuk mengetahui apakah sebelumnya <code>job</code> gagal atau tidak, jika gagal maka bisa di jalankan kembali. Secara default informasi ini di simpan di memory, tapi kita bisa setting untuk menyimpannya di database.</li>
+<li><strong>JobLauncher</strong> &ndash; Seperti namanya, object ini memungkinkan kita untuk memulai sebuah <code>job</code>. Ia menggunakan <code>JobRepository</code> untuk mendapakan <code>JobExecution</code> yang valid.</li>
+</ul>
+
+
+<h3>SINGLE-OPERATION</h3>
+
+<ul>
+<li><strong>TaskLet</strong> &ndash; Situasi dimana kita tidak memiliki input and pengolahan keluaran (<code>SINGLE-OPERATION</code>). Misalnya, kita ingin memanggil/menjalankan sebuah store procedure.</li>
+</ul>
+
+
+<h3>READ-PROCESS-WRITE</h3>
+
+<ul>
+<li><strong>ItemReader</strong> &ndash; Sebuah abstract class yang digunakan untuk menggambarkan sebuah object yang memungkinkan kita untuk membaca sebuah object yang ingin kita proses. Misal, kita ingin membaca file DPK, atau kita ingin membaca data dari database.</li>
+<li><strong>ItemWritter</strong> &ndash; Sebuah abstract class yang digunakan untuk menulis hasil akhir dari proses batch. Misal, kita ingin meng-generate laporan <code>Combined-Statement</code>.</li>
+<li><strong>ItemProcessor</strong> &ndash; Sebuah abstract class yang digunakan untuk melakukan <code>business logic</code> dari data yang di hasilkan oleh <code>ItemReader</code> sebelum di lemparkan ke <code>ItemWritter</code>.</li>
+</ul>
+
+
+<p>Dalam tulisan selanjutnya kita akan melihat contoh dari penggunaan masing-masing item tersebut.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-04T11:13:00-04:00" pubdate data-updated="true">Oct 4<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/04/error-unable-to-open-logs-ketika-menjalankan-httpd/">Error &#8216;Unable to Open Logs&#8217; Ketika Menjalankan Httpd</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Hari ini ada masalah di production. Teman melakukan restart server production, tapi yg sialnya tidak ada yg tau kalau ada proxy/web server sebelum akses user di lanjutkan ke tomcat.</p>
+
+<p>Proxy/web server yg kami gunakan adalah httpd. Tapi ketika di jalankan dengan menggunakan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>service httpd start</span></code></pre></td></tr></table></div></figure>
+
+
+<p>muncul error</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Starting httpd: no listening sockets available, shutting down
+</span><span class='line'>
+</span><span class='line'>Unable to open logs</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ritual pertama yg saya lakukan, check apakah port 80 lagi di pakai oleh service lain dengan menggunakan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>netstat -npl | grep 80</span></code></pre></td></tr></table></div></figure>
+
+
+<p>hasilnya</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>tcp        0      0 ::ffff:127.0.0.1:8005       :::*                        LISTEN      2750/java
+</span><span class='line'>tcp        0      0 :::8009                     :::*                        LISTEN      2750/java
+</span><span class='line'>tcp        0      0 :::8080                     :::*                        LISTEN      2750/java
+</span><span class='line'>tcp        0      0 :::80                       :::*                        LISTEN      1502/httpd</span></code></pre></td></tr></table></div></figure>
+
+
+<p>dari hasil diatas, ternyata port 80 lagi digunakan oleh <code>httpd</code>. Ternyata <code>httpd</code> dalam keadaan deadlock, walaupun sudah membuka port 80, tapi kita tetap tidak bisa akses.</p>
+
+<p>Ok, ritual kedua, kita stop httpd dengan menjalankan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>service httpd stop</span></code></pre></td></tr></table></div></figure>
+
+
+<p>hasilnya</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>FAILED</span></code></pre></td></tr></table></div></figure>
+
+
+<p>mantap. ternyata <code>httpd</code> benar2 dalam keadaan deadlock/hang. jalan satu2nya kita kill proses <code>httpd</code> tersebut.</p>
+
+<p>Untuk kill proses httpd, sebelumnya kita mesti tahu dulu prosess id nya, dengan menjalankan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ps ax | grep httpd</span></code></pre></td></tr></table></div></figure>
+
+
+<p>hasilnya</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>1501 ?        S      0:00 /bin/bash -c ulimit -S -c 0 &gt;/dev/null 2&gt;&1 ; /usr/sbin/httpd
+</span><span class='line'>1502 ?        S      0:00 /usr/sbin/httpd
+</span><span class='line'>4713 pts/0    S+     0:00 grep httpd</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Bisa kita lihat, ada 3 prosess yang mengandung kata httpd. Sekarang jalankan command berikut untuk melakukan kill prosess tersebut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ kill -9 1501
+</span><span class='line'>$ kill -9 1502</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu jalankan lagi command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>service httpd start</span></code></pre></td></tr></table></div></figure>
+
+
+<p>untuk menjalankan httpd kembali.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-04T11:09:00-04:00" pubdate data-updated="true">Oct 4<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/04/rename-column-di-oracle/">Rename Column Di Oracle</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Sintaks untuk rename column di oracle sebagai berikut</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">alter</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table</span> <span class="n">name</span><span class="o">&gt;</span> <span class="k">rename</span> <span class="k">column</span> <span class="o">&lt;</span><span class="k">column</span> <span class="n">name</span><span class="o">&gt;</span> <span class="k">to</span> <span class="o">&lt;</span><span class="k">new</span> <span class="k">column</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>anggap, kita memiliki table dengan struktur seperti ini</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">CS_EXCHANGE_RATE</span> <span class="p">(</span>
+</span><span class='line'>  <span class="n">EXCHANGE_RATE_DATE</span>   <span class="nb">DATE</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">CURRENCY_CODE</span>        <span class="nb">CHAR</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="n">RATE</span>                 <span class="nb">NUMBER</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu, kita ingin mengubah, nama kolum <code>RATE</code>, menjadi <code>VALUE</code>. Maka jalankan sintaks berikut</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">alter</span> <span class="k">table</span> <span class="n">CS_EXCHANGE_RATE</span> <span class="k">rename</span> <span class="k">column</span> <span class="n">RATE</span> <span class="k">to</span> <span class="n">VALUE</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-04T10:38:00-04:00" pubdate data-updated="true">Oct 4<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/04/list-file-slash-directory-dalam-bentuk-tree-di-crunchbang/">List File/Directory Dalam Bentuk Tree Di Crunchbang</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Saya selalu melihat di video tutorial yg menggunakan *nix, mereka selalu list file/directory dalam bentuk seperti ini</p>
+
+<p><img src="/images/linux/list-files-in-tree.png"></p>
+
+<p>setelah google, ternyata mereka menggunakan <code>tree</code>.
+Untuk menginstall <code>tree</code> di crunchbang/debian, gunakan command berikut</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>sudo apt-get install tree
+</span><span class='line'><span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for </span>marjinal:
+</span><span class='line'>Reading package lists... Done
+</span><span class='line'>Building dependency tree
+</span><span class='line'>Reading state information... Done
+</span><span class='line'>The following NEW packages will be installed:
+</span><span class='line'>  tree
+</span><span class='line'>0 upgraded, 1 newly installed, 0 to remove and 200 not upgraded.
+</span><span class='line'>Need to get 32.4 kB of archives.
+</span><span class='line'>After this operation, 98.3 kB of additional disk space will be used.
+</span><span class='line'>Get:1 http://ftp.debian.org/debian/ squeeze/main tree amd64 1.5.3-1 <span class="o">[</span>32.4 kB<span class="o">]</span>
+</span><span class='line'>Fetched 32.4 kB in 6s <span class="o">(</span>5,168 B/s<span class="o">)</span>
+</span><span class='line'>Selecting previously deselected package tree.
+</span><span class='line'><span class="o">(</span>Reading database ... 112215 files and directories currently installed.<span class="o">)</span>
+</span><span class='line'>Unpacking tree <span class="o">(</span>from .../tree_1.5.3-1_amd64.deb<span class="o">)</span> ...
+</span><span class='line'>Processing triggers <span class="k">for </span>man-db ...
+</span><span class='line'>Setting up tree <span class="o">(</span>1.5.3-1<span class="o">)</span> ...
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-02T11:41:00-04:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/02/sencha-touch-hello-world/">Sencha Touch Hello World</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
+
+
+<p>Sebelum melakukan generate aplikasi yang pertama menggunakan Sencha Cmd, berikut yang mesti kita lakukan.
+* Direktori project saya, biasanya saya letakkan di <code>~/PROJECT/SENCHA_TOUCH</code>
+* Direktori Sencha SDK saya ada di <code>~/TOOLS/sencha/touch-2.2.1</code>
+* Lalu buat direktori sesuai dengan nama projectnya, karena kita mau buat hello world, maka saya buat folder hello world di dalam folder tersebut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/PROJECT/SENCHA_TOUCH
+</span><span class='line'>$ mkdir helloworld</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Generate Project</h3>
+
+<p>Untuk melakukan generate project, lakukan langkah-langkah berikut ini:
+1) Masuk ke dalam direktori <code>~/TOOLS/sencha/touch-2.2.1</code></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/TOOLS/sencha/touch-2.2.1</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2) Lalu jalankan command berikut ini</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sencha generate app HelloWorld ~/PROJECT/SENCHA_TOUCH/helloworld</span></code></pre></td></tr></table></div></figure>
+
+
+<p>maka akan muncul output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Sencha Cmd v3.1.2.342
+</span><span class='line'>[WRN] Sencha Cmd update is available (updating is recommended)
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-plugin:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] -before-generate-workspace:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] cmd-root-plugin.init-properties:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-properties:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-sencha-command:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] generate-workspace-impl:
+</span><span class='line'>[INF]      [echo] generating into /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld from /home/marjinal/bin/Sencha/Cmd/3.1.2.342/templates/workspace
+</span><span class='line'>[INF]     [mkdir] Created dir: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/packages
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] cmd-root-plugin.copy-framework-to-workspace-impl:
+</span><span class='line'>[INF] [propertyfile] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/workspace/sencha.cfg
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] copy-framework-to-workspace-impl:
+</span><span class='line'>[INF]      [copy] Copying 1960 files to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/touch
+</span><span class='line'>[INF]      [copy] Copying 1 file to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/touch
+</span><span class='line'>[INF]      [copy] Copying 1 file to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/touch
+</span><span class='line'>[INF] [propertyfile] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/workspace/sencha.cfg
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] copy-framework-to-workspace:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] generate-workspace:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] -after-generate-workspace:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-plugin:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] cmd-root-plugin.init-properties:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-properties:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init-sencha-command:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] init:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] before-upgrade:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] generate-app-impl:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] generate-starter-app:
+</span><span class='line'>[INF]     [mkdir] Created dir: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/app/profile
+</span><span class='line'>[INF]     [mkdir] Created dir: /home/marjinal/TOOLS/sencha/touch-2.2.1/resources/icons
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] copy-sdk:
+</span><span class='line'>[INF]      [copy] Copying 1 file to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/resources/css
+</span><span class='line'>[INF]      [copy] Copying 4 files to /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/resources/sass/stylesheets
+</span><span class='line'>[INF] [x-property-file] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/app/sencha.cfg
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] after-upgrade:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] generate-app:
+</span><span class='line'>[INF] 
+</span><span class='line'>[INF] -after-generate-app:
+</span><span class='line'>[INF] [x-property-file] Updating property file: /home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/.sencha/app/sencha.cfg
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Running Project</h3>
+
+<p>Untuk menjalankan project menggunakan Sencha Cmd, lakukan langkah berikut:</p>
+
+<p>1) masuk ke dalam directory project</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/PROJECT/SENCHA_TOUCH/</span></code></pre></td></tr></table></div></figure>
+
+
+<p>2) lalu ketikkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sencha fs web -port 8000 start -map helloworld</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu akan muncul output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Sencha Cmd v3.1.2.342
+</span><span class='line'>[INF] Starting shutdown listener socket
+</span><span class='line'>[INF] Listening for stop requests on: 42787
+</span><span class='line'>[INF] Mapping http://localhost:8000/ to helloworld...
+</span><span class='line'>[INF] Starting http://localhost:8000
+</span><span class='line'>[INF] jetty-8.1.7.v20120910
+</span><span class='line'>[INF] NO JSP Support for /, did not find org.apache.jasper.servlet.JspServlet
+</span><span class='line'>[INF] started o.e.j.w.WebAppContext{/,file:/home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/}
+</span><span class='line'>[INF] started o.e.j.w.WebAppContext{/,file:/home/marjinal/PROJECT/SENCHA_TOUCH/helloworld/}
+</span><span class='line'>[INF] Started SelectChannelConnector@0.0.0.0:8000
+</span><span class='line'>[INF] Started http://localhost:8000
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Jika tidak memiliki emulator (android, iphone, dll), kita bisa gunakan google chrome. Jalankan google chrome, lalu  masukkan url <a href="http://localhost:8000.">http://localhost:8000.</a></p>
+
+<p><img src="/images/sencha-touch/sencha-touch-helloworld-running.png"></p>
+
+<p>Done.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-02T11:01:00-04:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/02/install-sencha-touch-sdk-dan-sencha-cmd/">Install Sencha Touch SDK Dan Sencha Cmd</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
+
+
+<p>Sebelumnya, silahkan download <a href="http://www.sencha.com/products/touch/download/">Sencha Touch SDK</a> dan <a href="http://www.sencha.com/products/sencha-cmd/download">Sencha Cmd</a>. Untuk Sencha Cmd, saya download yang versi linux (<code>SenchaCmd-3.1.2.342-linux-x64.run.zip</code>).</p>
+
+<h3>Install Sencha Touch SDK</h3>
+
+<p>Untuk meng-install Sencha Touch SDK, cukup hanya dengan melakukan extract file yang anda download.</p>
+
+<h3>Install Sencha Cmd</h3>
+
+<p>1) Extract file <code>SenchaCmd-3.1.2.342-linux-x64.run.zip</code>
+2) Jalankan command berikut, untuk mengubah file menjadi executable</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ chmod +x SenchaCmd-3.1.2.342-linux-x64.run</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3) Jalankan command berikut, untuk memulai instalasi</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ ./SenchaCmd-3.1.2.342-linux-x64.run</span></code></pre></td></tr></table></div></figure>
+
+
+<p>4) Lalu akan muncul dialog <strong>Setup &ndash; Sencha Cmd</strong>. Klik <strong>Next</strong>.</p>
+
+<p><img src="/images/sencha-touch/1-setup-sencha-touch-welcome.png"></p>
+
+<p>5) Lalu akan muncul dialog <strong>License Agreement</strong>. Klik <strong>I accept the agreement</strong>, lalu klik <strong>Next</strong>.</p>
+
+<p><img src="/images/sencha-touch/2-setup-sencha-touch-license-agreement.png"></p>
+
+<p>6) Lalu akan muncul dialog <strong>Installation Directory</strong>. Pada <strong>Installation Directory</strong> biarkan terisi default, lalu klik <strong>Next</strong>.</p>
+
+<p><img src="/images/sencha-touch/3-setup-sencha-touch-installation-directory.png"></p>
+
+<p>7) Lalu akan muncul dialog <strong>Ready to Install</strong>. Klik <strong>Next</strong>.</p>
+
+<p><img src="/images/sencha-touch/4-setup-sencha-touch-ready-to-install.png"></p>
+
+<p>8) Lalu akan muncul dialog <strong>Installing</strong>. Proses install sedang berjalan</p>
+
+<p><img src="/images/sencha-touch/5-setup-sencha-touch-installing.png"></p>
+
+<p>9) Setelah proses install selesai, akan muncul dialog <strong>Completing the Sencha Cmd Setup Wizard</strong>. Klik <strong>Finish</strong></p>
+
+<p><img src="/images/sencha-touch/6-setup-sencha-touch-finish.png"></p>
+
+<p>10) Untuk menguji, apakah proses instal Sencha Cmd telah berhasil atau belum, buka terminal lalu jalankan command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sencha</span></code></pre></td></tr></table></div></figure>
+
+
+<p>jika muncul output sebagai berikut, berarti proses instal telah berhasil</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Sencha Cmd v3.1.2.342
+</span><span class='line'>Sencha Cmd provides several categories of commands and some global switches. In
+</span><span class='line'>most cases, the first step is to generate an application based on a Sencha SDK
+</span><span class='line'>such as Ext JS or Sencha Touch:
+</span><span class='line'>
+</span><span class='line'>    sencha -sdk /path/to/sdk generate app MyApp /path/to/myapp
+</span><span class='line'>
+</span><span class='line'>Sencha Cmd supports Ext JS 4.1.1a and higher and Sencha Touch 2.1 and higher.
+</span><span class='line'>
+</span><span class='line'>To get help on commands use the help command:
+</span><span class='line'>
+</span><span class='line'>    sencha help generate app
+</span><span class='line'>
+</span><span class='line'>For more information on using Sencha Cmd, consult the guides found here:
+</span><span class='line'>
+</span><span class='line'>http://docs.sencha.com/ext-js/4-2/#!/guide/command
+</span><span class='line'>http://docs.sencha.com/ext-js/4-1/#!/guide/command
+</span><span class='line'>
+</span><span class='line'>http://docs.sencha.com/touch/2-2/#!/guide/command
+</span><span class='line'>http://docs.sencha.com/touch/2-1/#!/guide/command
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>Options
+</span><span class='line'>  * --cwd, -cw - Sets the directory from which commands should execute
+</span><span class='line'>  * --debug, -d - Sets log level to higher verbosity
+</span><span class='line'>  * --nologo, -n - Suppress the initial Sencha Cmd version display
+</span><span class='line'>  * --plain, -pl - enables plain logging output (no highlighting)
+</span><span class='line'>  * --quiet, -q - Sets log level to warnings and errors only
+</span><span class='line'>  * --sdk-path, -s - The location of the SDK to use for non-app commands
+</span><span class='line'>  * --time, -ti - Display the execution time after executing all commands
+</span><span class='line'>
+</span><span class='line'>Categories
+</span><span class='line'>  * app - Perform various application build processes
+</span><span class='line'>  * compass - Wraps execution of compass for sass compilation
+</span><span class='line'>  * compile - Compile sources to produce concatenated output and metadata
+</span><span class='line'>  * fs - Utility commands to work with files
+</span><span class='line'>  * generate - Generates models, controllers, etc. or an entire application
+</span><span class='line'>  * io - Create, deploy and manage applications on the Sencha.io cloud platform
+</span><span class='line'>  * iofs - Manage Files stored in the Sencha.io cloud platform
+</span><span class='line'>  * manifest - Extract class metadata
+</span><span class='line'>  * package - Manages local and remote packages
+</span><span class='line'>  * repository - Manage local repository and remote repository connections
+</span><span class='line'>  * theme - Commands for low-level operations on themes
+</span><span class='line'>
+</span><span class='line'>Commands
+</span><span class='line'>  * ant - Invoke Ant with helpful properties back to Sencha Cmd
+</span><span class='line'>  * build - Builds a project from a legacy JSB3 file.
+</span><span class='line'>  * config - Load a properties file or sets a configuration property
+</span><span class='line'>  * help - Displays help for commands
+</span><span class='line'>  * js - Executes arbitrary JavaScript file(s)
+</span><span class='line'>  * upgrade - Upgrades Sencha Cmd
+</span><span class='line'>  * which - Displays the path to the current version of Sencha Cmd
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-02T06:06:00-04:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/10/02/mendapatkan-tanggal-awal-dan-akhir-bulan-di-oracle/">Mendapatkan Tanggal Awal Dan Akhir Bulan Di Oracle</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
+
+
+<p>Anggap, sekarang tanggal 15 oktober 2013. Untuk menambahkan/mengurangi bulan, kita bisa menggunakan sintaks</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">add_months</span><span class="p">(</span><span class="nb">date</span><span class="p">,</span> <span class="n">inc</span><span class="o">/</span><span class="nb">dec</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>dimana:</p>
+
+<ul>
+<li><code>date</code> adalah data tipe date yang di jadikan patokan</li>
+<li><code>inc</code> adalah total penambahan bulan, dalam positif. Contoh, <code>select add_months(sysdate, 5) from dual</code>, akan menghasilkan tanggal sekarang + 5 bulan
+, <code>dec</code> adalah total pengurangan bulan, dalam negatif. Contoh <code>select add_months(sysdate, -5) from dual</code>, akan menghasilkan tanggal sekarang &ndash; 5 bulan</li>
+</ul>
+
+
+<h3>Bulan Sebelumnya</h3>
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan september-2013, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan agustus-2013, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan juli-2013, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="o">-</span><span class="mi">3</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Dan seterusnya</p>
+
+<h3>Bulan Sekarang</h3>
+
+<p>untuk mendapatkan tanggal awal &amp; akhir untuk bulan oktober, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Bulan Selanjutnya</h3>
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan november-2013, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">1</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan desember-2013, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">2</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk mendapatkan tanggal awal &amp; akhir untuk bulan januari-2014, gunakan script berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">SELECT</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span>
+</span><span class='line'><span class="n">ADD_MONTHS</span><span class="p">(</span><span class="n">TRUNC</span><span class="p">(</span><span class="n">SYSDATE</span><span class="p">,</span> <span class="s1">&#39;MM&#39;</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span>
+</span><span class='line'><span class="k">FROM</span> <span class="n">DUAL</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Dan seterusnya.</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-29T03:35:00-04:00" pubdate data-updated="true">Sep 29<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/09/29/url-belajar-wicket/">URL Belajar Wicket</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p><a href="http://www.rent-a-hero.de/cms/node/10">Apache Wicket with Twitter Bootstrap and Impromptu JQuery Overlay</a></p>
+
+<p><a href="http://tomaszdziurko.pl/2012/03/wicket-and-twitter-bootstrap-navbar/">Using Twitter Bootstrap Navbar as a Wicket component</a></p>
+
+<p><a href="http://www.mkyong.com/tutorials/wicket-tutorials">mkyong &ndash; Wicket Tutorial</a></p>
+
+<p><a href="http://blog.bosch-si.com/apache-wicket-lessons-learned/">Apache Wicket – three years of lessons learned</a></p>
+
+<p><a href="https://github.com/bitstorm/Wicket-tutorial-examples">Wicket-tutorial-examples</a></p>
+
+<p><a href="http://wicketguide.comsysto.com/">wicket guide</a></p>
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -185,605 +1159,6 @@ Spring Batch Hello World Example Mathew&rsquo;s Thoughts! Spring Batch 2.0 – &
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-28T05:33:00-04:00" pubdate data-updated="true">Sep 28<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/28/cara-menampilkan-list-table-di-oracle/">Cara Menampilkan List Table Di Oracle</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
-
-
-<p>Ada banyak cara untuk mengetahui list table di oracle. yaitu:</p>
-
-<p>1) List Table yang di miliki current user, gunakan sintaks</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">user_tables</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2) List Table yang ada di database/schema, gunakan sintaks</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">dba_tables</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3) List table yang bisa di akses oleh current user, gunakan sintaks</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">tablespace_name</span><span class="p">,</span> <span class="k">table_name</span> <span class="k">from</span> <span class="n">all_tables</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-28T05:25:00-04:00" pubdate data-updated="true">Sep 28<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/28/konversi-timestamp-ke-date-di-oracle/">Konversi Timestamp Ke Date Di Oracle</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><blockquote><p>Tulisan ini hanya sebagai pengingat saya, maklum sudah tua :D</p></blockquote>
-
-
-<p>Untuk mendapatkan current timestamp &amp; date di oracle, gunakan sintaks ini</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span> <span class="n">systimestamp</span><span class="p">,</span> <span class="c1">--untuk mendapatkan current timestamp</span>
-</span><span class='line'>     <span class="n">sysdate</span> <span class="c1">-- untuk mendapatkan current date</span>
-</span><span class='line'>     <span class="k">from</span> <span class="n">dual</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Untuk meng-konversi dari timestamp ke date, gunakan sintaks ini</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">select</span>
-</span><span class='line'>  <span class="n">trunc</span><span class="p">(</span><span class="n">systimestamp</span><span class="p">)</span> <span class="c1">-- akan mengembalikan data dalam bentuk date</span>
-</span><span class='line'><span class="k">from</span> <span class="n">dual</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-27T13:02:00-04:00" pubdate data-updated="true">Sep 27<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/27/menjalankan-java-main-class-menggunakan-maven-command/">Menjalankan Java Main Class Menggunakan Maven Command</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Anggap, kita memiliki project java dengan struktur seperti di bawah ini</p>
-
-<p><img src="/images/maven/maven-run-main-class.png"></p>
-
-<p>Lalu, kita ingin menjalankan project tersebut dengan menggunakan maven. Maka kita harus menabahkan plugin <code>exec-maven-plugin</code> di dalam <code>pom.xml</code> seperti di bawah ini</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>...
-</span><span class='line'><span class="nt">&lt;build&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;plugins&gt;</span>
-</span><span class='line'>        ...
-</span><span class='line'>      <span class="nt">&lt;plugin&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;groupId&gt;</span>org.codehaus.mojo<span class="nt">&lt;/groupId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;artifactId&gt;</span>exec-maven-plugin<span class="nt">&lt;/artifactId&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;configuration&gt;</span>
-</span><span class='line'>               <span class="nt">&lt;mainClass&gt;</span>com.hendrysuwanda.tutorial.javacodegeeks.App<span class="nt">&lt;/mainClass&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/configuration&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/plugin&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/plugins&gt;</span>
-</span><span class='line'><span class="nt">&lt;/build&gt;</span>
-</span><span class='line'>...
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu untuk menjalankan nya, kita dapat menggunakan command</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'>mvn exec:java
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-22T04:24:00-04:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/22/install-rabbitmq-di-crunchbang/">Install RabbitMQ Di #CrunchBang</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Ntah kenapa, isi kepala ini ingin mempelajari Message Broker, karena saya fans berat Spring, saya coba memilih RabbitMQ.</p>
-
-<p>Berikut cara install RabbitMQ di #CrunchBang:</p>
-
-<p>1) Tambahkan baris berikut ke dalam <code>/etc/apt/sources.list</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>deb http://www.rabbitmq.com/debian/ testing main</span></code></pre></td></tr></table></div></figure>
-
-
-<p>2) Untuk menghilangkan peringatan karena <code>unsigned package</code>, jalankan command berikut</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ wget http://www.rabbitmq.com/rabbitmq-signing-key-public.asc
-</span><span class='line'>$ sudo apt-key add rabbitmq-signing-key-public.asc</span></code></pre></td></tr></table></div></figure>
-
-
-<p>3) jalankan <code>sudo apt-get update</code>
-4) jalankan command berikut untuk meng-install rabbitmq</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo apt-get install rabbitmq-server</span></code></pre></td></tr></table></div></figure>
-
-
-<p>5) Tunggu sampai proses installation selesai, jika sudah selesai, jalankan command <code>rabbitmqctl status</code> untuk mengecek apakah rabbitmq sudah berjalan dengan normal atau belum.</p>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-17T11:58:00-04:00" pubdate data-updated="true">Sep 17<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/17/a-remote-host-refused-an-attempted-connect-operation-dsra0010e-sql-state-equals-08001-error-code-equals-99-dot-999/">A Remote Host Refused an Attempted Connect Operation. DSRA0010E: SQL State = 08001-Error Code = -99.999</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Bulan kemaren (Agustus &ndash; 2013), gw dapat laporan dari client, bahwa server aplikasi tidak dapat connect ke core banking, ketika di lakukan test connection dari ibm console (websphere) muncul error seperti di bawah ini</p>
-
-<blockquote><p>The application requester cannot establish the connection. (A remote host refused an attempted connect operation.) DSRA0010E: SQL State = 08001, Error Code = -99.999</p></blockquote>
-
-
-<p>Setelah google, di dapatkan 2 link berikut</p>
-
-<ol>
-<li><a href="http://madhutomy.blogspot.com/2013/03/javasqlsqlexception-invalid-arguments.html">link 1</a>, dia mengalami hal serupa, karena dia lupa memilih &ldquo;Component-managed authentication alias&rdquo;</li>
-<li><a href="http://www-01.ibm.com/support/docview.wss?uid=swg21235300">link 2</a>, langsung dari support websphere, menyarankan untuk me-restart websphere.</li>
-</ol>
-
-
-<p>Solusi 1, jelas tidak mungkin, karena aplikasi sebelumnya dapat berjalan dengan lancar. Solusi 2, masih boleh di coba, dan ternyata setelah di lakukan restart websphere, tetap tidak dapat lakukan test connection, dengan message error masih sama seperti di atas.</p>
-
-<p>hmmm, akhirnya gw curiga sama firewall, gw minta ijin sama client, untuk dapat melakukan koneksi melalui laptop saya, dimana, jaringan yang saya gunakan tidak di block oleh firewall. Saya develop aplikasi java mini (mendadak :( )), untuk melakukan test connection ke core banking (AS/400). Source code untuk aplikasi java tersebut dapat di lihat <a href="https://github.com/hendrysuwanda/test-connection-as-400">di sini</a>. Dan alhamdullilah, ternyata saya dapat melakukan koneksi ke core banking.</p>
-
-<p>Setelah vendor firewall di panggil, akhirnya di ketahui, untuk dapat melakukan koneksi ke AS/400, kita mesti membuka 3 port berikut, yaitu (449, 8476, 8471)</p>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-13T08:55:00-04:00" pubdate data-updated="true">Sep 13<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/09/13/lupa-password-websphere-application-server-administrative-console/">Lupa Password WebSphere Application Server Administrative Console</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Di laptop gw, sudah terinstall WebSphere Application Server 8.5, tapi sudah lama nggak pakai, dan sialnya hari ini (12/09/2013) gw berkeinginan mau memakainya.</p>
-
-<p>Ketika di jalanakan &amp; ingin masuk ke Administrative console (ibm/console), s**l, gw lupa passwordnya :(</p>
-
-<p>Setelah google, ternyata kita bisa non-aktifkan security mode dari websphere dengan cara.</p>
-
-<p>1) Matikan dulu websphere (jika masih jalan)
-2) Buka file <code>security.xml</code> yang ada fi folder <code>&lt;HOME_WEBSPHERE&gt;\AppServer\profiles\&lt;PROFILES NAME&gt;\config\cells\&lt;NODE CELL NAME&gt;</code>, contoh di tempat saya ada di, <code>C:\Program Files (x86)\IBM\WebSphere\AppServer\profiles\AppSrv01\config\cells\JPS-01122Node01Cell</code></p>
-
-<p>3) Lalu edit yang ada di sini</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;security:Security</span>
-</span><span class='line'>  <span class="na">xmi:version=</span><span class="s">&quot;2.0&quot;</span>
-</span><span class='line'>  <span class="na">xmlns:xmi=</span><span class="s">&quot;http://www.omg.org/XMI&quot;</span>
-</span><span class='line'>  <span class="na">xmlns:orb.securityprotocol=</span><span class="s">&quot;http://www.ibm.com/websphere/appserver/schemas/5.0/orb.securityprotocol.xmi&quot;</span>
-</span><span class='line'>  <span class="na">xmlns:security=</span><span class="s">&quot;http://www.ibm.com/websphere/appserver/schemas/5.0/security.xmi&quot;</span>
-</span><span class='line'>  <span class="na">xmi:id=</span><span class="s">&quot;Security_1&quot;</span> <span class="na">useLocalSecurityServer=</span><span class="s">&quot;true&quot;</span>
-</span><span class='line'>  <span class="na">useDomainQualifiedUserNames=</span><span class="s">&quot;false&quot;</span> <span class="na">enabled=</span><span class="s">&quot;true&quot;</span> <span class="na">cacheTimeout=</span><span class="s">&quot;600&quot;</span>
-</span><span class='line'>  <span class="na">issuePermissionWarning=</span><span class="s">&quot;true&quot;</span> <span class="na">activeProtocol=</span><span class="s">&quot;BOTH&quot;</span> <span class="na">enforceJava2Security=</span><span class="s">&quot;false&quot;</span>
-</span><span class='line'>  <span class="na">enforceFineGrainedJCASecurity=</span><span class="s">&quot;false&quot;</span> <span class="na">appEnabled=</span><span class="s">&quot;false&quot;</span>
-</span><span class='line'>  <span class="na">dynamicallyUpdateSSLConfig=</span><span class="s">&quot;true&quot;</span> <span class="na">allowBasicAuth=</span><span class="s">&quot;true&quot;</span>
-</span><span class='line'>  <span class="na">activeAuthMechanism=</span><span class="s">&quot;LTPA_1&quot;</span> <span class="na">activeUserRegistry=</span><span class="s">&quot;WIMUserRegistry_1&quot;</span>
-</span><span class='line'>  <span class="na">defaultSSLSettings=</span><span class="s">&quot;SSLConfig_JPS-01122Node01_1&quot;</span> <span class="na">adminPreferredAuthMech=</span><span class="s">&quot;RSAToken_1&quot;</span><span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>nilai dari parameter enabled ubah dari true menjadi false,  kurang lebih jadi seperti di bawah ini.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;security:Security</span>
-</span><span class='line'>  <span class="na">xmi:version=</span><span class="s">&quot;2.0&quot;</span>
-</span><span class='line'>  <span class="na">xmlns:xmi=</span><span class="s">&quot;http://www.omg.org/XMI&quot;</span>
-</span><span class='line'>  <span class="na">xmlns:orb.securityprotocol=</span><span class="s">&quot;http://www.ibm.com/websphere/appserver/schemas/5.0/orb.securityprotocol.xmi&quot;</span>
-</span><span class='line'>  <span class="na">xmlns:security=</span><span class="s">&quot;http://www.ibm.com/websphere/appserver/schemas/5.0/security.xmi&quot;</span>
-</span><span class='line'>  <span class="na">xmi:id=</span><span class="s">&quot;Security_1&quot;</span> <span class="na">useLocalSecurityServer=</span><span class="s">&quot;true&quot;</span>
-</span><span class='line'>  <span class="na">useDomainQualifiedUserNames=</span><span class="s">&quot;false&quot;</span> <span class="na">enabled=</span><span class="s">&quot;false&quot;</span> <span class="na">cacheTimeout=</span><span class="s">&quot;600&quot;</span>
-</span><span class='line'>  <span class="na">issuePermissionWarning=</span><span class="s">&quot;true&quot;</span> <span class="na">activeProtocol=</span><span class="s">&quot;BOTH&quot;</span> <span class="na">enforceJava2Security=</span><span class="s">&quot;false&quot;</span>
-</span><span class='line'>  <span class="na">enforceFineGrainedJCASecurity=</span><span class="s">&quot;false&quot;</span> <span class="na">appEnabled=</span><span class="s">&quot;false&quot;</span>
-</span><span class='line'>  <span class="na">dynamicallyUpdateSSLConfig=</span><span class="s">&quot;true&quot;</span> <span class="na">allowBasicAuth=</span><span class="s">&quot;true&quot;</span>
-</span><span class='line'>  <span class="na">activeAuthMechanism=</span><span class="s">&quot;LTPA_1&quot;</span> <span class="na">activeUserRegistry=</span><span class="s">&quot;WIMUserRegistry_1&quot;</span>
-</span><span class='line'>  <span class="na">defaultSSLSettings=</span><span class="s">&quot;SSLConfig_JPS-01122Node01_1&quot;</span> <span class="na">adminPreferredAuthMech=</span><span class="s">&quot;RSAToken_1&quot;</span><span class="nt">&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>4) Hidupkan kembali websphere. Sekarang anda tidak perlu lagi memasukkan password untuk mengakses Administrative console (ibm/console).</p>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-31T11:41:00-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/31/sublimetext-how-to-select-same-word-and-replace-it/">SublimeText - How to Select Same Word and Replace It</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><blockquote><p>I know, my english is very bad, but, I believe in the phrase, &#8220;no practice, no learning&#8221;. so, if you feel something is wrong with my post, please do not hesitate to comment.</p></blockquote>
-
-
-<p>Consider, i have the source code as shown below</p>
-
-<p><img src="/images/sublimetext/sample-source-code.png"></p>
-
-<p>I want to change the word <code>AND</code> that is in line 1155 and 1172 became the <code>OR</code>, then I do the following steps:</p>
-
-<p>1) Move the cursor to the line 1155, put in the word <code>AND</code> and press <code>CTRL+D</code>, as shown below.</p>
-
-<p><img src="/images/sublimetext/select-word-n-replace-1.png"></p>
-
-<p>2) If I press <code>CTRL+D</code> again, then that will be selected is the word <code>AND</code> next in line 1158, as shown below.</p>
-
-<p><img src="/images/sublimetext/select-word-n-replace-2.png"></p>
-
-<p>3) Because I want to select the word <code>AND</code> in line 1172, then I move the cursor to line 1172, put in the word <code>AND</code>, the press <code>CTRL+D</code> again, as shown below.</p>
-
-<p><img src="/images/sublimetext/select-word-n-replace-3.png"></p>
-
-<p>4) Then type the word <code>OR</code>, so the word <code>AND</code> that is on the line in 1155 and 1172 will be changed to the word <code>OR</code>, as shown below.</p>
-
-<p><img src="/images/sublimetext/select-word-n-replace-4.png"></p>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-31T11:33:00-04:00" pubdate data-updated="true">Aug 31<span>st</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/08/31/angularjs-binding/">AngularJS - Binding</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Binding merupakan fitur utama dari AngularJS. Ia menyediakan mekanisme sederhana untuk meng-integrasi HTML kita dengan Data kita melalui &#8220;.</p>
-
-<p>Data-Binding di Web Aplikasi Angular adalah sinkronisasi otomatis antara komponen <code>model</code> dan <code>view</code>. Cara yang Angular implementasi pada <code>data-binding</code> memungkinkan kita memperlakukan <code>model</code> sebagai satu-satunya sumber kebenaran di aplikasi kita. <code>view</code> adalah gambaran dari <code>model</code> setiap saat. Ketika <code>model</code> berubah, <code>view</code> menggambarkan perubahan, begitu juga sebaliknya.</p>
-
-<p><strong><em> Data-Binding di Sistem template klasik</em></strong></p>
-
-<p><img src="/images/angularjs/One_Way_Data_Binding.png"></p>
-
-<p>Sebagian besar sistem template mengikat data hanya dalam 1 arah: mereka menggabungkan komponen template dan model bersama-sama kedalam sebuah view, seperti di ilustrasikan pada diagram di atas. Setelah penggabungan terjadi, perubahan pada model atau bagian terkati pada view tidak otomatis terceminkan pada view.  Lebih buruk, segala perubahan yang user buat di view tidak di cerminkan pada model. Ini artinya developer harus menulis kode yang selalu sinkron view dengan model anda model dengan view.</p>
-
-<p><strong><em> Data-Binding di template Angular</em></strong></p>
-
-<p><img src="/images/angularjs/Two_Way_Data_Binding.png"></p>
-
-<p>Cara template angular bekerja berbeda, seperti di ilustrasikan pada diagram di atas. Mereka berbeda karena template pertama (yang merupakan HTML uncompiled bersama dengan markup tambahan dan directive) di compile pada browser, dan kedua, langkah kompilasi menghasilkan live view. Kita katakan live karena segala perubahan pada view secara langsung dicerminkan pada model, dan segala perubahan pada model di sebarkan ke view. Ini membuat model selalu satu-satunya-sumber-kebenaran untuk keadaan aplikasi, sangat menyederhanakan model pemrograman untuk developer. Anda dapat menganggap view seperti hanya sebuah proyeksi instan model Anda.</p>
-
-<p><strong><em> Contoh Data-Binding di AngularJS</em></strong></p>
-
-<p>Kita akan memulai dengan menyiapkan <code>div</code> dengan sebuah atribute <a href="http://docs.angularjs.org/api/ng.directive:ngApp"><code>ng-app</code></a>.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;title&gt;</span>Belajar AngularJS<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;div</span> <span class="na">ng-app=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>      
-</span><span class='line'>      <span class="nt">&lt;h1&gt;</span><span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;js/angular.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>jika kita menjalankan script di atas, maka akan muncul angka 2. Jika kita ganti &#8220; dengan hello world, maka akan muncul Hello world di browser kita.</p>
-
-<p>Sekarang, kita ingin melakukan binding, dari sebuah text box, ketika user mengetikkan sesuatu, secara realtime apa yg di ketikkan user akan tampil di bawahnya, seperti gambar di bawah ini.</p>
-
-<p><img src="/images/angularjs/binding-model.png"></p>
-
-<p>maka, kita akan ubah, script kita diatas menjadi seperti di bawah ini.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;title&gt;</span>Belajar AngularJS<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;div</span> <span class="na">ng-app=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">ng-model=</span><span class="s">&quot;data.message&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;h1&gt;</span><span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/div&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src=</span><span class="s">&quot;js/angular.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>data.message</code> merupakan model, seperti penjelasan sebelumnya, jadi segala perubahan yang di lakukan oleh user terhadap input text box, maka akan mengikat ke model, dan segala perubahan di model akan mengikat ke dalam tag <code>&lt;h1&gt;&lt;/h1&gt;</code>.</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -807,15 +1182,15 @@ Spring Batch Hello World Example Mathew&rsquo;s Thoughts! Spring Batch 2.0 – &
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2013/11/07/simple-if-statement-in-java/">Simple if Statement in Java</a>
+    <a class="list-group-item " href="/blog/2013/11/17/membuat-changelog-liquibase/">Membuat Changelog Liquibase</a>
     
-    <a class="list-group-item " href="/blog/2013/11/07/algorithm-cara-simple-memilih-2-object-di-java/">[Algorithm] Cara Simple Memilih 2 Object Di Java</a>
+    <a class="list-group-item " href="/blog/2013/11/17/memahami-dependency-injection/">Memahami Dependency Injection</a>
     
-    <a class="list-group-item " href="/blog/2013/11/05/upgrade-nodejs-menggunakan-n/">Upgrade NodeJS Menggunakan N</a>
+    <a class="list-group-item " href="/blog/2013/11/09/install-google-chrome-di-crunchbang/">Install Google-chrome Di Crunchbang</a>
     
-    <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-npm/">Semua Tentang Npm</a>
+    <a class="list-group-item " href="/blog/2013/11/09/uninstall-google-chrome-di-crunchbang/">Uninstall Google-chrome Di Crunchbang</a>
     
-    <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-n/">Semua Tentang N</a>
+    <a class="list-group-item " href="/blog/2013/11/09/setting-environment-variable-path-di-windows-7/">Setting Environment Variable (PATH) Di Windows 7</a>
     
   </div>
 </section>
@@ -835,7 +1210,7 @@ Spring Batch Hello World Example Mathew&rsquo;s Thoughts! Spring Batch 2.0 – &
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2013 - Hendry Suwanda<br>
+  Copyright &copy; 2014 - Hendry Suwanda<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.

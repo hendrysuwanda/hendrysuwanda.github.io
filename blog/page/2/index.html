@@ -8,7 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Nov 3rd, 2013 HTML Dan CSS Artikel ini saya translate dari sini. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa &hellip;">
+  <meta name="description" content="Nov 5th, 2013 Upgrade NodeJS Menggunakan N Dengan menggunakan n, kita dapat melakukan upgrade/downgrade versi nodejs dengan mudah. Untuk melihat &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +86,905 @@
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-05T08:40:00-05:00" pubdate data-updated="true">Nov 5<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/05/upgrade-nodejs-menggunakan-n/">Upgrade NodeJS Menggunakan N</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Dengan menggunakan <code>n</code>, kita dapat melakukan upgrade/downgrade versi nodejs dengan mudah.</p>
+
+<p>Untuk melihat daftar versi nodejs, ketikkan command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>n ls</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>/usr/local/bin/node
+</span><span class='line'>
+</span><span class='line'>    0.8.6
+</span><span class='line'>    0.8.7
+</span><span class='line'>    0.8.8
+</span><span class='line'>    0.8.9
+</span><span class='line'>    0.8.10
+</span><span class='line'>    0.8.11
+</span><span class='line'>    0.8.12
+</span><span class='line'>    0.8.13
+</span><span class='line'>    0.8.14
+</span><span class='line'>    0.8.15
+</span><span class='line'>  ο 0.8.16 
+</span><span class='line'>    0.8.17
+</span><span class='line'>    0.8.18
+</span><span class='line'>    0.8.19
+</span><span class='line'>    0.8.20
+</span><span class='line'>    0.8.21
+</span><span class='line'>    0.8.22
+</span><span class='line'>    0.8.23
+</span><span class='line'>    0.8.24
+</span><span class='line'>    0.8.25
+</span><span class='line'>    0.8.26
+</span><span class='line'>    0.9.0
+</span><span class='line'>    0.9.1
+</span><span class='line'>    0.9.2
+</span><span class='line'>    0.9.3
+</span><span class='line'>    0.9.4
+</span><span class='line'>    0.9.5
+</span><span class='line'>    0.9.6
+</span><span class='line'>    0.9.7
+</span><span class='line'>    0.9.8
+</span><span class='line'>    0.9.9
+</span><span class='line'>    0.9.10
+</span><span class='line'>    0.9.11
+</span><span class='line'>    0.9.12
+</span><span class='line'>    0.10.0
+</span><span class='line'>    0.10.1
+</span><span class='line'>    0.10.2
+</span><span class='line'>    0.10.3
+</span><span class='line'>    0.10.4
+</span><span class='line'>    0.10.5
+</span><span class='line'>    0.10.6
+</span><span class='line'>    0.10.7
+</span><span class='line'>    0.10.8
+</span><span class='line'>    0.10.9
+</span><span class='line'>    0.10.10
+</span><span class='line'>    0.10.11
+</span><span class='line'>    0.10.12
+</span><span class='line'>    0.10.13
+</span><span class='line'>    0.10.14
+</span><span class='line'>    0.10.15
+</span><span class='line'>    0.10.16
+</span><span class='line'>    0.10.17
+</span><span class='line'>    0.10.18
+</span><span class='line'>    0.10.19
+</span><span class='line'>    0.10.20
+</span><span class='line'>    0.10.21 
+</span><span class='line'>    0.11.0
+</span><span class='line'>    0.11.1
+</span><span class='line'>    0.11.2
+</span><span class='line'>    0.11.3
+</span><span class='line'>    0.11.4
+</span><span class='line'>    0.11.5
+</span><span class='line'>    0.11.6
+</span><span class='line'>    0.11.7
+</span><span class='line'>    0.11.8</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Simbol <code>ο</code>, menandakan versi nodejs yang sedang saya gunakan. Saya ingin menggunakan versi 0.10.21, maka saya akan mengetikkan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo n 0.10.21</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> install : 0.10.21
+</span><span class='line'>   mkdir : /usr/local/n/versions/0.10.21
+</span><span class='line'>   fetch : http://nodejs.org/dist/v0.10.21/node-v0.10.21-linux-x64.tar.gz
+</span><span class='line'>/usr/local/bin/node
+</span><span class='line'>   installed : v0.10.21
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Jika ingin menginstall versi stable, kita bisa menggunakan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo n stable</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-05T08:27:00-05:00" pubdate data-updated="true">Nov 5<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/05/semua-tentang-npm/">Semua Tentang Npm</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><h3>Apa itu npm?</h3>
+
+<p><code>npm</code> adalah manajer paket <code>NodeJS</code>. Sesuai dengan namanya, Anda dapat menggunakannya untuk menginstal program <code>node</code>. <code>npm</code> akan mempermudah kita saat development dalam menentukan dan menghubungkan dependensi.</p>
+
+<h3>Install</h3>
+
+<div class="alert alert-danger">
+Sebelum menginstall npm, terlebih dahulu kita mesti menginstall nodejs
+</div>
+
+
+<p>Untuk menginstal <code>npm</code>, kita hanya cukup menjalankan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl http://npmjs.org/install.sh | sh</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Update, jika command diatas muncul error</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sh: 2: Syntax error: newline unexpected</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Kita bisa menggunakan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -k https://npmjs.org/install.sh | sh</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-05T08:02:00-05:00" pubdate data-updated="true">Nov 5<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/05/semua-tentang-n/">Semua Tentang N</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><h3>Apa itu n?</h3>
+
+<p><code>n</code>  adalah Node version management. Dengan menggunakan n, kita bisa melakukan:</p>
+
+<ol>
+<li>Install/upgrade nodejs ke versi berapapun</li>
+<li>Kita bisa pindah-pindah versi nodejs. dari versi lama ke yg baru, maupun sebaliknya.</li>
+</ol>
+
+
+<h3>Install</h3>
+
+<p>Untuk menginstall <code>n</code>, terlebih dahulu kita mesti sudah menginstall <code>npm</code> (jika anda belum menginstall <code>npm</code>, silahkan baca <a href="http://hendrysuwanda.github.io/blog/2013/11/05/semua-tentang-npm/">artikel ini</a>).</p>
+
+<p>Ketikkan perintah berikut, untuk menginstall <code>n</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>npm install -g n</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-04T10:29:00-05:00" pubdate data-updated="true">Nov 4<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/04/lebih-lanjut-tentang-judul-heading/">Lebih Lanjut Tentang Judul (Heading)</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>HTML sebenarnya memungkinkan kita memiliki lebih dari satu ukuran heading. Terdapat 6 ukurang heading, dimana <code>&lt;h1&gt;</code> adalah bos dan <code>&lt;h6&gt;</code> adalah  lemah.</p>
+
+<ol>
+<li><code>&lt;h1&gt;</code> &ndash; CEO</li>
+<li><code>&lt;h2&gt;</code> &ndash; VP Fancy Towne</li>
+<li><code>&lt;h3&gt;</code> &ndash; Direktur beberapa stuff</li>
+<li><code>&lt;h4&gt;</code> &ndash; middle management</li>
+<li><code>&lt;h5&gt;</code> &ndash; Asisten rendahan</li>
+<li><code>&lt;h6&gt;</code> &ndash; Mendapatkan kopi untuk orang lain.</li>
+</ol>
+
+
+<p>Dibawah ini kami akan meminta anda untuk menambahkan heading dengan berbagai ukuran. Jangan ragu untuk menulis apapun yang anda sukan untuk heading.</p>
+
+<h3>Latihan</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
+</span><span class='line'>          Headings <span class="err">&amp;</span> Paragraphs
+</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;h1&gt;</span>Ini Judul h1<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf1<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf2<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>Kode anda sekarang memiliki satu heading <code>&lt;h1&gt;</code> dan 2 paragraf.</li>
+<li>Tambahkan sebuah heading <code>&lt;h3&gt;</code> sebelum paragraf kedua.</li>
+<li>Tambahkan sebuah heading <code>&lt;h5&gt;</code> setelah paragraf ke dua, dan kemudian tambahkan paragraf ketiga setelah heading ini.</li>
+</ol>
+
+
+<h3>Jawaban</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
+</span><span class='line'>          Headings <span class="err">&amp;</span> Paragraphs
+</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;h1&gt;</span>Ini Judul h1<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf1<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h3&gt;</span>Ini judul h3<span class="nt">&lt;/h3&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf2<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;h5&gt;</span>Ini judul h5<span class="nt">&lt;/h5&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf3<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-04T10:01:00-05:00" pubdate data-updated="true">Nov 4<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/04/paragraf-dan-judul-heading/">Paragraf Dan Judul (Heading)</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Kami pasti membuat kemajuan yang baik! Kami telah belajar kapan dan mengapa kita menggunakan HTML. Kita juga telah belajar bagaimana untuk:</p>
+
+<ol>
+<li>Membentuk file HTML dengan tag</li>
+<li>Judul halaman web (di dalam <code>&lt;head&gt;</code>)</li>
+<li>Membuat paragraf (di dalam <code>&lt;body&gt;</code> dengan tag <code>&lt;p&gt;</code>)</li>
+</ol>
+
+
+<p>Langkah selanjutnya adalah memberikan paragraf kita judul menggunakan tag judul (<code>&lt;head&gt;</code>). Mari mulai dengan tag <code>&lt;h1&gt;</code>, yang menandai sesuatu sebagai yang paling penting. (Semua orang tau font yang paling penting adalah yang paling besar!)</p>
+
+<h3>Latihan</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
+</span><span class='line'>          Headings <span class="err">&amp;</span> Paragraphs
+</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>      
+</span><span class='line'>      
+</span><span class='line'>      
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>Tanya diri sendiri: Apa judul halaman ini?</li>
+<li>Di bagian body, buat sebuah judul (heading). Untuk melakukan hal ini, buat sebuah tag <code>&lt;h1&gt;</code></li>
+<li>Berikan konten anda sebuah judul. Ini bisa apapun</li>
+<li>Tutup elemen dengan tag penutup <code>&lt;/h1&gt;</code>. (Judul anda sekarang harus antara <code>&lt;h1&gt;</code> dan <code>&lt;/h1&gt;</code>)</li>
+<li>Dibawah judul, buat 2 paragraf menggunakan tag <code>&lt;p&gt;</code> dengan konten apapun yang anda suka.</li>
+</ol>
+
+
+<h3>Jawaban</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
+</span><span class='line'>          Headings <span class="err">&amp;</span> Paragraphs
+</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>      <span class="nt">&lt;h1&gt;</span>Ini judul<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf 1<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>ini paragraf 2<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-03T13:37:00-05:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/03/html-paragraf-dalam-body/">[HTML] Paragraf Dalam Body</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Kami telah menyiapkan banyak hal-hal dasar untuk file HTML untuk Anda. Hal ini sehingga anda tidak akan marah pada kami untuk terlalu banyak pengulangan, silahkan belajar dengan baik.</p>
+
+<p>kita telah belajar tentang tag pembuka dan penutup. Ketika kita meletakkan konten diantara tag, seluruh bit disebut elemen.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>element = <span class="nt">&lt;opening</span> <span class="na">tag</span><span class="nt">&gt;</span> + content + <span class="nt">&lt;closing</span> <span class="na">tag</span><span class="nt">&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Perhatikan kita memiliki tag <code>&lt;title&gt;</code> sekarang, tapi kita butuh tag <code>&lt;body&gt;</code>. Konten dalam <code>&lt;body&gt;</code> adalah apa yang akan terlihat pada halaman yang sebenarnya. <code>&lt;body&gt;</code> masuk kedalam tag html, tapi tidak didalam tag <code>&lt;head&gt;</code>, seperti ini:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;head&gt;&lt;/head&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;body&gt;&lt;/body&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Latihan</h3>
+
+<p>Anggap kita memiliki file HTML seperti di bawah ini</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
+</span><span class='line'>          
+</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>Antara tag <code>&lt;title&gt;</code>, berikan nama halaman anda. Ini dapat apapun.</li>
+<li>Dibawah tag <code>&lt;/head&gt;</code> penutup, letakkan tag <code>&lt;body&gt;</code> pembuka dan penutup</li>
+<li>Didalam <code>&lt;body&gt;</code>, mari buat paragraf! masing-masing paragraf membutuhkan tag pembuka dan penutup: <code>&lt;p&gt;</code> dan <code>&lt;/p&gt;</code>. Kita meletakkan konten di antara tag tersebut.</li>
+<li>Antara tag <code>&lt;body&gt;</code>, buat 2 paragraf dan tulis konten di masing paragraf. (Ini akan membutuhkan 2 pasang tag <code>&lt;p&gt;</code>)</li>
+</ol>
+
+
+<h3>Jawaban</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;head&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;title&gt;</span>
+</span><span class='line'>      Belajar Paragraf
+</span><span class='line'>      <span class="nt">&lt;/title&gt;</span>
+</span><span class='line'>      
+</span><span class='line'>  <span class="nt">&lt;/head&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>Paragraf 1<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;p&gt;</span>Paragraf 2<span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'>  
+</span><span class='line'>  
+</span><span class='line'>  
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-03T13:20:00-05:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/03/membuat-bagian-kepala-head/">[HTML] Membuat Bagian Kepala(head)</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Segala sesuatu di file HTML kita akan pergi antara tag <code>&lt;html&gt;</code> pembuka dan <code>&lt;/html&gt;</code> penutup.</p>
+
+<p>selalu ada dua bagian di file ini: head dan body. Mari fokus pada head</p>
+
+<ol>
+<li>Ia memiliki tag pembuka dan penutup.</li>
+<li>head berisi informasi penting tentang halaman web, seperti judul-nya.</li>
+<li>judul adalah kata-kata yang kita lihat pada tab (sebagai contoh, judul dari halaman ini adalah &ldquo;Introduction to HTML&rdquo;)</li>
+</ol>
+
+
+<h3>Latihan</h3>
+
+<p>Anggap kita memiliki file HTML seperti di bawah ini</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>Tambahkan sebuah tag <code>&lt;head&gt;</code> pembuka dan <code>&lt;/head&gt;</code> penutup.</li>
+<li>Antara tag <code>&lt;head&gt;</code>, tambahkan didalamnya tag <code>&lt;title&gt;</code> pembuka dan <code>&lt;/title&gt;</code> penutup.</li>
+<li>Diantara tag <code>&lt;title&gt;</code>, tulis judul dari halaman web anda: <strong>Saya lagi belajar HTML</strong>.</li>
+</ol>
+
+
+<h3>Jawaban</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'><span class="nt">&lt;head&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;title&gt;</span>Saya lagi belajar HTML<span class="nt">&lt;/title&gt;</span>
+</span><span class='line'><span class="nt">&lt;/head&gt;</span> 
+</span><span class='line'>  
+</span><span class='line'>  
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-03T13:01:00-05:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/03/html-terminologi-dasar/">[HTML] Terminologi Dasar</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Untuk memperlajari lebih lanjut HTML, kita harus belajar bagaimana berbicara tentang HTML. Anda telah melihat kita banyak menggunakan <code>&lt;&gt;</code>.</p>
+
+<ol>
+<li>Hal-hal didalam <code>&lt;&gt;</code> disebut <strong>tags</strong></li>
+<li>Tags hampir selalu datang dalam berpasangan: tag pembuka dan tag penutup.</li>
+<li>Contoh tag pembuka: <code>&lt;html&gt;</code></li>
+<li>Contoh tag penutup: <code>&lt;html&gt;</code></li>
+</ol>
+
+
+<p>Anda dapat menganggap tag seperti tanda kurung: setiap kali anda membuka satu, anda harus menutupnya. Tag juga bersarang, sehingga anda harus menutup mereka dalam urutan yang benar: tag yang paling baru dibuka harus ditutup pertama kali, seperti pada contoh dibawah.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;first</span> <span class="na">tag</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;second</span> <span class="na">tag</span><span class="nt">&gt;</span>Some text!<span class="err">&lt;</span>/second tag&gt;
+</span><span class='line'><span class="err">&lt;</span>/first tag&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Latihan terakhir mengajarkan kita bagaimana untuk mengatur file HTML kita. Segala sesuatu yang kita lakukan sekarang akan pergi antara <code>&lt;html</code> dan `</html>.</p>
+
+<p>Praktek membuat sempurna! sekali lagi.</p>
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -222,966 +1121,6 @@ Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-26T14:14:00-04:00" pubdate data-updated="true">Oct 26<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/26/intellij-shortcuts-vs-eclipse-shortcuts/">IntelliJ Shortcuts vs Eclipse Shortcuts</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><div class="alert alert-danger">
-Artikel ini saya translate dari <a href="http://javacolors.blogspot.com/2008/10/intellij-shortcuts-vs-eclipse-shortcuts.html"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
-
-Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
-</div>
-
-
-<p>Baru-baru ini, saya mulai bekerja dengan IntelliJ. Tapi, jujur, setelah beberapa tahun dengan Eclipse, sulit untuk menjadi efektif karena tombol shortcut yang berbeda antara dua IDE tersebut. Permintaan kecil di Google dan saya mendapatkan ini:</p>
-
-<table class="table table-bordered">
-<tr>
-    <th>Description</th>
-    <th>Eclipse shortcut</th>
-    <th>IntelliJ shortcut</th>
-</tr>
-<tr>
-    <td>Navigasi sebuah tipe java</td>
-    <td>CTRL + ALT + T</td>
-    <td>CTRL + N</td>
-</tr>
-<tr>
-    <td>Navigasi sebuah <code>Resource</code></td>
-    <td>CTRL + ALT + R</td>
-    <td>CTRL + SHIFT + N</td>
-</tr>
-<tr>
-    <td>Sumber terakhir perbaikan</td>
-    <td>ALT + LEFT ARROW</td>
-    <td>CTRL + ALT + LEFT ARROW</td>
-</tr>
-<tr>
-    <td>Debug</td>
-    <td>F11</td>
-    <td>SHIFT + F9</td>
-</tr>
-<tr>
-    <td>Membuka Deklarasi</td>
-    <td>F3</td>
-    <td>CTRL + SHIFT + B</td>
-</tr>
-<tr>
-    <td>Membuka <code>Hierarchy</code></td>
-    <td>F4</td>
-    <td>CTRL + H</td>
-</tr>
-<tr>
-    <td>Mengatur <code>import</code></td>
-    <td>CTRL + SHIFT + O</td>
-    <td>CTRL + ALT + O</td>
-</tr>
-<tr>
-    <td><code>Find</code></td>
-    <td>CTRL + F</td>
-    <td>CTRL + F</td>
-</tr>
-<tr>
-    <td><code>Find Again/previous</code></td>
-    <td>F3 atau SHIFT + F3</td>
-    <td>F3 atau SHIFT + F3</td>
-</tr>
-<tr>
-    <td>(DEBUG) Step Into</td>
-    <td>F5</td>
-    <td>F7</td>
-</tr>
-<tr>
-    <td>(DEBUG) Step Over</td>
-    <td>F6</td>
-    <td>F8</td>
-</tr>
-<tr>
-    <td>(DEBUG) Step Out</td>
-    <td>F7</td>
-    <td>SHIFT + F8</td>
-</tr>
-
-<tr>
-    <td>(DEBUG) Resume</td>
-    <td>F8</td>
-    <td>F9</td>
-</tr>
-
-<tr>
-    <td>Untuk menemukan <code>implement</code> dari sebuah abstrak <code>method</code></td>
-    <td></td>
-    <td>CTRL + ALT + B</td>
-</tr>
-<tr>
-    <td>Menemukan penggunaan</td>
-    <td>CTRL + SHIFT + G</td>
-    <td>ALT + F7</td>
-</tr>
-</table>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-26T10:57:00-04:00" pubdate data-updated="true">Oct 26<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/26/intellij-idea-and-eclipse-shortcuts/">IntelliJ IDEA and Eclipse Shortcuts</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><div class="alert alert-danger">
-Artikel ini saya translate dari <a href="http://www.catalysts.cc/en/wissenswertes/intellij-idea-and-eclipse-shortcuts/"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
-
-Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
-</div>
-
-
-<p>Setelah sekitar tujuh tahun secara eksklusif menggunakan Eclipse untuk pengembangan Java, saya baru mendapatkan kesempatan untuk bekerja pada proyek dimana <code>IntelliJ IDEA</code> adalah editor standar. Tiba-tiba saya dicoba dan diuji keyboard shortcut eclipse tidak bekerja lagi. Aku masih dalam proses belajar Keyboard Shortcut IntelliJ tapi ini adalah favorit saya sampai sekarang (setara dengan keyboard shortcut eclipse). Ini mungkin membantu orang lain yang beralih dari Eclipse ke IntelliJ. Tentu saja, ada plugin IntelliJ yang tersedia yang mana membuat IntelliJ IDEA berperilaku seperti Eclipse (shortcut dan perilaku compiler yang sama) tapi mengapa melakukan itu?</p>
-
-<p>Pada tabel di bawah, dalam beberapa kasus, shortcut tidak memetakan 1:1, tapi mereka mencapai efek yang sama.</p>
-
-<table class="table table-bordered">
-<tr>
-    <th>Eclipse</th>
-    <th>IntelliJ IDEA</th>
-    <th>Description</th>
-</tr>
-<tr>
-    <td>F4</td>
-    <td>CTRL + H</td>
-    <td>Menampilkan <code>type hierarchy</code></td>
-</tr>
-<tr>
-    <td>CTRL + ALT + G</td>
-    <td>CTRL + ALT + F7</td>
-    <td>Menemukan Penggunaan</td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + U</td>
-    <td>CTRL + F7</td>
-    <td>Menemukan Penggunaan di file yang sama</td>
-</tr>
-<tr>
-    <td>ALT + SHIFT + R</td>
-    <td>SHIFT + F6</td>
-    <td>Rename</td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + R</td>
-    <td>CTRL + SHIFT + N</td>
-    <td>Membuka <code>file</code> / membuka <code>resource</code></td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + X,J</td>
-    <td>CTRL + SHIFT + F10</td>
-    <td>Menjalankan (program java)</td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + O</td>
-    <td>CTRL + ALT + O</td>
-    <td>Mengatur <code>import</code></td>
-</tr>
-<tr>
-    <td>CTRL + O</td>
-    <td>CTRL + F12</td>
-    <td>Menampilkan <code>file structure / outline</code> saat ini</td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + M</td>
-    <td>CTRL + ALT + V</td>
-    <td>Membuat <code>refactoring</code>variable lokal </td>
-</tr>
-<tr>
-    <td>syso + CTRL + SPACE</td>
-    <td>sout + CTRL + J</td>
-    <td><code>System.out.println("")</code></td>
-</tr>
-<tr>
-    <td>ALT + UP/DOWN</td>
-    <td>CTRL + SHIFT + UP/DOWN</td>
-    <td>Memindahkan baris</td>
-</tr>
-<tr>
-    <td>CTRL + D</td>
-    <td>CTRL + Y</td>
-    <td>Hapus baris saat ini</td>
-</tr>
-<tr>
-    <td></td>
-    <td>ALT + H</td>
-    <td>Menampilkan riwayat <code>subversion</code></td>
-</tr>
-<tr>
-    <td>CTRL + H</td>
-    <td>CTRL + SHIFT + F</td>
-    <td>Mencari (Menemukan di dalam <code>path</code>)</td>
-</tr>
-<tr>
-    <td>&#8220;semi&#8221; mengaturnya <code>window -> preferences </code> </td>
-    <td>CTRL + SHIFT + ENTER</td>
-    <td>Jika saya ingin menambahkan titk koma <code>;</code> pada akhir <code>statement</code></td>
-</tr>
-<tr>
-    <td>CTRL + 1 atau CTRL + SHIFT + L</td>
-    <td>CTRL + ALT + V</td>
-    <td>Memperkenalkan variable lokal</td>
-</tr>
-<tr>
-    <td>ALT + SHIFT + S</td>
-    <td>ALT + INSERT</td>
-    <td>generate <code>getters/setters</code></td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + F</td>
-    <td>CTRL + ALT + L</td>
-    <td>format kode</td>
-</tr>
-<tr>
-    <td>CTRL + Y</td>
-    <td>CTRL + SHIFT + Z</td>
-    <td>redo</td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + C</td>
-    <td>CTRL + /</td>
-    <td>comment out lines</td>
-</tr>
-<tr>
-    <td>CTRL + ALT + H</td>
-    <td>CTRL + ALT + H</td>
-    <td>Menampilkan <code>call hierarchy</code></td>
-</tr>
-<tr>
-    <td></td>
-    <td>CTRL + ALT + F7</td>
-    <td>Untuk melompat ke salah satu pemanggil dari <code>method</code></td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + I</td>
-    <td>ALT + F8</td>
-    <td>Mengevaluasi ekspresi (dalam <code>debugger</code>)</td>
-</tr>
-<tr>
-    <td>F3</td>
-    <td>CTRL + B</td>
-    <td>Menuju deklarasi (contoh. menuju deklarasi <code>method</code>)</td>
-</tr>
-</table>
-
-
-<p>Satu hal yang saya tidak menyadari pada awalnya adalah bahwa tombol <code>Scroll to Source</code> di IntelliJ IDEA pada dasarnya sama dengan tombol <code>Link with Editor</code> di eclipse.</p>
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-20T02:53:00-04:00" pubdate data-updated="true">Oct 20<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/20/fungsi-replace-di-excel/">Fungsi Replace Di Excel</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Kemaren saya mendapatkan masalah seperti ini, saya ingin mengubah data berikut:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>--lbl.menu.report.referralbonds
-</span><span class='line'>----lbl.menu.report.rb.transactionstatus
-</span><span class='line'>----lbl.menu.report.rb.transactionhistory
-</span><span class='line'>----lbl.menu.report.rb.dailybalance
-</span><span class='line'>----lbl.menu.report.rb.bondsproductlist</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Menjadi</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>lbl.menu.report.referralbonds
-</span><span class='line'>lbl.menu.report.rb.transactionstatus
-</span><span class='line'>lbl.menu.report.rb.transactionhistory
-</span><span class='line'>lbl.menu.report.rb.dailybalance
-</span><span class='line'>lbl.menu.report.rb.bondsproductlist</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Setelah tanya ke teman, ternyata di excel ada fungsi <code>SUBSTITUTE</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>=SUBSTITUTE(&lt;source&gt;, &lt;oldvalue&gt;, &lt;newvalue&gt;)</span></code></pre></td></tr></table></div></figure>
-
-
-<p>contoh</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>=SUBSTITUTE("----lbl.menu.report.rb.bondsproductlist", "-", "")</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-19T10:51:00-04:00" pubdate data-updated="true">Oct 19<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/19/merubah-versi-scala-di-sbt-console-secara-permanent/">Merubah Versi Scala Di Sbt Console Secara Permanent</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Pada tulisan saya <a href="http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console/">sebelumnya</a>, versi scala yang di pakai tidak permanent, karena ketika keluar dari <code>sbt console</code>, versi scala kembali lagi ke versi default dari <code>sbt</code> yang di gunakan.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sbt
-</span><span class='line'>[info] Set current project to marjinal (in build file:/home/marjinal/)
-</span><span class='line'>&gt; console
-</span><span class='line'>[info] Updating {file:/home/marjinal/}marjinal...
-</span><span class='line'>[info] Resolving org.fusesource.jansi#jansi;1.4 ...
-</span><span class='line'>[info] Done updating.
-</span><span class='line'>[info] Starting scala interpreter...
-</span><span class='line'>[info] 
-</span><span class='line'>Welcome to Scala version 2.10.2 (Java HotSpot(TM) 64-Bit Server VM, Java 1.7.0_10).
-</span><span class='line'>Type in expressions to have them evaluated.
-</span><span class='line'>Type :help for more information.
-</span><span class='line'>
-</span><span class='line'>scala&gt; </span></code></pre></td></tr></table></div></figure>
-
-
-<p>Untuk merubah versi scala menjadi permanent, buat file <code>global.sbt</code>, letakkan ke dalam <code>~/.sbt/{versisbt}</code> (jika versi sbt 0.13.0, ubah <code>versisbt</code> menjadi <code>0.13</code>)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>vi ~/.sbt/0.13/global.sbt</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu isikan</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>scalaVersion := "2.10.3"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>jika anda ingin menggunakan versi scala yang lain, ubah <code>2.10.3</code> menjadi yang anda inginkan.</p>
-
-<h3>Test</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sbt
-</span><span class='line'>[info] Set current project to marjinal (in build file:/home/marjinal/)
-</span><span class='line'>&gt; console
-</span><span class='line'>[info] Updating {file:/home/marjinal/}marjinal...
-</span><span class='line'>[info] Resolving org.fusesource.jansi#jansi;1.4 ...
-</span><span class='line'>[info] Done updating.
-</span><span class='line'>[info] Starting scala interpreter...
-</span><span class='line'>[info] 
-</span><span class='line'>Welcome to Scala version 2.10.3 (Java HotSpot(TM) 64-Bit Server VM, Java 1.7.0_10).
-</span><span class='line'>Type in expressions to have them evaluated.
-</span><span class='line'>Type :help for more information.
-</span><span class='line'>
-</span><span class='line'>scala&gt; </span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-19T10:19:00-04:00" pubdate data-updated="true">Oct 19<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/19/merubah-versi-scala-di-sbt-console/">Merubah Versi Scala Di Sbt Console</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Saat saya menulis tulisan ini, versi terakhir scala adalah 2.10.3.</p>
-
-<p>Tapi ketika saya menjalankan <code>sbt console</code>, sbt masih menggunakan versi 2.10.2. Agar <code>sbt console</code> menggunakan versi 2.10.3 (atau versi yang kita inginkan), sebelum menjalankan command <code>console</code> ketikkan <code>++ scalaversion</code>, contoh <code>++ 2.10.3</code></p>
-
-<h3>Test</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[info] Set current project to marjinal (in build file:/home/marjinal/)
-</span><span class='line'>&gt; ++ 2.10.3
-</span><span class='line'>[info] Setting version to 2.10.3
-</span><span class='line'>[info] Set current project to marjinal (in build file:/home/marjinal/)
-</span><span class='line'>&gt; console
-</span><span class='line'>[info] Starting scala interpreter...
-</span><span class='line'>[info] 
-</span><span class='line'>Welcome to Scala version 2.10.3 (Java HotSpot(TM) 64-Bit Server VM, Java 1.7.0_10).
-</span><span class='line'>Type in expressions to have them evaluated.
-</span><span class='line'>Type :help for more information.
-</span><span class='line'>
-</span><span class='line'>scala&gt; </span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-19T10:13:00-04:00" pubdate data-updated="true">Oct 19<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/19/check-versi-sbt/">Check Versi Sbt</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Untuk mengecek versi sbt, jalankan command berikut:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sbt sbt-version</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Output:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[info] Set current project to marjinal (in build file:/home/marjinal/)
-</span><span class='line'>[info] 0.13.0</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-19T09:51:00-04:00" pubdate data-updated="true">Oct 19<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/19/install-sbt-di-crunchbang/">Install SBT Di Crunchbang</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Di tulisan ini saya ingin menginstall sbt versi <code>0.13.0</code> di crunchbang.</p>
-
-<h3>Download sbt-launch</h3>
-
-<p>Download sbt-launch &amp; letakkan ke dalam folder <code>~/bin</code>.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/bin
-</span><span class='line'>$ wget -c http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.0/sbt-launch.jar</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Output:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>--2013-10-19 09:22:26--  http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.0/sbt-launch.jar
-</span><span class='line'>Resolving repo.typesafe.com... 54.236.91.228, 107.21.30.253, 54.236.87.147
-</span><span class='line'>Connecting to repo.typesafe.com|54.236.91.228|:80... connected.
-</span><span class='line'>HTTP request sent, awaiting response... 200 OK
-</span><span class='line'>Length: 1132093 (1.1M) [application/java-archive]
-</span><span class='line'>Saving to: “sbt-launch.jar”
-</span><span class='line'>
-</span><span class='line'>100%[========================================================================================================================================================&gt;] 1,132,093   21.9K/s   in 31s     
-</span><span class='line'>
-</span><span class='line'>2013-10-19 09:23:02 (35.7 KB/s) - “sbt-launch.jar” saved [1132093/1132093]
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Install sbt</h3>
-
-<p>Buat script dengan nama <code>sbt</code>, lalu letakkan ke dalam folder <code>~/bin</code>:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/bin
-</span><span class='line'>$ vi sbt</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu isikan seperti di bawah ini:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>SBT_OPTS="-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
-</span><span class='line'>java $SBT_OPTS -jar `dirname $0`/sbt-launch.jar "$@"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu save dengan ketikkan <code>:wq</code> dan buat script menjadi executable:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ chmod +x sbt</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Test</h3>
-
-<p>Untuk menge-test apakah sbt sudah berjalan atau belom, ketikkan sembarang command dengan sbt. Di sini saya ingin mengecek versi dari sbt:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sbt sbt-version</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Output:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Getting org.scala-sbt sbt 0.13.0 ...
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt/0.13.0/jars/sbt.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#sbt;0.13.0!sbt.jar (3102ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/main/0.13.0/jars/main.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#main;0.13.0!main.jar (113062ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-interface/0.13.0/jars/compiler-interface-src.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#compiler-interface;0.13.0!compiler-interface-src.jar (2295ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-interface/0.13.0/jars/compiler-interface-bin.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#compiler-interface;0.13.0!compiler-interface-bin.jar (7793ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_8_2/0.13.0/jars/compiler-interface-bin.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#precompiled-2_8_2;0.13.0!compiler-interface-bin.jar (8379ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_9_2/0.13.0/jars/compiler-interface-bin.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#precompiled-2_9_2;0.13.0!compiler-interface-bin.jar (7139ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_9_3/0.13.0/jars/compiler-interface-bin.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#precompiled-2_9_3;0.13.0!compiler-interface-bin.jar (8814ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/actions/0.13.0/jars/actions.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#actions;0.13.0!actions.jar (19182ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/main-settings/0.13.0/jars/main-settings.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#main-settings;0.13.0!main-settings.jar (21100ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/interface/0.13.0/jars/interface.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#interface;0.13.0!interface.jar (3331ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/io/0.13.0/jars/io.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#io;0.13.0!io.jar (14387ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/ivy/0.13.0/jars/ivy.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#ivy;0.13.0!ivy.jar (50749ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/launcher-interface/0.13.0/jars/launcher-interface.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#launcher-interface;0.13.0!launcher-interface.jar (3289ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/logging/0.13.0/jars/logging.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#logging;0.13.0!logging.jar (7008ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/process/0.13.0/jars/process.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#process;0.13.0!process.jar (5271ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/run/0.13.0/jars/run.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#run;0.13.0!run.jar (8107ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/command/0.13.0/jars/command.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#command;0.13.0!command.jar (10176ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/classpath/0.13.0/jars/classpath.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#classpath;0.13.0!classpath.jar (6644ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/completion/0.13.0/jars/completion.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#completion;0.13.0!completion.jar (13117ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/api/0.13.0/jars/api.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#api;0.13.0!api.jar (27268ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-integration/0.13.0/jars/compiler-integration.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#compiler-integration;0.13.0!compiler-integration.jar (16963ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-ivy-integration/0.13.0/jars/compiler-ivy-integration.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#compiler-ivy-integration;0.13.0!compiler-ivy-integration.jar (2360ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/relation/0.13.0/jars/relation.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#relation;0.13.0!relation.jar (5727ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/task-system/0.13.0/jars/task-system.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#task-system;0.13.0!task-system.jar (13756ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/tasks/0.13.0/jars/tasks.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#tasks;0.13.0!tasks.jar (25036ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/tracking/0.13.0/jars/tracking.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#tracking;0.13.0!tracking.jar (4494ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/testing/0.13.0/jars/testing.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#testing;0.13.0!testing.jar (4865ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/control/0.13.0/jars/control.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#control;0.13.0!control.jar (2624ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/collections/0.13.0/jars/collections.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#collections;0.13.0!collections.jar (14381ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/incremental-compiler/0.13.0/jars/incremental-compiler.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#incremental-compiler;0.13.0!incremental-compiler.jar (11719ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compile/0.13.0/jars/compile.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#compile;0.13.0!compile.jar (5027ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/persist/0.13.0/jars/persist.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#persist;0.13.0!persist.jar (6237ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/classfile/0.13.0/jars/classfile.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#classfile;0.13.0!classfile.jar (4795ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbinary/sbinary_2.10/0.4.2/jars/sbinary_2.10.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-tools.sbinary#sbinary_2.10;0.4.2!sbinary_2.10.jar (40445ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/cross/0.13.0/jars/cross.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#cross;0.13.0!cross.jar (2800ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/cache/0.13.0/jars/cache.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#cache;0.13.0!cache.jar (5507ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/test-agent/0.13.0/jars/test-agent.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#test-agent;0.13.0!test-agent.jar (3557ms)
-</span><span class='line'>downloading http://repo1.maven.org/maven2/org/scala-sbt/test-interface/1.0/test-interface-1.0.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#test-interface;1.0!test-interface.jar (2579ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/apply-macro/0.13.0/jars/apply-macro.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#apply-macro;0.13.0!apply-macro.jar (4793ms)
-</span><span class='line'>:: retrieving :: org.scala-sbt#boot-app
-</span><span class='line'>  confs: [default]
-</span><span class='line'>  43 artifacts copied, 0 already retrieved (12440kB/310ms)
-</span><span class='line'>[info] Set current project to marjinal (in build file:/home/homedirectory/)
-</span><span class='line'>[info] 0.13.0
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-11T13:25:00-04:00" pubdate data-updated="true">Oct 11<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/11/ekuivalen-fungsi-left-mid-right-di-oracle/">Ekuivalen Fungsi Left, Mid Dan Right Di Oracle</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Oracle tidak memiliki fungsi <code>Left</code>, <code>Mid</code> dan <code>Right</code> seperti di SQLServer, tapi kita menggunakan fungsi <code>substr</code> agar dapat bekerja sesuai dengan 3 fungsi tersebut.</p>
-
-<div class="well">
-    Sebenarnya fungsi substr di oracle sama dengan fungsi mid di sqlserver
-</div>
-
-
-<h3>Left</h3>
-
-<figure class='code'><figcaption><span>SQLServer</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">LEFT</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;Indo&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>Oracle</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">SUBSTR</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;Indo&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Mid</h3>
-
-<figure class='code'><figcaption><span>SQLServer</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">MID</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;nesia&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><figcaption><span>Oracle</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">SUBSTR</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;nesia&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Right</h3>
-
-<figure class='code'><figcaption><span>SQLServer</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">RIGHT</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;nesia&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><figcaption><span>Oracle</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">SUBSTR</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;nesia&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>-5 = Di hitung dari kanan ke kiri, dalam contoh di atas merupakan posisi <code>n</code>.</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1205,15 +1144,15 @@ Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2013/11/07/simple-if-statement-in-java/">Simple if Statement in Java</a>
+    <a class="list-group-item " href="/blog/2013/11/17/membuat-changelog-liquibase/">Membuat Changelog Liquibase</a>
     
-    <a class="list-group-item " href="/blog/2013/11/07/algorithm-cara-simple-memilih-2-object-di-java/">[Algorithm] Cara Simple Memilih 2 Object Di Java</a>
+    <a class="list-group-item " href="/blog/2013/11/17/memahami-dependency-injection/">Memahami Dependency Injection</a>
     
-    <a class="list-group-item " href="/blog/2013/11/05/upgrade-nodejs-menggunakan-n/">Upgrade NodeJS Menggunakan N</a>
+    <a class="list-group-item " href="/blog/2013/11/09/install-google-chrome-di-crunchbang/">Install Google-chrome Di Crunchbang</a>
     
-    <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-npm/">Semua Tentang Npm</a>
+    <a class="list-group-item " href="/blog/2013/11/09/uninstall-google-chrome-di-crunchbang/">Uninstall Google-chrome Di Crunchbang</a>
     
-    <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-n/">Semua Tentang N</a>
+    <a class="list-group-item " href="/blog/2013/11/09/setting-environment-variable-path-di-windows-7/">Setting Environment Variable (PATH) Di Windows 7</a>
     
   </div>
 </section>
@@ -1233,7 +1172,7 @@ Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2013 - Hendry Suwanda<br>
+  Copyright &copy; 2014 - Hendry Suwanda<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.

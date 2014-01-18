@@ -8,7 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Mar 17th, 2013 Install MongoDB Di Linux Persiapan Sebelum mengikuti tutorial ini, berikut struktur direktori yang saya gunakan di environment yang &hellip;">
+  <meta name="description" content="Mar 17th, 2013 Install MongoDB Di Linux Persiapan Sebelum mengikuti tutorial ini, berikut struktur direktori yang saya gunakan di environment saya: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -116,34 +116,251 @@
 
 <div class="entry-content clearfix"><h3>Persiapan</h3>
 
-<p>Sebelum mengikuti tutorial ini, berikut struktur direktori yang saya gunakan di environment yang saya gunakan:</p>
+<p>Sebelum mengikuti tutorial ini, berikut struktur direktori yang saya gunakan di environment saya:</p>
 
 <ol>
-<li>Application Directory: /home/marjinal/TOOLS/mongodb</li>
-<li>Data directory: /home/marjinal/TOOLS/mongodb/data/db</li>
+<li>Application Directory: /home/hendrysuwanda/tools/mongodb</li>
+<li>Data directory: /home/hendrysuwanda/tools/mongodb/data</li>
 </ol>
 
 
-<p>Linux yang saya gunakan CrunchBang 10 statler (64 bit), dan MongoDB yang akan saya install versi 2.4.1</p>
+<p>Linux yang saya gunakan CrunchBang 11 waldorf (64 bit), dan MongoDB yang akan saya install versi 2.4.7</p>
 
 <h3>Download</h3>
 
 <p>Untuk mendownload mongodb dengan mengetikkan command berikut:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>cd /home/marjinal/TOOLS/mongodb</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd /home/hendrysuwanda/tools</span></code></pre></td></tr></table></div></figure>
 
 
 <p><strong>64 bit</strong></p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>wget -c http://downloads.mongodb.org/linux/mongodb-linux-x86_64-2.4.1.tgz</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget -c http://downloads.mongodb.org/linux/mongodb-linux-x86_64-2.4.7.tgz</span></code></pre></td></tr></table></div></figure>
 
 
 <p><strong>32 bit</strong></p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>wget -c http://downloads.mongodb.org/linux/mongodb-linux-i686-2.4.1.tgz</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>wget -c http://downloads.mongodb.org/linux/mongodb-linux-i686-2.4.7.tgz</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Install</h3>
+
+<p>Untuk menginstall mongodb, terlebih dahulu kita ekstrak file yang baru saja kita download.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ tar -xzvf mongodb-linux-x86_64-2.4.7.tgz </span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mongodb-linux-x86_64-2.4.7/README
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/THIRD-PARTY-NOTICES
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/GNU-AGPL-3.0
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/bin/mongodump
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/bin/mongorestore
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/bin/mongoexport
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/bin/mongoimport
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/bin/mongostat
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/bin/mongotop
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/bin/mongooplog
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/bin/mongofiles
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/bin/bsondump
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/bin/mongoperf
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/bin/mongosniff
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/bin/mongod
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/bin/mongos
+</span><span class='line'>mongodb-linux-x86_64-2.4.7/bin/mongo</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Fungsi di atas untuk meng-ekstrak file mongodb*.tgz, lalu rename direktori <code>mongodb-linux-x86_64-2.4.7</code> menjadi <code>mongodb</code>.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ mv mongodb-linux-x86_64-2.4.7/ mongodb</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Setting Path</h3>
+
+<p>Buka file <code>~/.bashrc</code> lalu tambahkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>PATH=$PATH:$HOME/tools/mongodb/bin</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di akhir file, lalu simpan.</p>
+
+<h3>Menjalankan service</h3>
+
+<p>Untuk menjalankan service mongodb, ketikkan command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ mongod</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk menyimpan file database, secara default mongodb akan menggunakan direktori <code>/data/db</code>, jadi ketika kita menjalankan service mongodb, direktori tersebut harus sudah tersedia, jika tidak, mongodb akan mengeluarkan error seperti ini.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mongod --help for help and startup options
+</span><span class='line'>Fri Nov 15 11:14:27.190 [initandlisten] MongoDB starting : pid=4091 port=27017 dbpath=/data/db/ 64-bit host=hendrysuwanda
+</span><span class='line'>Fri Nov 15 11:14:27.193 [initandlisten] db version v2.4.7
+</span><span class='line'>Fri Nov 15 11:14:27.193 [initandlisten] git version: 0161738abf06c1f067b56a465b706efd6f4bf2aa
+</span><span class='line'>Fri Nov 15 11:14:27.193 [initandlisten] build info: Linux ip-10-2-29-40 2.6.21.7-2.ec2.v1.2.fc8xen #1 SMP Fri Nov 20 17:48:28 EST 2009 x86_64 BOOST_LIB_VERSION=1_49
+</span><span class='line'>Fri Nov 15 11:14:27.193 [initandlisten] allocator: tcmalloc
+</span><span class='line'>Fri Nov 15 11:14:27.193 [initandlisten] options: {}
+</span><span class='line'>Fri Nov 15 11:14:27.193 [initandlisten] exception in initAndListen: 10296 
+</span><span class='line'>*********************************************************************
+</span><span class='line'> ERROR: dbpath (/data/db/) does not exist.
+</span><span class='line'> Create this directory or give existing directory in --dbpath.
+</span><span class='line'> See http://dochub.mongodb.org/core/startingandstoppingmongo
+</span><span class='line'>*********************************************************************
+</span><span class='line'>, terminating
+</span><span class='line'>Fri Nov 15 11:14:27.194 dbexit: 
+</span><span class='line'>Fri Nov 15 11:14:27.194 [initandlisten] shutdown: going to close listening sockets...
+</span><span class='line'>Fri Nov 15 11:14:27.194 [initandlisten] shutdown: going to flush diaglog...
+</span><span class='line'>Fri Nov 15 11:14:27.194 [initandlisten] shutdown: going to close sockets...
+</span><span class='line'>Fri Nov 15 11:14:27.194 [initandlisten] shutdown: waiting for fs preallocator...
+</span><span class='line'>Fri Nov 15 11:14:27.194 [initandlisten] shutdown: lock for final commit...
+</span><span class='line'>Fri Nov 15 11:14:27.194 [initandlisten] shutdown: final commit...
+</span><span class='line'>Fri Nov 15 11:14:27.194 [initandlisten] shutdown: closing all files...
+</span><span class='line'>Fri Nov 15 11:14:27.194 [initandlisten] closeAllFiles() finished
+</span><span class='line'>Fri Nov 15 11:14:27.194 dbexit: really exiting now
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Jika kita ingin menggunakan direktori yang berbeda, kita bisa menggunakan parameter <code>--dbpath</code>. contoh saya ingin file database di letakkan di direktori <code>/home/hendrysuwanda/tools/mongodb</code>, maka ketika menjalankan command <code>mongod</code>, saya mengetikkan seperti ini</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ mongod --dbpath=$HOME/tools/mongodb</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Fri Nov 15 11:19:36.444 [initandlisten] MongoDB starting : pid=4099 port=27017 dbpath=/home/hendrysuwanda/tools/mongodb 64-bit host=hendrysuwanda
+</span><span class='line'>Fri Nov 15 11:19:36.445 [initandlisten] db version v2.4.7
+</span><span class='line'>Fri Nov 15 11:19:36.445 [initandlisten] git version: 0161738abf06c1f067b56a465b706efd6f4bf2aa
+</span><span class='line'>Fri Nov 15 11:19:36.445 [initandlisten] build info: Linux ip-10-2-29-40 2.6.21.7-2.ec2.v1.2.fc8xen #1 SMP Fri Nov 20 17:48:28 EST 2009 x86_64 BOOST_LIB_VERSION=1_49
+</span><span class='line'>Fri Nov 15 11:19:36.445 [initandlisten] allocator: tcmalloc
+</span><span class='line'>Fri Nov 15 11:19:36.445 [initandlisten] options: { dbpath: "/home/hendrysuwanda/tools/mongodb" }
+</span><span class='line'>Fri Nov 15 11:19:36.464 [initandlisten] journal dir=/home/hendrysuwanda/tools/mongodb/journal
+</span><span class='line'>Fri Nov 15 11:19:36.465 [initandlisten] recover : no journal files present, no recovery needed
+</span><span class='line'>Fri Nov 15 11:19:37.653 [initandlisten] preallocateIsFaster=true 21.86
+</span><span class='line'>Fri Nov 15 11:19:38.558 [initandlisten] preallocateIsFaster=true 15.9
+</span><span class='line'>Fri Nov 15 11:19:40.399 [initandlisten] preallocateIsFaster=true 15.26
+</span><span class='line'>Fri Nov 15 11:19:40.400 [initandlisten] preallocateIsFaster check took 3.934 secs
+</span><span class='line'>Fri Nov 15 11:19:40.400 [initandlisten] preallocating a journal file /home/hendrysuwanda/tools/mongodb/journal/prealloc.0
+</span><span class='line'>Fri Nov 15 11:19:43.011 [initandlisten]       File Preallocator Progress: 325058560/1073741824    30%
+</span><span class='line'>Fri Nov 15 11:19:46.218 [initandlisten]       File Preallocator Progress: 503316480/1073741824    46%
+</span><span class='line'>Fri Nov 15 11:19:48.070 [initandlisten] preallocating a journal file /home/hendrysuwanda/tools/mongodb/journal/prealloc.1
+</span><span class='line'>Fri Nov 15 11:19:50.577 [initandlisten] preallocating a journal file /home/hendrysuwanda/tools/mongodb/journal/prealloc.2
+</span><span class='line'>Fri Nov 15 11:19:53.753 [FileAllocator] allocating new datafile /home/hendrysuwanda/tools/mongodb/local.ns, filling with zeroes...
+</span><span class='line'>Fri Nov 15 11:19:53.754 [FileAllocator] creating directory /home/hendrysuwanda/tools/mongodb/_tmp
+</span><span class='line'>Fri Nov 15 11:19:53.765 [FileAllocator] done allocating datafile /home/hendrysuwanda/tools/mongodb/local.ns, size: 16MB,  took 0.002 secs
+</span><span class='line'>Fri Nov 15 11:19:53.781 [FileAllocator] allocating new datafile /home/hendrysuwanda/tools/mongodb/local.0, filling with zeroes...
+</span><span class='line'>Fri Nov 15 11:19:54.022 [FileAllocator] done allocating datafile /home/hendrysuwanda/tools/mongodb/local.0, size: 64MB,  took 0.24 secs
+</span><span class='line'>Fri Nov 15 11:19:54.025 [initandlisten] command local.$cmd command: { create: "startup_log", size: 10485760, capped: true } ntoreturn:1 keyUpdates:0  reslen:37 427ms
+</span><span class='line'>Fri Nov 15 11:19:54.077 [initandlisten] waiting for connections on port 27017
+</span><span class='line'>Fri Nov 15 11:19:54.079 [websvr] admin web console waiting for connections on port 28017
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Jika mendapatkan output seperti diatas, kita sudah bisa melakukan koneksi ke mongodb</p>
+
+<h3>Tes koneksi</h3>
+
+<p>Untuk melakukan koneksi ke mongdb, ketikkan command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ mongo</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>MongoDB shell version: 2.4.7
+</span><span class='line'>connecting to: test
+</span><span class='line'>Welcome to the MongoDB shell.
+</span><span class='line'>For interactive help, type "help".
+</span><span class='line'>For more comprehensive documentation, see
+</span><span class='line'>  http://docs.mongodb.org/
+</span><span class='line'>Questions? Try the support group
+</span><span class='line'>  http://groups.google.com/group/mongodb-user
+</span><span class='line'>&gt; 
+</span></code></pre></td></tr></table></div></figure>
 
 
 
@@ -221,15 +438,15 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2013/11/07/simple-if-statement-in-java/">Simple if Statement in Java</a>
+    <a class="list-group-item " href="/blog/2013/11/17/membuat-changelog-liquibase/">Membuat Changelog Liquibase</a>
     
-    <a class="list-group-item " href="/blog/2013/11/07/algorithm-cara-simple-memilih-2-object-di-java/">[Algorithm] Cara Simple Memilih 2 Object Di Java</a>
+    <a class="list-group-item " href="/blog/2013/11/17/memahami-dependency-injection/">Memahami Dependency Injection</a>
     
-    <a class="list-group-item " href="/blog/2013/11/05/upgrade-nodejs-menggunakan-n/">Upgrade NodeJS Menggunakan N</a>
+    <a class="list-group-item " href="/blog/2013/11/09/install-google-chrome-di-crunchbang/">Install Google-chrome Di Crunchbang</a>
     
-    <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-npm/">Semua Tentang Npm</a>
+    <a class="list-group-item " href="/blog/2013/11/09/uninstall-google-chrome-di-crunchbang/">Uninstall Google-chrome Di Crunchbang</a>
     
-    <a class="list-group-item " href="/blog/2013/11/05/semua-tentang-n/">Semua Tentang N</a>
+    <a class="list-group-item " href="/blog/2013/11/09/setting-environment-variable-path-di-windows-7/">Setting Environment Variable (PATH) Di Windows 7</a>
     
   </div>
 </section>
@@ -249,7 +466,7 @@
     </div>
     <footer role="contentinfo"><div class="container">
     <p class="text-muted credits">
-  Copyright &copy; 2013 - Hendry Suwanda<br>
+  Copyright &copy; 2014 - Hendry Suwanda<br>
   <small>
       <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
       <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.

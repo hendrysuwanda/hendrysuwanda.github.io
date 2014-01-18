@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: www.codecademy.com | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/www-dot-codecademy-dot-com/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2014-01-11T08:55:03-05:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    <email><![CDATA[suwanda.hendry@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Lebih lanjut tentang Judul (heading)]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/04/lebih-lanjut-tentang-judul-heading/"/>
+    <updated>2013-11-04T10:29:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/04/lebih-lanjut-tentang-judul-heading</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>HTML sebenarnya memungkinkan kita memiliki lebih dari satu ukuran heading. Terdapat 6 ukurang heading, dimana <code>&lt;h1&gt;</code> adalah bos dan <code>&lt;h6&gt;</code> adalah  lemah.</p>
+
+<ol>
+<li><code>&lt;h1&gt;</code> &ndash; CEO</li>
+<li><code>&lt;h2&gt;</code> &ndash; VP Fancy Towne</li>
+<li><code>&lt;h3&gt;</code> &ndash; Direktur beberapa stuff</li>
+<li><code>&lt;h4&gt;</code> &ndash; middle management</li>
+<li><code>&lt;h5&gt;</code> &ndash; Asisten rendahan</li>
+<li><code>&lt;h6&gt;</code> &ndash; Mendapatkan kopi untuk orang lain.</li>
+</ol>
+
+
+<p>Dibawah ini kami akan meminta anda untuk menambahkan heading dengan berbagai ukuran. Jangan ragu untuk menulis apapun yang anda sukan untuk heading.</p>
+
+<h3>Latihan</h3>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html></p>
+
+<pre><code>&lt;head&gt;
+    &lt;title&gt;
+        Headings &amp; Paragraphs
+    &lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Ini Judul h1&lt;/h1&gt;
+    &lt;p&gt;ini paragraf1&lt;/p&gt;
+    &lt;p&gt;ini paragraf2&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p></html>
+```</p>
+
+<ol>
+<li>Kode anda sekarang memiliki satu heading <code>&lt;h1&gt;</code> dan 2 paragraf.</li>
+<li>Tambahkan sebuah heading <code>&lt;h3&gt;</code> sebelum paragraf kedua.</li>
+<li>Tambahkan sebuah heading <code>&lt;h5&gt;</code> setelah paragraf ke dua, dan kemudian tambahkan paragraf ketiga setelah heading ini.</li>
+</ol>
+
+
+<h3>Jawaban</h3>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html></p>
+
+<pre><code>&lt;head&gt;
+    &lt;title&gt;
+        Headings &amp; Paragraphs
+    &lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Ini Judul h1&lt;/h1&gt;
+    &lt;p&gt;ini paragraf1&lt;/p&gt;
+    &lt;h3&gt;Ini judul h3&lt;/h3&gt;
+    &lt;p&gt;ini paragraf2&lt;/p&gt;
+    &lt;h5&gt;Ini judul h5&lt;/h5&gt;
+    &lt;p&gt;ini paragraf3&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p></html>
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Paragraf dan Judul (heading)]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/04/paragraf-dan-judul-heading/"/>
+    <updated>2013-11-04T10:01:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/04/paragraf-dan-judul-heading</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Kami pasti membuat kemajuan yang baik! Kami telah belajar kapan dan mengapa kita menggunakan HTML. Kita juga telah belajar bagaimana untuk:</p>
+
+<ol>
+<li>Membentuk file HTML dengan tag</li>
+<li>Judul halaman web (di dalam <code>&lt;head&gt;</code>)</li>
+<li>Membuat paragraf (di dalam <code>&lt;body&gt;</code> dengan tag <code>&lt;p&gt;</code>)</li>
+</ol>
+
+
+<p>Langkah selanjutnya adalah memberikan paragraf kita judul menggunakan tag judul (<code>&lt;head&gt;</code>). Mari mulai dengan tag <code>&lt;h1&gt;</code>, yang menandai sesuatu sebagai yang paling penting. (Semua orang tau font yang paling penting adalah yang paling besar!)</p>
+
+<h3>Latihan</h3>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html></p>
+
+<pre><code>&lt;head&gt;
+    &lt;title&gt;
+        Headings &amp; Paragraphs
+    &lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+
+
+
+&lt;/body&gt;
+</code></pre>
+
+<p></html>
+```</p>
+
+<ol>
+<li>Tanya diri sendiri: Apa judul halaman ini?</li>
+<li>Di bagian body, buat sebuah judul (heading). Untuk melakukan hal ini, buat sebuah tag <code>&lt;h1&gt;</code></li>
+<li>Berikan konten anda sebuah judul. Ini bisa apapun</li>
+<li>Tutup elemen dengan tag penutup <code>&lt;/h1&gt;</code>. (Judul anda sekarang harus antara <code>&lt;h1&gt;</code> dan <code>&lt;/h1&gt;</code>)</li>
+<li>Dibawah judul, buat 2 paragraf menggunakan tag <code>&lt;p&gt;</code> dengan konten apapun yang anda suka.</li>
+</ol>
+
+
+<h3>Jawaban</h3>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html></p>
+
+<pre><code>&lt;head&gt;
+    &lt;title&gt;
+        Headings &amp; Paragraphs
+    &lt;/title&gt;
+
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;h1&gt;Ini judul&lt;/h1&gt;
+    &lt;p&gt;ini paragraf 1&lt;/p&gt;
+    &lt;p&gt;ini paragraf 2&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p></html>
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[HTML] Paragraf dalam body]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/03/html-paragraf-dalam-body/"/>
+    <updated>2013-11-03T13:37:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/03/html-paragraf-dalam-body</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Kami telah menyiapkan banyak hal-hal dasar untuk file HTML untuk Anda. Hal ini sehingga anda tidak akan marah pada kami untuk terlalu banyak pengulangan, silahkan belajar dengan baik.</p>
+
+<p>kita telah belajar tentang tag pembuka dan penutup. Ketika kita meletakkan konten diantara tag, seluruh bit disebut elemen.</p>
+
+<p><code>html
+element = &lt;opening tag&gt; + content + &lt;closing tag&gt;
+</code></p>
+
+<p>Perhatikan kita memiliki tag <code>&lt;title&gt;</code> sekarang, tapi kita butuh tag <code>&lt;body&gt;</code>. Konten dalam <code>&lt;body&gt;</code> adalah apa yang akan terlihat pada halaman yang sebenarnya. <code>&lt;body&gt;</code> masuk kedalam tag html, tapi tidak didalam tag <code>&lt;head&gt;</code>, seperti ini:</p>
+
+<p>```html
+<html></p>
+
+<pre><code>&lt;head&gt;&lt;/head&gt;
+&lt;body&gt;&lt;/body&gt;
+</code></pre>
+
+<p></html>
+```</p>
+
+<h3>Latihan</h3>
+
+<p>Anggap kita memiliki file HTML seperti di bawah ini</p>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html></p>
+
+<pre><code>&lt;head&gt;
+    &lt;title&gt;
+
+    &lt;/title&gt;
+
+&lt;/head&gt;
+</code></pre>
+
+<p></html>
+```</p>
+
+<ol>
+<li>Antara tag <code>&lt;title&gt;</code>, berikan nama halaman anda. Ini dapat apapun.</li>
+<li>Dibawah tag <code>&lt;/head&gt;</code> penutup, letakkan tag <code>&lt;body&gt;</code> pembuka dan penutup</li>
+<li>Didalam <code>&lt;body&gt;</code>, mari buat paragraf! masing-masing paragraf membutuhkan tag pembuka dan penutup: <code>&lt;p&gt;</code> dan <code>&lt;/p&gt;</code>. Kita meletakkan konten di antara tag tersebut.</li>
+<li>Antara tag <code>&lt;body&gt;</code>, buat 2 paragraf dan tulis konten di masing paragraf. (Ini akan membutuhkan 2 pasang tag <code>&lt;p&gt;</code>)</li>
+</ol>
+
+
+<h3>Jawaban</h3>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html></p>
+
+<pre><code>&lt;head&gt;
+    &lt;title&gt;
+    Belajar Paragraf
+    &lt;/title&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;p&gt;Paragraf 1&lt;/p&gt;
+    &lt;p&gt;Paragraf 2&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p></html>
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[HTML] Membuat bagian kepala(head)]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/03/membuat-bagian-kepala-head/"/>
+    <updated>2013-11-03T13:20:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/03/membuat-bagian-kepala-head</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Segala sesuatu di file HTML kita akan pergi antara tag <code>&lt;html&gt;</code> pembuka dan <code>&lt;/html&gt;</code> penutup.</p>
+
+<p>selalu ada dua bagian di file ini: head dan body. Mari fokus pada head</p>
+
+<ol>
+<li>Ia memiliki tag pembuka dan penutup.</li>
+<li>head berisi informasi penting tentang halaman web, seperti judul-nya.</li>
+<li>judul adalah kata-kata yang kita lihat pada tab (sebagai contoh, judul dari halaman ini adalah &ldquo;Introduction to HTML&rdquo;)</li>
+</ol>
+
+
+<h3>Latihan</h3>
+
+<p>Anggap kita memiliki file HTML seperti di bawah ini</p>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html></p>
+
+<p></html>
+```</p>
+
+<ol>
+<li>Tambahkan sebuah tag <code>&lt;head&gt;</code> pembuka dan <code>&lt;/head&gt;</code> penutup.</li>
+<li>Antara tag <code>&lt;head&gt;</code>, tambahkan didalamnya tag <code>&lt;title&gt;</code> pembuka dan <code>&lt;/title&gt;</code> penutup.</li>
+<li>Diantara tag <code>&lt;title&gt;</code>, tulis judul dari halaman web anda: <strong>Saya lagi belajar HTML</strong>.</li>
+</ol>
+
+
+<h3>Jawaban</h3>
+
+<p>```html
+&lt;!DOCTYPE html>
+<html>
+<head></p>
+
+<pre><code>&lt;title&gt;Saya lagi belajar HTML&lt;/title&gt;
+</code></pre>
+
+<p></head></p>
+
+<p></html>
+```</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[HTML] Terminologi Dasar]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/03/html-terminologi-dasar/"/>
+    <updated>2013-11-03T13:01:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/03/html-terminologi-dasar</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.codecademy.com/courses/web-beginner-en-HZA3b/0/1?curriculum_id=50579fb998b470000202dc8b"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Untuk memperlajari lebih lanjut HTML, kita harus belajar bagaimana berbicara tentang HTML. Anda telah melihat kita banyak menggunakan <code>&lt;&gt;</code>.</p>
+
+<ol>
+<li>Hal-hal didalam <code>&lt;&gt;</code> disebut <strong>tags</strong></li>
+<li>Tags hampir selalu datang dalam berpasangan: tag pembuka dan tag penutup.</li>
+<li>Contoh tag pembuka: <code>&lt;html&gt;</code></li>
+<li>Contoh tag penutup: <code>&lt;html&gt;</code></li>
+</ol>
+
+
+<p>Anda dapat menganggap tag seperti tanda kurung: setiap kali anda membuka satu, anda harus menutupnya. Tag juga bersarang, sehingga anda harus menutup mereka dalam urutan yang benar: tag yang paling baru dibuka harus ditutup pertama kali, seperti pada contoh dibawah.</p>
+
+<p>```html
+<first tag></p>
+
+<pre><code>&lt;second tag&gt;Some text!&lt;/second tag&gt;
+</code></pre>
+
+<p></first tag>
+```</p>
+
+<p>Latihan terakhir mengajarkan kita bagaimana untuk mengatur file HTML kita. Segala sesuatu yang kita lakukan sekarang akan pergi antara <code>&lt;html</code> dan `</html>.</p>
+
+<p>Praktek membuat sempurna! sekali lagi.</p>
+]]></content>
+  </entry>
+  
+</feed>

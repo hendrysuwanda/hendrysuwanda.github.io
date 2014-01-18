@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: livereload | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/livereload/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2014-01-11T08:55:03-05:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    <email><![CDATA[suwanda.hendry@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Instal LiveReload di crunchbang]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/09/install-livereload-di-crunchbang/"/>
+    <updated>2013-11-09T14:37:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/09/install-livereload-di-crunchbang</id>
+    <content type="html"><![CDATA[<p>LiveReload is an application that allows you to refresh automatically your browser whenever any file gets modified, even compiling any Sass / Less / CoffeeScript files. In a nutshell, it avoids you the tedious-to-death Alt+Tab F5.</p>
+
+<p>LiveReload adalah aplikasi yang dapat melakukan refresh browser secara otomatis ketika ada file berubah, bahkan ketika melakukan compile Saas/Less/CoffeScript. Ini sangat bermanfaat ketika kita melakukan pengembangan web (front-end).</p>
+
+<p>Untuk menginstall LiveReload di crunchbang, ketikkan command berikut (kita mesti memiliki ruby):</p>
+
+<p><code>
+gem install guard
+gem install guard-livereload
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

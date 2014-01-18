@@ -4,7 +4,7 @@
   <title><![CDATA[Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-11-07T10:05:31-05:00</updated>
+  <updated>2014-01-11T08:55:03-05:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,1252 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Membuat Changelog Liquibase]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/17/membuat-changelog-liquibase/"/>
+    <updated>2013-11-17T03:32:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/17/membuat-changelog-liquibase</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya ambil dari <a href="http://software.endy.muhardin.com/java/membuat-changelog-liquibase/"> sini</a>. Tujuan saya meng-copykan artikel ini di sini, saya ingin mempelajari tentang Liquibase & dan merubah contoh kasus sesuai dengan yang sedang saya hadapi.
+
+Saya akuin sekali lagi, saya belum mendapatkan ijin untuk melakukan copy artikel ini :)
+</div>
+
+
+<p>Saya akan mulai menggunakan tools bernama <a href="http://www.liquibase.org">Liquibase</a> untuk mendefinisikan skema database. Dengan Liquibase ini, skema database dapat disimpan dan dikelola versinya dalam SVC (Source Version Control) seperti Git, SVN, dll. Dia juga memiliki fitur untuk melakukan migrasi database pada saat aplikasi kita naik versi. Bila terjadi error di versi baru, Liquibase juga bisa melakukan rollback agar skema database kita kembali ke kondisi sebelum naik versi.</p>
+
+<p>Skema database dalam Liquibase ditulis dalam format XML, disebut dengan istilah <code>changelog</code>. Untuk project baru, ini bisa ditulis tangan manual, tetap untuk aplikasi yang sudah ada, terlalu merepotkan kalau semua table yang sudah ada harus ditulis ulang skemanya.</p>
+
+<p>Untungnya Liquibase memiliki fitur untuk menulis changelog dari skema yang sudah ada. Berikut langkah-langkahnya:</p>
+
+<ol>
+<li>Siapkan jar liquibase dan database</li>
+<li>Siapkan file konfigurasi</li>
+<li>Jalankan liquibase</li>
+<li>Cek hasilnya</li>
+</ol>
+
+
+<h3>Siapkan jar liquibase dan database</h3>
+
+<p>Database yang akan saya import memiliki konfigurasi sebagai berikut:</p>
+
+<ul>
+<li>Jenis Database: Oracle 11g R2</li>
+<li>Nama Database: corebanking_simulator</li>
+<li>Username Database: corebanking</li>
+<li>Password Database: password</li>
+</ul>
+
+
+<p>Untuk itu, saya siapkan dua file jar, yaitu:</p>
+
+<ul>
+<li>ojdbc6.jar (bisa di download <a href="http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-112010-090769.html">disini</a>)</li>
+<li>liquibase.jar (versi 3.0.7) (bisa di download <a href="http://sourceforge.net/projects/liquibase/files/Liquibase%20Core/liquibase-3.0.7-bin.zip/download">disini</a>)</li>
+</ul>
+
+
+<h3>File Konfigurasi</h3>
+
+<p>Sebetulnya semua informasi ini bisa disebutkan dalam command line argument. Tapi saya lebih suka menulis di file supaya mudah diedit. Berikut isinya.</p>
+
+<figure class='code'><figcaption><span>liquibase.properties</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='properties'><span class='line'><span class="c"># liquibase.properties</span>
+</span><span class='line'><span class="na">driver</span><span class="o">:</span> <span class="s">com.mysql.jdbc.Driver</span>
+</span><span class='line'><span class="na">classpath</span><span class="o">:</span> <span class="s">mysql-connector-java-5.1.22.jar</span>
+</span><span class='line'><span class="na">url</span><span class="o">:</span> <span class="s">jdbc:mysql://localhost/merchant-simulator_development</span>
+</span><span class='line'><span class="na">username</span><span class="o">:</span> <span class="s">root</span>
+</span><span class='line'><span class="na">password</span><span class="o">:</span> <span class="s">admin</span>
+</span><span class='line'><span class="na">changeLogFile</span><span class="o">:</span> <span class="s">liquibase-output.xml</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Simpan file ini dengan nama <code>liquibase.properties</code> dan letakkan difolder yang sama dengan kedua file jar tersebut.</p>
+
+<h3>Jalankan Liquibase</h3>
+
+<p>Mari kita jalankan proses import dengan command berikut:</p>
+
+<figure class='code'><figcaption><span>liquibase.properties</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='properties'><span class='line'><span class="err">java</span> <span class="err">-jar</span> <span class="err">liquibase-core-2.0.5.jar</span> <span class="err">generateChangelog</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Cek Hasilnya</h3>
+
+<p>Perintah diatas akan menghasilkan file <code>liquibase-output.xml</code> yang isinya seperti ini:</p>
+
+<figure class='code'><figcaption><span>liquibase-output.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+<span class='line-number'>96</span>
+<span class='line-number'>97</span>
+<span class='line-number'>98</span>
+<span class='line-number'>99</span>
+<span class='line-number'>100</span>
+<span class='line-number'>101</span>
+<span class='line-number'>102</span>
+<span class='line-number'>103</span>
+<span class='line-number'>104</span>
+<span class='line-number'>105</span>
+<span class='line-number'>106</span>
+<span class='line-number'>107</span>
+<span class='line-number'>108</span>
+<span class='line-number'>109</span>
+<span class='line-number'>110</span>
+<span class='line-number'>111</span>
+<span class='line-number'>112</span>
+<span class='line-number'>113</span>
+<span class='line-number'>114</span>
+<span class='line-number'>115</span>
+<span class='line-number'>116</span>
+<span class='line-number'>117</span>
+<span class='line-number'>118</span>
+<span class='line-number'>119</span>
+<span class='line-number'>120</span>
+<span class='line-number'>121</span>
+<span class='line-number'>122</span>
+<span class='line-number'>123</span>
+<span class='line-number'>124</span>
+<span class='line-number'>125</span>
+<span class='line-number'>126</span>
+<span class='line-number'>127</span>
+<span class='line-number'>128</span>
+<span class='line-number'>129</span>
+<span class='line-number'>130</span>
+<span class='line-number'>131</span>
+<span class='line-number'>132</span>
+<span class='line-number'>133</span>
+<span class='line-number'>134</span>
+<span class='line-number'>135</span>
+<span class='line-number'>136</span>
+<span class='line-number'>137</span>
+<span class='line-number'>138</span>
+<span class='line-number'>139</span>
+<span class='line-number'>140</span>
+<span class='line-number'>141</span>
+<span class='line-number'>142</span>
+<span class='line-number'>143</span>
+<span class='line-number'>144</span>
+<span class='line-number'>145</span>
+<span class='line-number'>146</span>
+<span class='line-number'>147</span>
+<span class='line-number'>148</span>
+<span class='line-number'>149</span>
+<span class='line-number'>150</span>
+<span class='line-number'>151</span>
+<span class='line-number'>152</span>
+<span class='line-number'>153</span>
+<span class='line-number'>154</span>
+<span class='line-number'>155</span>
+<span class='line-number'>156</span>
+<span class='line-number'>157</span>
+<span class='line-number'>158</span>
+<span class='line-number'>159</span>
+<span class='line-number'>160</span>
+<span class='line-number'>161</span>
+<span class='line-number'>162</span>
+<span class='line-number'>163</span>
+<span class='line-number'>164</span>
+<span class='line-number'>165</span>
+<span class='line-number'>166</span>
+<span class='line-number'>167</span>
+<span class='line-number'>168</span>
+<span class='line-number'>169</span>
+<span class='line-number'>170</span>
+<span class='line-number'>171</span>
+<span class='line-number'>172</span>
+<span class='line-number'>173</span>
+<span class='line-number'>174</span>
+<span class='line-number'>175</span>
+<span class='line-number'>176</span>
+<span class='line-number'>177</span>
+<span class='line-number'>178</span>
+<span class='line-number'>179</span>
+<span class='line-number'>180</span>
+<span class='line-number'>181</span>
+<span class='line-number'>182</span>
+<span class='line-number'>183</span>
+<span class='line-number'>184</span>
+<span class='line-number'>185</span>
+<span class='line-number'>186</span>
+<span class='line-number'>187</span>
+<span class='line-number'>188</span>
+<span class='line-number'>189</span>
+<span class='line-number'>190</span>
+<span class='line-number'>191</span>
+<span class='line-number'>192</span>
+<span class='line-number'>193</span>
+<span class='line-number'>194</span>
+<span class='line-number'>195</span>
+<span class='line-number'>196</span>
+<span class='line-number'>197</span>
+<span class='line-number'>198</span>
+<span class='line-number'>199</span>
+<span class='line-number'>200</span>
+<span class='line-number'>201</span>
+<span class='line-number'>202</span>
+<span class='line-number'>203</span>
+<span class='line-number'>204</span>
+<span class='line-number'>205</span>
+<span class='line-number'>206</span>
+<span class='line-number'>207</span>
+<span class='line-number'>208</span>
+<span class='line-number'>209</span>
+<span class='line-number'>210</span>
+<span class='line-number'>211</span>
+<span class='line-number'>212</span>
+<span class='line-number'>213</span>
+<span class='line-number'>214</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;databaseChangeLog</span> <span class="na">xmlns=</span><span class="s">&quot;http://www.liquibase.org/xml/ns/dbchangelog&quot;</span> <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-1&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;c_application_config&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span> <span class="na">primaryKey=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;label&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;value&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-2&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;c_security_menu&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span> <span class="na">primaryKey=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;label&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;menu_action&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;menu_level&quot;</span> <span class="na">type=</span><span class="s">&quot;INT&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;menu_order&quot;</span> <span class="na">type=</span><span class="s">&quot;INT&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;menu_options&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id_parent&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-3&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;c_security_permission&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span> <span class="na">primaryKey=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;permission_label&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;permission_value&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-4&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;c_security_role&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span> <span class="na">primaryKey=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;description&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-5&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;c_security_role_menu&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id_role&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id_menu&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-6&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;c_security_role_permission&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id_role&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id_permission&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-7&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;c_security_user&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span> <span class="na">primaryKey=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;username&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;password&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;fullname&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;active&quot;</span> <span class="na">type=</span><span class="s">&quot;BIT&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id_role&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-8&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createTable</span> <span class="na">tableName=</span><span class="s">&quot;t_tagihan_listrik&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span> <span class="na">primaryKey=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;admin&quot;</span> <span class="na">type=</span><span class="s">&quot;DECIMAL(19,2)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;bulan_tagihan&quot;</span> <span class="na">type=</span><span class="s">&quot;DATE&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;current_meter_reading_1&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;current_meter_reading_2&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;current_meter_reading_3&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;denda&quot;</span> <span class="na">type=</span><span class="s">&quot;DECIMAL(19,2)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;id_pelanggan&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;jatuh_tempo&quot;</span> <span class="na">type=</span><span class="s">&quot;DATE&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;lunas&quot;</span> <span class="na">type=</span><span class="s">&quot;BIT&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;meter_read_date&quot;</span> <span class="na">type=</span><span class="s">&quot;DATE&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;mitra_lunas&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;nama_pelanggan&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;nilai&quot;</span> <span class="na">type=</span><span class="s">&quot;DECIMAL(19,2)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;pajak&quot;</span> <span class="na">type=</span><span class="s">&quot;DECIMAL(19,2)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;power_consuming_category&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;previous_meter_reading_1&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;previous_meter_reading_2&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;previous_meter_reading_3&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;referensi_lunas&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;service_unit&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;service_unit_hone&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;subscriber_segmentation&quot;</span> <span class="na">type=</span><span class="s">&quot;VARCHAR(255)&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;constraints</span> <span class="na">nullable=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/column&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;waktu_lunas&quot;</span> <span class="na">type=</span><span class="s">&quot;DATETIME&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createTable&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-9&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addPrimaryKey</span> <span class="na">columnNames=</span><span class="s">&quot;id_role, id_menu&quot;</span> <span class="na">tableName=</span><span class="s">&quot;c_security_role_menu&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-10&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addPrimaryKey</span> <span class="na">columnNames=</span><span class="s">&quot;id_role, id_permission&quot;</span> <span class="na">tableName=</span><span class="s">&quot;c_security_role_permission&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-11&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addForeignKeyConstraint</span> <span class="na">baseColumnNames=</span><span class="s">&quot;id_parent&quot;</span> <span class="na">baseTableName=</span><span class="s">&quot;c_security_menu&quot;</span> <span class="na">baseTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">constraintName=</span><span class="s">&quot;fk_menu_parent&quot;</span> <span class="na">deferrable=</span><span class="s">&quot;false&quot;</span> <span class="na">initiallyDeferred=</span><span class="s">&quot;false&quot;</span> <span class="na">onDelete=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">onUpdate=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">referencedColumnNames=</span><span class="s">&quot;id&quot;</span> <span class="na">referencedTableName=</span><span class="s">&quot;c_security_menu&quot;</span> <span class="na">referencedTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">referencesUniqueColumn=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-12&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addForeignKeyConstraint</span> <span class="na">baseColumnNames=</span><span class="s">&quot;id_menu&quot;</span> <span class="na">baseTableName=</span><span class="s">&quot;c_security_role_menu&quot;</span> <span class="na">baseTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">constraintName=</span><span class="s">&quot;fk_role_menu_menu&quot;</span> <span class="na">deferrable=</span><span class="s">&quot;false&quot;</span> <span class="na">initiallyDeferred=</span><span class="s">&quot;false&quot;</span> <span class="na">onDelete=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">onUpdate=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">referencedColumnNames=</span><span class="s">&quot;id&quot;</span> <span class="na">referencedTableName=</span><span class="s">&quot;c_security_menu&quot;</span> <span class="na">referencedTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">referencesUniqueColumn=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-13&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addForeignKeyConstraint</span> <span class="na">baseColumnNames=</span><span class="s">&quot;id_role&quot;</span> <span class="na">baseTableName=</span><span class="s">&quot;c_security_role_menu&quot;</span> <span class="na">baseTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">constraintName=</span><span class="s">&quot;fk_role_menu_role&quot;</span> <span class="na">deferrable=</span><span class="s">&quot;false&quot;</span> <span class="na">initiallyDeferred=</span><span class="s">&quot;false&quot;</span> <span class="na">onDelete=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">onUpdate=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">referencedColumnNames=</span><span class="s">&quot;id&quot;</span> <span class="na">referencedTableName=</span><span class="s">&quot;c_security_role&quot;</span> <span class="na">referencedTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">referencesUniqueColumn=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-14&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addForeignKeyConstraint</span> <span class="na">baseColumnNames=</span><span class="s">&quot;id_permission&quot;</span> <span class="na">baseTableName=</span><span class="s">&quot;c_security_role_permission&quot;</span> <span class="na">baseTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">constraintName=</span><span class="s">&quot;fk_role_permission_permission&quot;</span> <span class="na">deferrable=</span><span class="s">&quot;false&quot;</span> <span class="na">initiallyDeferred=</span><span class="s">&quot;false&quot;</span> <span class="na">onDelete=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">onUpdate=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">referencedColumnNames=</span><span class="s">&quot;id&quot;</span> <span class="na">referencedTableName=</span><span class="s">&quot;c_security_permission&quot;</span> <span class="na">referencedTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">referencesUniqueColumn=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-15&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addForeignKeyConstraint</span> <span class="na">baseColumnNames=</span><span class="s">&quot;id_role&quot;</span> <span class="na">baseTableName=</span><span class="s">&quot;c_security_role_permission&quot;</span> <span class="na">baseTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">constraintName=</span><span class="s">&quot;fk_role_permission_role&quot;</span> <span class="na">deferrable=</span><span class="s">&quot;false&quot;</span> <span class="na">initiallyDeferred=</span><span class="s">&quot;false&quot;</span> <span class="na">onDelete=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">onUpdate=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">referencedColumnNames=</span><span class="s">&quot;id&quot;</span> <span class="na">referencedTableName=</span><span class="s">&quot;c_security_role&quot;</span> <span class="na">referencedTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">referencesUniqueColumn=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-16&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;addForeignKeyConstraint</span> <span class="na">baseColumnNames=</span><span class="s">&quot;id_role&quot;</span> <span class="na">baseTableName=</span><span class="s">&quot;c_security_user&quot;</span> <span class="na">baseTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">constraintName=</span><span class="s">&quot;fk_user_role&quot;</span> <span class="na">deferrable=</span><span class="s">&quot;false&quot;</span> <span class="na">initiallyDeferred=</span><span class="s">&quot;false&quot;</span> <span class="na">onDelete=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">onUpdate=</span><span class="s">&quot;NO ACTION&quot;</span> <span class="na">referencedColumnNames=</span><span class="s">&quot;id&quot;</span> <span class="na">referencedTableName=</span><span class="s">&quot;c_security_role&quot;</span> <span class="na">referencedTableSchemaName=</span><span class="s">&quot;merchant-simulator_development&quot;</span> <span class="na">referencesUniqueColumn=</span><span class="s">&quot;false&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-17&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createIndex</span> <span class="na">indexName=</span><span class="s">&quot;name&quot;</span> <span class="na">tableName=</span><span class="s">&quot;c_application_config&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createIndex&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-18&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createIndex</span> <span class="na">indexName=</span><span class="s">&quot;unique_permission_value&quot;</span> <span class="na">tableName=</span><span class="s">&quot;c_security_permission&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;permission_value&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createIndex&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-19&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createIndex</span> <span class="na">indexName=</span><span class="s">&quot;unique_role_name&quot;</span> <span class="na">tableName=</span><span class="s">&quot;c_security_role&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;name&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createIndex&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;changeSet</span> <span class="na">author=</span><span class="s">&quot;endy (generated)&quot;</span> <span class="na">id=</span><span class="s">&quot;1357786892853-20&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;createIndex</span> <span class="na">indexName=</span><span class="s">&quot;unique_user_username&quot;</span> <span class="na">tableName=</span><span class="s">&quot;c_security_user&quot;</span> <span class="na">unique=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;column</span> <span class="na">name=</span><span class="s">&quot;username&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/createIndex&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/changeSet&gt;</span>
+</span><span class='line'><span class="nt">&lt;/databaseChangeLog&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>File diatas siap diedit dan disimpan direpository version control. Biasanya, edit yang saya lakukan:</p>
+
+<ul>
+<li>menggabungkan semua <code>createTable</code> menjadi satu changeset</li>
+<li>menggabungkan semua <code>addForeignKeyConstraint</code> dan <code>createIndex</code> menjadi satu changeset.</li>
+<li>menambahkan loader untuk file csv sebagai data awal</li>
+<li>mengganti nama file</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Memahami Dependency Injection]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/17/memahami-dependency-injection/"/>
+    <updated>2013-11-17T03:24:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/17/memahami-dependency-injection</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Install google-chrome di crunchbang]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/09/install-google-chrome-di-crunchbang/"/>
+    <updated>2013-11-09T15:06:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/09/install-google-chrome-di-crunchbang</id>
+    <content type="html"><![CDATA[<p>Sebelum melakukan install, terlebih dahulu kita download google-chrome (saya menggunakan 64 bit), dengan mengetikkan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>--2013-11-09 15:00:20--  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+</span><span class='line'>Resolving dl.google.com... 74.125.200.136, 74.125.200.190, 74.125.200.91, ...
+</span><span class='line'>Connecting to dl.google.com|74.125.200.136|:443... connected.
+</span><span class='line'>HTTP request sent, awaiting response... 206 Partial Content
+</span><span class='line'>Length: 44536710 (42M), 35009504 (33M) remaining [application/x-debian-package]
+</span><span class='line'>Saving to: “google-chrome-stable_current_amd64.deb”
+</span><span class='line'>
+</span><span class='line'>100%[++++++++++++++++++++++++++++++++========================================================================================================================&gt;] 44,536,710   384K/s   in 95s     
+</span><span class='line'>
+</span><span class='line'>2013-11-09 15:01:56 (360 KB/s) - “google-chrome-stable_current_amd64.deb” saved [44536710/44536710]
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Setelah itu, jalankan command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo dpkg -i google-chrome-stable_current_amd64.deb</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[sudo] password for user: 
+</span><span class='line'>Selecting previously deselected package google-chrome-stable.
+</span><span class='line'>(Reading database ... 112111 files and directories currently installed.)
+</span><span class='line'>Unpacking google-chrome-stable (from google-chrome-stable_current_amd64.deb) ...
+</span><span class='line'>dpkg: dependency problems prevent configuration of google-chrome-stable:
+</span><span class='line'> google-chrome-stable depends on gconf-service; however:
+</span><span class='line'>  Package gconf-service is not installed.
+</span><span class='line'> google-chrome-stable depends on libgconf-2-4 (&gt;= 2.31.1); however:
+</span><span class='line'>  Package libgconf-2-4 is not installed.
+</span><span class='line'> google-chrome-stable depends on libgdk-pixbuf2.0-0 (&gt;= 2.22.0); however:
+</span><span class='line'>  Package libgdk-pixbuf2.0-0 is not installed.
+</span><span class='line'> google-chrome-stable depends on libgtk2.0-0 (&gt;= 2.24.0); however:
+</span><span class='line'>  Version of libgtk2.0-0 on system is 2.20.1-2.
+</span><span class='line'> google-chrome-stable depends on libnspr4 (&gt;= 1.8.0.10); however:
+</span><span class='line'>  Package libnspr4 is not installed.
+</span><span class='line'> google-chrome-stable depends on libnss3 (&gt;= 3.14.3); however:
+</span><span class='line'>  Package libnss3 is not installed.
+</span><span class='line'> google-chrome-stable depends on libstdc++6 (&gt;= 4.6); however:
+</span><span class='line'>  Version of libstdc++6 on system is 4.4.5-8.
+</span><span class='line'> google-chrome-stable depends on libx11-6 (&gt;= 2:1.4.99.1); however:
+</span><span class='line'>  Version of libx11-6 on system is 2:1.3.3-4.
+</span><span class='line'> google-chrome-stable depends on libxss1; however:
+</span><span class='line'>  Package libxss1 is not installed.
+</span><span class='line'>dpkg: error processing google-chrome-stable (--install):
+</span><span class='line'> dependency problems - leaving unconfigured
+</span><span class='line'>Processing triggers for man-db ...
+</span><span class='line'>Processing triggers for desktop-file-utils ...
+</span><span class='line'>Processing triggers for menu ...
+</span><span class='line'>Errors were encountered while processing:
+</span><span class='line'> google-chrome-stable</span></code></pre></td></tr></table></div></figure>
+
+
+<p>hmmm, ternyata banyak dependensi yang belum terinstall, setelah google, kita dapat menginstall *.deb, tanpa menghiraukan apakan dependensi nya sudah terinstall atau belom dengan menggunakan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo gdebi google-chrome-stable_current_amd64.deb</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Reading package lists... Done
+</span><span class='line'>Building dependency tree        
+</span><span class='line'>Reading state information... Done
+</span><span class='line'>Building data structures... Done 
+</span><span class='line'>Building data structures... Done 
+</span><span class='line'>This package is uninstallable</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Setelah itu, kita install dependensi yang diperlukan, dengan mengetikkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$sudo apt-get -f install</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Reading package lists... Done
+</span><span class='line'>Building dependency tree       
+</span><span class='line'>Reading state information... Done
+</span><span class='line'>Correcting dependencies... Done
+</span><span class='line'>The following package was automatically installed and is no longer required:
+</span><span class='line'>  libvpx0
+</span><span class='line'>Use 'apt-get autoremove' to remove them.
+</span><span class='line'>The following extra packages will be installed:
+</span><span class='line'>  libmozjs10d libnss3 libnss3-1d libvpx1 libxss1 xulrunner-10.0
+</span><span class='line'>Suggested packages:
+</span><span class='line'>  libcanberra0
+</span><span class='line'>The following packages will be REMOVED:
+</span><span class='line'>  google-chrome-stable
+</span><span class='line'>The following NEW packages will be installed:
+</span><span class='line'>  libnss3 libvpx1 libxss1
+</span><span class='line'>The following packages will be upgraded:
+</span><span class='line'>  libmozjs10d libnss3-1d xulrunner-10.0
+</span><span class='line'>3 upgraded, 3 newly installed, 1 to remove and 196 not upgraded.
+</span><span class='line'>1 not fully installed or removed.
+</span><span class='line'>Need to get 14.8 MB/14.8 MB of archives.
+</span><span class='line'>After this operation, 166 MB disk space will be freed.
+</span><span class='line'>Do you want to continue [Y/n]? y
+</span><span class='line'>WARNING: The following packages cannot be authenticated!
+</span><span class='line'>  libvpx1 xulrunner-10.0 libmozjs10d
+</span><span class='line'>Install these packages without verification [y/N]? Y
+</span><span class='line'>Get:1 http://backports.debian.org/debian-backports/ squeeze-backports/main libnss3-1d amd64 2:3.14.3-1~bpo60+1 [20.0 kB]
+</span><span class='line'>Get:2 http://backports.debian.org/debian-backports/ squeeze-backports/main libnss3 amd64 2:3.14.3-1~bpo60+1 [1,049 kB]
+</span><span class='line'>Get:3 http://packages.crunchbang.org/statler-mozilla/ squeeze-backports/iceweasel-release libvpx1 amd64 1.0.0-1~bpo60+1 [286 kB]
+</span><span class='line'>Get:4 http://packages.crunchbang.org/statler-mozilla/ squeeze-backports/iceweasel-release xulrunner-10.0 amd64 10.0.2-1~bpo60+1 [11.9 MB]
+</span><span class='line'>Get:5 http://packages.crunchbang.org/statler-mozilla/ squeeze-backports/iceweasel-release libmozjs10d amd64 10.0.2-1~bpo60+1 [1,485 kB]                                                          
+</span><span class='line'>Fetched 14.8 MB in 44s (330 kB/s)                                                                                                                                                                
+</span><span class='line'>(Reading database ... 112217 files and directories currently installed.)
+</span><span class='line'>Removing google-chrome-stable ...
+</span><span class='line'>Processing triggers for menu ...
+</span><span class='line'>Processing triggers for desktop-file-utils ...
+</span><span class='line'>Processing triggers for man-db ...
+</span><span class='line'>(Reading database ... 112111 files and directories currently installed.)
+</span><span class='line'>Preparing to replace libnss3-1d 3.13.1.with.ckbi.1.88-1~bpo60+1 (using .../libnss3-1d_2%3a3.14.3-1~bpo60+1_amd64.deb) ...
+</span><span class='line'>Unpacking replacement libnss3-1d ...
+</span><span class='line'>Selecting previously deselected package libnss3.
+</span><span class='line'>Unpacking libnss3 (from .../libnss3_2%3a3.14.3-1~bpo60+1_amd64.deb) ...
+</span><span class='line'>Selecting previously deselected package libvpx1.
+</span><span class='line'>Unpacking libvpx1 (from .../libvpx1_1.0.0-1~bpo60+1_amd64.deb) ...
+</span><span class='line'>Preparing to replace xulrunner-10.0 10.0-1~bpo60+1 (using .../xulrunner-10.0_10.0.2-1~bpo60+1_amd64.deb) ...
+</span><span class='line'>Unpacking replacement xulrunner-10.0 ...
+</span><span class='line'>Preparing to replace libmozjs10d 10.0-1~bpo60+1 (using .../libmozjs10d_10.0.2-1~bpo60+1_amd64.deb) ...
+</span><span class='line'>Unpacking replacement libmozjs10d ...
+</span><span class='line'>Selecting previously deselected package libxss1.
+</span><span class='line'>Unpacking libxss1 (from .../libxss1_1%3a1.2.0-2_amd64.deb) ...
+</span><span class='line'>Processing triggers for man-db ...
+</span><span class='line'>Setting up libnss3 (2:3.14.3-1~bpo60+1) ...
+</span><span class='line'>Setting up libnss3-1d (2:3.14.3-1~bpo60+1) ...
+</span><span class='line'>Setting up libvpx1 (1.0.0-1~bpo60+1) ...
+</span><span class='line'>Setting up libmozjs10d (10.0.2-1~bpo60+1) ...
+</span><span class='line'>Setting up xulrunner-10.0 (10.0.2-1~bpo60+1) ...
+</span><span class='line'>Setting up libxss1 (1:1.2.0-2) ...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Seperti kita lihat, ternyata google-chrome-stable di hapus, jadi kita jalankan lagi</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo dpkg -i google-chrome-stable_current_amd64.deb</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Uninstall google-chrome di crunchbang]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/09/uninstall-google-chrome-di-crunchbang/"/>
+    <updated>2013-11-09T14:49:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/09/uninstall-google-chrome-di-crunchbang</id>
+    <content type="html"><![CDATA[<p>Untuk menginstall google-chrome di crunchbang/debian, ketikkan command berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo apt-get remove google-chrome-stable</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[sudo] password for user: 
+</span><span class='line'>Reading package lists... Done
+</span><span class='line'>Building dependency tree       
+</span><span class='line'>Reading state information... Done
+</span><span class='line'>The following packages will be REMOVED:
+</span><span class='line'>  google-chrome-stable
+</span><span class='line'>0 upgraded, 0 newly installed, 1 to remove and 199 not upgraded.
+</span><span class='line'>After this operation, 163 MB disk space will be freed.
+</span><span class='line'>Do you want to continue [Y/n]? y
+</span><span class='line'>(Reading database ... 112222 files and directories currently installed.)
+</span><span class='line'>Removing google-chrome-stable ...
+</span><span class='line'>update-alternatives: using /usr/bin/iceweasel to provide /usr/bin/x-www-browser (x-www-browser) in auto mode.
+</span><span class='line'>update-alternatives: using /usr/bin/iceweasel to provide /usr/bin/gnome-www-browser (gnome-www-browser) in auto mode.
+</span><span class='line'>Processing triggers for menu ...
+</span><span class='line'>Processing triggers for man-db ...
+</span><span class='line'>Processing triggers for desktop-file-utils ...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu ketikkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sudo apt-get autoremove</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Output</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Reading package lists... Done
+</span><span class='line'>Building dependency tree       
+</span><span class='line'>Reading state information... Done
+</span><span class='line'>The following packages will be REMOVED:
+</span><span class='line'>  libxss1
+</span><span class='line'>0 upgraded, 0 newly installed, 1 to remove and 199 not upgraded.
+</span><span class='line'>After this operation, 69.6 kB disk space will be freed.
+</span><span class='line'>Do you want to continue [Y/n]? y
+</span><span class='line'>(Reading database ... 112117 files and directories currently installed.)
+</span><span class='line'>Removing libxss1 ...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ini untuk memastikan anda tidak memiliki paket yang tidak perlu yang masih tersisa, dan akan menghapus file konfigurasi, menghemat sedikit space dan memastikan tidak akan mengganggu aplikasi lain.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Setting environment variable (PATH) di windows 7]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/09/setting-environment-variable-path-di-windows-7/"/>
+    <updated>2013-11-09T14:45:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/09/setting-environment-variable-path-di-windows-7</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Instal LiveReload di crunchbang]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/09/install-livereload-di-crunchbang/"/>
+    <updated>2013-11-09T14:37:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/09/install-livereload-di-crunchbang</id>
+    <content type="html"><![CDATA[<p>LiveReload is an application that allows you to refresh automatically your browser whenever any file gets modified, even compiling any Sass / Less / CoffeeScript files. In a nutshell, it avoids you the tedious-to-death Alt+Tab F5.</p>
+
+<p>LiveReload adalah aplikasi yang dapat melakukan refresh browser secara otomatis ketika ada file berubah, bahkan ketika melakukan compile Saas/Less/CoffeScript. Ini sangat bermanfaat ketika kita melakukan pengembangan web (front-end).</p>
+
+<p>Untuk menginstall LiveReload di crunchbang, ketikkan command berikut (kita mesti memiliki ruby):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gem install guard
+</span><span class='line'>gem install guard-livereload</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Fungsi scala call-by-name]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/07/fungsi-scala-call-by-name/"/>
+    <updated>2013-11-07T13:53:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/07/fungsi-scala-call-by-name</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.tutorialspoint.com/scala/functions_call_by_name.htm"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Umumnya, parameter-parameter fungsi adalah parameter-parameter by-value; yakni,nilai dari parameter ditentukan sebelum ia dilewatkan ke fungsi. Tapi bagaimana kalau kita perlu menulis sebuah fungsi yang menerima parameter sebuah ekspresi yang kita tidak ingin mengevaluasi nya sampai ia dipanggil didalam fungsi kita? Untuk situasi seperti ini, scala menawarkan parameter call-by-name.</p>
+
+<p>mekanisme call-by-name melewatkan blok kode ke variable dan setiap saat variable diakses, blok kode akan eksekusi dan nilai akan hitung.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">object</span> <span class="nc">Test</span> <span class="o">{</span>
+</span><span class='line'>   <span class="k">def</span> <span class="n">main</span><span class="o">(</span><span class="n">args</span><span class="k">:</span> <span class="kt">Array</span><span class="o">[</span><span class="kt">String</span><span class="o">])</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">delayed</span><span class="o">(</span><span class="n">time</span><span class="o">());</span>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>   <span class="k">def</span> <span class="n">time</span><span class="o">()</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">println</span><span class="o">(</span><span class="s">&quot;Getting time in nano seconds&quot;</span><span class="o">)</span>
+</span><span class='line'>      <span class="nc">System</span><span class="o">.</span><span class="n">nanoTime</span>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'>   <span class="k">def</span> <span class="n">delayed</span><span class="o">(</span> <span class="n">t</span><span class="k">:</span> <span class="o">=&gt;</span> <span class="nc">Long</span> <span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>      <span class="n">println</span><span class="o">(</span><span class="s">&quot;In delayed method&quot;</span><span class="o">)</span>
+</span><span class='line'>      <span class="n">println</span><span class="o">(</span><span class="s">&quot;Param: &quot;</span> <span class="o">+</span> <span class="n">t</span><span class="o">)</span>
+</span><span class='line'>      <span class="n">t</span>
+</span><span class='line'>   <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>disini, kita mendeklarasikan method <code>delayed</code>, yang mana membutuhkan parameter <code>call-by-name</code> dengan meletakkan simbol <code>=&gt;</code> antara nama variable dengan tipe variable. Ketika kode diatas di kompile dan dieksekusi, menghasilkan hasil sebagai berikut:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">C</span><span class="o">:/&gt;</span><span class="n">scalac</span> <span class="nc">Test</span><span class="o">.</span><span class="n">scala</span>
+</span><span class='line'><span class="n">C</span><span class="o">:/&gt;</span><span class="n">scala</span> <span class="nc">Test</span>
+</span><span class='line'><span class="nc">In</span> <span class="n">delayed</span> <span class="n">method</span>
+</span><span class='line'><span class="nc">Getting</span> <span class="n">time</span> <span class="n">in</span> <span class="n">nano</span> <span class="n">seconds</span>
+</span><span class='line'><span class="nc">Param</span><span class="k">:</span> <span class="err">81303808765843</span>
+</span><span class='line'><span class="kt">Getting</span> <span class="kt">time</span> <span class="kt">in</span> <span class="kt">nano</span> <span class="kt">seconds</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">C</span><span class="o">:/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di sini, <code>delayed</code>  mencetak sebuah pesan yang menunjukkan bahwa telah masuk kedalam method. Kemudian, <code>delayed</code> mencetak sebuah pesan dengan nilainya. Terakhir, delayed mengembalikan <code>t</code>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Call by Name and Call by Value, klarifikasi diperlukan]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/07/call-by-name-and-call-by-value-klarifikasi-diperlukan/"/>
+    <updated>2013-11-07T11:19:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/07/call-by-name-and-call-by-value-klarifikasi-diperlukan</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://stackoverflow.com/questions/13337338/call-by-name-vs-call-by-value-in-scala-clarification-needed"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<h3>Pertanyaan</h3>
+
+<div class="alert alert-info">
+Pertanyaan ini di ajukan oleh <a href="http://stackoverflow.com/users/359862/jam">Jam</a>
+</div>
+
+
+<p>Seperti yang saya pahami, di Scala,fungsi dapat dipanggil dengan 2 cara:</p>
+
+<ul>
+<li>by-value, atau</li>
+<li>by-name</li>
+</ul>
+
+
+<p>Misalnya, diberi deklarasi berikut, apakah kita tahu bagaimana fungsi akan dipanggil?</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">f</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="n">x</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Panggil</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">f</span> <span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">)</span>
+</span><span class='line'><span class="n">f</span> <span class="o">(</span><span class="mi">23</span><span class="o">+</span><span class="mi">55</span><span class="o">,</span><span class="mi">5</span><span class="o">)</span>
+</span><span class='line'><span class="n">f</span> <span class="o">(</span><span class="mi">12</span><span class="o">+</span><span class="mi">3</span><span class="o">,</span> <span class="mi">44</span><span class="o">*</span><span class="mi">11</span><span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Apa ketentuannya?</p>
+
+<h3>Jawaban</h3>
+
+<div class="alert alert-info">
+jawaban dari <a href="http://stackoverflow.com/users/247985/dhg">dhg</a>
+</div>
+
+
+<p>Contoh yang telah anda berikan hanya menggunakan call-by-value, jadi saya akan memberikan yang baru, sederhana, contoh yang menunjukkan perbedaan.</p>
+
+<p>Pertama, mari kita asumsikan kita memiliki fungsi dengan <code>side-effect</code>. Fungsi ini mencetak sesuatu dan kemudian mengembalikan sebuah <code>Int</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">something</span><span class="o">()</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">println</span><span class="o">(</span><span class="s">&quot;calling something&quot;</span><span class="o">)</span>
+</span><span class='line'>  <span class="mi">1</span> <span class="c1">//return value</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sekarang kita akan mendefinisikan dua fungsi yang menerima argumen <code>Int</code> yang persis sama kecuali yang satu membutuhkan argumen dalam gaya call-by-value <code>(x: Int)</code> dan yang lainnya dalam gaya call-by-name <code>(x: =&gt; Int)</code></p>
+
+<figure class='code'><figcaption><span>call-by-value</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">callByValue</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">println</span><span class="o">(</span><span class="s">&quot;x1=&quot;</span> <span class="o">+</span> <span class="n">x</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">println</span><span class="o">(</span><span class="s">&quot;x2=&quot;</span> <span class="o">+</span> <span class="n">x</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>call-by-name</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">callByName</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="o">=&gt;</span> <span class="nc">Int</span><span class="o">)</span> <span class="k">=</span> <span class="o">{</span>
+</span><span class='line'>  <span class="n">println</span><span class="o">(</span><span class="s">&quot;x1=&quot;</span> <span class="o">+</span> <span class="n">x</span><span class="o">)</span>
+</span><span class='line'>  <span class="n">println</span><span class="o">(</span><span class="s">&quot;x2=&quot;</span> <span class="o">+</span> <span class="n">x</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sekarang apa yang terjadi ketika kita memanggilnya dengan fungsi <code>side-effect</code> kita?</p>
+
+<figure class='code'><figcaption><span>call-by-name</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">scala</span><span class="o">&gt;</span> <span class="n">callByValue</span><span class="o">(</span><span class="n">something</span><span class="o">())</span>
+</span><span class='line'><span class="n">calling</span> <span class="n">something</span>
+</span><span class='line'><span class="n">x1</span><span class="k">=</span><span class="mi">1</span>
+</span><span class='line'><span class="n">x2</span><span class="k">=</span><span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">scala</span><span class="o">&gt;</span> <span class="n">callByName</span><span class="o">(</span><span class="n">something</span><span class="o">())</span>
+</span><span class='line'><span class="n">calling</span> <span class="n">something</span>
+</span><span class='line'><span class="n">x1</span><span class="k">=</span><span class="mi">1</span>
+</span><span class='line'><span class="n">calling</span> <span class="n">something</span>
+</span><span class='line'><span class="n">x2</span><span class="k">=</span><span class="mi">1</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sehingga anda dapat melihat bahwa dalam versi call-by-value, <code>side-effect</code> dari  pemanggilan fungsi <code>something()</code> hanya terjadi sekali. Namun, dalam versi call-by-name, <code>side-effect</code> terjadi dua kali.</p>
+
+<p>Hal ini karena fungsi call-by-value menghitung nilai ekspresi yang diberikan sebelum memanggil fungsi, sehingga nilai yang sama setiap kali diakses. Namun, fungsi call-by-name menghitung ulang nilai ekspresi yang diberikan setiap kali ia diakses.</p>
+
+<div class="alert alert-info">
+jawaban dari <a href="http://stackoverflow.com/users/2291699/behrooz-tabesh">Behrooz Tabesh</a>
+</div>
+
+
+<p>Berikut ini adalah contoh dari Martin Odersky (penemu scala)</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">test</span> <span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span> <span class="kt">Int</span><span class="o">)</span> <span class="k">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Kita ingin tahu evaluasi mana yang lebih cepat (langkah sedikit) dalam kondisi ini:</p>
+
+<p><strong>test (2, 3)</strong></p>
+
+<figure class='code'><figcaption><span>call-by-value</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+</span><span class='line'><span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span>
+</span><span class='line'><span class="mi">4</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>call-by-name</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">)</span>
+</span><span class='line'><span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span>
+</span><span class='line'><span class="mi">4</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>jadi 2 evaluasi disini sama</p>
+
+<p><strong>test(3+4, 8)</strong></p>
+
+<figure class='code'><figcaption><span>call-by-value</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+</span><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+</span><span class='line'><span class="mi">49</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>call-by-name</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+</span><span class='line'><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="o">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+</span><span class='line'><span class="mi">49</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>disini call-by-value lebih cepat</p>
+
+<p><strong>test(7, 2*4)</strong></p>
+
+<figure class='code'><figcaption><span>call-by-value</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+</span><span class='line'><span class="mi">49</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>call-by-name</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+</span><span class='line'><span class="mi">49</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>disini, call-by-name lebih cepat</p>
+
+<p><strong>test(3+4, 2*4)</strong></p>
+
+<figure class='code'><figcaption><span>call-by-value</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">7</span><span class="o">,</span> <span class="mi">8</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+</span><span class='line'><span class="mi">49</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span>call-by-name</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="n">test</span><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="o">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">4</span><span class="o">)</span>
+</span><span class='line'><span class="mi">7</span> <span class="o">*</span> <span class="mi">7</span>
+</span><span class='line'><span class="mi">49</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>lagi, keduanya sama.</p>
+
+<div class="alert alert-info">
+jawaban dari <a href="http://stackoverflow.com/users/660675/kaos12">kaos12</a>
+</div>
+
+
+<p>Dalam kasus conton mu semua parameter akan dievaluasi sebelum fungsi tersebut dipanggil, karena kamu hanya mendefiniskan mereka <code>by-value</code>. Jika kamu ingin mendefinisikan parameter kamu <code>by-name</code>, kamu harus melewatkan kode block:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='scala'><span class='line'><span class="k">def</span> <span class="n">f</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="o">=&gt;</span> <span class="nc">Int</span><span class="o">,</span> <span class="n">y</span><span class="k">:</span><span class="kt">Int</span><span class="o">)</span> <span class="k">=</span><span class="n">x</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Dengan cara ini parameter <code>x</code> akan dievaluasi sampai dipanggil dalam fungsi.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Simple If Statement in Java]]></title>
@@ -302,10 +1548,29 @@ gw menulis artikel ini, karena terkadang gw lupa dengan nama nya :D
 
 <h3>Install</h3>
 
+<div class="alert alert-danger">
+Sebelum menginstall npm, terlebih dahulu kita mesti menginstall nodejs
+</div>
+
+
 <p>Untuk menginstal <code>npm</code>, kita hanya cukup menjalankan command</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>curl http://npmjs.org/install.sh | sh</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Update, jika command diatas muncul error</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sh: 2: Syntax error: newline unexpected</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Kita bisa menggunakan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -k https://npmjs.org/install.sh | sh</span></code></pre></td></tr></table></div></figure>
+
+
 
 ]]></content>
   </entry>
@@ -853,750 +2118,6 @@ Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :
 <p>Seperti yang dapat kita lihat dari query ini, kita memiliki 2 table yang disebut <code>EMP</code>, dimiliki oleh 2 <code>user</code> yang berbeda (SCOTT dan POLL). Kedua table terdapat dalam <code>tablespace</code> USERS.</p>
 
 <p>Sebuah latihan yang bagus untuk anda mungkin mencoba menggabungkan query ini dengan sebuah <code>view</code> seperti <code>dba_extents</code> dan mencari tahu seberapa besar tabel ini dialokasikan.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[IntelliJ shortcuts vs Eclipse shortcuts ]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/26/intellij-shortcuts-vs-eclipse-shortcuts/"/>
-    <updated>2013-10-26T14:14:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/26/intellij-shortcuts-vs-eclipse-shortcuts</id>
-    <content type="html"><![CDATA[<div class="alert alert-danger">
-Artikel ini saya translate dari <a href="http://javacolors.blogspot.com/2008/10/intellij-shortcuts-vs-eclipse-shortcuts.html"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
-
-Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
-</div>
-
-
-<p>Baru-baru ini, saya mulai bekerja dengan IntelliJ. Tapi, jujur, setelah beberapa tahun dengan Eclipse, sulit untuk menjadi efektif karena tombol shortcut yang berbeda antara dua IDE tersebut. Permintaan kecil di Google dan saya mendapatkan ini:</p>
-
-<table class="table table-bordered">
-<tr>
-    <th>Description</th>
-    <th>Eclipse shortcut</th>
-    <th>IntelliJ shortcut</th>
-</tr>
-<tr>
-    <td>Navigasi sebuah tipe java</td>
-    <td>CTRL + ALT + T</td>
-    <td>CTRL + N</td>
-</tr>
-<tr>
-    <td>Navigasi sebuah <code>Resource</code></td>
-    <td>CTRL + ALT + R</td>
-    <td>CTRL + SHIFT + N</td>
-</tr>
-<tr>
-    <td>Sumber terakhir perbaikan</td>
-    <td>ALT + LEFT ARROW</td>
-    <td>CTRL + ALT + LEFT ARROW</td>
-</tr>
-<tr>
-    <td>Debug</td>
-    <td>F11</td>
-    <td>SHIFT + F9</td>
-</tr>
-<tr>
-    <td>Membuka Deklarasi</td>
-    <td>F3</td>
-    <td>CTRL + SHIFT + B</td>
-</tr>
-<tr>
-    <td>Membuka <code>Hierarchy</code></td>
-    <td>F4</td>
-    <td>CTRL + H</td>
-</tr>
-<tr>
-    <td>Mengatur <code>import</code></td>
-    <td>CTRL + SHIFT + O</td>
-    <td>CTRL + ALT + O</td>
-</tr>
-<tr>
-    <td><code>Find</code></td>
-    <td>CTRL + F</td>
-    <td>CTRL + F</td>
-</tr>
-<tr>
-    <td><code>Find Again/previous</code></td>
-    <td>F3 atau SHIFT + F3</td>
-    <td>F3 atau SHIFT + F3</td>
-</tr>
-<tr>
-    <td>(DEBUG) Step Into</td>
-    <td>F5</td>
-    <td>F7</td>
-</tr>
-<tr>
-    <td>(DEBUG) Step Over</td>
-    <td>F6</td>
-    <td>F8</td>
-</tr>
-<tr>
-    <td>(DEBUG) Step Out</td>
-    <td>F7</td>
-    <td>SHIFT + F8</td>
-</tr>
-
-<tr>
-    <td>(DEBUG) Resume</td>
-    <td>F8</td>
-    <td>F9</td>
-</tr>
-
-<tr>
-    <td>Untuk menemukan <code>implement</code> dari sebuah abstrak <code>method</code></td>
-    <td></td>
-    <td>CTRL + ALT + B</td>
-</tr>
-<tr>
-    <td>Menemukan penggunaan</td>
-    <td>CTRL + SHIFT + G</td>
-    <td>ALT + F7</td>
-</tr>
-</table>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[IntelliJ IDEA and Eclipse Shortcuts]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/26/intellij-idea-and-eclipse-shortcuts/"/>
-    <updated>2013-10-26T10:57:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/26/intellij-idea-and-eclipse-shortcuts</id>
-    <content type="html"><![CDATA[<div class="alert alert-danger">
-Artikel ini saya translate dari <a href="http://www.catalysts.cc/en/wissenswertes/intellij-idea-and-eclipse-shortcuts/"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
-
-Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
-</div>
-
-
-<p>Setelah sekitar tujuh tahun secara eksklusif menggunakan Eclipse untuk pengembangan Java, saya baru mendapatkan kesempatan untuk bekerja pada proyek dimana <code>IntelliJ IDEA</code> adalah editor standar. Tiba-tiba saya dicoba dan diuji keyboard shortcut eclipse tidak bekerja lagi. Aku masih dalam proses belajar Keyboard Shortcut IntelliJ tapi ini adalah favorit saya sampai sekarang (setara dengan keyboard shortcut eclipse). Ini mungkin membantu orang lain yang beralih dari Eclipse ke IntelliJ. Tentu saja, ada plugin IntelliJ yang tersedia yang mana membuat IntelliJ IDEA berperilaku seperti Eclipse (shortcut dan perilaku compiler yang sama) tapi mengapa melakukan itu?</p>
-
-<p>Pada tabel di bawah, dalam beberapa kasus, shortcut tidak memetakan 1:1, tapi mereka mencapai efek yang sama.</p>
-
-<table class="table table-bordered">
-<tr>
-    <th>Eclipse</th>
-    <th>IntelliJ IDEA</th>
-    <th>Description</th>
-</tr>
-<tr>
-    <td>F4</td>
-    <td>CTRL + H</td>
-    <td>Menampilkan <code>type hierarchy</code></td>
-</tr>
-<tr>
-    <td>CTRL + ALT + G</td>
-    <td>CTRL + ALT + F7</td>
-    <td>Menemukan Penggunaan</td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + U</td>
-    <td>CTRL + F7</td>
-    <td>Menemukan Penggunaan di file yang sama</td>
-</tr>
-<tr>
-    <td>ALT + SHIFT + R</td>
-    <td>SHIFT + F6</td>
-    <td>Rename</td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + R</td>
-    <td>CTRL + SHIFT + N</td>
-    <td>Membuka <code>file</code> / membuka <code>resource</code></td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + X,J</td>
-    <td>CTRL + SHIFT + F10</td>
-    <td>Menjalankan (program java)</td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + O</td>
-    <td>CTRL + ALT + O</td>
-    <td>Mengatur <code>import</code></td>
-</tr>
-<tr>
-    <td>CTRL + O</td>
-    <td>CTRL + F12</td>
-    <td>Menampilkan <code>file structure / outline</code> saat ini</td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + M</td>
-    <td>CTRL + ALT + V</td>
-    <td>Membuat <code>refactoring</code>variable lokal </td>
-</tr>
-<tr>
-    <td>syso + CTRL + SPACE</td>
-    <td>sout + CTRL + J</td>
-    <td><code>System.out.println("")</code></td>
-</tr>
-<tr>
-    <td>ALT + UP/DOWN</td>
-    <td>CTRL + SHIFT + UP/DOWN</td>
-    <td>Memindahkan baris</td>
-</tr>
-<tr>
-    <td>CTRL + D</td>
-    <td>CTRL + Y</td>
-    <td>Hapus baris saat ini</td>
-</tr>
-<tr>
-    <td></td>
-    <td>ALT + H</td>
-    <td>Menampilkan riwayat <code>subversion</code></td>
-</tr>
-<tr>
-    <td>CTRL + H</td>
-    <td>CTRL + SHIFT + F</td>
-    <td>Mencari (Menemukan di dalam <code>path</code>)</td>
-</tr>
-<tr>
-    <td>&#8220;semi&#8221; mengaturnya <code>window -> preferences </code> </td>
-    <td>CTRL + SHIFT + ENTER</td>
-    <td>Jika saya ingin menambahkan titk koma <code>;</code> pada akhir <code>statement</code></td>
-</tr>
-<tr>
-    <td>CTRL + 1 atau CTRL + SHIFT + L</td>
-    <td>CTRL + ALT + V</td>
-    <td>Memperkenalkan variable lokal</td>
-</tr>
-<tr>
-    <td>ALT + SHIFT + S</td>
-    <td>ALT + INSERT</td>
-    <td>generate <code>getters/setters</code></td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + F</td>
-    <td>CTRL + ALT + L</td>
-    <td>format kode</td>
-</tr>
-<tr>
-    <td>CTRL + Y</td>
-    <td>CTRL + SHIFT + Z</td>
-    <td>redo</td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + C</td>
-    <td>CTRL + /</td>
-    <td>comment out lines</td>
-</tr>
-<tr>
-    <td>CTRL + ALT + H</td>
-    <td>CTRL + ALT + H</td>
-    <td>Menampilkan <code>call hierarchy</code></td>
-</tr>
-<tr>
-    <td></td>
-    <td>CTRL + ALT + F7</td>
-    <td>Untuk melompat ke salah satu pemanggil dari <code>method</code></td>
-</tr>
-<tr>
-    <td>CTRL + SHIFT + I</td>
-    <td>ALT + F8</td>
-    <td>Mengevaluasi ekspresi (dalam <code>debugger</code>)</td>
-</tr>
-<tr>
-    <td>F3</td>
-    <td>CTRL + B</td>
-    <td>Menuju deklarasi (contoh. menuju deklarasi <code>method</code>)</td>
-</tr>
-</table>
-
-
-<p>Satu hal yang saya tidak menyadari pada awalnya adalah bahwa tombol <code>Scroll to Source</code> di IntelliJ IDEA pada dasarnya sama dengan tombol <code>Link with Editor</code> di eclipse.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Fungsi Replace di Excel]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/20/fungsi-replace-di-excel/"/>
-    <updated>2013-10-20T02:53:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/20/fungsi-replace-di-excel</id>
-    <content type="html"><![CDATA[<p>Kemaren saya mendapatkan masalah seperti ini, saya ingin mengubah data berikut:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>--lbl.menu.report.referralbonds
-</span><span class='line'>----lbl.menu.report.rb.transactionstatus
-</span><span class='line'>----lbl.menu.report.rb.transactionhistory
-</span><span class='line'>----lbl.menu.report.rb.dailybalance
-</span><span class='line'>----lbl.menu.report.rb.bondsproductlist</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Menjadi</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>lbl.menu.report.referralbonds
-</span><span class='line'>lbl.menu.report.rb.transactionstatus
-</span><span class='line'>lbl.menu.report.rb.transactionhistory
-</span><span class='line'>lbl.menu.report.rb.dailybalance
-</span><span class='line'>lbl.menu.report.rb.bondsproductlist</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Setelah tanya ke teman, ternyata di excel ada fungsi <code>SUBSTITUTE</code></p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>=SUBSTITUTE(&lt;source&gt;, &lt;oldvalue&gt;, &lt;newvalue&gt;)</span></code></pre></td></tr></table></div></figure>
-
-
-<p>contoh</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>=SUBSTITUTE("----lbl.menu.report.rb.bondsproductlist", "-", "")</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Merubah versi scala di sbt console secara permanent]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console-secara-permanent/"/>
-    <updated>2013-10-19T10:51:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console-secara-permanent</id>
-    <content type="html"><![CDATA[<p>Pada tulisan saya <a href="http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console/">sebelumnya</a>, versi scala yang di pakai tidak permanent, karena ketika keluar dari <code>sbt console</code>, versi scala kembali lagi ke versi default dari <code>sbt</code> yang di gunakan.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sbt
-</span><span class='line'>[info] Set current project to marjinal (in build file:/home/marjinal/)
-</span><span class='line'>&gt; console
-</span><span class='line'>[info] Updating {file:/home/marjinal/}marjinal...
-</span><span class='line'>[info] Resolving org.fusesource.jansi#jansi;1.4 ...
-</span><span class='line'>[info] Done updating.
-</span><span class='line'>[info] Starting scala interpreter...
-</span><span class='line'>[info] 
-</span><span class='line'>Welcome to Scala version 2.10.2 (Java HotSpot(TM) 64-Bit Server VM, Java 1.7.0_10).
-</span><span class='line'>Type in expressions to have them evaluated.
-</span><span class='line'>Type :help for more information.
-</span><span class='line'>
-</span><span class='line'>scala&gt; </span></code></pre></td></tr></table></div></figure>
-
-
-<p>Untuk merubah versi scala menjadi permanent, buat file <code>global.sbt</code>, letakkan ke dalam <code>~/.sbt/{versisbt}</code> (jika versi sbt 0.13.0, ubah <code>versisbt</code> menjadi <code>0.13</code>)</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>vi ~/.sbt/0.13/global.sbt</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu isikan</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>scalaVersion := "2.10.3"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>jika anda ingin menggunakan versi scala yang lain, ubah <code>2.10.3</code> menjadi yang anda inginkan.</p>
-
-<h3>Test</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sbt
-</span><span class='line'>[info] Set current project to marjinal (in build file:/home/marjinal/)
-</span><span class='line'>&gt; console
-</span><span class='line'>[info] Updating {file:/home/marjinal/}marjinal...
-</span><span class='line'>[info] Resolving org.fusesource.jansi#jansi;1.4 ...
-</span><span class='line'>[info] Done updating.
-</span><span class='line'>[info] Starting scala interpreter...
-</span><span class='line'>[info] 
-</span><span class='line'>Welcome to Scala version 2.10.3 (Java HotSpot(TM) 64-Bit Server VM, Java 1.7.0_10).
-</span><span class='line'>Type in expressions to have them evaluated.
-</span><span class='line'>Type :help for more information.
-</span><span class='line'>
-</span><span class='line'>scala&gt; </span></code></pre></td></tr></table></div></figure>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Merubah versi scala di sbt console]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console/"/>
-    <updated>2013-10-19T10:19:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/19/merubah-versi-scala-di-sbt-console</id>
-    <content type="html"><![CDATA[<p>Saat saya menulis tulisan ini, versi terakhir scala adalah 2.10.3.</p>
-
-<p>Tapi ketika saya menjalankan <code>sbt console</code>, sbt masih menggunakan versi 2.10.2. Agar <code>sbt console</code> menggunakan versi 2.10.3 (atau versi yang kita inginkan), sebelum menjalankan command <code>console</code> ketikkan <code>++ scalaversion</code>, contoh <code>++ 2.10.3</code></p>
-
-<h3>Test</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[info] Set current project to marjinal (in build file:/home/marjinal/)
-</span><span class='line'>&gt; ++ 2.10.3
-</span><span class='line'>[info] Setting version to 2.10.3
-</span><span class='line'>[info] Set current project to marjinal (in build file:/home/marjinal/)
-</span><span class='line'>&gt; console
-</span><span class='line'>[info] Starting scala interpreter...
-</span><span class='line'>[info] 
-</span><span class='line'>Welcome to Scala version 2.10.3 (Java HotSpot(TM) 64-Bit Server VM, Java 1.7.0_10).
-</span><span class='line'>Type in expressions to have them evaluated.
-</span><span class='line'>Type :help for more information.
-</span><span class='line'>
-</span><span class='line'>scala&gt; </span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Check versi sbt]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/19/check-versi-sbt/"/>
-    <updated>2013-10-19T10:13:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/19/check-versi-sbt</id>
-    <content type="html"><![CDATA[<p>Untuk mengecek versi sbt, jalankan command berikut:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sbt sbt-version</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Output:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[info] Set current project to marjinal (in build file:/home/marjinal/)
-</span><span class='line'>[info] 0.13.0</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Install SBT di crunchbang]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/19/install-sbt-di-crunchbang/"/>
-    <updated>2013-10-19T09:51:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/19/install-sbt-di-crunchbang</id>
-    <content type="html"><![CDATA[<p>Di tulisan ini saya ingin menginstall sbt versi <code>0.13.0</code> di crunchbang.</p>
-
-<h3>Download sbt-launch</h3>
-
-<p>Download sbt-launch &amp; letakkan ke dalam folder <code>~/bin</code>.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/bin
-</span><span class='line'>$ wget -c http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.0/sbt-launch.jar</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Output:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>--2013-10-19 09:22:26--  http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.0/sbt-launch.jar
-</span><span class='line'>Resolving repo.typesafe.com... 54.236.91.228, 107.21.30.253, 54.236.87.147
-</span><span class='line'>Connecting to repo.typesafe.com|54.236.91.228|:80... connected.
-</span><span class='line'>HTTP request sent, awaiting response... 200 OK
-</span><span class='line'>Length: 1132093 (1.1M) [application/java-archive]
-</span><span class='line'>Saving to: “sbt-launch.jar”
-</span><span class='line'>
-</span><span class='line'>100%[========================================================================================================================================================&gt;] 1,132,093   21.9K/s   in 31s     
-</span><span class='line'>
-</span><span class='line'>2013-10-19 09:23:02 (35.7 KB/s) - “sbt-launch.jar” saved [1132093/1132093]
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Install sbt</h3>
-
-<p>Buat script dengan nama <code>sbt</code>, lalu letakkan ke dalam folder <code>~/bin</code>:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ cd ~/bin
-</span><span class='line'>$ vi sbt</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu isikan seperti di bawah ini:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>SBT_OPTS="-Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=256M"
-</span><span class='line'>java $SBT_OPTS -jar `dirname $0`/sbt-launch.jar "$@"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu save dengan ketikkan <code>:wq</code> dan buat script menjadi executable:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ chmod +x sbt</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Test</h3>
-
-<p>Untuk menge-test apakah sbt sudah berjalan atau belom, ketikkan sembarang command dengan sbt. Di sini saya ingin mengecek versi dari sbt:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ sbt sbt-version</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Output:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Getting org.scala-sbt sbt 0.13.0 ...
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/sbt/0.13.0/jars/sbt.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#sbt;0.13.0!sbt.jar (3102ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/main/0.13.0/jars/main.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#main;0.13.0!main.jar (113062ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-interface/0.13.0/jars/compiler-interface-src.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#compiler-interface;0.13.0!compiler-interface-src.jar (2295ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-interface/0.13.0/jars/compiler-interface-bin.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#compiler-interface;0.13.0!compiler-interface-bin.jar (7793ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_8_2/0.13.0/jars/compiler-interface-bin.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#precompiled-2_8_2;0.13.0!compiler-interface-bin.jar (8379ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_9_2/0.13.0/jars/compiler-interface-bin.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#precompiled-2_9_2;0.13.0!compiler-interface-bin.jar (7139ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/precompiled-2_9_3/0.13.0/jars/compiler-interface-bin.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#precompiled-2_9_3;0.13.0!compiler-interface-bin.jar (8814ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/actions/0.13.0/jars/actions.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#actions;0.13.0!actions.jar (19182ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/main-settings/0.13.0/jars/main-settings.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#main-settings;0.13.0!main-settings.jar (21100ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/interface/0.13.0/jars/interface.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#interface;0.13.0!interface.jar (3331ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/io/0.13.0/jars/io.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#io;0.13.0!io.jar (14387ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/ivy/0.13.0/jars/ivy.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#ivy;0.13.0!ivy.jar (50749ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/launcher-interface/0.13.0/jars/launcher-interface.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#launcher-interface;0.13.0!launcher-interface.jar (3289ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/logging/0.13.0/jars/logging.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#logging;0.13.0!logging.jar (7008ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/process/0.13.0/jars/process.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#process;0.13.0!process.jar (5271ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/run/0.13.0/jars/run.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#run;0.13.0!run.jar (8107ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/command/0.13.0/jars/command.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#command;0.13.0!command.jar (10176ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/classpath/0.13.0/jars/classpath.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#classpath;0.13.0!classpath.jar (6644ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/completion/0.13.0/jars/completion.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#completion;0.13.0!completion.jar (13117ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/api/0.13.0/jars/api.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#api;0.13.0!api.jar (27268ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-integration/0.13.0/jars/compiler-integration.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#compiler-integration;0.13.0!compiler-integration.jar (16963ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compiler-ivy-integration/0.13.0/jars/compiler-ivy-integration.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#compiler-ivy-integration;0.13.0!compiler-ivy-integration.jar (2360ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/relation/0.13.0/jars/relation.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#relation;0.13.0!relation.jar (5727ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/task-system/0.13.0/jars/task-system.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#task-system;0.13.0!task-system.jar (13756ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/tasks/0.13.0/jars/tasks.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#tasks;0.13.0!tasks.jar (25036ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/tracking/0.13.0/jars/tracking.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#tracking;0.13.0!tracking.jar (4494ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/testing/0.13.0/jars/testing.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#testing;0.13.0!testing.jar (4865ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/control/0.13.0/jars/control.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#control;0.13.0!control.jar (2624ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/collections/0.13.0/jars/collections.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#collections;0.13.0!collections.jar (14381ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/incremental-compiler/0.13.0/jars/incremental-compiler.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#incremental-compiler;0.13.0!incremental-compiler.jar (11719ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/compile/0.13.0/jars/compile.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#compile;0.13.0!compile.jar (5027ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/persist/0.13.0/jars/persist.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#persist;0.13.0!persist.jar (6237ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/classfile/0.13.0/jars/classfile.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#classfile;0.13.0!classfile.jar (4795ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-tools.sbinary/sbinary_2.10/0.4.2/jars/sbinary_2.10.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-tools.sbinary#sbinary_2.10;0.4.2!sbinary_2.10.jar (40445ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/cross/0.13.0/jars/cross.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#cross;0.13.0!cross.jar (2800ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/cache/0.13.0/jars/cache.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#cache;0.13.0!cache.jar (5507ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/test-agent/0.13.0/jars/test-agent.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#test-agent;0.13.0!test-agent.jar (3557ms)
-</span><span class='line'>downloading http://repo1.maven.org/maven2/org/scala-sbt/test-interface/1.0/test-interface-1.0.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#test-interface;1.0!test-interface.jar (2579ms)
-</span><span class='line'>downloading http://repo.typesafe.com/typesafe/ivy-releases/org.scala-sbt/apply-macro/0.13.0/jars/apply-macro.jar ...
-</span><span class='line'>  [SUCCESSFUL ] org.scala-sbt#apply-macro;0.13.0!apply-macro.jar (4793ms)
-</span><span class='line'>:: retrieving :: org.scala-sbt#boot-app
-</span><span class='line'>  confs: [default]
-</span><span class='line'>  43 artifacts copied, 0 already retrieved (12440kB/310ms)
-</span><span class='line'>[info] Set current project to marjinal (in build file:/home/homedirectory/)
-</span><span class='line'>[info] 0.13.0
-</span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ekuivalen Fungsi Left, Mid dan Right di Oracle]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/11/ekuivalen-fungsi-left-mid-right-di-oracle/"/>
-    <updated>2013-10-11T13:25:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/11/ekuivalen-fungsi-left-mid-right-di-oracle</id>
-    <content type="html"><![CDATA[<p>Oracle tidak memiliki fungsi <code>Left</code>, <code>Mid</code> dan <code>Right</code> seperti di SQLServer, tapi kita menggunakan fungsi <code>substr</code> agar dapat bekerja sesuai dengan 3 fungsi tersebut.</p>
-
-<div class="well">
-    Sebenarnya fungsi substr di oracle sama dengan fungsi mid di sqlserver
-</div>
-
-
-<h3>Left</h3>
-
-<figure class='code'><figcaption><span>SQLServer</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">LEFT</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;Indo&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>Oracle</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">SUBSTR</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;Indo&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Mid</h3>
-
-<figure class='code'><figcaption><span>SQLServer</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">MID</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;nesia&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><figcaption><span>Oracle</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">SUBSTR</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;nesia&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>Right</h3>
-
-<figure class='code'><figcaption><span>SQLServer</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">RIGHT</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;nesia&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<figure class='code'><figcaption><span>Oracle</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">SUBSTR</span><span class="p">(</span><span class="s1">&#39;Indonesia&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="s1">&#39;nesia&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>-5 = Di hitung dari kanan ke kiri, dalam contoh di atas merupakan posisi <code>n</code>.</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: scala | Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/blog/categories/scala/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-11-07T10:05:31-05:00</updated>
+  <updated>2014-01-11T08:55:03-05:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,260 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Fungsi scala call-by-name]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/07/fungsi-scala-call-by-name/"/>
+    <updated>2013-11-07T13:53:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/07/fungsi-scala-call-by-name</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://www.tutorialspoint.com/scala/functions_call_by_name.htm"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<p>Umumnya, parameter-parameter fungsi adalah parameter-parameter by-value; yakni,nilai dari parameter ditentukan sebelum ia dilewatkan ke fungsi. Tapi bagaimana kalau kita perlu menulis sebuah fungsi yang menerima parameter sebuah ekspresi yang kita tidak ingin mengevaluasi nya sampai ia dipanggil didalam fungsi kita? Untuk situasi seperti ini, scala menawarkan parameter call-by-name.</p>
+
+<p>mekanisme call-by-name melewatkan blok kode ke variable dan setiap saat variable diakses, blok kode akan eksekusi dan nilai akan hitung.</p>
+
+<p>```scala
+object Test {
+   def main(args: Array[String]) {</p>
+
+<pre><code>    delayed(time());
+</code></pre>
+
+<p>   }</p>
+
+<p>   def time() = {</p>
+
+<pre><code>  println("Getting time in nano seconds")
+  System.nanoTime
+</code></pre>
+
+<p>   }
+   def delayed( t: => Long ) = {</p>
+
+<pre><code>  println("In delayed method")
+  println("Param: " + t)
+  t
+</code></pre>
+
+<p>   }
+}
+```</p>
+
+<p>disini, kita mendeklarasikan method <code>delayed</code>, yang mana membutuhkan parameter <code>call-by-name</code> dengan meletakkan simbol <code>=&gt;</code> antara nama variable dengan tipe variable. Ketika kode diatas di kompile dan dieksekusi, menghasilkan hasil sebagai berikut:</p>
+
+<p>```
+C:/>scalac Test.scala
+C:/>scala Test
+In delayed method
+Getting time in nano seconds
+Param: 81303808765843
+Getting time in nano seconds</p>
+
+<p>C:/>
+```</p>
+
+<p>di sini, <code>delayed</code>  mencetak sebuah pesan yang menunjukkan bahwa telah masuk kedalam method. Kemudian, <code>delayed</code> mencetak sebuah pesan dengan nilainya. Terakhir, delayed mengembalikan <code>t</code>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Call by Name and Call by Value, klarifikasi diperlukan]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/07/call-by-name-and-call-by-value-klarifikasi-diperlukan/"/>
+    <updated>2013-11-07T11:19:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/07/call-by-name-and-call-by-value-klarifikasi-diperlukan</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya translate dari <a href="http://stackoverflow.com/questions/13337338/call-by-name-vs-call-by-value-in-scala-clarification-needed"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
+
+Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).
+</div>
+
+
+<h3>Pertanyaan</h3>
+
+<div class="alert alert-info">
+Pertanyaan ini di ajukan oleh <a href="http://stackoverflow.com/users/359862/jam">Jam</a>
+</div>
+
+
+<p>Seperti yang saya pahami, di Scala,fungsi dapat dipanggil dengan 2 cara:</p>
+
+<ul>
+<li>by-value, atau</li>
+<li>by-name</li>
+</ul>
+
+
+<p>Misalnya, diberi deklarasi berikut, apakah kita tahu bagaimana fungsi akan dipanggil?</p>
+
+<p><code>scala
+def f(x: Int, y:Int) = x;
+</code></p>
+
+<p>Panggil</p>
+
+<p><code>
+f (1,2)
+f (23+55,5)
+f (12+3, 44*11)
+</code></p>
+
+<p>Apa ketentuannya?</p>
+
+<h3>Jawaban</h3>
+
+<div class="alert alert-info">
+jawaban dari <a href="http://stackoverflow.com/users/247985/dhg">dhg</a>
+</div>
+
+
+<p>Contoh yang telah anda berikan hanya menggunakan call-by-value, jadi saya akan memberikan yang baru, sederhana, contoh yang menunjukkan perbedaan.</p>
+
+<p>Pertama, mari kita asumsikan kita memiliki fungsi dengan <code>side-effect</code>. Fungsi ini mencetak sesuatu dan kemudian mengembalikan sebuah <code>Int</code>.</p>
+
+<p><code>scala
+def something() = {
+  println("calling something")
+  1 //return value
+}
+</code></p>
+
+<p>Sekarang kita akan mendefinisikan dua fungsi yang menerima argumen <code>Int</code> yang persis sama kecuali yang satu membutuhkan argumen dalam gaya call-by-value <code>(x: Int)</code> dan yang lainnya dalam gaya call-by-name <code>(x: =&gt; Int)</code></p>
+
+<p><code>scala call-by-value
+def callByValue(x: Int) = {
+  println("x1=" + x)
+  println("x2=" + x)
+}
+</code></p>
+
+<p><code>scala call-by-name
+def callByName(x: =&gt; Int) = {
+  println("x1=" + x)
+  println("x2=" + x)  
+}
+</code></p>
+
+<p>Sekarang apa yang terjadi ketika kita memanggilnya dengan fungsi <code>side-effect</code> kita?</p>
+
+<p>```
+scala> callByValue(something())
+calling something
+x1=1
+x2=1</p>
+
+<p>scala> callByName(something())
+calling something
+x1=1
+calling something
+x2=1
+```</p>
+
+<p>Sehingga anda dapat melihat bahwa dalam versi call-by-value, <code>side-effect</code> dari  pemanggilan fungsi <code>something()</code> hanya terjadi sekali. Namun, dalam versi call-by-name, <code>side-effect</code> terjadi dua kali.</p>
+
+<p>Hal ini karena fungsi call-by-value menghitung nilai ekspresi yang diberikan sebelum memanggil fungsi, sehingga nilai yang sama setiap kali diakses. Namun, fungsi call-by-name menghitung ulang nilai ekspresi yang diberikan setiap kali ia diakses.</p>
+
+<div class="alert alert-info">
+jawaban dari <a href="http://stackoverflow.com/users/2291699/behrooz-tabesh">Behrooz Tabesh</a>
+</div>
+
+
+<p>Berikut ini adalah contoh dari Martin Odersky (penemu scala)</p>
+
+<p><code>scala
+def test (x: Int, y: Int) = x * x
+</code></p>
+
+<p>Kita ingin tahu evaluasi mana yang lebih cepat (langkah sedikit) dalam kondisi ini:</p>
+
+<p><strong>test (2, 3)</strong></p>
+
+<p><code>scala call-by-value
+test(2, 3)
+2 * 2
+4
+</code></p>
+
+<p><code>scala call-by-name
+test(2, 3)
+2 * 2
+4
+</code></p>
+
+<p>jadi 2 evaluasi disini sama</p>
+
+<p><strong>test(3+4, 8)</strong></p>
+
+<p><code>scala call-by-value
+test(3+4, 8)
+test(7, 8)
+7 * 7
+49
+</code></p>
+
+<p><code>scala call-by-name
+test(3+4, 8)
+(3+4) * (3 + 4)
+7 * (3 + 4)
+7 * 7
+49
+</code>
+disini call-by-value lebih cepat</p>
+
+<p><strong>test(7, 2*4)</strong></p>
+
+<p><code>scala call-by-value
+test(7, 2*4)
+test(7, 8)
+7 * 7
+49
+</code></p>
+
+<p><code>scala call-by-name
+test(7, 2*4)
+7 * 7
+49
+</code></p>
+
+<p>disini, call-by-name lebih cepat</p>
+
+<p><strong>test(3+4, 2*4)</strong></p>
+
+<p><code>scala call-by-value
+test(3+4, 2*4)
+test(7, 2*4)
+test(7, 8)
+7 * 7
+49
+</code></p>
+
+<p><code>scala call-by-name
+test(3+4, 2*4)
+(3+4) * (3+4)
+7 * (3+4)
+7 * 7
+49
+</code>
+lagi, keduanya sama.</p>
+
+<div class="alert alert-info">
+jawaban dari <a href="http://stackoverflow.com/users/660675/kaos12">kaos12</a>
+</div>
+
+
+<p>Dalam kasus conton mu semua parameter akan dievaluasi sebelum fungsi tersebut dipanggil, karena kamu hanya mendefiniskan mereka <code>by-value</code>. Jika kamu ingin mendefinisikan parameter kamu <code>by-name</code>, kamu harus melewatkan kode block:</p>
+
+<p><code>scala
+def f(x: =&gt; Int, y:Int) =x
+</code></p>
+
+<p>Dengan cara ini parameter <code>x</code> akan dievaluasi sampai dipanggil dalam fungsi.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Merubah versi scala di sbt console secara permanent]]></title>

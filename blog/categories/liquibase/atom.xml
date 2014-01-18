@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: liquibase | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/liquibase/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2014-01-11T08:55:03-05:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    <email><![CDATA[suwanda.hendry@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Membuat Changelog Liquibase]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2013/11/17/membuat-changelog-liquibase/"/>
+    <updated>2013-11-17T03:32:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2013/11/17/membuat-changelog-liquibase</id>
+    <content type="html"><![CDATA[<div class="alert alert-danger">
+Artikel ini saya ambil dari <a href="http://software.endy.muhardin.com/java/membuat-changelog-liquibase/"> sini</a>. Tujuan saya meng-copykan artikel ini di sini, saya ingin mempelajari tentang Liquibase & dan merubah contoh kasus sesuai dengan yang sedang saya hadapi.
+
+Saya akuin sekali lagi, saya belum mendapatkan ijin untuk melakukan copy artikel ini :)
+</div>
+
+
+<p>Saya akan mulai menggunakan tools bernama <a href="http://www.liquibase.org">Liquibase</a> untuk mendefinisikan skema database. Dengan Liquibase ini, skema database dapat disimpan dan dikelola versinya dalam SVC (Source Version Control) seperti Git, SVN, dll. Dia juga memiliki fitur untuk melakukan migrasi database pada saat aplikasi kita naik versi. Bila terjadi error di versi baru, Liquibase juga bisa melakukan rollback agar skema database kita kembali ke kondisi sebelum naik versi.</p>
+
+<p>Skema database dalam Liquibase ditulis dalam format XML, disebut dengan istilah <code>changelog</code>. Untuk project baru, ini bisa ditulis tangan manual, tetap untuk aplikasi yang sudah ada, terlalu merepotkan kalau semua table yang sudah ada harus ditulis ulang skemanya.</p>
+
+<p>Untungnya Liquibase memiliki fitur untuk menulis changelog dari skema yang sudah ada. Berikut langkah-langkahnya:</p>
+
+<ol>
+<li>Siapkan jar liquibase dan database</li>
+<li>Siapkan file konfigurasi</li>
+<li>Jalankan liquibase</li>
+<li>Cek hasilnya</li>
+</ol>
+
+
+<h3>Siapkan jar liquibase dan database</h3>
+
+<p>Database yang akan saya import memiliki konfigurasi sebagai berikut:</p>
+
+<ul>
+<li>Jenis Database: Oracle 11g R2</li>
+<li>Nama Database: corebanking_simulator</li>
+<li>Username Database: corebanking</li>
+<li>Password Database: password</li>
+</ul>
+
+
+<p>Untuk itu, saya siapkan dua file jar, yaitu:</p>
+
+<ul>
+<li>ojdbc6.jar (bisa di download <a href="http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-112010-090769.html">disini</a>)</li>
+<li>liquibase.jar (versi 3.0.7) (bisa di download <a href="http://sourceforge.net/projects/liquibase/files/Liquibase%20Core/liquibase-3.0.7-bin.zip/download">disini</a>)</li>
+</ul>
+
+
+<h3>File Konfigurasi</h3>
+
+<p>Sebetulnya semua informasi ini bisa disebutkan dalam command line argument. Tapi saya lebih suka menulis di file supaya mudah diedit. Berikut isinya.</p>
+
+<p>```properties liquibase.properties</p>
+
+<h1>liquibase.properties</h1>
+
+<p>driver: com.mysql.jdbc.Driver
+classpath: mysql-connector-java-5.1.22.jar
+url: jdbc:mysql://localhost/merchant-simulator_development
+username: root
+password: admin
+changeLogFile: liquibase-output.xml
+```</p>
+
+<p>Simpan file ini dengan nama <code>liquibase.properties</code> dan letakkan difolder yang sama dengan kedua file jar tersebut.</p>
+
+<h3>Jalankan Liquibase</h3>
+
+<p>Mari kita jalankan proses import dengan command berikut:</p>
+
+<p><code>
+java -jar liquibase-core-2.0.5.jar generateChangelog
+</code></p>
+
+<h3>Cek Hasilnya</h3>
+
+<p>Perintah diatas akan menghasilkan file <code>liquibase-output.xml</code> yang isinya seperti ini:</p>
+
+<p>```xml liquibase-output.xml
+&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo; standalone=&ldquo;no&rdquo;?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd"></p>
+
+<pre><code>&lt;changeSet author="endy (generated)" id="1357786892853-1"&gt;
+    &lt;createTable tableName="c_application_config"&gt;
+        &lt;column name="id" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false" primaryKey="true"/&gt;
+        &lt;/column&gt;
+        &lt;column name="name" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="label" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="value" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+    &lt;/createTable&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-2"&gt;
+    &lt;createTable tableName="c_security_menu"&gt;
+        &lt;column name="id" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false" primaryKey="true"/&gt;
+        &lt;/column&gt;
+        &lt;column name="label" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="menu_action" type="VARCHAR(255)"/&gt;
+        &lt;column name="menu_level" type="INT"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="menu_order" type="INT"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="menu_options" type="VARCHAR(255)"/&gt;
+        &lt;column name="id_parent" type="VARCHAR(255)"/&gt;
+    &lt;/createTable&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-3"&gt;
+    &lt;createTable tableName="c_security_permission"&gt;
+        &lt;column name="id" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false" primaryKey="true"/&gt;
+        &lt;/column&gt;
+        &lt;column name="permission_label" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="permission_value" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+    &lt;/createTable&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-4"&gt;
+    &lt;createTable tableName="c_security_role"&gt;
+        &lt;column name="id" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false" primaryKey="true"/&gt;
+        &lt;/column&gt;
+        &lt;column name="name" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="description" type="VARCHAR(255)"/&gt;
+    &lt;/createTable&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-5"&gt;
+    &lt;createTable tableName="c_security_role_menu"&gt;
+        &lt;column name="id_role" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="id_menu" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+    &lt;/createTable&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-6"&gt;
+    &lt;createTable tableName="c_security_role_permission"&gt;
+        &lt;column name="id_role" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="id_permission" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+    &lt;/createTable&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-7"&gt;
+    &lt;createTable tableName="c_security_user"&gt;
+        &lt;column name="id" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false" primaryKey="true"/&gt;
+        &lt;/column&gt;
+        &lt;column name="username" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="password" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="fullname" type="VARCHAR(255)"/&gt;
+        &lt;column name="active" type="BIT"/&gt;
+        &lt;column name="id_role" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+    &lt;/createTable&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-8"&gt;
+    &lt;createTable tableName="t_tagihan_listrik"&gt;
+        &lt;column name="id" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false" primaryKey="true"/&gt;
+        &lt;/column&gt;
+        &lt;column name="admin" type="DECIMAL(19,2)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="bulan_tagihan" type="DATE"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="current_meter_reading_1" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="current_meter_reading_2" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="current_meter_reading_3" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="denda" type="DECIMAL(19,2)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="id_pelanggan" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="jatuh_tempo" type="DATE"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="lunas" type="BIT"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="meter_read_date" type="DATE"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="mitra_lunas" type="VARCHAR(255)"/&gt;
+        &lt;column name="nama_pelanggan" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="nilai" type="DECIMAL(19,2)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="pajak" type="DECIMAL(19,2)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="power_consuming_category" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="previous_meter_reading_1" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="previous_meter_reading_2" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="previous_meter_reading_3" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="referensi_lunas" type="VARCHAR(255)"/&gt;
+        &lt;column name="service_unit" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="service_unit_hone" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="subscriber_segmentation" type="VARCHAR(255)"&gt;
+            &lt;constraints nullable="false"/&gt;
+        &lt;/column&gt;
+        &lt;column name="waktu_lunas" type="DATETIME"/&gt;
+    &lt;/createTable&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-9"&gt;
+    &lt;addPrimaryKey columnNames="id_role, id_menu" tableName="c_security_role_menu"/&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-10"&gt;
+    &lt;addPrimaryKey columnNames="id_role, id_permission" tableName="c_security_role_permission"/&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-11"&gt;
+    &lt;addForeignKeyConstraint baseColumnNames="id_parent" baseTableName="c_security_menu" baseTableSchemaName="merchant-simulator_development" constraintName="fk_menu_parent" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="c_security_menu" referencedTableSchemaName="merchant-simulator_development" referencesUniqueColumn="false"/&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-12"&gt;
+    &lt;addForeignKeyConstraint baseColumnNames="id_menu" baseTableName="c_security_role_menu" baseTableSchemaName="merchant-simulator_development" constraintName="fk_role_menu_menu" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="c_security_menu" referencedTableSchemaName="merchant-simulator_development" referencesUniqueColumn="false"/&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-13"&gt;
+    &lt;addForeignKeyConstraint baseColumnNames="id_role" baseTableName="c_security_role_menu" baseTableSchemaName="merchant-simulator_development" constraintName="fk_role_menu_role" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="c_security_role" referencedTableSchemaName="merchant-simulator_development" referencesUniqueColumn="false"/&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-14"&gt;
+    &lt;addForeignKeyConstraint baseColumnNames="id_permission" baseTableName="c_security_role_permission" baseTableSchemaName="merchant-simulator_development" constraintName="fk_role_permission_permission" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="c_security_permission" referencedTableSchemaName="merchant-simulator_development" referencesUniqueColumn="false"/&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-15"&gt;
+    &lt;addForeignKeyConstraint baseColumnNames="id_role" baseTableName="c_security_role_permission" baseTableSchemaName="merchant-simulator_development" constraintName="fk_role_permission_role" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="c_security_role" referencedTableSchemaName="merchant-simulator_development" referencesUniqueColumn="false"/&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-16"&gt;
+    &lt;addForeignKeyConstraint baseColumnNames="id_role" baseTableName="c_security_user" baseTableSchemaName="merchant-simulator_development" constraintName="fk_user_role" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="c_security_role" referencedTableSchemaName="merchant-simulator_development" referencesUniqueColumn="false"/&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-17"&gt;
+    &lt;createIndex indexName="name" tableName="c_application_config" unique="true"&gt;
+        &lt;column name="name"/&gt;
+    &lt;/createIndex&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-18"&gt;
+    &lt;createIndex indexName="unique_permission_value" tableName="c_security_permission" unique="true"&gt;
+        &lt;column name="permission_value"/&gt;
+    &lt;/createIndex&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-19"&gt;
+    &lt;createIndex indexName="unique_role_name" tableName="c_security_role" unique="true"&gt;
+        &lt;column name="name"/&gt;
+    &lt;/createIndex&gt;
+&lt;/changeSet&gt;
+&lt;changeSet author="endy (generated)" id="1357786892853-20"&gt;
+    &lt;createIndex indexName="unique_user_username" tableName="c_security_user" unique="true"&gt;
+        &lt;column name="username"/&gt;
+    &lt;/createIndex&gt;
+&lt;/changeSet&gt;
+</code></pre>
+
+<p></databaseChangeLog></p>
+
+<p>```</p>
+
+<p>File diatas siap diedit dan disimpan direpository version control. Biasanya, edit yang saya lakukan:</p>
+
+<ul>
+<li>menggabungkan semua <code>createTable</code> menjadi satu changeset</li>
+<li>menggabungkan semua <code>addForeignKeyConstraint</code> dan <code>createIndex</code> menjadi satu changeset.</li>
+<li>menambahkan loader untuk file csv sebagai data awal</li>
+<li>mengganti nama file</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>

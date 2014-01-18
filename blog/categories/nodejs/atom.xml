@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nodejs | Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/blog/categories/nodejs/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2013-11-07T10:05:31-05:00</updated>
+  <updated>2014-01-11T08:55:03-05:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -142,10 +142,27 @@ sudo n stable
 
 <h3>Install</h3>
 
+<div class="alert alert-danger">
+Sebelum menginstall npm, terlebih dahulu kita mesti menginstall nodejs
+</div>
+
+
 <p>Untuk menginstal <code>npm</code>, kita hanya cukup menjalankan command</p>
 
 <p><code>
 curl http://npmjs.org/install.sh | sh
+</code></p>
+
+<p>Update, jika command diatas muncul error</p>
+
+<p><code>
+sh: 2: Syntax error: newline unexpected
+</code></p>
+
+<p>Kita bisa menggunakan</p>
+
+<p><code>
+curl -k https://npmjs.org/install.sh | sh
 </code></p>
 ]]></content>
   </entry>
