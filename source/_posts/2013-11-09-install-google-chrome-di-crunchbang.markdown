@@ -94,6 +94,71 @@ Setelah itu, kita install dependensi yang diperlukan, dengan mengetikkan
 $sudo apt-get -f install
 ```
 
+Output
 
+```
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+Correcting dependencies... Done
+The following package was automatically installed and is no longer required:
+  libvpx0
+Use 'apt-get autoremove' to remove them.
+The following extra packages will be installed:
+  libmozjs10d libnss3 libnss3-1d libvpx1 libxss1 xulrunner-10.0
+Suggested packages:
+  libcanberra0
+The following packages will be REMOVED:
+  google-chrome-stable
+The following NEW packages will be installed:
+  libnss3 libvpx1 libxss1
+The following packages will be upgraded:
+  libmozjs10d libnss3-1d xulrunner-10.0
+3 upgraded, 3 newly installed, 1 to remove and 196 not upgraded.
+1 not fully installed or removed.
+Need to get 14.8 MB/14.8 MB of archives.
+After this operation, 166 MB disk space will be freed.
+Do you want to continue [Y/n]? y
+WARNING: The following packages cannot be authenticated!
+  libvpx1 xulrunner-10.0 libmozjs10d
+Install these packages without verification [y/N]? Y
+Get:1 http://backports.debian.org/debian-backports/ squeeze-backports/main libnss3-1d amd64 2:3.14.3-1~bpo60+1 [20.0 kB]
+Get:2 http://backports.debian.org/debian-backports/ squeeze-backports/main libnss3 amd64 2:3.14.3-1~bpo60+1 [1,049 kB]
+Get:3 http://packages.crunchbang.org/statler-mozilla/ squeeze-backports/iceweasel-release libvpx1 amd64 1.0.0-1~bpo60+1 [286 kB]
+Get:4 http://packages.crunchbang.org/statler-mozilla/ squeeze-backports/iceweasel-release xulrunner-10.0 amd64 10.0.2-1~bpo60+1 [11.9 MB]
+Get:5 http://packages.crunchbang.org/statler-mozilla/ squeeze-backports/iceweasel-release libmozjs10d amd64 10.0.2-1~bpo60+1 [1,485 kB]                                                          
+Fetched 14.8 MB in 44s (330 kB/s)                                                                                                                                                                
+(Reading database ... 112217 files and directories currently installed.)
+Removing google-chrome-stable ...
+Processing triggers for menu ...
+Processing triggers for desktop-file-utils ...
+Processing triggers for man-db ...
+(Reading database ... 112111 files and directories currently installed.)
+Preparing to replace libnss3-1d 3.13.1.with.ckbi.1.88-1~bpo60+1 (using .../libnss3-1d_2%3a3.14.3-1~bpo60+1_amd64.deb) ...
+Unpacking replacement libnss3-1d ...
+Selecting previously deselected package libnss3.
+Unpacking libnss3 (from .../libnss3_2%3a3.14.3-1~bpo60+1_amd64.deb) ...
+Selecting previously deselected package libvpx1.
+Unpacking libvpx1 (from .../libvpx1_1.0.0-1~bpo60+1_amd64.deb) ...
+Preparing to replace xulrunner-10.0 10.0-1~bpo60+1 (using .../xulrunner-10.0_10.0.2-1~bpo60+1_amd64.deb) ...
+Unpacking replacement xulrunner-10.0 ...
+Preparing to replace libmozjs10d 10.0-1~bpo60+1 (using .../libmozjs10d_10.0.2-1~bpo60+1_amd64.deb) ...
+Unpacking replacement libmozjs10d ...
+Selecting previously deselected package libxss1.
+Unpacking libxss1 (from .../libxss1_1%3a1.2.0-2_amd64.deb) ...
+Processing triggers for man-db ...
+Setting up libnss3 (2:3.14.3-1~bpo60+1) ...
+Setting up libnss3-1d (2:3.14.3-1~bpo60+1) ...
+Setting up libvpx1 (1.0.0-1~bpo60+1) ...
+Setting up libmozjs10d (10.0.2-1~bpo60+1) ...
+Setting up xulrunner-10.0 (10.0.2-1~bpo60+1) ...
+Setting up libxss1 (1:1.2.0-2) ...
 
+```
+
+Seperti kita lihat, ternyata google-chrome-stable di hapus, jadi kita jalankan lagi
+
+```
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+```
 

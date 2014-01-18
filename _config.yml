@@ -3,9 +3,9 @@
 # ----------------------- #
 
 url: http://hendrysuwanda.github.io
-title: My Octopress Blog
-subtitle: A blogging framework for hackers.
-author: Your Name
+title: Hendry Suwanda
+subtitle: Programming is like sex. One mistake and you have to support it for the rest of your life.
+author: Hendry Suwanda
 simple_search: http://google.com/search
 description:
 
@@ -19,7 +19,7 @@ date_format: "ordinal"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email:
+email: suwanda.hendry@gmail.com
 
 # ----------------------- #
 #    Jekyll & Plugins     #
@@ -90,7 +90,7 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name:
+disqus_short_name: hendrysuwanda
 disqus_show_comment_count: false
 
 # Google Analytics
