@@ -8,7 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Jan 24th, 2013 Koneksi Ke Github Menggunakan SSH Kita dapat menggunakan Kunci SSH untuk melakukan koneksi yang aman antara komputer kita dengan &hellip;">
+  <meta name="description" content="Jan 26th, 2013 Membuat Project Menggunakan Maven - Artifact Secara Langsung Ketika pertama kali membuat project menggunakan Maven, aku biasanya &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +86,52 @@
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-26T03:38:00-05:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/26/membuat-project-menggunakan-maven-artifact-secara-langsung/">Membuat Project Menggunakan Maven - Artifact Secara Langsung</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Ketika pertama kali membuat project menggunakan Maven, aku biasanya mengetikkan perintah berikut:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn archetype:generate</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu maven, akan melakukan sync utk mengambil semua list archetype yang terdaftar di repo maven, dan biasanya ini akan membutuhkan waktu yg sangat lama, sementara archetype yang mau kita gunakan biasanya hanya standar (mis: maven-archetype-quickstart). Setelah google, akhirnya aku menemukan cara pintas utk membuat project dengan mendefinisikan secara langsung archetype yang aku gunakan seperti di bawah ini:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mvn archetype:generate -DgroupId=com.hendrysuwanda.project.spring -DartifactId=project.spring.example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -281,6 +327,8 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2014/02/01/replace-all-non-alphanumeric-in-java-using-regex/">Replace All Non-alphanumeric in Java Using Regex</a>
+    
     <a class="list-group-item " href="/blog/2013/11/17/membuat-changelog-liquibase/">Membuat Changelog Liquibase</a>
     
     <a class="list-group-item " href="/blog/2013/11/17/memahami-dependency-injection/">Memahami Dependency Injection</a>
@@ -288,8 +336,6 @@
     <a class="list-group-item " href="/blog/2013/11/09/install-google-chrome-di-crunchbang/">Install Google-chrome Di Crunchbang</a>
     
     <a class="list-group-item " href="/blog/2013/11/09/uninstall-google-chrome-di-crunchbang/">Uninstall Google-chrome Di Crunchbang</a>
-    
-    <a class="list-group-item " href="/blog/2013/11/09/setting-environment-variable-path-di-windows-7/">Setting Environment Variable (PATH) Di Windows 7</a>
     
   </div>
 </section>

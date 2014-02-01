@@ -8,7 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Nov 5th, 2013 Upgrade NodeJS Menggunakan N Dengan menggunakan n, kita dapat melakukan upgrade/downgrade versi nodejs dengan mudah. Untuk melihat &hellip;">
+  <meta name="description" content="Nov 7th, 2013 [Algorithm] Cara Simple Memilih 2 Object Di Java Masalah Anggap, kita memiliki sebuah list (listPeople) yang menyimpan object people, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +86,96 @@
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-07T09:27:00-05:00" pubdate data-updated="true">Nov 7<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/11/07/algorithm-cara-simple-memilih-2-object-di-java/">[Algorithm] Cara Simple Memilih 2 Object Di Java</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><h3>Masalah</h3>
+
+<p>Anggap, kita memiliki sebuah list (<code>listPeople</code>) yang menyimpan object <code>people</code>, dengan struktur <code>class</code> seperti di bawah ini</p>
+
+<figure class='code'><figcaption><span>people.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">people</span><span class="o">{</span>  
+</span><span class='line'>  <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Lalu kita memiliki 2 object list, <code>listMinor</code> untuk menyimpan data people yang belum dewasa (age &lt; 18), dan <code>listAdult</code> untuk menyimpan data people yang sudah dewasa (age >= 18).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">List</span><span class="o">&lt;</span><span class="n">People</span><span class="o">&gt;</span> <span class="n">listPeople</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">People</span><span class="o">&gt;();</span>
+</span><span class='line'><span class="n">List</span><span class="o">&lt;</span><span class="n">People</span><span class="o">&gt;</span> <span class="n">listMinor</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">People</span><span class="o">&gt;();</span>
+</span><span class='line'><span class="n">List</span><span class="o">&lt;</span><span class="n">People</span><span class="o">&gt;</span> <span class="n">listAdult</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">People</span><span class="o">&gt;();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Coba buat aplikasi untuk memfilter semua people yang ada di listPeople, dan pindahkan ke listMinor &amp; listAdult sesuai dengan nilai age dari masing2 object tersebut.</p>
+
+<h3>Jawaban</h3>
+
+<p>Cara yang paling gampang, tapi cukup bertele2 adalah seperti ini:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">People</span> <span class="n">people</span> <span class="o">:</span> <span class="n">listPeople</span><span class="o">){</span>
+</span><span class='line'>  <span class="k">if</span><span class="o">(</span><span class="n">people</span><span class="o">.</span><span class="na">age</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="o">)</span> <span class="n">listMinor</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">people</span><span class="o">)</span>
+</span><span class='line'>  <span class="k">else</span> <span class="n">listAdult</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">people</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>tapi kita bisa menggunakan <code>ternary-operator</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">People</span> <span class="n">people</span> <span class="o">:</span> <span class="n">listPeople</span><span class="o">){</span>
+</span><span class='line'>  <span class="o">(</span><span class="n">people</span><span class="o">.</span><span class="na">age</span> <span class="o">&lt;</span> <span class="mi">18</span> <span class="o">?</span> <span class="n">listMinor</span> <span class="o">:</span> <span class="n">listAdult</span><span class="o">).</span><span class="na">add</span><span class="o">(</span><span class="n">people</span><span class="o">)</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -1055,72 +1145,6 @@ Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-26T14:42:00-04:00" pubdate data-updated="true">Oct 26<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace/">Oracle Concepts - Menemukan Table Dan Index Lokasi Tablespace</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><div class="alert alert-danger">
-Artikel ini saya translate dari <a href="http://www.dba-oracle.com/concepts/table_tablespace_location.htm"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
-
-Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
-</div>
-
-
-<p>Mencari tahu yang memiliki <code>table</code> dan apa <code>tablespace</code> nya adalah kebutuhan yang cukup umum dari <code>DBA</code>. Dalam query ini, kita menggunakan <code>dba_tables view</code> untuk menemukan pemilik dan nama <code>tablespace</code> dari tabel <code>EMP</code>.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'> <span class="k">SQL</span><span class="o">&gt;</span>  <span class="k">select</span> <span class="k">owner</span><span class="p">,</span> <span class="k">table_name</span><span class="p">,</span> <span class="n">tablespace_name</span>
-</span><span class='line'>  <span class="mi">2</span>   <span class="k">from</span> <span class="n">dba_tables</span>
-</span><span class='line'>  <span class="mi">3</span>  <span class="k">where</span> <span class="k">table_name</span><span class="o">=</span><span class="s1">&#39;EMP&#39;</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">OWNER</span>                <span class="k">TABLE_NAME</span>           <span class="n">TABLESPACE_NAME</span>
-</span><span class='line'><span class="c1">-------------------- -------------------- -------------</span>
-</span><span class='line'><span class="n">SCOTT</span>                <span class="n">EMP</span>                  <span class="n">USERS</span>
-</span><span class='line'><span class="n">POLL</span>                 <span class="n">EMP</span>                  <span class="n">USERS</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Seperti yang dapat kita lihat dari query ini, kita memiliki 2 table yang disebut <code>EMP</code>, dimiliki oleh 2 <code>user</code> yang berbeda (SCOTT dan POLL). Kedua table terdapat dalam <code>tablespace</code> USERS.</p>
-
-<p>Sebuah latihan yang bagus untuk anda mungkin mencoba menggabungkan query ini dengan sebuah <code>view</code> seperti <code>dba_extents</code> dan mencari tahu seberapa besar tabel ini dialokasikan.</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1144,6 +1168,8 @@ Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2014/02/01/replace-all-non-alphanumeric-in-java-using-regex/">Replace All Non-alphanumeric in Java Using Regex</a>
+    
     <a class="list-group-item " href="/blog/2013/11/17/membuat-changelog-liquibase/">Membuat Changelog Liquibase</a>
     
     <a class="list-group-item " href="/blog/2013/11/17/memahami-dependency-injection/">Memahami Dependency Injection</a>
@@ -1151,8 +1177,6 @@ Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :
     <a class="list-group-item " href="/blog/2013/11/09/install-google-chrome-di-crunchbang/">Install Google-chrome Di Crunchbang</a>
     
     <a class="list-group-item " href="/blog/2013/11/09/uninstall-google-chrome-di-crunchbang/">Uninstall Google-chrome Di Crunchbang</a>
-    
-    <a class="list-group-item " href="/blog/2013/11/09/setting-environment-variable-path-di-windows-7/">Setting Environment Variable (PATH) Di Windows 7</a>
     
   </div>
 </section>

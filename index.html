@@ -8,7 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Nov 17th, 2013 Membuat Changelog Liquibase Artikel ini saya ambil dari sini. Tujuan saya meng-copykan artikel ini di sini, saya ingin mempelajari &hellip;">
+  <meta name="description" content="Feb 1st, 2014 Replace All Non-alphanumeric in Java Using Regex If you want to replace all non-alphanumeric using regex, you can use one of the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +86,61 @@
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-01T12:54:00-05:00" pubdate data-updated="true">Feb 1<span>st</span>, 2014</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/01/replace-all-non-alphanumeric-in-java-using-regex/">Replace All Non-alphanumeric in Java Using Regex</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>If you want to replace all non-alphanumeric using regex, you can use one of the following ways:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;[^A-Za-z0-9]&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>or</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;[\\W]|_&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>or</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;\\P{Alnum}&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -1611,96 +1666,6 @@ gw menulis artikel ini, karena terkadang gw lupa dengan nama nya :D
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-11-07T09:27:00-05:00" pubdate data-updated="true">Nov 7<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/11/07/algorithm-cara-simple-memilih-2-object-di-java/">[Algorithm] Cara Simple Memilih 2 Object Di Java</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><h3>Masalah</h3>
-
-<p>Anggap, kita memiliki sebuah list (<code>listPeople</code>) yang menyimpan object <code>people</code>, dengan struktur <code>class</code> seperti di bawah ini</p>
-
-<figure class='code'><figcaption><span>people.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">people</span><span class="o">{</span>  
-</span><span class='line'>  <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
-</span><span class='line'>  <span class="kd">public</span> <span class="kt">int</span> <span class="n">age</span><span class="o">;</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu kita memiliki 2 object list, <code>listMinor</code> untuk menyimpan data people yang belum dewasa (age &lt; 18), dan <code>listAdult</code> untuk menyimpan data people yang sudah dewasa (age >= 18).</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">List</span><span class="o">&lt;</span><span class="n">People</span><span class="o">&gt;</span> <span class="n">listPeople</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">People</span><span class="o">&gt;();</span>
-</span><span class='line'><span class="n">List</span><span class="o">&lt;</span><span class="n">People</span><span class="o">&gt;</span> <span class="n">listMinor</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">People</span><span class="o">&gt;();</span>
-</span><span class='line'><span class="n">List</span><span class="o">&lt;</span><span class="n">People</span><span class="o">&gt;</span> <span class="n">listAdult</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">People</span><span class="o">&gt;();</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Coba buat aplikasi untuk memfilter semua people yang ada di listPeople, dan pindahkan ke listMinor &amp; listAdult sesuai dengan nilai age dari masing2 object tersebut.</p>
-
-<h3>Jawaban</h3>
-
-<p>Cara yang paling gampang, tapi cukup bertele2 adalah seperti ini:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">People</span> <span class="n">people</span> <span class="o">:</span> <span class="n">listPeople</span><span class="o">){</span>
-</span><span class='line'>  <span class="k">if</span><span class="o">(</span><span class="n">people</span><span class="o">.</span><span class="na">age</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="o">)</span> <span class="n">listMinor</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">people</span><span class="o">)</span>
-</span><span class='line'>  <span class="k">else</span> <span class="n">listAdult</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">people</span><span class="o">)</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>tapi kita bisa menggunakan <code>ternary-operator</code></p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">for</span><span class="o">(</span><span class="n">People</span> <span class="n">people</span> <span class="o">:</span> <span class="n">listPeople</span><span class="o">){</span>
-</span><span class='line'>  <span class="o">(</span><span class="n">people</span><span class="o">.</span><span class="na">age</span> <span class="o">&lt;</span> <span class="mi">18</span> <span class="o">?</span> <span class="n">listMinor</span> <span class="o">:</span> <span class="n">listAdult</span><span class="o">).</span><span class="na">add</span><span class="o">(</span><span class="n">people</span><span class="o">)</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1724,6 +1689,8 @@ gw menulis artikel ini, karena terkadang gw lupa dengan nama nya :D
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2014/02/01/replace-all-non-alphanumeric-in-java-using-regex/">Replace All Non-alphanumeric in Java Using Regex</a>
+    
     <a class="list-group-item " href="/blog/2013/11/17/membuat-changelog-liquibase/">Membuat Changelog Liquibase</a>
     
     <a class="list-group-item " href="/blog/2013/11/17/memahami-dependency-injection/">Memahami Dependency Injection</a>
@@ -1731,8 +1698,6 @@ gw menulis artikel ini, karena terkadang gw lupa dengan nama nya :D
     <a class="list-group-item " href="/blog/2013/11/09/install-google-chrome-di-crunchbang/">Install Google-chrome Di Crunchbang</a>
     
     <a class="list-group-item " href="/blog/2013/11/09/uninstall-google-chrome-di-crunchbang/">Uninstall Google-chrome Di Crunchbang</a>
-    
-    <a class="list-group-item " href="/blog/2013/11/09/setting-environment-variable-path-di-windows-7/">Setting Environment Variable (PATH) Di Windows 7</a>
     
   </div>
 </section>

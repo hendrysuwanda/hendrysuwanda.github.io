@@ -8,7 +8,7 @@
   <meta name="author" content="Hendry Suwanda">
 
   
-  <meta name="description" content="Mar 27th, 2013 Download Sourcecode Dan Javadocs Menggunakan Maven Terkadang kita membutuhkan source code dan javadocs dari dependency yang kita &hellip;">
+  <meta name="description" content="Mar 29th, 2013 Install Dig Di Crunchbang Dig adalah tools yang berguna utk memberikan informasi suatu DNS. contoh, kita ingin tahu, www.google.com &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -86,6 +86,112 @@
   <div class="page-content col-md-9">
     <div class="blog-index">
       
+      
+      
+        <article class="post">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-29T05:48:00-04:00" pubdate data-updated="true">Mar 29<span>th</span>, 2013</time>
+        
+      </p>
+    
+    
+      <h1 class="entry-title"><a href="/blog/2013/03/29/install-dig-di-crunchbang/">Install Dig Di Crunchbang</a></h1>
+    
+  </header>
+
+
+  <div class="entry-content clearfix"><p>Dig adalah tools yang berguna utk memberikan informasi suatu DNS.</p>
+
+<p>contoh, kita ingin tahu, <code>www.google.com</code> lari ke mana saja, maka ketikkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>dig www.google.com +nostats +nocomments +nocmd</span></code></pre></td></tr></table></div></figure>
+
+
+<p>di lokal saya menghasilkan</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>; &lt;&lt;&gt;&gt; DiG 9.7.3 &lt;&lt;&gt;&gt; www.google.com +nostats +nocomments +nocmd
+</span><span class='line'>;; global options: +cmd
+</span><span class='line'>;www.google.com.          IN  A
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.42
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.46
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.48
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.49
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.53
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.57
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.59
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.16
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.20
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.24
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.26
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.27
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.31
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.35
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.37
+</span><span class='line'>www.google.com.       162 IN  A   114.121.192.38
+</span><span class='line'>google.com.       320440  IN  NS  ns4.google.com.
+</span><span class='line'>google.com.       320440  IN  NS  ns3.google.com.
+</span><span class='line'>google.com.       320440  IN  NS  ns1.google.com.
+</span><span class='line'>google.com.       320440  IN  NS  ns2.google.com.
+</span><span class='line'>ns1.google.com.       147620  IN  A   216.239.32.10
+</span><span class='line'>ns2.google.com.       147620  IN  A   216.239.34.10
+</span><span class='line'>ns3.google.com.       147620  IN  A   216.239.36.10
+</span><span class='line'>ns4.google.com.       147662  IN  A   216.239.38.10</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Untuk menginstall dig di crunchbang, ketikkan perintah berikut</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo apt-get install dnsutils </span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+        </article>
       
       
         <article class="post">
@@ -1010,52 +1116,6 @@
 
         </article>
       
-      
-        <article class="post">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-26T03:38:00-05:00" pubdate data-updated="true">Jan 26<span>th</span>, 2013</time>
-        
-      </p>
-    
-    
-      <h1 class="entry-title"><a href="/blog/2013/01/26/membuat-project-menggunakan-maven-artifact-secara-langsung/">Membuat Project Menggunakan Maven - Artifact Secara Langsung</a></h1>
-    
-  </header>
-
-
-  <div class="entry-content clearfix"><p>Ketika pertama kali membuat project menggunakan Maven, aku biasanya mengetikkan perintah berikut:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mvn archetype:generate</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Lalu maven, akan melakukan sync utk mengambil semua list archetype yang terdaftar di repo maven, dan biasanya ini akan membutuhkan waktu yg sangat lama, sementara archetype yang mau kita gunakan biasanya hanya standar (mis: maven-archetype-quickstart). Setelah google, akhirnya aku menemukan cara pintas utk membuat project dengan mendefinisikan secara langsung archetype yang aku gunakan seperti di bawah ini:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mvn archetype:generate -DgroupId=com.hendrysuwanda.project.spring -DartifactId=project.spring.example -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
@@ -1079,6 +1139,8 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2014/02/01/replace-all-non-alphanumeric-in-java-using-regex/">Replace All Non-alphanumeric in Java Using Regex</a>
+    
     <a class="list-group-item " href="/blog/2013/11/17/membuat-changelog-liquibase/">Membuat Changelog Liquibase</a>
     
     <a class="list-group-item " href="/blog/2013/11/17/memahami-dependency-injection/">Memahami Dependency Injection</a>
@@ -1086,8 +1148,6 @@
     <a class="list-group-item " href="/blog/2013/11/09/install-google-chrome-di-crunchbang/">Install Google-chrome Di Crunchbang</a>
     
     <a class="list-group-item " href="/blog/2013/11/09/uninstall-google-chrome-di-crunchbang/">Uninstall Google-chrome Di Crunchbang</a>
-    
-    <a class="list-group-item " href="/blog/2013/11/09/setting-environment-variable-path-di-windows-7/">Setting Environment Variable (PATH) Di Windows 7</a>
     
   </div>
 </section>

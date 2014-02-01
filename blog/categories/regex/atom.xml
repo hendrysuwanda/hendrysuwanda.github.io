@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Regex | Hendry Suwanda]]></title>
+  <link href="http://hendrysuwanda.github.io/blog/categories/regex/atom.xml" rel="self"/>
+  <link href="http://hendrysuwanda.github.io/"/>
+  <updated>2014-02-01T13:03:27-05:00</updated>
+  <id>http://hendrysuwanda.github.io/</id>
+  <author>
+    <name><![CDATA[Hendry Suwanda]]></name>
+    <email><![CDATA[suwanda.hendry@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Replace All non-alphanumeric in java using regex]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2014/02/01/replace-all-non-alphanumeric-in-java-using-regex/"/>
+    <updated>2014-02-01T12:54:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2014/02/01/replace-all-non-alphanumeric-in-java-using-regex</id>
+    <content type="html"><![CDATA[<p>If you want to replace all non-alphanumeric using regex, you can use one of the following ways:</p>
+
+<p><code>java
+return value.replaceAll("[^A-Za-z0-9]", "");
+</code></p>
+
+<p>or</p>
+
+<p><code>java
+return value.replaceAll("[\\W]|_", "");
+</code></p>
+
+<p>or</p>
+
+<p><code>java
+return value.replaceAll("\\P{Alnum}", "");
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

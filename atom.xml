@@ -4,7 +4,7 @@
   <title><![CDATA[Hendry Suwanda]]></title>
   <link href="http://hendrysuwanda.github.io/atom.xml" rel="self"/>
   <link href="http://hendrysuwanda.github.io/"/>
-  <updated>2014-01-11T08:55:03-05:00</updated>
+  <updated>2014-02-01T13:03:27-05:00</updated>
   <id>http://hendrysuwanda.github.io/</id>
   <author>
     <name><![CDATA[Hendry Suwanda]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Replace All non-alphanumeric in java using regex]]></title>
+    <link href="http://hendrysuwanda.github.io/blog/2014/02/01/replace-all-non-alphanumeric-in-java-using-regex/"/>
+    <updated>2014-02-01T12:54:00-05:00</updated>
+    <id>http://hendrysuwanda.github.io/blog/2014/02/01/replace-all-non-alphanumeric-in-java-using-regex</id>
+    <content type="html"><![CDATA[<p>If you want to replace all non-alphanumeric using regex, you can use one of the following ways:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;[^A-Za-z0-9]&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>or</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;[\\W]|_&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>or</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="na">replaceAll</span><span class="o">(</span><span class="s">&quot;\\P{Alnum}&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Membuat Changelog Liquibase]]></title>
@@ -2079,45 +2107,6 @@ Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :
 </span><span class='line'><span class="nt">&lt;/html&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Oracle Concepts - Menemukan table dan index lokasi tablespace]]></title>
-    <link href="http://hendrysuwanda.github.io/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace/"/>
-    <updated>2013-10-26T14:42:00-04:00</updated>
-    <id>http://hendrysuwanda.github.io/blog/2013/10/26/oracle-concepts-menemukan-table-dan-index-lokasi-tablespace</id>
-    <content type="html"><![CDATA[<div class="alert alert-danger">
-Artikel ini saya translate dari <a href="http://www.dba-oracle.com/concepts/table_tablespace_location.htm"> sini</a>. Tujuan saya translate artikel ini sebagai latihan saya dalam mempelajari bahasa inggris, disamping selain memahami isi materi artikel tersebut.
-
-Saya akui, saya belum memiliki izin dalam melakukan translate artikel tersebut :).      
-</div>
-
-
-<p>Mencari tahu yang memiliki <code>table</code> dan apa <code>tablespace</code> nya adalah kebutuhan yang cukup umum dari <code>DBA</code>. Dalam query ini, kita menggunakan <code>dba_tables view</code> untuk menemukan pemilik dan nama <code>tablespace</code> dari tabel <code>EMP</code>.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='sql'><span class='line'> <span class="k">SQL</span><span class="o">&gt;</span>  <span class="k">select</span> <span class="k">owner</span><span class="p">,</span> <span class="k">table_name</span><span class="p">,</span> <span class="n">tablespace_name</span>
-</span><span class='line'>  <span class="mi">2</span>   <span class="k">from</span> <span class="n">dba_tables</span>
-</span><span class='line'>  <span class="mi">3</span>  <span class="k">where</span> <span class="k">table_name</span><span class="o">=</span><span class="s1">&#39;EMP&#39;</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">OWNER</span>                <span class="k">TABLE_NAME</span>           <span class="n">TABLESPACE_NAME</span>
-</span><span class='line'><span class="c1">-------------------- -------------------- -------------</span>
-</span><span class='line'><span class="n">SCOTT</span>                <span class="n">EMP</span>                  <span class="n">USERS</span>
-</span><span class='line'><span class="n">POLL</span>                 <span class="n">EMP</span>                  <span class="n">USERS</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Seperti yang dapat kita lihat dari query ini, kita memiliki 2 table yang disebut <code>EMP</code>, dimiliki oleh 2 <code>user</code> yang berbeda (SCOTT dan POLL). Kedua table terdapat dalam <code>tablespace</code> USERS.</p>
-
-<p>Sebuah latihan yang bagus untuk anda mungkin mencoba menggabungkan query ini dengan sebuah <code>view</code> seperti <code>dba_extents</code> dan mencari tahu seberapa besar tabel ini dialokasikan.</p>
 ]]></content>
   </entry>
   
